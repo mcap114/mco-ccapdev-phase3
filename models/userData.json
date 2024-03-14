@@ -1,0 +1,71 @@
+[
+    {
+        "user_icon": "https://i.pinimg.com/736x/37/09/38/370938b94a8317ea6f3836cfceff4308.jpg",
+        "name": "Cady Heron",
+        "username":"cadyyy",
+        "bio":"",
+        "email":"cady_heron@gmail.com",
+        "password":"cadyHeron",
+        "confirmpassword":"cadyHeron",
+        "favoriteplace":["Deuces Coffee","Kape Benito"],
+        "createdreview": ["Kape Benito"],
+        "followers": ["reginaaa","aaaaron"],
+        "following": ["aaaaron","karen_"]
+
+        
+    },
+    {
+        "user_icon": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
+        "name": "Regina George",
+        "username":"reginaaa",
+        "bio":"one and only",
+        "email":"regina_george@gmail.com",
+        "password":"reginageorge",
+        "confirmpassword":"reginageorge",
+        "favoriteplace":["Angkan Coffee Company"],
+        "createdreview": ["Kape Benito"],
+        "followers": ["gretchh","karen_"],
+        "following": ["aaaaron"]
+    },
+    {
+        "user_icon": "https://i.pinimg.com/originals/c7/2f/cc/c72fcc17928f3b200bf3f0c79820ea20.jpg",
+        "name": "Gretchen Wieners",
+        "username":"gretchh",
+        "bio":"it's so fetch",
+        "email":"gretchen_weiners@gmail.com",
+        "password":"weinerss",
+        "confirmpassword":"weinerss",
+        "favoriteplace":["Angkan Coffee Company"],
+        "createdreview": ["Frank & Dean Coffee"],
+        "followers": ["karen_"],
+        "following": ["karen_","cadyyy"]
+        
+    },
+    {
+        "user_icon": "https://i.pinimg.com/474x/9d/0e/be/9d0ebe82326c5e932d0a3149705dd934.jpg",
+        "name": "Karen Smith",
+        "username":"karen_",
+        "bio":"",
+        "email":"karen_smith@gmail.com",
+        "password":"karen_smith",
+        "confirmpassword":"karen_smith",
+        "favoriteplace":["Deuces Coffee","Angkan Coffee Company"],
+        "createdreview": ["Kape Benito"],
+        "followers": ["reginaaa","gretchh","cadyyy","karen_"],
+        "following": ["aaaaron","karen_"]
+    },
+    {
+        "user_icon": "https://i.redd.it/b42oeb66665a1.jpg",
+        "name": "Aaron Samuels",
+        "username":"aaaaron",
+        "bio":"",
+        "email":"aaron_samuels@gmail.com",
+        "password":"samuelss",
+        "confirmpassword":"samuelss",
+        "favoriteplace":["Kape Benito","Angkan Coffee Company"],
+        "createdreview": ["Frank & Dean Coffee"],
+        "followers": ["reginaaa","cadyyy"],
+        "following": ["reginaaa","cadyyy"]
+    }
+]
+

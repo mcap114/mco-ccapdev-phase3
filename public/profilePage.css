@@ -1,0 +1,567 @@
+
+
+/* parent container for the content */
+.parent-content-profile{
+    background-color: #959D90; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+
+ }
+ 
+
+
+/* For the box items with rounded images in header (small avatar logo)*/
+
+.box-parent{
+    display: flex;
+    flex-direction: column;
+}
+.box-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+}
+.box-item > img{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin-right: 30px;
+    margin-left: 20px;;
+    
+}
+
+.box-item > strong { 
+    font-family: 'Biryani', sans-serif;
+    font-weight: 800;
+    color: white;
+    
+}
+
+/* Profile Section Styles */
+
+.blockb {
+    background-color: #959d90;
+    width: 100%;
+    height: 550px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+   
+ 
+    
+}
+
+
+/* For the Profile Area's big avatar logo */
+
+.box-item-profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    flex-direction: column;
+    
+}
+
+.box-item-profile > img{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+    
+    
+}
+
+.box-item-profile > div {
+    text-align: center;
+}
+
+
+.box-item-profile > b { 
+    font-size: 25px;
+    color: white;
+    font-family: 'Biryani', sans-serif;
+    
+}
+
+.box-item-profile{
+    font-size: 25px; 
+    color: white;
+    font-family: 'Biryani', sans-serif;
+   
+}
+
+.bio-text {
+    font-size: 15px; 
+    color: white;
+    font-weight: normal; 
+    font-family: 'Biryani', sans-serif;
+}
+
+
+
+
+
+/* Main Area Styles */
+
+.blockc {
+    background-color: #EFEFEA;
+    width: 98%;
+    padding: 20px;
+    
+}
+
+.main-area-titles{
+    color: black;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Biryani', sans-serif;
+    margin-top: 25px;
+    
+}
+
+.horizontal-line{
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+.divbox{
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    display: inline-block; 
+    margin: -110px;
+    margin-top: 20px;
+    margin-left: 160px;
+    border-radius: 15%;
+}
+
+.inner-image > img{
+     width: 100px; 
+     height: 100px;
+     align-items: center;
+     border-radius: 15%;
+     justify-content: center;
+     margin-top: 25px;
+     margin-left: 25px;
+
+
+    }
+
+
+
+.favorite-places,
+.coffee-shop-reviews {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);    
+    grid-gap: 20px;
+}
+
+.favorite-place,
+.coffee-shop-review {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+.favorite-place img,
+.coffee-shop-review img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.fav-place-name,
+.createdrev-place-name,
+.review-text {
+    display: block;
+    padding: 5px;
+    font-family: 'Biryani', sans-serif;
+    font-size: 15px;
+    margin-top: 8px;
+   
+}
+
+.see-all {
+    color: #523D35;
+    font-family: 'Biryani', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 20px; 
+}
+
+.main-area-titles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/**
+.review-widget-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+}
+
+.review-widget {
+    background-color: #EFEFEA;
+    padding: 100px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.write-review-title{
+    color: #523D35;
+    font-family: 'Cardo', serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+.review-title,
+.review-description,
+.review-location {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none; 
+}
+
+.review-description{
+    margin-bottom: 15px;
+}
+*/
+
+/* Star Rating Styles */
+.star-rating {
+    margin-bottom: 10px;
+}
+
+.star-rating i {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating i:hover,
+.star-rating i.active {
+    color: #FFD700; 
+}
+
+.photo-preview {
+    max-width: 100px; 
+    max-height: 100px; 
+    overflow: hidden; 
+    margin-bottom: 10px; 
+}
+
+.photo-preview img {
+    width: 100%; 
+    height: auto; 
+}
+
+/* edit profile */
+.edit-prof {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.edit-prof a {
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-right: 10px;
+    font-family: 'Biryani', sans-serif;
+}
+
+.edit-prof a:hover {
+    color: #666;
+}
+
+
+
+/* Profile Stats Styles */
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.profile-stats a {
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-right: 10px;
+    font-family: 'Biryani', sans-serif;
+}
+
+.profile-stats a:hover {
+    color: #666;
+}
+
+
+
+
+
+
+/* followers widget style*/
+
+.widget-container a:hover {
+    color: #666;
+}
+
+.widget-container a,span {
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-right: 10px;
+    font-family: 'Biryani', sans-serif;
+}
+
+.widget-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    width: 300px;
+    height: auto;
+}
+
+
+
+.widget-container.visible {
+    display: block;
+}
+
+.follower-avatar,
+.following-avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #523D35;
+}
+
+.followers-title,
+.following-title,
+.listreview-title{
+    color: #523D35;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Biryani', sans-serif;
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+.follower
+.following,
+.listreviews{
+    font-family: 'Biryani', sans-serif;
+}
+
+
+
+.follower,
+.following {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Edit Profile Widget Styles */
+.edit-profile-widget-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+}
+
+.edit-profile-widget {
+    background-color: #EFEFEA;
+    padding: 80px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.profile-info-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.profile-info-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: #523D35;
+    font-family: 'Biryani', sans-serif;
+    font-size: 15px;
+}
+
+.profile-info-item input {
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 8px; 
+    box-sizing: border-box;
+    border: none; 
+    border-bottom: 1px solid gray; 
+    background-color: transparent; 
+    outline: none; 
+    display: block; 
+}
+
+.profile-info-item input[type="password"] {
+    width: 100%;
+    padding-right: 25px; 
+}
+
+.profile-info-item img {
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+.edit-profile-title{
+    color: #523D35;
+    font-family: 'Cardo', serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+.profile-options{
+    margin-top: 20px;
+    display: flex;
+}
+
+.options-dropdown button {
+    color: #523D35;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Biryani', sans-serif;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+
+
+.favorite-place,
+.coffee-shop-review {
+    position: relative;
+}
+
+
+
+.profpage-menu {
+    position: relative;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin-top: 10px;
+    
+  
+}
+
+
+.options {
+    position: absolute;
+    bottom: 100%; 
+    left: 0; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    display: none; 
+}
+
+.options span {
+    font-size: 10px;
+}
+
+
+.profpage-menu:hover .options {
+    display: block;
+    margin-right: 40px;
+}
+
+.profpage-widget-details{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#options {
+    padding: 5px 10px;
+    width: 50%; 
+    height: 80px;
+    font-family: 'Biryani', sans-serif;
+    font-size: 12px; 
+    font-weight: bolder;
+    color: #EFEFE9;
+    background-color: #523D35;
+    border: 3px solid #EFEFE9;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#options:hover {
+    background-color: #EFEFE9;
+    color: #523D35;
+    border: 3px solid #523D35;
+}

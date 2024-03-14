@@ -1,0 +1,167 @@
+<!-- container for the body -->
+<div class="body-container">
+
+    <!-- container for the header -->
+    <div class="parent-header">
+        {{#if isLoggedIn}}
+            {{> headerUser}}
+        {{else}}
+            {{> headerNonUser}}
+        {{/if}}
+    </div>
+
+    <!-- container for the content -->
+    <div class="parent-content-profile">
+        
+        <!-- container for the profile information -->
+        <div class="parent-row blockb">
+            <div class="box-parent">
+                <div class="box-item-profile">
+                    <img src="{{user-data.user_icon}}">  
+                    <div>
+                        <b>{{user-data.name}}</b><br>
+                        <span class="bio-text">@{{user-data.username}}</span><br>
+                        <span class="bio-text">{{user-data.bio}}</span><br>
+                        <div class="profile-stats">
+                            <a  id="reviews-count" onclick="showListReview()">{{user-data.createdreview.length}} reviews</a>
+                            <a  id="followers-count" onclick="showFollowers()">{{user-data.followers.length}} followers</a>
+                            <a  id="following-count" onclick="showFollowing()">{{user-data.following.length}} following</a>
+                        </div> 
+
+                        <div class="edit-prof">
+                            <a onclick="showEditProfileWidget()">Edit Profile</a>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+       <div class="widget-container" id="listreview-widget">
+            <span class="close-btn" onclick="hideListReview()">x</span>
+            <div class="listreview-title">Reviews</div>
+            {{#each user.createdreview}}
+            <div class="listreviews">
+                <a href="#">{{this}}</a>
+            </div>
+            {{/each}}
+        </div>
+    
+        <div class="widget-container" id="followers-widget">
+            <span class="close-btn" onclick="hideFollowers()">x</span>
+            <div class="followers-title">Followers</div>
+            {{#each user.followers}}
+            <div class="follower">
+                <!--<img class="follower-avatar" src="{{../currentUserIcon}}" alt="Follower Avatar">-->
+                <a onclick="redirectToProfile('{{this}}')">@{{this}}</a>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="widget-container" id="following-widget">
+            <span class="close-btn" onclick="hideFollowing()">x</span>
+            <div class="following-title">Following</div>
+            {{#each user.following}}
+            <div class="following">
+                <!--<img class="following-avatar" src="{{../currentUserIcon}}" alt="Following Avatar">-->
+                <a onclick="redirectToProfile('{{this}}')">@{{this}}</a>
+            </div>
+            {{/each}}
+        </div>
+
+        <!-- Edit Profile Widget -->
+        <div id="edit-profile-widget" class="edit-profile-widget-container" style="display: none;">
+            <div class="edit-profile-widget">
+                <div class="edit-profile-title">Edit Profile</div>
+                <div class="profile-info">
+                    <div class="profile-info-item">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" value="{{user-data.name}}" placeholder="Enter your name">
+                    </div>
+                    <div class="profile-info-item">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" value="{{user-data.username}}" placeholder="Enter your username">
+                    </div>
+                    <div class="profile-info-item">
+                        <label for="biotext">User Bio</label>
+                        <input type="text" id="biotext" value="{{user-data.bio}}"  placeholder="update your bio">
+                    </div>
+                    <div class="profile-info-item">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" value="{{user-data.email}}" readonly>
+                    </div>
+                    <div class="profile-info-item">
+                        <label for="password">Password</label>
+                        <input type="password" id="password-field" value="{{user-data.password}}">
+                        <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
+                    </div>
+                </div>
+                
+                <div class="profile-options">
+                    <button id="options" onclick="showPhotoUpload()">Change Profile Picture</button>
+                    <button id="options" class="go-back-button" onclick="hideEditProfileWidget()">Go Back</button>
+                    <button id="options" class="save-button">Save</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- container for the user's reviews -->
+        <div class="blockc">
+            <!-- favorite Places -->
+            <div class="main-area-titles"> FAVORITE PLACES 
+                <a href="#" class="see-all"></a>
+            </div>
+                    
+            <div class="horizontal-line"></div>
+
+            <!-- Sample Favorite Places -->
+            <div class="favorite-places widget" data-widget-id="1">
+            {{#each establishment-data}}    
+                <div class="favorite-place">
+                    <img src="{{banner_image}}" alt="Favorite Place">
+                    <div class="profpage-widget-details">
+                        <span onclick="redirectToEstablishment('{{establishment_name}}')" class="fav-place-name">{{establishment_name}}</span>
+                        <div class="profpage-menu">
+                            <button class="reaction-btn option" onclick="unlikeWidget(this)"><i class="fa fa-thumbs-down" aria-hidden="true"></i> </button> 
+                            <div class="options">
+                                <span>Unlike</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {{/each}}
+            </div>
+        
+            <!-- Created Coffee Shop Reviews -->
+            <div class="main-area-titles">
+                CREATED REVIEWS
+                <a href="#" class="see-all"></a>
+            </div>
+                    
+            <div class="horizontal-line"></div>
+
+            <!-- Sample Coffee Shop Review -->
+            <div class="coffee-shop-reviews widget" data-widget-id="2">
+                {{#each review-data}}
+                <div class="coffee-shop-review">
+                    <img src="{{review_photo}}" alt="Coffee Shop Review">
+                    <div class="profpage-widget-details">
+                        <span onclick="redirectToEstablishment('{{place_name}}')" class="createdrev-place-name">{{place_name}}</span>
+                        <div class="profpage-menu">
+                            <button class="reaction-btn option"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
+                            <button class="reaction-btn option" onclick="deleteWidget(this)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                        </div>
+                    </div>
+                </div>  
+                {{/each}} 
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- container for the footer -->
+    <div class="parent-footer">
+        {{> footer}}
+    </div>
+</div>

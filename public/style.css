@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    font-family: 'Biryani', sans-serif;
+}
+
+/* container for the body */
+.body-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.parent-header,
+.parent-content,
+.parent-footer {
+    display: flex;
+}
+
+.parent-content {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+}
+
+
+/* banner */
+.banner-block {
+    display: flex;
+    background-image: url(https://miro.medium.com/v2/resize:fit:1400/0*6lX9i2AVnurxCQgx);
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.banner-text-box {
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    width: 42%;
+    height: 56%;
+    margin-top: 5%;
+    margin-left: 1%;
+}
+
+.headline {
+    padding-left: 5%;
+    font-family: 'Cardo', serif;
+    font-size: 29px;
+    font-weight: 700;
+    text-align: left;
+}
+
+/* For the box items with rounded images in header (small avatar logo)*/
+
+.box-parent{
+    display: flex;
+    flex-direction: column;
+}
+.box-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+}
+.box-item > img{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin-right: 30px;
+    margin-left: 20px;;
+    
+}
+
+.box-item > strong { 
+    font-family: 'Biryani', sans-serif;
+    font-weight: 800;
+    color: white;
+    
+}
+
+.avatar-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.avatar-dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
+
+.avatar-button:hover + .avatar-dropdown-content,
+.avatar-dropdown-content:hover {
+    display: block;
+}
+
+
+.avatar-dropdown-content button {
+    color: #523D35;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Biryani', sans-serif;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.avatar-button {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.avatar-button i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: white;
+}

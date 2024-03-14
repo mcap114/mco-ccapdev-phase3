@@ -1,0 +1,50 @@
+<div class="header-item">
+    <header>
+        <div class="header-container">
+            <!-- Left side of the header-->
+            <div class="header-left">
+                <!--LOGO-->
+                <div class="header-logo">
+                    <a href="/landingPage"><img src="https://i.imgocean.com/cofeed-3888275e2301b4b27.png" alt="cofeed-3888275e2301b4b27.png"/></a>
+                </div>
+    
+                <!--SEARCH BAR-->
+                <div class="header-search">
+                    <input class="search-bar" type="text" placeholder="Coffee shop, study area, etc...">
+                    <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!--VIEW ESTABLISHMENTS BUTTON-->
+                <div class="header-view-establishments-button">
+                    <a class="header-text" href="/landingPage">Home</a>
+                </div>
+
+                <!--VIEW ESTABLISHMENTS BUTTON-->
+                <div class="header-view-establishments-button">
+                    <a class="header-text" href="/viewEstablishments">View Establishments</a>
+                </div>
+    
+                <!--SEE PROFILE PAGE-->
+                <div class="header-see-profile-button">
+                    <a class="header-text" onclick="redirectToProfile('{{currentUser}}')">See Profile</a>
+                </div>
+        
+                <div class="header-profile">
+                    <div class="avatar-button" onclick="toggleOptions(event)">
+                        <div class="box-item">
+                            <strong>{{currentUser}}</strong> <!-- display the user's name here -->
+                            <img src="{{currentUserIcon}}" alt="user icon">
+                        </div>
+                        <i class="fa fa-chevron-down"></i> <!-- arrow icon -->
+                    </div>
+                    <div class="avatar-dropdown-content" id="myDropdown">
+                        <button onclick="logout()">Logout</button>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </header>
+</div>

@@ -1,0 +1,26 @@
+<!-- ANS -->
+
+<div class="main">
+  <h1>List same users</h1>
+{{#each users}}
+  <table class="jumbotron">
+    <tr>
+      <td>_id:</td><td>{{_id}}</td>
+    </tr><tr>
+      <td>name:</td><td>{{name}}</td>
+    </tr><tr>
+      <td>username:</td><td>{{username}}</td>
+    </tr><tr>
+      <td>email:</td><td>{{email}}</td>
+    </tr><tr>
+      <td>bio:</td><td>{{bio}}</td>
+    </tr><tr>
+      <td>password:</td><td>{{password}}</td>
+    </tr><tr>
+      <td>confirm password:</td><td>{{confirmpassword}}</td>
+    </tr>
+  </table>
+{{/each}}
+
+</div>
+

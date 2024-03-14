@@ -1,0 +1,45 @@
+<!-- Review Sample -->
+<div class="review-container">
+    
+    <div class="review-photo-box">
+        <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
+    </div>
+
+    <div class="review-details">
+        <div class="review-menu">
+            <button class="reaction-btn review-option"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
+            <button class="reaction-btn review-option" onclick="deleteWidget(this)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+        </div>
+
+        <div onclick="redirectToProfile('{{username}}')" class="user-profile-establishment">
+            <img src="{{user_photo}}" alt="{{display_name}}">
+            <div class="profile-text">
+                <span class="display-name">{{display_name}}</span>
+                <br>
+                <span class="username">@{{username}}</span>
+            </div>
+        </div>
+
+    <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
+
+      
+        <p class="caption">{{caption}}</p>
+        <p class="date-posted">{{date}}</p>
+
+        <div class="comment-section" id="commentSection">
+            <div class="user-profile-establishment">
+                <img src="https://i.imgocean.com/IMG_583878e7f9f7129aa4bc.jpeg" alt="abby">
+                <div class="profile-text">
+                    <span class="username">abigailwong</span>
+                    <span class="comment-box">Your order looks so good!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reactions">
+            <button class="reaction-btn love"><i class="fa fa-heart" aria-hidden="true"></i> Love this! </button>
+            <button class="reaction-btn helpful"><i class="fa fa-thumbs-up" aria-hidden="true"></i> This was helpful!</button>
+            <button class="reaction-btn comment"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+        </div>
+    </div>
+</div>
