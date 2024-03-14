@@ -77,8 +77,15 @@ function addRoutes(server) {
     });
   });
 
+  // route for forgot password page
+  router.get('/forgotpassword', function (req, res) {
+    res.render('forgotpassword', {
+      layout: 'index',
+      title: 'Forgot Password',
+    });
+  });
 
-  // creating user in the database
+  // route for creating user in the database
   router.post('/create-user', function(req, resp){
     const userInstance = userModel({
       name: req.body.name,
@@ -95,7 +102,7 @@ function addRoutes(server) {
     }).catch(errorFn);
   });
 
-  // reading user from the database to login
+  // route for reading user from the database to login
   router.post('/read-user', async function(req, resp){
     try {
       const searchQuery = { username: req.body.username, password: req.body.password };
