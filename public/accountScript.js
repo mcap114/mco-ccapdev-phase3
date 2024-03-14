@@ -79,6 +79,7 @@ function redirectToLoginPage() {
     return false; 
 }
 
+// function when submitting the form of a user logging in
 function submitLoginForm() {
     let usernameString = document.getElementById("username-field").value;
     let passString = document.getElementById("password-field").value;
