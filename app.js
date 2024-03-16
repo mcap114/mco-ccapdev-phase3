@@ -41,7 +41,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/cofeedDB');
 
 mongoose.connection.on('connected', () => {
-  console.log('Database connected successfully');
+  console.log('\nDatabase connected successfully');
 });
 
 mongoose.connection.on('error', (err) => {
@@ -61,7 +61,7 @@ function errorFn(err) {
 
 // closing the database
 function finalClose() {
-  console.log('Close connection at the end!');
+  console.log('\nClose connection at the end!');
   mongoose.connection.close();
   process.exit();
 }
@@ -72,5 +72,5 @@ process.on('SIGQUIT', finalClose); //catches other termination commands
 
 const port = process.env.PORT | 3000;
 server.listen(port, function () {
-  console.log('Listening at port ' + port);
+  console.log('\nListening at port ' + port);
 });

@@ -36,7 +36,6 @@ function addRoutes(server) {
   // route for user view homepage
   router.get('/landingPage', function (req, resp) {
     const searchQuery = {};
-    console.log('Username:', req.session.username);
 
     reviewModel.find(searchQuery).lean().then(function(review_data){
       establishmentModel.find(searchQuery).lean().then(function(establishment_data){
@@ -46,7 +45,8 @@ function addRoutes(server) {
           'review-data': review_data,
           'establishment-data': establishment_data,
           currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon
+          currentUserIcon: req.session.user_icon,
+          currentUserType: req.session.userType
         });
       });
     });
@@ -110,12 +110,15 @@ function addRoutes(server) {
 
       const user = await userModel.findOne(searchQuery);
 
-      console.log("Finding user: ", user);
+      console.log("\nFinding user: ", req.body.username);
 
       if (user && user._id) {
-        console.log('User Found');
         req.session.username = user.username;
         req.session.user_icon = user.user_icon;
+        req.session.userType = user.userType;
+        console.log("\nUser " , req.session.username , " Found");
+        console.log("User Type:", req.session.userType);
+        console.log("\n");
         resp.json({success: true});
       } else {
         resp.json({success: false});
