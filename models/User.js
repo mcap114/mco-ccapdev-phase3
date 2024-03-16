@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   confirmpassword: { type: String },
-  userType: { type: String, enum: ['owner', 'reviewer'] },
+  userType: { type: String, enum: ['owner', 'rater'] },
   following: { type: Array },
   followers: { type: Array },
   favoriteplace: { type: Array },

@@ -36,17 +36,12 @@
     margin: 0 20px;
 }
 
-div {
-    display: block;
-}
-
 .form-group {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     position: relative;
 }
-
 
 .form-group input[type=text], 
 .form-group input[type=password] {
@@ -77,8 +72,29 @@ div {
     display: flex; 
     align-items: center; 
     position: relative;
-    cursor: pointer;
     user-select: none;
+    font-size: 14px;
+}
+
+#userTypeRegister {
+    display: block;
+}
+
+.radio-buttons {
+    display: inline-flex; 
+    align-items: flex-start;
+    padding-top: 5px;
+    font-size: 14px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.radio-buttons input[type="radio"] {
+    cursor: pointer;
+}
+
+.radio-buttons input[type="radio"]:checked + label {
+    font-weight: bold;
 }
 
 .form-group input[type="checkbox"] {
