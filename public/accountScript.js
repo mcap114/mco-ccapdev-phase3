@@ -21,6 +21,8 @@ function submitForm() {
     let pass1String = document.forms["create-user"]["password"].value;
     let pass2String = document.forms["create-user"]["password2"].value;
 
+    let userType = document.querySelector('input[name="userType"]:checked').value;
+
     if (nameString.length < 1) {
         alert("Name cannot be empty");
         return false;
@@ -47,7 +49,8 @@ function submitForm() {
             bio: bioString,
             email: emailString,
             password: pass1String,
-            password2: pass2String
+            password2: pass2String,
+            userType: userType
         })
     })
     .then(response => {

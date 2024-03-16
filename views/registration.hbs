@@ -40,9 +40,14 @@
                 <input name="password2" id="confirm-password-field" type="password" placeholder="Confirm Password"></input>
                 <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-confirm-password" onclick="togglePasswordVisibility('confirm-password-field', 'toggle-confirm-password')">
             </div>
+            <div class="form-group">
+                <label for="user-type">Are you an establishment owner or a reviewer?</label><br>
+                <input type="radio" name="userType" value="owner"> Establishment Owner<br>
+                <input type="radio" name="userType" value="reviewer" checked> Reviewer<br>
+            </div>
             <input type="submit" value="Sign Up "></input>
         </form>
-    <p class="login-page"><a href="/login">Already have an account? Login Here</a></p>
+        <p class="login-page"><a href="/login">Already have an account? Login Here</a></p>
     
     </div>
 

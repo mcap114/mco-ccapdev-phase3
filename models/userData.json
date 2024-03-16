@@ -7,12 +7,11 @@
         "email":"cady_heron@gmail.com",
         "password":"cadyHeron",
         "confirmpassword":"cadyHeron",
+        "userType": "reviewer",
         "favoriteplace":["Deuces Coffee","Kape Benito"],
         "createdreview": ["Kape Benito"],
         "followers": ["reginaaa","aaaaron"],
         "following": ["aaaaron","karen_"]
-
-        
     },
     {
         "user_icon": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
@@ -22,6 +21,7 @@
         "email":"regina_george@gmail.com",
         "password":"reginageorge",
         "confirmpassword":"reginageorge",
+        "userType": "reviewer",
         "favoriteplace":["Angkan Coffee Company"],
         "createdreview": ["Kape Benito"],
         "followers": ["gretchh","karen_"],
@@ -35,11 +35,11 @@
         "email":"gretchen_weiners@gmail.com",
         "password":"weinerss",
         "confirmpassword":"weinerss",
+        "userType": "reviewer",
         "favoriteplace":["Angkan Coffee Company"],
         "createdreview": ["Frank & Dean Coffee"],
         "followers": ["karen_"],
         "following": ["karen_","cadyyy"]
-        
     },
     {
         "user_icon": "https://i.pinimg.com/474x/9d/0e/be/9d0ebe82326c5e932d0a3149705dd934.jpg",
@@ -49,6 +49,7 @@
         "email":"karen_smith@gmail.com",
         "password":"karen_smith",
         "confirmpassword":"karen_smith",
+        "userType": "reviewer",
         "favoriteplace":["Deuces Coffee","Angkan Coffee Company"],
         "createdreview": ["Kape Benito"],
         "followers": ["reginaaa","gretchh","cadyyy","karen_"],
@@ -62,10 +63,10 @@
         "email":"aaron_samuels@gmail.com",
         "password":"samuelss",
         "confirmpassword":"samuelss",
+        "userType": "reviewer",
         "favoriteplace":["Kape Benito","Angkan Coffee Company"],
         "createdreview": ["Frank & Dean Coffee"],
         "followers": ["reginaaa","cadyyy"],
         "following": ["reginaaa","cadyyy"]
     }
 ]
-

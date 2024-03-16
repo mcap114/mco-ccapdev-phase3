@@ -93,7 +93,8 @@ function addRoutes(server) {
       bio: req.body.bio,
       email: req.body.email,
       password: req.body.password,
-      confirmpassword: req.body.password2
+      confirmpassword: req.body.password2,
+      userType: req.body.userType
     });
     
     userInstance.save().then(function(user) {

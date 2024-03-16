@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   confirmpassword: { type: String },
+  userType: { type: String, enum: ['owner', 'reviewer'] },
   following: { type: Array },
   followers: { type: Array },
   favoriteplace: { type: Array },
