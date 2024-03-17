@@ -32,26 +32,6 @@ function addRoutes(server) {
   });
 
   //TODO: logic for checking ifLoggedin, displays landingPage if true otherwise goes to main
-
-  // route for user view homepage
-  router.get('/landingPage', function (req, resp) {
-    const searchQuery = {};
-
-    reviewModel.find(searchQuery).lean().then(function(review_data){
-      establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-        resp.render('landingPage', {
-          layout: 'index',
-          title: 'Cofeed',
-          'review-data': review_data,
-          'establishment-data': establishment_data,
-          currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon,
-          currentUserType: req.session.userType
-        });
-      });
-    });
-  });
-
     
   // route for registration page
   router.get('/registration', function (req, res) {
@@ -67,22 +47,6 @@ function addRoutes(server) {
       layout: 'index',
       title: 'Registration Avatar',
     })
-  });
-
-  // route for login page
-  router.get('/login', function (req, res) {
-    res.render('login', {
-      layout: 'index',
-      title: 'Login',
-    });
-  });
-
-  // route for forgot password page
-  router.get('/forgotpassword', function (req, res) {
-    res.render('forgotpassword', {
-      layout: 'index',
-      title: 'Forgot Password',
-    });
   });
 
   // route for creating user in the database
@@ -101,6 +65,14 @@ function addRoutes(server) {
       console.log('User created');
       resp.json({ success: true, message: 'User created successfully' });
     }).catch(errorFn);
+  });
+
+  // route for login page
+  router.get('/login', function (req, res) {
+    res.render('login', {
+      layout: 'index',
+      title: 'Login',
+    });
   });
 
   // route for reading user from the database to login
@@ -129,6 +101,58 @@ function addRoutes(server) {
     }
   });
 
+
+  // route for forgot password page
+  router.get('/forgotpassword', function (req, res) {
+    res.render('forgotpassword', {
+      layout: 'index',
+      title: 'Forgot Password',
+    });
+  });
+
+  router.post('/forgot-password', async function(req, resp) {
+    try {
+        const { username, password } = req.body;
+
+        const user = await userModel.findOne({ username });
+
+        console.log("\nFinding user: ", username);
+
+        if (user) {
+            user.password = password; 
+            user.confirmpassword = password;
+            await user.save();
+
+            console.log("\nPassword updated successfully for user: ", username);
+            return resp.json({ success: true, message: 'Password updated successfully' });
+        } else {
+            console.log("\nUser not found with username: ", username);
+            return resp.json({ success: false, message: 'Username not found' });
+        }
+    } catch (error) {
+        errorFn(error);
+        return resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+    }
+  });
+
+  // route for user view homepage
+  router.get('/landingPage', function (req, resp) {
+    const searchQuery = {};
+
+    reviewModel.find(searchQuery).lean().then(function(review_data){
+      establishmentModel.find(searchQuery).lean().then(function(establishment_data){
+        resp.render('landingPage', {
+          layout: 'index',
+          title: 'Cofeed',
+          'review-data': review_data,
+          'establishment-data': establishment_data,
+          currentUser: req.session.username,
+          currentUserIcon: req.session.user_icon,
+          currentUserType: req.session.userType
+        });
+      });
+    });
+  });
 
   // route for view establishments
   router.get('/viewEstablishments', function(req, resp){
