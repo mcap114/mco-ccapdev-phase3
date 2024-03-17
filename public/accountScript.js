@@ -127,3 +127,49 @@ function submitLoginForm() {
 
     return false;
 }
+
+function submitForgotPasswordForm() {
+    let usernameString = document.getElementById("username-field").value;
+    let passString = document.getElementById("password-field").value;
+
+    if (usernameString.length < 1) {
+        alert("Username cannot be empty");
+        return false;
+    } else if (passString.length < 1) {
+        alert("Password cannot be empty");
+        return false;
+    }
+
+    // making a POST request to the server to update password
+    fetch('/forgot-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: usernameString,
+            password: passString
+        })
+    })
+    .then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;        
+        } else {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data && data.success) {
+            alert(data.message);
+            window.location.href = 'landingPage';
+        } else {
+            alert(data.message); 
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the password.');
+    });
+
+    return false;
+}

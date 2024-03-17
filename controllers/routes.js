@@ -124,6 +124,13 @@ function addRoutes(server) {
             await user.save();
 
             console.log("\nPassword updated successfully for user: ", username);
+
+            req.session.username = user.username;
+            req.session.user_icon = user.user_icon;
+            req.session.userType = user.userType;
+            console.log("\nUser " , req.session.username , " Found");
+            console.log("User Type:", req.session.userType);
+            console.log("\n");
             return resp.json({ success: true, message: 'Password updated successfully' });
         } else {
             console.log("\nUser not found with username: ", username);
