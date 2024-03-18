@@ -1,7 +1,5 @@
 <!-- container for the body -->
 <div class="body-container">
-    
-    {{log review-data}}
     <!-- container for the header -->
     <div class="parent-header">
         {{#if isLoggedIn}}
@@ -31,7 +29,7 @@
                 <b>{{establishment.establishment_name}}</b>
                 </div>
 
-                <div class="star-rating"\>
+                <div class="star-rating">
 
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -88,13 +86,13 @@
 
                                 <form name="post-form" id="post-form">
                                     <!-- Star Rating -->
-                                    <div class="review-rating">
+                                    <div class="write-review-rating">
                                         <div class="star-rating">
-                                            <i class="fa fa-star" data-rating="1"></i>
-                                            <i class="fa fa-star" data-rating="2"></i>
-                                            <i class="fa fa-star" data-rating="3"></i>
-                                            <i class="fa fa-star" data-rating="4"></i>
-                                            <i class="fa fa-star" data-rating="5"></i>
+                                            <i class="fa fa-star one" data-rating="1"></i>
+                                            <i class="fa fa-star two" data-rating="2"></i>
+                                            <i class="fa fa-star three" data-rating="3"></i>
+                                            <i class="fa fa-star four" data-rating="4"></i>
+                                            <i class="fa fa-star five" data-rating="5"></i>
                                         </div>
                                     </div>
                                     
@@ -248,14 +246,15 @@
                     <!--success! review is reviewing boogsh wah!!!-->
                     <!--!Call review partial to display review data-->
                     <div class="review-feed">
-                        {{#if reviewData.length}}
-                         {{#each reviewData}}
-                            {{> review_partial this}}
+                    {{#if reviewData.length}}
+                        {{#each reviewData}}
+                         {{> review_partial currentUser=../currentUser}}
                         {{/each}}
-                        {{else}}
-                            <p>Our brew buddies are still brewing up something to say.</p>
-                        {{/if}}
-                    </div>
+                    {{else}}
+                        <p>Our brew buddies are still brewing up something to say.</p>
+                    {{/if}}
+                </div>
+
 
                 </section>
                 </div>

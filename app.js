@@ -20,10 +20,28 @@ server.use(express.urlencoded({ extended: true }));
 
 // handlebars
 const handlebars = require('express-handlebars');
+
 server.set('view engine', 'hbs');
 server.engine('hbs', handlebars.engine({
-  extname: 'hbs'
+  extname: 'hbs',
+  helpers: {
+    // helper to compare two values
+    eq: function (arg1, arg2) {
+      // pang debug lang
+      console.log('arg1:', arg1);
+      console.log('arg2:', arg2);
+
+      // compare
+      const result = arg1 === arg2;
+
+      // check if true or false yung pag compare
+      console.log('Comparison result:', result);
+
+      return result;
+  }
+},
 }));
+
 
 // manage user sessions
 const session = require('./controllers/sessionController');

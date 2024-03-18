@@ -6,10 +6,20 @@
     </div>
 
     <div class="review-details">
-        <div class="review-menu">
-            <button class="reaction-btn review-option"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
-            <button class="reaction-btn review-option" onclick="deleteWidget(this)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
-        </div>
+
+            {{log "Username:" username}}
+            {{log "CurrentUser:" currentUser}}
+
+           {{#if (eq username currentUser)}}
+            <!-- Display review menu -->
+            <div class="review-menu">
+                <button class="reaction-btn review-option"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
+                <button class="reaction-btn review-option" onclick="deleteWidget(this)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+            </div>
+        {{/if}}
+
+
+
 
         <div onclick="redirectToProfile('{{username}}')" class="user-profile-establishment">
             <img src="{{user_photo}}" alt="{{display_name}}">

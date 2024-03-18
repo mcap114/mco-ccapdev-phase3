@@ -10,7 +10,7 @@ const reviewSchema = new mongoose.Schema({
   review_title: {type: String},
   establishment_name: {type: String},
   caption: {type: String},
-  date_posted: {type: String} //hardcoded date for now
+  date_posted: {type: Date} 
 },{ versionKey: false });
   
 // review model

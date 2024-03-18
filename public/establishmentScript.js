@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.querySelector("input#post-date").value = formattedDate;
   updateStarRatings();
+
+  const starContainers = document.querySelectorAll('.star-rating');
+    starContainers.forEach(container => {
+        container.addEventListener('click', function(event) {
+            const rating = parseInt(event.target.getAttribute('data-rating'), 10);
+            // Update data-rating attribute of parent container
+            container.setAttribute('data-rating', rating);
+            updateStarRatings();
+        });
+    });
 });
 
 // 
@@ -50,14 +60,6 @@ function redirectToEstablishment(establishmentName) {
 
 
 
-// 
-function updateStarRatings() {
-  const ratingContainers = document.querySelectorAll('.star-rating');
-  ratingContainers.forEach(container => {
-      const rating = parseInt(container.getAttribute('data-rating'), 10);
-      container.innerHTML = getStarsHTML(rating);
-  });
-}
 
 // 
 function updateStarRatings() {
