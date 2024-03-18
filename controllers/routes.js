@@ -208,6 +208,29 @@ function addRoutes(server) {
     });
   });
 
+  router.post('/post-review', async (req, res) => {
+  try {
+    // Create a new review instance using the Mongoose model
+    const newReview = new reviewModel({
+      // Assign the data from req.body to the respective fields
+      user_photo: req.session.user_icon, // Assuming you're storing the user's icon URL in the session
+      display_name: req.session.username, // Or however you're storing the user's display name
+      rating: req.body.rating,
+      review_photo: req.body.photo, // This will require handling file uploads separately
+      establishment_name: req.body.location,
+      caption: req.body.description,
+      date_posted: req.body.date // Ensure this is in the correct format
+    });
+
+    // Save the new review to the database
+    await newReview.save();
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Failed to post review:', error);
+    res.status(500).json({ success: false, message: 'Failed to post review' });
+  }
+});
+
 
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {

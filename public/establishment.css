@@ -59,6 +59,7 @@ body {
     color: #523D35;
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 0.5%;
     box-sizing: border-box;
 }
 
@@ -86,6 +87,10 @@ body {
   .average {
     font-size: smaller;
     margin-left: 5px; 
+}
+
+.establishment-text-box.location{
+    margin: 2%;
 }
 
 .fafa-map-marker {
@@ -293,6 +298,7 @@ textarea {
     margin-top: 3%;
 }
 
+.review-title,
 .review-location,
 .review-description {
     margin-top: 1%;
@@ -307,12 +313,15 @@ textarea {
 }
 
 /* For text placeholder */
+input.review-title::placeholder,
 input.review-location::placeholder,
 textarea.review-description::placeholder {
     color: #E5E5E5;
-    margin: 0;
+    margin: 2px;
 }
+
 /* For text input */
+input.review-title,
 input.review-location,
 textarea.review-description {
     padding: 10px;
@@ -632,20 +641,29 @@ label[for="star-filter"], label[for="sort"] {
     color: #777;
     text-align: left;
 }
+/* Review-title */
+.title {
+    margin-bottom: 0; 
+    font-family: 'Biryani', sans-serif;
+    font-size: medium;
+    font-weight:800;
+}
 
+/* Caption */
+.caption {
+    margin-top: 0; /* Adjust margin-top to reduce space between title and caption */
+    margin-bottom: 5px; /* Add margin-bottom if necessary */
+    font-family: 'Biryani', sans-serif;
+    font-size: smaller;
+}
+
+/* Date posted */
 .date-posted {
     font-size: 0.8em;
     color: #777;
     text-align: left;
 }
 
-/* Caption */
-.caption {
-    margin-top: 1%;
-    margin-bottom: 10px;
-    font-family: 'Biryani', sans-serif;
-    font-size: smaller;
-}
 
 /* Review Photo Box */
 .review-photo-box {
@@ -682,7 +700,7 @@ label[for="star-filter"], label[for="sort"] {
     font-weight: bold;
 }
 
-.reactions button:hover.love {
+.reactions button:hover.not-helpful {
     background-color: #ff6961;
     color: white;
 }

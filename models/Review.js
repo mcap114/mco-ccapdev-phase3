@@ -7,6 +7,7 @@ const reviewSchema = new mongoose.Schema({
   username: {type: String},
   rating: {type: Number},
   review_photo: {type: String},
+  review_title: {type: String},
   establishment_name: {type: String},
   caption: {type: String},
   date_posted: {type: String} //hardcoded date for now

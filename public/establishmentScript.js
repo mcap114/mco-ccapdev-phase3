@@ -47,7 +47,9 @@ function previewPhoto(event) {
 function redirectToEstablishment(establishmentName) {
   window.location.href = '/establishment/' + encodeURIComponent(establishmentName);
 }
-  
+
+
+
 // 
 function updateStarRatings() {
   const ratingContainers = document.querySelectorAll('.star-rating');
