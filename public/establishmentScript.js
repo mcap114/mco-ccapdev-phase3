@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
+// still doesnt fully function (in progress)
 function addToFavorites(establishment_name) {
   // Send a POST request to the server with the establishment name
-  body: JSON.stringify({ establishment_name }),
   fetch('/add-to-favorites', {
       method: 'POST',
       headers: {
@@ -38,6 +38,7 @@ function addToFavorites(establishment_name) {
   })
   .then(response => response.json())
   .then(data => {
+    console.log(data);
       // Handle the response from the server
       if (data.success) {
           // Update UI to indicate that establishment was added to favorites

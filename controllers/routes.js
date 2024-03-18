@@ -208,33 +208,46 @@ function addRoutes(server) {
     });
   });
 
+// still doesnt fully function (in progress)
+  router.post('/add-to-favorites', async function(req, res) {
+    console.log(req.body); 
+    try {
+        // retrieve the establishment name from the request body
+        const {establishment_name} = req.body;
+        const username = req.session.username;
+  
+        // Find the user document in the database
+        const user = await userModel.findOne({ username });
+  
+        // Check if the user exists
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+  
+        // Ensure favoriteplace array exists and is not null
+        if (!user.favoriteplace) {
+            user.favoriteplace = [];
+        }
+  
+        // Update the user's document to add the establishment to favorites, avoiding duplicates
+        if (!user.favoriteplace.includes(establishment_name)) {
+            user.favoriteplace.push(establishment_name);
+            await user.save();
+  
+            // Respond with success
+            res.json({ success: true, message: 'Added to favorites!' });
+        } else {
+            // Establishment already in favorites
+            res.json({ success: false, message: 'Establishment is already a favorite.' });
+            console.log("Received establishment_name:", req.body.establishment_name);
 
-// Define the route to handle adding establishments to favorites
-router.post('/add-to-favorites', async function(req, res) {
-  try {
-      // Retrieve establishment name from the request body
-      const { establishmentName } = req.body;
-      const username = req.session.username;
-
-      // Find the user document in the database
-      const user = await userModel.findOne({ username });
-
-      // Check if the user exists
-      if (!user) {
-          return res.status(404).json({ success: false, message: 'User not found' });
-      }
-
-      // Update the user's document to add the establishment to favorites
-      user.favoriteplace.push(establishmentName);
-      await user.save();
-
-      // Respond with success
-      res.json({ success: true, message: 'Added to favorites!' });
-  } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ success: false, message: 'An error occurred' });
-  }
-});
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+  });
+  
 
 
   //goofy route, 100% scalable industry-ready
