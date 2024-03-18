@@ -209,6 +209,34 @@ function addRoutes(server) {
   });
 
 
+// Define the route to handle adding establishments to favorites
+router.post('/add-to-favorites', async function(req, res) {
+  try {
+      // Retrieve establishment name from the request body
+      const { establishmentName } = req.body;
+      const username = req.session.username;
+
+      // Find the user document in the database
+      const user = await userModel.findOne({ username });
+
+      // Check if the user exists
+      if (!user) {
+          return res.status(404).json({ success: false, message: 'User not found' });
+      }
+
+      // Update the user's document to add the establishment to favorites
+      user.favoriteplace.push(establishmentName);
+      await user.save();
+
+      // Respond with success
+      res.json({ success: true, message: 'Added to favorites!' });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ success: false, message: 'An error occurred' });
+  }
+});
+
+
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;

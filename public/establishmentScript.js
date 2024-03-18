@@ -16,9 +16,44 @@ document.addEventListener("DOMContentLoaded", function() {
             updateStarRatings();
         });
     });
+
+    const favoriteButtons = document.querySelectorAll('.favorite');
+    favoriteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            const establishment_name = event.target.dataset.establishment_name;
+            addToFavorites(establishment_name);
+          });
+        });
 });
 
-// 
+function addToFavorites(establishment_name) {
+  // Send a POST request to the server with the establishment name
+  body: JSON.stringify({ establishment_name }),
+  fetch('/add-to-favorites', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ establishment_name }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      // Handle the response from the server
+      if (data.success) {
+          // Update UI to indicate that establishment was added to favorites
+          alert('Added to favorites!');
+          // You can optionally update the UI here to reflect the change
+      } else {
+          alert('Failed to add to favorites. Please try again.');
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while processing your request.');
+  });
+}
+
+// write a review date
 function formatDate(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -29,7 +64,7 @@ function formatDate(date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
-//
+// write a review preview of photo when uploading
 function previewPhoto(event) {
   const fileInput = event.target;
   const photoPreview = document.getElementById('photo-preview');
