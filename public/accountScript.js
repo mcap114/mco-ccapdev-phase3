@@ -183,12 +183,13 @@ function updatingUserForm() {
     let passString = document.getElementById("password-field").value;
 
     // making a POST request to the server to update password
-    fetch('/user-udpate', {
+    fetch('/update-user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            user: usernameString,
             name: nameString,
             username: usernameString,
             bio: bioString,
@@ -206,14 +207,13 @@ function updatingUserForm() {
     .then(data => {
         if (data && data.success) {
             alert(data.message);
-            window.location.href = 'profile/:name';
         } else {
             alert(data.message); 
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while updating the password.');
+        alert('An error occurred while updating the user information.');
     });
 
     return false;

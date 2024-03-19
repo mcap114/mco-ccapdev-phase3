@@ -248,8 +248,6 @@ function addRoutes(server) {
     }
   });
   
-
-
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
@@ -293,27 +291,44 @@ function addRoutes(server) {
     }).catch(errorFn);
   });
 
-  // update user's information on prile page
-  router.post('/update-user', async function(req, resp){
-    try {
-      const updateQuery = { user: req.body.user };
-      userModel.findOne(updateQuery).then(function(user){
+  // update user's information on profile page
+  router.post('/update-user', function(req, resp){
+    const updateQuery = { username: req.body.username };
+
+    userModel.findOne(updateQuery).then(function(user) {
+        // if user found
         if (user && user._id) {
-          req.session.username = user.username;
-          req.session.user_icon = user.user_icon;
-          req.session.userType = user.userType;
-          console.log("\nUser " , req.session.username , " Found");
-          console.log("User Type:", req.session.userType);
-          console.log("\n");
-          resp.json({success: true, message: 'User updated successfully!'});
+            const { name, username, bio, password } = req.body;
+
+            // updating user information
+            user.name = name;
+            user.username = username;
+            user.bio = bio;
+            user.password = password;
+            user.confirmpassword = password;
+
+            // saving the updated user information
+            user.save().then(function(result) {
+                req.session.username = user.username;
+                req.session.user_icon = user.user_icon;
+                req.session.userType = user.userType;
+
+                console.log("\nUser " , req.session.username , " Found");
+                console.log("User Type:", req.session.userType);
+                console.log("\n");
+
+                return resp.json({success: true, message: 'User updated successfully!'});
+            }).catch(function(error) {
+                errorFn(error);
+                return resp.status(500).json({ success: false, message: 'Failed to update user information' });
+            });
         } else {
-          resp.json({success: false});
+            return resp.status(404).json({ success: false, message: 'User not found' });
         }
-      })
-    } catch (error) {
-      errorFn(error);
-      return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
-    }
+    }).catch(function(error) {
+        errorFn(error);
+        return resp.status(500).json({ success: false, message: 'Internal Server Error' });
+    });
   });
 
   return router;
@@ -322,5 +337,3 @@ function addRoutes(server) {
 module.exports = {
   addRoutes: addRoutes,
 };
-
-
