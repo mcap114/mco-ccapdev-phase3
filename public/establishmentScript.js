@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-// still doesnt fully function (in progress)
+// function to add establishment to current user's favorites
 function addToFavorites(establishment_name) {
   // Send a POST request to the server with the establishment name
   fetch('/add-to-favorites', {
@@ -36,16 +36,18 @@ function addToFavorites(establishment_name) {
       },
       body: JSON.stringify({ establishment_name }),
   })
-  .then(response => response.json())
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed to add to favorites. Please try again.');
+      }
+      return response.json();
+  })
   .then(data => {
-    console.log(data);
-      // Handle the response from the server
+      console.log(data);
       if (data.success) {
-          // Update UI to indicate that establishment was added to favorites
           alert('Added to favorites!');
-          // You can optionally update the UI here to reflect the change
       } else {
-          alert('Failed to add to favorites. Please try again.');
+          alert(data.message);
       }
   })
   .catch(error => {
@@ -53,6 +55,7 @@ function addToFavorites(establishment_name) {
       alert('An error occurred while processing your request.');
   });
 }
+
 
 // write a review date
 function formatDate(date) {
@@ -105,7 +108,7 @@ function updateStarRatings() {
   });
 }
 
-// 
+// function to display the rating number to stars from review
 function getStarsHTML(rating) {
   let starsHTML = '';
   for (let i = 1; i <= 5; i++) {
@@ -114,7 +117,7 @@ function getStarsHTML(rating) {
   return starsHTML;
 }
 
-//owner edit establishment
+// owner edit establishment functions
 
 // function to show the edit profile widget
 function showEditEstablishmentWidget() {

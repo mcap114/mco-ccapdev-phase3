@@ -189,7 +189,7 @@ function addRoutes(server) {
       reviewModel.find(reviewSearchQuery).lean().then(function(review_data){
         if (!establishment_data) {
           console.log('Establishment data not found.');
-          // Handle the case where establishment_data is not found, redirect or show an error page.
+  
           resp.redirect('/error');
           return;
         }
@@ -209,43 +209,46 @@ function addRoutes(server) {
     });
   });
 
-// still doesnt fully function (in progress)
+  // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
   router.post('/add-to-favorites', async function(req, res) {
-    console.log(req.body); 
     try {
-        // retrieve the establishment name from the request body
-        const {establishment_name} = req.body;
+        console.log('Request body:', req.body); 
+
+        // Retrieve the establishment name from the request body
+        const { establishment_name } = req.body;
+        console.log('Establishment name:', establishment_name);
+
         const username = req.session.username;
-  
+        console.log('Username:', username);
+
         // Find the user document in the database
         const user = await userModel.findOne({ username });
-  
+        console.log('User found:', user);
+
         // Check if the user exists
         if (!user) {
+            console.log('User not found');
             return res.status(404).json({ success: false, message: 'User not found' });
         }
-  
-        // Ensure favoriteplace array exists and is not null
-        if (!user.favoriteplace) {
-            user.favoriteplace = [];
-        }
-  
-        // Update the user's document to add the establishment to favorites, avoiding duplicates
-        if (!user.favoriteplace.includes(establishment_name)) {
-            user.favoriteplace.push(establishment_name);
-            await user.save();
-  
-            // Respond with success
-            res.json({ success: true, message: 'Added to favorites!' });
-        } else {
-            // Establishment already in favorites
-            res.json({ success: false, message: 'Establishment is already a favorite.' });
-            console.log("Received establishment_name:", req.body.establishment_name);
 
+        // Update the user's fave establishments
+        if (!user.favoriteplace.includes(establishment_name)) {
+          user.favoriteplace.push(establishment_name);
+          console.log('Favorite place added:', establishment_name);
+          await user.save();
+          console.log('User saved with favorite place added');
+
+          // success
+          return res.json({ success: true, message: 'Added to favorites!' });
+        } else {
+
+          // Establishment already in favorites
+          console.log('Establishment is already a favorite.');
+          return res.status(400).json({ success: false, message: 'Establishment is already a favorite.' });
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ success: false, message: 'An error occurred' });
+        return res.status(500).json({ success: false, message: 'An error occurred' });
     }
   });
   
