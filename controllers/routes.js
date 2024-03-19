@@ -293,6 +293,29 @@ function addRoutes(server) {
     }).catch(errorFn);
   });
 
+  // update user's information on prile page
+  router.post('/update-user', async function(req, resp){
+    try {
+      const updateQuery = { user: req.body.user };
+      userModel.findOne(updateQuery).then(function(user){
+        if (user && user._id) {
+          req.session.username = user.username;
+          req.session.user_icon = user.user_icon;
+          req.session.userType = user.userType;
+          console.log("\nUser " , req.session.username , " Found");
+          console.log("User Type:", req.session.userType);
+          console.log("\n");
+          resp.json({success: true, message: 'User updated successfully!'});
+        } else {
+          resp.json({success: false});
+        }
+      })
+    } catch (error) {
+      errorFn(error);
+      return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
+    }
+  });
+
   return router;
 }
 

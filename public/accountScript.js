@@ -128,6 +128,7 @@ function submitLoginForm() {
     return false;
 }
 
+// function when submitting form for forgotten new password
 function submitForgotPasswordForm() {
     let usernameString = document.getElementById("username-field").value;
     let passString = document.getElementById("password-field").value;
@@ -162,6 +163,50 @@ function submitForgotPasswordForm() {
         if (data && data.success) {
             alert(data.message);
             window.location.href = 'landingPage';
+        } else {
+            alert(data.message); 
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the password.');
+    });
+
+    return false;
+}
+
+// function when updating user information
+function updatingUserForm() {
+    let nameString = document.getElementById("name-field").value;
+    let usernameString = document.getElementById("username-field").value;
+    let bioString = document.getElementById("bio-field").value;
+    let passString = document.getElementById("password-field").value;
+
+    // making a POST request to the server to update password
+    fetch('/user-udpate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: nameString,
+            username: usernameString,
+            bio: bioString,
+            password: passString,
+            password2: passString,
+        })
+    })
+    .then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;        
+        } else {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data && data.success) {
+            alert(data.message);
+            window.location.href = 'profile/:name';
         } else {
             alert(data.message); 
         }
