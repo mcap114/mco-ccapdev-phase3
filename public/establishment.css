@@ -812,18 +812,20 @@ label[for="star-filter"], label[for="sort"] {
 /* Edit Establishment Widget */
 .edit-establishment-widget-container {
     transform: translate(-50%, -10%);
-    z-index: 1000;
-    width:50%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: #E5D9CE;
-    opacity: 1;
     display: flex; 
     justify-content: center;
     align-items: center;
+    height: auto;
+    position: absolute;
     z-index: 1000; 
+    width:50%;
+    top: 50%;
+    left: 50%;
+    
+    background-color: #E5D9CE;
+    opacity: 100%;
+    border: 5px solid white;
+
 }
 .establishment-info-item {
     margin-bottom: 20px;

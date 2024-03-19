@@ -276,15 +276,16 @@
                     </div>
                 
                 <!-- trying to display to establishment owner only-->
-                 {{#if (eq currentUser.userType 'owner')}}
-                    {{#if (eq currentUser.username establishment.establishment_owner)}}
+                  {{#if (eq currentUserType 'owner')}}
+                    {{#if (eq currentUser establishment.owner_username)}}
                         <div class="edit-establishment">
                             <button class="reaction-btn review-option" onclick="showEditEstablishmentWidget()">
-                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
                         </div>
                     {{/if}}
-                {{/if}}
+                    {{/if}}
+                 
 
                        <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
                         <div id="edit-establishment-widget" class="edit-establishment-widget-container" style="display: none;">

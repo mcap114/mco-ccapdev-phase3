@@ -202,7 +202,8 @@ function addRoutes(server) {
           reviewData: review_data,
           establishment: establishment_data,
           currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon
+          currentUserIcon: req.session.user_icon,
+          currentUserType: req.session.userType
         });
       });
     });

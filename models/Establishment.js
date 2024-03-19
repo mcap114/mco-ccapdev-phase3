@@ -13,7 +13,8 @@ const establishmentSchema = new mongoose.Schema({
   contact_details_IG: {type: String},
   establishment_images: {type: Array},
   establishment_map: {type: String},
-  establishment_owner: {type: String} 
+  establishment_owner: {type: String}, 
+  owner_username: {type: String}
 },{ versionKey: false });
   
 // review model

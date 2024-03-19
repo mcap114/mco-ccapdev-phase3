@@ -11,7 +11,8 @@
         "contact_details_IG": "@kapebenito.cafe",
         "establishment_images": ["https://i.imgocean.com/2023-02-24fe397b85d1a130c0.jpeg","https://i.imgocean.com/2023-02-25fcdebd9b1805389a.jpeg", "https://i.imgocean.com/2023-08-2933d055f9de1050b1.jpeg","https://i.imgocean.com/2024-01-302603a41e874a1799.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.4195477302237!2d121.09498108295342!3d14.63210984939382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9be01931167%3A0x1d819863d42ceca8!2sKape%20Benito%20Community%20Cafe!5e0!3m2!1sen!2sph!4v1708021885876!5m2!1sen!2sph",
-        "establishment_owner": "John Mark Miranda"
+        "establishment_owner": "John Mark Miranda",
+        "owner_username": "johnmiranda"
     },
 
     {
@@ -26,7 +27,8 @@
         "contact_details_IG": "@deuces.co",
         "establishment_images": ["https://i.imgocean.com/322478165_856401565565003_2058704891374861460_nd82d65e1cfea73c2.jpeg","https://i.imgocean.com/290777102_995559931131362_8244147320735079900_nfe358357caabda88.jpeg", "https://i.imgocean.com/286969594_982309505789738_3678726007093487280_n62e6cd894b4d9079.jpeg","https://i.imgocean.com/361847867_685767553572785_5503613538733660492_nc28da0049910d3d0.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15447.126572531271!2d121.0218789!3d14.5544758!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9117ae01d3b%3A0x1523c7c66da82532!2sDeuces%20Coffee!5e0!3m2!1sen!2sph!4v1710176301856!5m2!1sen!2sph",
-        "establishment_owner": "Rischelle Labrusca"
+        "establishment_owner": "Rischelle Labrusca",
+        "owner_username": "rischellelabrusca"
     }, 
     
     {
@@ -41,7 +43,8 @@
         "contact_details_IG": "@angkancoffee",
         "establishment_images": ["https://i.imgocean.com/428275159_421086743829405_3229547380439520663_n3f598b5eec5a1675.jpeg","https://i.imgocean.com/354437433_286967917230772_3426897484658532835_ndb00f8bdd513fdfa.jpeg","https://i.imgocean.com/2023-09-17260417f01b6c2ea2.jpeg","https://i.imgocean.com/427631222_17954896823725560_2334259997216252118_n3940b649564b2d3b.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.8561504921995!2d121.04657152510518!3d14.550217485930228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90c3a5d378b%3A0x32e958da923d4aba!2sANGKAN%20Coffee%20257%20McKinley!5e0!3m2!1sen!2sph!4v1710178806305!5m2!1sen!2sph",
-        "establishment_owner": "Allue Hortaleza"
+        "establishment_owner": "Allue Hortaleza",
+        "owner_username": "alluehortaleza"
     },
 
     {
@@ -56,7 +59,8 @@
         "contact_details_IG": "@frankdeancoffee",
         "establishment_images": ["https://i.imgocean.com/430050896_838868858251903_5811351159842079428_nd4b9f02652a65140.jpeg","https://i.imgocean.com/2023-04-14549caff4ea1e3c90.jpeg","https://i.imgocean.com/2023-04-14-16a37093ebc1dd77e.jpeg","https://i.imgocean.com/366700746_708662777939179_1278192636979268133_n1036a5c549ac7cc0.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15447.075843977822!2d121.043003!3d14.5552005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9505f37b461%3A0x22b8f46c7f019803!2sFrank%20%26%20Dean%20Coffee!5e0!3m2!1sen!2sph!4v1710180391619!5m2!1sen!2sph",
-        "establishment_owner": "Miguel Escueta"
+        "establishment_owner": "Miguel Escueta",
+        "owner_username": "miguelescueta"
     },
 
     {
@@ -71,7 +75,8 @@
         "contact_details_IG": "@parametercoffee",
         "establishment_images": ["https://i.imgocean.com/2023-11-289857ea86d7e6b0e6.jpeg","https://i.imgocean.com/IMG_14455661f63b115520fb.jpeg","https://i.imgocean.com/2022-10-113f38cde7bf975649.jpeg","https://i.imgocean.com/2023-11-150adf28b5c87cbba4.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15447.23313154452!2d121.0438339!3d14.5529534!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f99419edc7%3A0x186a099f573d45cf!2sParameter%20Coffee!5e0!3m2!1sen!2sph!4v1710333401911!5m2!1sen!2sph",
-        "establishment_owner": "Bernard Manuel Syching"
+        "establishment_owner": "Bernard Manuel Syching",
+        "owner_username": "bernardsyching"
     },
 
     {
@@ -85,6 +90,7 @@
         "contact_details_FB": "Yardstick Coffee",
         "contact_details_IG": "@yardstickcoffee",
         "establishment_images": ["https://i.imgocean.com/2024-03-12ec67f7d76607b61b.jpeg","https://i.imgocean.com/2023-06-13b72f74f63b4bf791.jpeg","https://i.imgocean.com/414008016_753247463506157_534189165469876896_n49a9a3f7358fdd1b.jpeg", "https://i.imgocean.com/2024-02-26a9a943b033515cbc.jpeg"],
-        "establishment_owner": "Andre Chanco"
+        "establishment_owner": "Andre Chanco",
+        "owner_username": "andrechanco"
     }
 ]
