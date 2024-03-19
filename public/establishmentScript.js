@@ -95,8 +95,6 @@ function redirectToEstablishment(establishmentName) {
 }
 
 
-
-
 // 
 function updateStarRatings() {
   // Target only review ratings
@@ -115,3 +113,27 @@ function getStarsHTML(rating) {
   }
   return starsHTML;
 }
+
+//owner edit establishment
+
+// function to show the edit profile widget
+function showEditEstablishmentWidget() {
+  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
+  editEstablishmentWidget.style.display = "block";
+}
+
+// function to hide the edit profile widget
+function hideEditEstablishmentWidget() {
+  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
+  editEstablishmentWidget.style.display = "none";
+}
+// function to save changes
+function saveChanges() {
+  console.log("Save Changes");
+}
+
+// event listener for go back button to hide the edit profile widget
+document.querySelector('.go-back-button').addEventListener('click', hideEditProfileWidget);
+
+// event listener for save button to save changes
+document.querySelector('.save-button').addEventListener('click', saveChanges);

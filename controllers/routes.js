@@ -180,7 +180,7 @@ function addRoutes(server) {
   // read establishment
   router.get('/establishment/:name', function (req, resp) {
     const establishmentName = req.params.name;
-    const establishmentSearchQuery = { establishment_name: establishmentName }; 
+    const establishmentSearchQuery = { establishment_name: establishmentName };
     const reviewSearchQuery = { place_name: establishmentName};
     console.log('Establishment page');
     console.log('Username:', req.session.username);

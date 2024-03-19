@@ -62,7 +62,7 @@
                         <button class="reaction-btn favorite"><i class="fa fa-bookmark" aria-hidden="true"></i> Favorite</button>
 
                         <div class="share-dropdown">
-                            <button class="reaction-btn share"><i class="fa fa-share-square-o" aria-hidden="true"></i>  Share</button>
+                            <button class="reaction-btn share"><i class="fa fa-share-square-o" aria-hidden="true"></i>share</button>
                             <div class="share-dropdown-content">
                                 <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
                                 <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
@@ -73,8 +73,7 @@
                             </div>
                         </div>
                 
-                    </div>
-            
+                    </div>        
            
                     <!-- 'Write a Review' Form -->
                     {{#if isLoggedIn}}
@@ -262,7 +261,9 @@
         
             <div class="right-side">
                 <section>
-
+                        
+                    <div class="about-edit-container">
+                   
                     <!--About the establishment-->
                     <div class="about-section">
                         
@@ -273,6 +274,46 @@
                             {{establishment.establishment_description}}
                         </div>
                     </div>
+                
+                <!-- trying to display to establishment owner only-->
+                 {{#if (eq currentUser.userType 'owner')}}
+                    {{#if (eq currentUser.username establishment.establishment_owner)}}
+                        <div class="edit-establishment">
+                            <button class="reaction-btn review-option" onclick="showEditEstablishmentWidget()">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                            </button>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
+                       <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
+                        <div id="edit-establishment-widget" class="edit-establishment-widget-container" style="display: none;">
+                            <div class="edit-establishmentwidget">
+                                <div class="edit-establishment-title">Edit Establishment Details</div>
+                                <div class="establishment-info">
+                                    <div class="establishment-info-item">
+                                        <label for="establishment-name">Name</label>
+                                        <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
+                                    </div>
+                                    <div class="establishment-info-item">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
+                                    </div>
+                                    <div class="establishment-info-item">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
+                                    </div>
+                                </div>
+                                
+                                <div class="establishment-options">
+                                    <button id="options" class="go-back-button" onclick="hideEditEstablishmentWidget()">Go Back</button>
+                                    <button id="options" class="save-button">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                  
                     
                     <!--Services offered-->
                     <div class="services-section">

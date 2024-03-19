@@ -134,11 +134,11 @@ body {
     margin-left: 10%;
     margin-top: 15px; 
 }
-/* Share button */
+/* Share button 380 */
 .navigate-container button.share {
     margin-right: 10px;
     padding: 10px 20px;
-    width: 380%;
+    width: 380%; 
     
     font-family: 'Biryani', sans-serif;
     font-size: 14px; 
@@ -214,7 +214,6 @@ body {
 .share-dropdown-content a i {
     margin-right: 8px; 
 }
-
 
 /* Star Rating Styles */
 .star-rating {
@@ -618,10 +617,6 @@ label[for="star-filter"], label[for="sort"] {
     border: 2px solid #523D35;
 }
 
-
-
-
-
 /* User Profile */
 .user-profile-establishment {
     display: flex;
@@ -774,6 +769,117 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 /* General Styles for the right section of the page */
+
+
+/* Edit Establishment */
+
+.edit-establishment {
+    position:relative;
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.edit-establishment button {
+    padding: 4px 8px;
+    width: auto; 
+    height: 100%;
+    font-family: 'Biryani', sans-serif;
+    font-size: 8px; 
+    font-weight: bolder;
+    color: #EFEFE9;
+    background-color: #223030;
+    border: 2px solid #EFEFE9; 
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-establishment a {
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-right: 10px;
+    font-family: 'Biryani', sans-serif;
+}
+
+.edit-establishment a:hover {
+    color: #666;
+}
+
+/* Edit Establishment Widget */
+.edit-establishment-widget-container {
+    transform: translate(-50%, -10%);
+    z-index: 1000;
+    width:50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #E5D9CE;
+    opacity: 1;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+.establishment-info-item {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.establishment-info-item label {
+    display: block;
+    margin: 3%;
+    color: #523D35;
+    font-family: 'Biryani', sans-serif;
+    font-size: 15px;
+}
+
+.establishment-info-item input {
+    width: 90%;
+    padding: 12px 0; 
+    margin: 3%;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border: none; 
+    border-bottom: 1px solid gray; 
+    background-color: transparent; 
+    outline: none; 
+    display: block; 
+}
+
+.edit-establishment-title{
+    color: #523D35;
+    font-family: 'Cardo', serif;
+    font-size: 32px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+
+.establishment-options{
+    margin: 20px;
+    display: flex;
+}
+
+.options-dropdown button {
+    color: #523D35;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Biryani', sans-serif;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
 hr.h1 {border:1px solid #223030; }
  
 .establishment-photos,
@@ -812,6 +918,12 @@ hr.h1 {border:1px solid #223030; }
     font-size: large;
     text-align: left;
     margin-top: 3%;
+}
+
+.about-edit-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Style for Photo Grid */
