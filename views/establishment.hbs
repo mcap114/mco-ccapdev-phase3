@@ -85,7 +85,7 @@
                                     <img src="{{currentUserIcon}}" alt="user">
                                 </div> 
 
-                                <form name="post-form" id="post-form">
+                                <form name="post-form" action="/submit-review" method="post" id="post-form">
                                     <!-- Star Rating -->
                                     <div class="write-review-rating">
                                         <div class="star-rating">
@@ -98,9 +98,9 @@
                                     </div>
                                     
                                     <!-- Review Title -->
-                                    <input type="text" class="review-title" placeholder="Enter your review title">
-                                    <input type="text" class="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
-                                    <textarea class="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
+                                    <input type="text" class="review-title" id="title-field" placeholder="Enter your review title">
+                                    <input type="text" class="review-location" id="location-field" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
+                                    <textarea class="review-description" id="description-field" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
 
                                     <hr class="write-review-hr">
                                     
@@ -121,7 +121,7 @@
                                         </div>
                             
                                         <!-- Submit Button -->
-                                        <button type="submit" class="post-review-button">Post Review</button>
+                                        <button type="submit" class="post-review-button" value="Save">Post Review</button>
                                     </div>
                                 </form>
                             </div>

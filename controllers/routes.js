@@ -251,7 +251,37 @@ function addRoutes(server) {
         return res.status(500).json({ success: false, message: 'An error occurred' });
     }
   });
-  
+
+  // still a work in progress 
+  // currently it is able to reflect the submitted user_photo, username and date posted to the database
+  router.post('/submit-review', async function(req, res) {
+    try {
+        // Extract review data from the request body
+        const { review_title, review_location, review_description, review_rating } = req.body;
+        
+        // Create a new review document
+        const newReview = new reviewModel({
+            user_photo: req.session.user_icon,
+            display_name: req.session.name,
+            username: req.session.username,
+            rating: review_rating,
+            review_title: review_title,
+            establishment_name: review_location,
+            caption: review_description,
+            date_posted: new Date()
+        });
+
+        // Save the review to the database
+        await newReview.save();
+
+        // Respond with success
+        res.json({ success: true, message: 'Review submitted successfully!' });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+    }
+  });
+
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
