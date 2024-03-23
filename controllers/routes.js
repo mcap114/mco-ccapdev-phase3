@@ -29,6 +29,7 @@ function addRoutes(server) {
     
   // route for registration page
   router.get('/registration', function (req, res) {
+    console.log('\nCurrently at Registration Page');
     res.render('registration', {
       layout: 'index',
       title: 'Registration',
@@ -37,6 +38,7 @@ function addRoutes(server) {
 
   // route for registration page (choosing an avatar)
   router.get('/registrationAvatar', function (req, res) {
+    console.log('\nCurrently at Registration Avatar Page');
     res.render('registrationAvatar', {
       layout: 'index',
       title: 'Registration Avatar',
@@ -63,6 +65,7 @@ function addRoutes(server) {
 
   // route for login page
   router.get('/login', function (req, res) {
+    console.log('\nCurrently at Login Page');
     res.render('login', {
       layout: 'index',
       title: 'Login',
@@ -83,7 +86,6 @@ function addRoutes(server) {
           req.session.userType = user.userType;
           console.log("\nUser ", req.session.username, " Found");
           console.log("User Type:", req.session.userType);
-          console.log("\n");
           resp.json({success: true});
         } else {
           resp.json({success: false});
@@ -101,6 +103,7 @@ function addRoutes(server) {
 
   // route for forgot password page
   router.get('/forgotpassword', function (req, res) {
+    console.log('\nCurrently at Forgot Password Page');
     res.render('forgotpassword', {
       layout: 'index',
       title: 'Forgot Password',
@@ -146,6 +149,7 @@ function addRoutes(server) {
   
   // route for user view homepage
   router.get('/landingPage', function (req, resp) {
+    console.log('\nCurrently at Landing Page');
     const searchQuery = {};
 
     reviewModel.find(searchQuery).lean().then(function(review_data){
@@ -165,9 +169,9 @@ function addRoutes(server) {
 
   // route for view establishments
   router.get('/viewEstablishments', function(req, resp){
+    console.log('\nCurrently at View Establishments Page');
     const searchQuery = {};
-    console.log('View Establishments');
-
+    
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
       resp.render('viewEstablishments', {
         layout: 'index',
@@ -184,14 +188,13 @@ function addRoutes(server) {
     const establishmentName = req.params.name;
     const establishmentSearchQuery = { establishment_name: establishmentName };
     const reviewSearchQuery = { place_name: establishmentName};
-    console.log('Establishment page');
+    console.log('\nCurrently at Establishment Page' + establishmentName);
     console.log('Username:', req.session.username);
     
     establishmentModel.findOne(establishmentSearchQuery).lean().then(function(establishment_data) {
       reviewModel.find(reviewSearchQuery).lean().then(function(review_data){
         if (!establishment_data) {
           console.log('Establishment data not found.');
-  
           resp.redirect('/error');
           return;
         }
@@ -258,7 +261,7 @@ function addRoutes(server) {
   });
   
   // still a work in progress 
-  // currently it is able to reflect the submitted user_photo, username and date posted to the database
+  // \nCurrently it is able to reflect the submitted user_photo, username and date posted to the database
   router.post('/submit-review', function(req, res) {
     try {
       // extract review data from the request body
@@ -297,7 +300,7 @@ function addRoutes(server) {
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
     const searchQuery = { username: userName };
-    
+    console.log('\nCurrently at Profile Page' + userName);
   
     userModel.findOne(searchQuery).lean().then(function(user_data) {
       if (!user_data) {
