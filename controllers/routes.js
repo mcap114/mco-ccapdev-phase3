@@ -85,6 +85,9 @@ function addRoutes(server) {
           req.session.username = user.username;
           req.session.user_icon = user.user_icon;
           req.session.userType = user.userType;
+          if (req.body.rememberMe) {
+            req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
+          }
           console.log("\nUser ", req.session.username, " Found");
           console.log("User Type:", req.session.userType);
           resp.json({success: true});

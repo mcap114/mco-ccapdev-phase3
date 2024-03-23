@@ -86,6 +86,7 @@ function redirectToLoginPage() {
 function submitLoginForm() {
     let usernameString = document.getElementById("username-field").value;
     let passString = document.getElementById("password-field").value;
+    let rememberMe = document.getElementById("remember-me").checked;
 
     if (usernameString.length < 1) {
         alert("Username cannot be empty");
@@ -103,7 +104,8 @@ function submitLoginForm() {
         },
         body: JSON.stringify({
             username: usernameString,
-            password: passString
+            password: passString,
+            rememberMe: rememberMe
         })
     })
     .then(response => {
