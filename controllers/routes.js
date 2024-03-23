@@ -4,12 +4,6 @@ const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const establishmentModel = require('../models/Establishment');
 
-// Define the error handling middleware
-const errorHandler = (error, req, resp, next) => {
-  console.error('Error:', error);
-  resp.status(500).json({ status: 'error', msg: 'An error occurred' });
-};
-
 // Define the errorFn function
 const errorFn = function (error) {
   console.error('Error:', error);
