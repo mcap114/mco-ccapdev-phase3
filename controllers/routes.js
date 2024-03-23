@@ -76,31 +76,34 @@ function addRoutes(server) {
   });
 
   // route for reading user from the database to login
-  router.post('/read-user', async function(req, resp){
+  router.post('/read-user', function(req, resp){
     try {
       const searchQuery = { username: req.body.username, password: req.body.password };
+  
+      userModel.findOne(searchQuery).then(function(user) {
+        console.log("\nFinding user: ", req.body.username);
 
-      const user = await userModel.findOne(searchQuery);
-
-      console.log("\nFinding user: ", req.body.username);
-
-      if (user && user._id) {
-        req.session.username = user.username;
-        req.session.user_icon = user.user_icon;
-        req.session.userType = user.userType;
-        console.log("\nUser " , req.session.username , " Found");
-        console.log("User Type:", req.session.userType);
-        console.log("\n");
-        resp.json({success: true});
-      } else {
-        resp.json({success: false});
-      }
+        if (user && user._id) {
+          req.session.username = user.username;
+          req.session.user_icon = user.user_icon;
+          req.session.userType = user.userType;
+          console.log("\nUser ", req.session.username, " Found");
+          console.log("User Type:", req.session.userType);
+          console.log("\n");
+          resp.json({success: true});
+        } else {
+          resp.json({success: false});
+        }
+      })
+      .catch(function(error) {
+        errorFn(error);
+        return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
+      });
     } catch (error) {
       errorFn(error);
       return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
     }
   });
-
 
   // route for forgot password page
   router.get('/forgotpassword', function (req, res) {
@@ -110,38 +113,43 @@ function addRoutes(server) {
     });
   });
 
-  router.post('/forgot-password', async function(req, resp) {
+  router.post('/forgot-password', function(req, resp) {
     try {
-        const { username, password } = req.body;
-
-        const user = await userModel.findOne({ username });
-
-        console.log("\nFinding user: ", username);
-
-        if (user) {
-            user.password = password; 
+      const { username, password } = req.body;
+  
+      userModel.findOne({ username }).then(function(user) {
+          console.log("\nFinding user: ", username);
+  
+          if (user) {
+            user.password = password;
             user.confirmpassword = password;
-            await user.save();
-
-            console.log("\nPassword updated successfully for user: ", username);
-
-            req.session.username = user.username;
-            req.session.user_icon = user.user_icon;
-            req.session.userType = user.userType;
-            console.log("\nUser " , req.session.username , " Found");
-            console.log("User Type:", req.session.userType);
-            console.log("\n");
-            return resp.json({ success: true, message: 'Password updated successfully' });
-        } else {
+            return user.save();
+          } else {
             console.log("\nUser not found with username: ", username);
-            return resp.json({ success: false, message: 'Username not found' });
-        }
+            return Promise.reject({ success: false, message: 'Username not found' });
+          }
+        })
+        .then(function(updatedUser) {
+          console.log("\nPassword updated successfully for user: ", updatedUser.username);
+  
+          req.session.username = updatedUser.username;
+          req.session.user_icon = updatedUser.user_icon;
+          req.session.userType = updatedUser.userType;
+          console.log("\nUser ", req.session.username, " Found");
+          console.log("User Type:", req.session.userType);
+          console.log("\n");
+          resp.json({ success: true, message: 'Password updated successfully' });
+        })
+        .catch(function(error) {
+          errorFn(error);
+          resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+        });
     } catch (error) {
-        errorFn(error);
-        return resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+      errorFn(error);
+      resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
     }
   });
-
+  
   // route for user view homepage
   router.get('/landingPage', function (req, resp) {
     const searchQuery = {};
@@ -210,78 +218,87 @@ function addRoutes(server) {
   });
 
   // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
-  router.post('/add-to-favorites', async function(req, res) {
+  router.post('/add-to-favorites', function(req, res) {
     try {
-        console.log('Request body:', req.body); 
-
-        // Retrieve the establishment name from the request body
-        const { establishment_name } = req.body;
-        console.log('Establishment name:', establishment_name);
-
-        const username = req.session.username;
-        console.log('Username:', username);
-
-        // Find the user document in the database
-        const user = await userModel.findOne({ username });
-        console.log('User found:', user);
-
-        // Check if the user exists
-        if (!user) {
+      console.log('Request body:', req.body); 
+  
+      // retrieve the establishment name from the request body
+      const establishment_name = req.body.establishment_name;
+      console.log('Establishment name:', establishment_name);
+  
+      const username = req.session.username;
+      console.log('Username:', username);
+  
+      // find the user document in the database
+      userModel.findOne({ username }).then(function(user) {
+          console.log('User found:', user);
+  
+          // check if the user exists
+          if (!user) {
             console.log('User not found');
             return res.status(404).json({ success: false, message: 'User not found' });
-        }
-
-        // Update the user's fave establishments
-        if (!user.favoriteplace.includes(establishment_name)) {
-          user.favoriteplace.push(establishment_name);
-          console.log('Favorite place added:', establishment_name);
-          await user.save();
-          console.log('User saved with favorite place added');
-
-          // success
+          }
+  
+          // update the user's favorite establishments
+          if (!user.favoriteplace.includes(establishment_name)) {
+            user.favoriteplace.push(establishment_name);
+            console.log('Favorite place added:', establishment_name);
+            return user.save();
+          } else {
+            // establishment already in favorites
+            console.log('Establishment is already a favorite.');
+            return Promise.reject({ success: false, message: 'Establishment is already a favorite.' });
+          }
+        })
+        .then(function() {
           return res.json({ success: true, message: 'Added to favorites!' });
-        } else {
-
-          // Establishment already in favorites
-          console.log('Establishment is already a favorite.');
-          return res.status(400).json({ success: false, message: 'Establishment is already a favorite.' });
-        }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          return res.status(500).json({ success: false, message: 'An error occurred' });
+        });
     } catch (error) {
-        console.error('Error:', error);
-        return res.status(500).json({ success: false, message: 'An error occurred' });
+      console.error('Error:', error);
+      return res.status(500).json({ success: false, message: 'An error occurred' });
     }
   });
-
+  
   // still a work in progress 
   // currently it is able to reflect the submitted user_photo, username and date posted to the database
-  router.post('/submit-review', async function(req, res) {
+  router.post('/submit-review', function(req, res) {
     try {
-        // Extract review data from the request body
-        const { review_title, review_location, review_description, review_rating } = req.body;
-        
-        // Create a new review document
-        const newReview = new reviewModel({
-            user_photo: req.session.user_icon,
-            display_name: req.session.name,
-            username: req.session.username,
-            rating: review_rating,
-            review_title: review_title,
-            establishment_name: review_location,
-            caption: review_description,
-            date_posted: new Date()
+      // extract review data from the request body
+      const review_title = req.body.review_title;
+      const review_location = req.body.review_location;
+      const review_description = req.body.review_description;
+      const review_rating = req.body.review_rating;
+  
+      // create a new review document
+      const newReview = new reviewModel({
+        user_photo: req.session.user_icon,
+        display_name: req.session.name,
+        username: req.session.username,
+        rating: review_rating,
+        review_title: review_title,
+        establishment_name: review_location,
+        caption: review_description,
+        date_posted: new Date()
+      });
+  
+      // save the review to the database
+      newReview.save().then(function() {
+          res.json({ success: true, message: 'Review submitted successfully!' });
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
         });
-
-        // Save the review to the database
-        await newReview.save();
-
-        // Respond with success
-        res.json({ success: true, message: 'Review submitted successfully!' });
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+      console.error('Error:', error);
+      res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
   });
-
+  
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
