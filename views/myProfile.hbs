@@ -70,38 +70,38 @@
         </div>
 
         <!-- Edit Profile Widget -->
-        <div id="edit-profile-widget" class="edit-profile-widget-container" style="display: none;">
-            <div class="edit-profile-widget">
-                <p class="main"><b>Edit Profile</b></p>
-                <form name="update-user" action="/update-user" method="post" onsubmit="return updatingUserForm()">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name-field" value="{{user-data.name}}" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username-field" value="{{user-data.username}}" placeholder="Enter your username">
-                    </div>
-                    <div class="form-group">
-                        <label for="biotext">User Bio</label>
-                        <input type="text" id="bio-field" value="{{user-data.bio}}" placeholder="Update your bio">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" id="email" value="{{user-data.email}}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password-field" value="{{user-data.password}}">
-                        <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
-                    </div>
-                    <input type="submit" value="Save"></input>
-                </form>
-                <div class="forgot-page">
-                    <button id="options" onclick="showPhotoUpload()">Change Profile Picture</button>
-                    <button id="options" class="go-back-button" onclick="hideEditProfileWidget()">Go Back</button>
+        <div id="edit-profile-widget" class="edit-profile-widget-container">
+            <p class="main"><b>Edit Profile</b></p>
+            <button class="close-button" onclick="hideEditProfileWidget()">X</button>
+            <form name="update-user" action="/update-user" method="post" onsubmit="return updatingUserForm()">
+                <div class="profile-info-item">
+                    <label for="name">Name</label>
+                    <input type="text" id="name-field" value="{{user-data.name}}" placeholder="Enter your name">
                 </div>
-            </div>
+                <div class="profile-info-item">
+                    <label for="username">Username</label>
+                    <input type="text" id="username-field" value="{{user-data.username}}" placeholder="Enter your username">
+                </div>
+                <div class="profile-info-item">
+                    <label for="biotext">User Bio</label>
+                    <input type="text" id="bio-field" value="{{user-data.bio}}" placeholder="Update your bio">
+                </div>
+                <div class="profile-info-item">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" value="{{user-data.email}}" readonly>
+                </div>
+                <div class="profile-info-item">
+                    <label for="password">Password</label>
+                    <input type="password" id="password-field" value="{{user-data.password}}">
+                    <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
+                </div>
+                <div class="photo-upload-container">
+                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
+                    <label for="photo-upload" class="photo-upload-label"><i class="fa fa-camera"></i> Change Profile Picture</label>
+                </div>
+                <div class="photo-preview" id="photo-preview"></div>
+                <input type="submit" value="Save"></input>
+            </form>
         </div>
     
         <!-- container for the user's reviews -->
