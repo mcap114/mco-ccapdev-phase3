@@ -14,6 +14,7 @@ function addRoutes(server) {
 
   // route for non-user view homepage
   router.get('/', function (req, resp) {
+    console.log('\nCurrently at Home Page');
     const searchQuery = {};
 
     reviewModel.find(searchQuery).lean().then(function(review_data){
@@ -188,7 +189,7 @@ function addRoutes(server) {
     const establishmentName = req.params.name;
     const establishmentSearchQuery = { establishment_name: establishmentName };
     const reviewSearchQuery = { place_name: establishmentName};
-    console.log('\nCurrently at Establishment Page' + establishmentName);
+    console.log('\nCurrently at Establishment Page: ' + establishmentName);
     console.log('Username:', req.session.username);
     
     establishmentModel.findOne(establishmentSearchQuery).lean().then(function(establishment_data) {
@@ -300,7 +301,7 @@ function addRoutes(server) {
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
     const searchQuery = { username: userName };
-    console.log('\nCurrently at Profile Page' + userName);
+    console.log('\nCurrently at Profile Page of ' + userName);
   
     userModel.findOne(searchQuery).lean().then(function(user_data) {
       if (!user_data) {
@@ -322,8 +323,8 @@ function addRoutes(server) {
         
         const isOwnProfile = user_data.username === req.session.username;
   
-        console.log('User Data:', user_data);
-        console.log('Establishment Data:', establishment_data);
+        // console.log('User Data:', user_data);
+        // console.log('Establishment Data:', establishment_data);
         resp.render(isOwnProfile ? 'myProfile' : 'profile', {
           layout: 'index',
           title: user_data.name,
