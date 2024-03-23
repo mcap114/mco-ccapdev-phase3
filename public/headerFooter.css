@@ -1,5 +1,4 @@
-/* header style for non-user */
-
+/* header style */
 a{
     text-decoration: none;
 }
@@ -102,10 +101,6 @@ a{
 .header-user>i{
     color:white;
     font-size: 20px;
-}
-
-a{
-    text-decoration: none;
 }
 
 /* footer style */
