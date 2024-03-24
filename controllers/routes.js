@@ -3,6 +3,7 @@ const sessionController = require('./sessionController');
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const establishmentModel = require('../models/Establishment');
+const bcrypt = require('bcrypt');
 
 // Define the errorFn function
 const errorFn = function (error) {
@@ -47,21 +48,29 @@ function addRoutes(server) {
   });
 
   // route for creating user in the database
-  router.post('/create-user', function(req, resp){
-    const userInstance = userModel({
-      name: req.body.name,
-      username: req.body.username,
-      bio: req.body.bio,
-      email: req.body.email,
-      password: req.body.password,
-      confirmpassword: req.body.password2,
-      userType: req.body.userType
-    });
-    
-    userInstance.save().then(function(user) {
-      console.log('User created');
-      resp.json({ success: true, message: 'User created successfully' });
-    }).catch(errorFn);
+  router.post('/create-user', function(req, resp) {
+    const saltRounds = 10;
+  
+    bcrypt.hash(req.body.password, saltRounds).then(function(hashedPassword) {
+        const userInstance = userModel({
+          name: req.body.name,
+          username: req.body.username,
+          bio: req.body.bio,
+          email: req.body.email,
+          password: hashedPassword,
+          userType: req.body.userType
+        });
+  
+        return userInstance.save();
+      })
+      .then(function(user) {
+        console.log('User created');
+        resp.json({ success: true, message: 'User created successfully' });
+      })
+      .catch(function(error) {
+        errorFn(error);
+        resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+      });
   });
 
   // route for login page
@@ -74,28 +83,39 @@ function addRoutes(server) {
   });
 
   // route for reading user from the database to login
-  router.post('/read-user', function(req, resp){
+  router.post('/read-user', function(req, resp) {
     try {
-      const searchQuery = { username: req.body.username, password: req.body.password };
+      const { username, password } = req.body;
   
-      userModel.findOne(searchQuery).then(function(user) {
-        console.log("\nFinding user: ", req.body.username);
-
-        if (user && user._id) {
-          req.session.username = user.username;
-          req.session.user_icon = user.user_icon;
-          req.session.userType = user.userType;
-          if (req.body.rememberMe) {
-            req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
-          }
-          console.log("\nUser ", req.session.username, " Found");
-          console.log("User Type:", req.session.userType);
-          resp.json({success: true});
+      // Find user by username
+      userModel.findOne({ username }).then(function(user) {
+        console.log("\nFinding user: ", username);
+  
+        if (user) {
+          // Compare hashed password from database with provided password
+          bcrypt.compare(password, user.password).then(function(passwordMatch) {
+            if (passwordMatch) {
+              req.session.username = user.username;
+              req.session.user_icon = user.user_icon;
+              req.session.userType = user.userType;
+              if (req.body.rememberMe) {
+                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
+              }
+              console.log("\nUser ", req.session.username, " Found");
+              console.log("User Type:", req.session.userType);
+              resp.json({ success: true });
+            } else {
+              // Passwords don't match
+              console.log("\nPasswords do not match for user: ", username);
+              resp.json({ success: false });
+            }
+          });
         } else {
-          resp.json({success: false});
+          // User not found
+          console.log("\nUser not found with username: ", username);
+          resp.json({ success: false });
         }
-      })
-      .catch(function(error) {
+      }).catch(function(error) {
         errorFn(error);
         return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
       });
@@ -115,40 +135,39 @@ function addRoutes(server) {
   });
 
   router.post('/forgot-password', function(req, resp) {
-    try {
-      const { username, password } = req.body;
+    const { username, newPassword } = req.body;
+    const saltRounds = 10; 
+
+    bcrypt.hash(newPassword, saltRounds).then(function(hashedPassword) {
+        userModel.findOne({ username }).then(function(user) {
+            if (user) {
+              user.password = hashedPassword;
+              return user.save();
+            } else {
+              console.log("\nUser not found with username: ", username);
+              return Promise.reject({ success: false, message: 'Username not found' });
+            }
+          })
+          .then(function(updatedUser) {
+            console.log("\nPassword updated successfully for user: ", updatedUser.username);
   
-      userModel.findOne({ username }).then(function(user) {
-          console.log("\nFinding user: ", username);
-  
-          if (user) {
-            user.password = password;
-            user.confirmpassword = password;
-            return user.save();
-          } else {
-            console.log("\nUser not found with username: ", username);
-            return Promise.reject({ success: false, message: 'Username not found' });
-          }
-        })
-        .then(function(updatedUser) {
-          console.log("\nPassword updated successfully for user: ", updatedUser.username);
-  
-          req.session.username = updatedUser.username;
-          req.session.user_icon = updatedUser.user_icon;
-          req.session.userType = updatedUser.userType;
-          console.log("\nUser ", req.session.username, " Found");
-          console.log("User Type:", req.session.userType);
-          console.log("\n");
-          resp.json({ success: true, message: 'Password updated successfully' });
-        })
-        .catch(function(error) {
-          errorFn(error);
-          resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
-        });
-    } catch (error) {
-      errorFn(error);
-      resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
-    }
+            req.session.username = updatedUser.username;
+            req.session.user_icon = updatedUser.user_icon;
+            req.session.userType = updatedUser.userType;
+            console.log("\nUser ", req.session.username, " Found");
+            console.log("User Type:", req.session.userType);
+            console.log("\n");
+            resp.json({ success: true, message: 'Password updated successfully' });
+          })
+          .catch(function(error) {
+            errorFn(error);
+            resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+          });
+      })
+      .catch(function(error) {
+        errorFn(error);
+        resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
+      });
   });
   
   // route for user view homepage

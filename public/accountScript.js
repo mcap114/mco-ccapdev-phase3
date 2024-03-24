@@ -49,7 +49,6 @@ function submitForm() {
             bio: bioString,
             email: emailString,
             password: pass1String,
-            password2: pass2String,
             userType: userType
         })
     })

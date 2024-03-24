@@ -1,6 +1,6 @@
 // command prompt (node js)
 // npm init
-// npm i express express-handlebars body-parser mongoose express-session
+// npm i express express-handlebars body-parser mongoose express-session bcrypt
 // node app.js -- after, check the browser --> localhost:3000
 
 // command prompt (git)
@@ -70,6 +70,9 @@ mongoose.connection.on('error', (err) => {
 const userModel = require('./models/User');
 const reviewModel = require('./models/Review');
 const establishmentModel = require('./models/Establishment');
+
+// hashing passwords
+const bcrypt = require('bcrypt');
 
 // error handling
 function errorFn(err) {

@@ -8,12 +8,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
-    "express": "^4.18.3",
+    "express": "^4.19.1",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
     "mongodb": "^6.4.0",
-    "mongoose": "^8.2.2"
+    "mongoose": "^8.2.3"
   },
   "description": "REVIEWS 1. {   \"_id\": {     \"$oid\": \"65edbec0a15b37bd9078cc3f\"   },   \"user_photo\": \"https://i.imgocean.com/photo17065042853965eed4c1aa48da.jpeg\",   \"display_name\": \"Azeliah\",   \"username\": \"@zaezae\",   \"rating\": 4,   \"review_photo\": \"https://i.imgocean.com/41C757A2-A946-4CD1-9B03-481F6781456F7560930fd7b92ffb.jpeg\",   \"place_name\": \"Kape Benito\",   \"caption\": \"A haven for study sessions! Cozy ambiance, ample seating, and excellent coffee. Perfect for productivity and focus. Highly recommended!\",   \"date\": \"Date Posted: Jan 08, 2024 6:24PM\" }"
 }
