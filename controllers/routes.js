@@ -345,7 +345,7 @@ function addRoutes(server) {
 
   // update user's information on profile page
   router.post('/update-user', function(req, resp){
-    const updateQuery = { username: req.body.username };
+    const updateQuery = { username: req.session.username };
 
     userModel.findOne(updateQuery).then(function(user) {
         // if user found
@@ -364,11 +364,6 @@ function addRoutes(server) {
                 req.session.username = user.username;
                 req.session.user_icon = user.user_icon;
                 req.session.userType = user.userType;
-
-                console.log("\nUser " , req.session.username , " Found");
-                console.log("User Type:", req.session.userType);
-                console.log("\n");
-
                 return resp.json({success: true, message: 'User updated successfully!'});
             }).catch(function(error) {
                 errorFn(error);
