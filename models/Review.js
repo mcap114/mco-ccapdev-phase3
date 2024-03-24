@@ -8,9 +8,10 @@ const reviewSchema = new mongoose.Schema({
   rating: {type: Number},
   review_photo: {type: String},
   review_title: {type: String},
-  establishment_name: {type: String},
+  place_name: {type: String},
   caption: {type: String},
-  date_posted: {type: Date} 
+  date_posted: {type: String},
+  date: {type: Date} 
 },{ versionKey: false });
   
 // review model

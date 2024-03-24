@@ -21,4 +21,4 @@ module.exports = userModel;
 
 // TO USE IN APP.JS:
 // same syntax as modules
-// const reviewModel = require('./model/Review')
+// const userModel = require('./model/User')

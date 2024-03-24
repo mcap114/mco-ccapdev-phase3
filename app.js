@@ -59,7 +59,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/cofeedDB');
 
 mongoose.connection.on('connected', () => {
-  console.log('\nDatabase connected successfully');
+  console.log('\nDatabase connected successfully\n');
 });
 
 mongoose.connection.on('error', (err) => {
@@ -82,13 +82,33 @@ const fs = require('fs');
 const path = require('path');
 const modelsFolder = path.join(__dirname, 'models');
 
+// function to compare items based on uniqueness 
+function compareItems(existingItem, newItem, itemType) {
+  switch (itemType) {
+    case 'user':
+      // users: compare based on username
+      return existingItem.username === newItem.username;
+    case 'review':
+      // reviews: compare based on username, place_name, and date
+      return existingItem.username === newItem.username &&
+             existingItem.place_name === newItem.place_name && 
+             existingItem.date_posted === newItem.date_posted
+    case 'establishment':
+      // establishments: compare based on establishment_name
+      return existingItem.establishment_name === newItem.establishment_name;
+    default:
+      return false;
+  }
+}
+
+// function to import json files to db
 function importJSONFilesToDB() {
   try {
     const files = fs.readdirSync(modelsFolder);
     const promises = files.map((file) => {
       if (file.endsWith('.json')) {
         const filePath = path.join(modelsFolder, file);
-        const data = require(filePath); 
+        const data = require(filePath);
         let model;
         if (file.startsWith('user')) {
           data.forEach((user) => {
@@ -102,18 +122,19 @@ function importJSONFilesToDB() {
         }
 
         return model.find().then(existingData => {
-          const newData = data.filter(newItem => 
-            !existingData.some(existingItem => 
-              JSON.stringify(existingItem) === JSON.stringify(newItem)
+          console.log(`Existing data for ${file}:`);
+          const newData = data.filter(newItem =>
+            !existingData.some(existingItem =>
+              compareItems(existingItem, newItem, file.split('.')[0])
             )
           );
-
+          console.log(`New data for ${file}:`);
           if (newData.length > 0) {
             return model.create(newData).then(() => {
               console.log(`Data from ${file} imported successfully.`);
             });
           } else {
-            console.log(`No new data to import from ${file}.`);
+            console.log(`\nNo new data to import from ${file}.`);
           }
         });
       }
@@ -128,7 +149,6 @@ function importJSONFilesToDB() {
     console.error('Error reading models folder:', err);
   }
 }
-
 
 importJSONFilesToDB();
 

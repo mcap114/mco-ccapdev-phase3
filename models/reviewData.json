@@ -7,7 +7,7 @@
   "review_title": "New favorite Cafe",
   "place_name": "Kape Benito",
   "caption": "A haven for study sessions! Cozy ambiance, ample seating, and excellent coffee. Perfect for productivity and focus. Highly recommended!",
-  "date": "Date Posted: Jan 08, 2024 6:24PM"
+  "date_posted": "Date Posted: Jan 08, 2024 6:24PM"
 },
 {
   "user_photo": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
@@ -18,7 +18,7 @@
   "review_title": "New favorite Cafe",
   "place_name": "Kape Benito",
   "caption": "Average experience. Decent coffee, okay ambiance. Limited seating, and a bit noisy. Suitable for a quick caffeine fix, but not for a focused study session.",
-  "date": "Date Posted: Feb 09, 2024 11:18PM"
+  "date_posted": "Date Posted: Feb 09, 2024 11:18PM"
 },
 {
   "user_photo": "https://i.pinimg.com/originals/c7/2f/cc/c72fcc17928f3b200bf3f0c79820ea20.jpg",
@@ -29,7 +29,7 @@
   "review_title": "New favorite Cafe",
   "place_name": "Frank & Dean Coffee",
   "caption": "Frank & Dean Coffee is definitely not recommended for students looking to study. The uncomfortable atmosphere and distracting environment make it an unsuitable place for productive work or focused studying.",
-  "date": "Date Posted: Jan 28, 2024 6:24PM"
+  "date_posted": "Date Posted: Jan 28, 2024 6:24PM"
 },
 {
   "user_photo": "https://i.pinimg.com/474x/9d/0e/be/9d0ebe82326c5e932d0a3149705dd934.jpg",
@@ -40,7 +40,7 @@
   "review_title": "New favorite Cafe",
   "place_name": "Kape Benito",
   "caption": "The coffee shop provides a decent experience overall. While the ambiance is average and the coffee is satisfactory, it lacks the unique charm or standout qualities that would make it a memorable spot.",
-  "date": "Date Posted: Jan 24, 2024 01:19PM" 
+  "date_posted": "Date Posted: Jan 24, 2024 01:19PM" 
 },
 {
   "user_photo": "https://i.redd.it/b42oeb66665a1.jpg",
@@ -51,6 +51,6 @@
   "review_title": "New favorite Cafe",
   "place_name": "Angkan Coffee Company",
   "caption": "I had a delightful experience at this coffee shop. The cozy atmosphere, friendly staff, and great coffee selections make it a top choice for a relaxing time. The only drawback is the limited seating space during peak hours.",
-  "date": "Date Posted: Jan 16, 2024 09:36AM" 
+  "date_posted": "Date Posted: Jan 16, 2024 09:36AM" 
 }
 ]

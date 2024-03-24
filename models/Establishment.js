@@ -17,11 +17,11 @@ const establishmentSchema = new mongoose.Schema({
   owner_username: {type: String}
 },{ versionKey: false });
   
-// review model
+// establishment model
 const establishmentModel = mongoose.model('establishment', establishmentSchema);
 
 module.exports = establishmentModel;
 
 // TO USE IN APP.JS:
 // same syntax as modules
-// const reviewModel = require('./model/Review')
+// const establishmentModel = require('./model/Establishment')
