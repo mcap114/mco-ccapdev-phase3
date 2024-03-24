@@ -73,6 +73,64 @@ const establishmentModel = require('./models/Establishment');
 
 // hashing passwords
 const bcrypt = require('bcrypt');
+function hashPassword(password) {
+  return bcrypt.hashSync(password, 10);
+}
+
+// loading json files into the db
+const fs = require('fs');
+const path = require('path');
+const modelsFolder = path.join(__dirname, 'models');
+
+function importJSONFilesToDB() {
+  try {
+    const files = fs.readdirSync(modelsFolder);
+    const promises = files.map((file) => {
+      if (file.endsWith('.json')) {
+        const filePath = path.join(modelsFolder, file);
+        const data = require(filePath); 
+        let model;
+        if (file.startsWith('user')) {
+          data.forEach((user) => {
+            user.password = hashPassword(user.password);
+          });
+          model = userModel;
+        } else if (file.startsWith('review')) {
+          model = reviewModel;
+        } else if (file.startsWith('establishment')) {
+          model = establishmentModel;
+        }
+
+        return model.find().then(existingData => {
+          const newData = data.filter(newItem => 
+            !existingData.some(existingItem => 
+              JSON.stringify(existingItem) === JSON.stringify(newItem)
+            )
+          );
+
+          if (newData.length > 0) {
+            return model.create(newData).then(() => {
+              console.log(`Data from ${file} imported successfully.`);
+            });
+          } else {
+            console.log(`No new data to import from ${file}.`);
+          }
+        });
+      }
+    });
+
+    Promise.all(promises).then(() => {
+      console.log('\nAll JSON files imported successfully.');
+    }).catch((err) => {
+      console.error('Error importing JSON files:', err);
+    });
+  } catch (err) {
+    console.error('Error reading models folder:', err);
+  }
+}
+
+
+importJSONFilesToDB();
 
 // error handling
 function errorFn(err) {
