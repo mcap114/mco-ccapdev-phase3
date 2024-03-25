@@ -21,7 +21,9 @@
                     <div>
                         <b>{{user-data.name}}</b><br>
                         <span class="bio-text">@{{user-data.username}}</span><br>
-                        <span class="bio-text">{{user-data.bio}}</span><br>
+                        {{#if user-data.bio}}
+                            <span class="bio-text">{{user-data.bio}}</span><br>
+                        {{/if}}
                         <div class="profile-stats">
                             <a  id="reviews-count" onclick="showListReview()">{{user-data.createdreview.length}} reviews</a>
                             <a  id="followers-count" onclick="showFollowers()">{{user-data.followers.length}} followers</a>
