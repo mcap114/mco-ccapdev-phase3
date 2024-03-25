@@ -42,6 +42,35 @@ server.engine('hbs', handlebars.engine({
 },
 }));
 
+// Define the isFollowingUser helper function
+function isFollowingUser(loggedInUser, targetUser, options) {
+  if (!loggedInUser || !loggedInUser.following) {
+      // Handle undefined cases
+      return options.inverse(this);
+  }
+
+  // Logic to check if loggedInUser follows targetUser
+  const isFollowing = loggedInUser.following.includes(targetUser);
+  return isFollowing ? options.fn(this) : options.inverse(this);
+}
+
+
+// Include the helper in your Handlebars engine configuration
+server.engine(
+  'hbs',
+  handlebars.engine({
+      extname: 'hbs',
+      helpers: {
+          eq: function (arg1, arg2) {
+              // Helper logic for eq
+              return arg1 === arg2;
+          },
+          isFollowingUser: isFollowingUser, // Include the isFollowingUser helper here
+      },
+  })
+);
+
+
 
 // manage user sessions
 const session = require('./controllers/sessionController');

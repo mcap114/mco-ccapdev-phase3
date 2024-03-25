@@ -365,18 +365,108 @@ function unlikeWidget(establishmentName) {
     }
 }
 
+function deleteCoffeeShopReview(placeName) {
+    // Confirm action with the user (optional)
+    if (confirm('Are you sure you want to remove this from your created reviews?')) {
+        // Send AJAX request to remove from favorites
+        fetch('/delete-coffee-shop-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ placeName: placeName }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data.success) {
+                // Remove the favorite place widget element from the UI
+                const createdRevElement = document.querySelector(`.createdrev-place-name:contains('${placeName}')`);
+                console.log('Found element:', createdRevElement);
+                if (createdRevElement) {
+                    createdRevElement.parentElement.parentElement.remove();
+                    console.log('Widget removed from DOM.');
+                } else {
+                    console.log('Widget element not found in DOM.');
+                    alert('Widget element not found!');
+                }
+            } else {
+                console.log('Failed to remove from favorites:', data.message);
+                alert('Failed to remove from favorites!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
 
-
-  
-
-function deleteWidget(button) {
-    // get the parent widget of the button clicked
-    const widget = button.closest('.coffee-shop-review');
-    
-    if (widget) {
-        widget.remove(); // remove the widget from the DOM
+        });
     }
 }
+
+// Example function to get current logged-in user data based on logged-in username
+function getCurrentUser(loggedInUsername) {
+    // Assuming userData is a global variable containing user data from userData.json
+    return userData.find(user => user.username === loggedInUsername);
+}
+
+
+// Function to toggle follow/unfollow and update button text
+function toggleFollow(username) {
+    const followBtn = document.getElementById('follow-btn');
+    const isFollowing = followBtn.innerText === 'Unfollow';
+
+    // Get the username of the currently logged-in user dynamically
+    const loggedInUsername = 'cadyyy'; // Replace this with your actual logic to get the logged-in username
+    const currentUser = getCurrentUser(loggedInUsername);
+
+    // Check if the user is already in your following list
+    const isAlreadyFollowing = currentUser.following.includes(username);
+
+    // Placeholder API request logic
+    const url = isFollowing ? '/unfollow-user' : '/follow-user';
+    const method = 'POST';
+    const data = { username: username }; // You may need to pass additional data
+
+    fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            // Add any additional headers as needed
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Network response was not ok.');
+    })
+    .then(result => {
+        // Update UI based on API response
+        if (isFollowing || isAlreadyFollowing) {
+            followBtn.innerText = 'Follow';
+            // Update followers count if needed
+            const followersCount = document.getElementById('followers-count');
+            followersCount.innerText = parseInt(followersCount.innerText) - 1 + ' followers';
+
+            // Remove username from following list in UI
+            currentUser.following = currentUser.following.filter(user => user !== username);
+        } else {
+            followBtn.innerText = 'Unfollow';
+            // Update followers count if needed
+            const followersCount = document.getElementById('followers-count');
+            followersCount.innerText = parseInt(followersCount.innerText) + 1 + ' followers';
+
+            // Add username to following list in UI
+            currentUser.following.push(username);
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        // Handle error scenario
+    });
+}
+
+
 
 // event listener for go back button to hide the write a review widget
 document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);

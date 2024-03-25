@@ -318,6 +318,7 @@ function addRoutes(server) {
       res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
   });
+
   
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
@@ -360,6 +361,57 @@ function addRoutes(server) {
       });
     });
     }).catch(errorFn);
+  });
+
+  // Helper function to find a user by username
+  function getUserByUsername(username) {
+    return userData.find(user => user.username === username);
+  }
+
+  // POST endpoint for following a user
+  router.post('/follow-user', (req, res) => {
+    const { username } = req.body;
+    const loggedInUsername = req.session.username; // Assuming you have session management middleware
+
+    // Find logged-in user and user to follow
+    const loggedInUser = getUserByUsername(loggedInUsername);
+    const userToFollow = getUserByUsername(username);
+
+    if (loggedInUser && userToFollow) {
+        // Check if user is already followed
+        if (!loggedInUser.following.includes(username)) {
+            loggedInUser.following.push(username); // Add to following list
+            userToFollow.followers.push(loggedInUsername); // Add to followers list
+            res.status(200).json({ message: `You are now following ${username}` });
+        } else {
+            res.status(400).json({ error: `You are already following ${username}` });
+        }
+    } else {
+        res.status(404).json({ error: 'User not found' });
+    }
+  });
+
+  // POST endpoint for unfollowing a user
+  router.post('/unfollow-user', (req, res) => {
+    const { username } = req.body;
+    const loggedInUsername = req.session.username; // Assuming you have session management middleware
+
+    // Find logged-in user and user to unfollow
+    const loggedInUser = getUserByUsername(loggedInUsername);
+    const userToUnfollow = getUserByUsername(username);
+
+    if (loggedInUser && userToUnfollow) {
+        // Check if user is currently followed
+        if (loggedInUser.following.includes(username)) {
+            loggedInUser.following = loggedInUser.following.filter(user => user !== username); // Remove from following list
+            userToUnfollow.followers = userToUnfollow.followers.filter(user => user !== loggedInUsername); // Remove from followers list
+            res.status(200).json({ message: `You have unfollowed ${username}` });
+        } else {
+            res.status(400).json({ error: `You are not following ${username}` });
+        }
+    } else {
+        res.status(404).json({ error: 'User not found' });
+    }
   });
 
   // update user's information on profile page
@@ -443,6 +495,55 @@ function addRoutes(server) {
       return res.status(500).json({ success: false, message: 'An error occurred' });
     }
   });
+
+  // Route to delete a coffee shop review
+  router.post('/delete-coffee-shop-review', function(req, res) {
+    try {
+      console.log('Request body:', req.body); 
+
+      // Retrieve the establishment name from the request body
+      const placeName = req.body.establishment_name;
+      console.log('Establishment name:', placeName);
+
+      const username = req.session.username;
+      console.log('Username:', username);
+
+      // Find the user document in the database
+      userModel.findOne({ username }).then(function(user) {
+          console.log('User found:', user);
+
+          // Check if the user exists
+          if (!user) {
+            console.log('User not found');
+            return res.status(404).json({ success: false, message: 'User not found' });
+          }
+
+          // Update the user's favorite establishments
+          const index = user.createdreview.indexOf(placeName);
+          if (index !== -1) {
+            user.createdreview.splice(index, 1);
+            console.log('Ceated review place removed:', placeName);
+            return user.save();
+          } else {
+            // Establishment not found in favorites
+            console.log('Establishment not found in favorites.');
+            return Promise.reject({ success: false, message: 'Establishment not found in favorites.' });
+          }
+        })
+        .then(function() {
+          return res.json({ success: true, message: 'Removed from Created Reviews!' });
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          return res.status(500).json({ success: false, message: 'An error occurred' });
+        });
+    } catch (error) {
+      console.error('Error:', error);
+      return res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+  });
+
+
 
 
   return router;

@@ -22,14 +22,23 @@
                     <div>
                         <b>{{user-data.name}}</b><br>
                         <span class="bio-text">@{{user-data.username}}</span><br>
-                        <span class="bio-text">{{user-data.bio}}</span><br>
+                        {{#if user-data.bio}}
+                            <span class="bio-text">{{user-data.bio}}</span><br>
+                        {{/if}}
     
                         <div class="profile-stats">
                             <a  id="reviews-count" onclick="showListReview()">{{user-data.createdreview.length}} reviews</a>
                             <a  id="followers-count" onclick="showFollowers()">{{user-data.followers.length}} followers</a>
-                            <a  id="following-count" onclick="showFollowing()">{{user-data.following.length}} following</a>
-                        
+                            <a  id="following-count" onclick="showFollowing()">{{user-data.following.length}} following</a> 
                         </div> 
+                        <div id="follow-btn-container">
+                            {{#isFollowingUser user-data.loggedInUser user-data.username}}
+                                <button id="follow-btn" onclick="toggleFollow('{{user-data.username}}')">Unfollow</button>
+                            {{else}}
+                                <button id="follow-btn" onclick="toggleFollow('{{user-data.username}}')">Follow</button>
+                            {{/isFollowingUser}}
+                        </div>
+
                     </div>
                 </div>
             </div>
