@@ -327,14 +327,47 @@ function hideWriteAReviewWidget() {
     writeReviewWidget.style.display = "none";
 }
 
-function unlikeWidget(button) {
-    // get the parent widget of the button clicked
-    const widget = button.closest('.favorite-place');
-    
-    if (widget) {
-        widget.remove(); // remove the widget from the DOM
+
+function unlikeWidget(establishmentName) {
+    // Confirm action with the user (optional)
+    if (confirm('Are you sure you want to remove this from favorites?')) {
+        // Send AJAX request to remove from favorites
+        fetch('/remove-from-favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ establishment_name: establishmentName }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data.success) {
+                // Remove the favorite place widget element from the UI
+                const favPlaceElement = document.querySelector(`.fav-place-name:contains('${establishmentName}')`);
+                console.log('Found element:', favPlaceElement);
+                if (favPlaceElement) {
+                    favPlaceElement.parentElement.parentElement.remove();
+                    console.log('Widget removed from DOM.');
+                } else {
+                    console.log('Widget element not found in DOM.');
+                    alert('Widget element not found!');
+                }
+            } else {
+                console.log('Failed to remove from favorites:', data.message);
+                alert('Failed to remove from favorites!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+
+        });
     }
 }
+
+
+
+  
 
 function deleteWidget(button) {
     // get the parent widget of the button clicked

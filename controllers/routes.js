@@ -397,6 +397,54 @@ function addRoutes(server) {
     });
   });
 
+  
+  router.post('/remove-from-favorites', function(req, res) {
+    try {
+      console.log('Request body:', req.body); 
+
+      // Retrieve the establishment name from the request body
+      const establishment_name = req.body.establishment_name;
+      console.log('Establishment name:', establishment_name);
+
+      const username = req.session.username;
+      console.log('Username:', username);
+
+      // Find the user document in the database
+      userModel.findOne({ username }).then(function(user) {
+          console.log('User found:', user);
+
+          // Check if the user exists
+          if (!user) {
+            console.log('User not found');
+            return res.status(404).json({ success: false, message: 'User not found' });
+          }
+
+          // Update the user's favorite establishments
+          const index = user.favoriteplace.indexOf(establishment_name);
+          if (index !== -1) {
+            user.favoriteplace.splice(index, 1);
+            console.log('Favorite place removed:', establishment_name);
+            return user.save();
+          } else {
+            // Establishment not found in favorites
+            console.log('Establishment not found in favorites.');
+            return Promise.reject({ success: false, message: 'Establishment not found in favorites.' });
+          }
+        })
+        .then(function() {
+          return res.json({ success: true, message: 'Removed from favorites!' });
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          return res.status(500).json({ success: false, message: 'An error occurred' });
+        });
+    } catch (error) {
+      console.error('Error:', error);
+      return res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+  });
+
+
   return router;
 }
 
