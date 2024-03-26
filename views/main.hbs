@@ -5,7 +5,6 @@
 
 <!-- container for the content -->
 <div class="parent-content">
-<!-- miguel ikaw na bahala ah -->
     <!--BANNER/HERO IMAGE-->
     <div class="banner-block">
 
@@ -16,73 +15,77 @@
             <a class="join-button" href="/registration">Join Now!</a>
         </div>
     </div>
-</div>
 
-<!--COFEED LETS YOU.. -->
-<div class="functionalities-block">
-    <p class="serif">Cofeed lets you..</p>
-    <div class="functionalities-list">
-        <div class="functionalities">
-            <i class="fa fa-eye"></i>
-            <p>Discover new study spaces and coffee shops</p>
-        </div>
+    <!--COFEED LETS YOU.. -->
+    <div class="functionalities-block">
+        <p class="serif">Cofeed lets you..</p>
+        <div class="functionalities-list">
+            <div class="functionalities">
+                <i class="fa fa-eye"></i>
+                <p>Discover new study spaces and coffee shops</p>
+            </div>
 
-        <div class="functionalities">
-            <i class="fa fa-star"></i>
-            <p>Review and rate places you've been to</p>
-        </div>
+            <div class="functionalities">
+                <i class="fa fa-star"></i>
+                <p>Review and rate places you've been to</p>
+            </div>
 
-        <div class="functionalities">
-            <i class="fa fa-commenting"></i>
-            <p>Share your reviews, follow friends and other members to read theirs</p>
+            <div class="functionalities">
+                <i class="fa fa-commenting"></i>
+                <p>Share your reviews, follow friends and other members to read theirs</p>
+            </div>
         </div>
+        <hr>
     </div>
-    <hr>
-</div>
 
     <!--RECENT REVIEWS -->
-<div class="recent-activity-block">
-    <p class="recent-activity-block-text serif">Recent Reviews</p>
+    <div class="recent-activity-block">
+        <div class="recent-activity-block-text serif">Recent Reviews</div>
 
-    <!--RECENT REVIEWS CONTAINER -->
-    <div class="recent-activity-list">
-    {{#each review-data}}
-    <!--REVIEW 1 -->
-        <!--REVIEW CONTAINER -->
-        <div class="review">
-            
-            <!--TOP PART / GREEN-->
-            
-            <div class="user-profile">
-                <div class="profile-image-username-container">
-                    <img src="{{user_photo}}" >                             
-                    <div class="profile-text">
-                        <span class="display-name">{{display_name}}</span>
-                        <br>
+        <!--RECENT REVIEWS CONTAINER -->
+        <div class="recent-activity-list">
+        {{#each review-data}}    
+            <div  class="review overflow margin-right">
                         
-                    </div>
-                </div>
-                    <p>
-                        <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
-                    </p>
-                </div>
-            
-            <!--BOTTOM PART-->
-            <div class="review-image-caption-container">
+            <!--TOP PART / GREEN-->
                 
-                <div class="review-photo-box">
-                    <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
+                <div class="user-profile">
+                    <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
+                        <img src="{{user_photo}}">                             
+                        <div class="profile-text">
+                            <span class="display-name">{{display_name}}</span>
+                            <br>
+                            <span class="username">@{{username}}</span>
+                            
+                        </div>
+                    </div>
+                        <p>
+                        <p>{{rating}}</p>
+                        <span class="fa fa-star checked"></span> 
+                        </p>
                 </div>
+                
+                <!--BOTTOM PART-->
+                <div class="review-image-caption-container">
+                    
+                    <div class="review-photo-box">
+                        <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
+                    </div>
 
-                <div class="review-text">
-                <p class="place-name">{{establishment_name}}</p>
-                <p class="caption">{{caption}}</p>
-                <p class="date-posted">{{date_posted}}</p>
+                    <div class="review-text">
+                    <a onclick="redirectToEstablishment('{{place_name}}')" class="place-name brown">{{place_name}}</a>
+                    <p class="caption">{{caption}}</p>
+                    <p class="date-posted">{{date}}</p>
+                    
+                    </div>
+
+                    
                 </div>
             </div>
-            </div>
+
         {{/each}}
-</div>
+        </div>
+    </div>
 </div>
 
 <!-- container for the footer -->

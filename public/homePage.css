@@ -153,10 +153,10 @@ hr{
 
 .recent-activity-list{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10%;
+    overflow-x: auto;
+    margin: 0;
+    padding: 2%;
+    justify-content: space-between;
 }
 
 .review {

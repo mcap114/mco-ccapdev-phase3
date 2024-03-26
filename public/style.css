@@ -21,34 +21,6 @@ body {
     height: auto;
 }
 
-/* banner */
-.banner-block {
-    display: flex;
-    background-image: url(https://miro.medium.com/v2/resize:fit:1400/0*6lX9i2AVnurxCQgx);
-    height: 400px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-.banner-text-box {
-    background-color: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    width: 42%;
-    height: 56%;
-    margin-top: 5%;
-    margin-left: 1%;
-}
-
-.headline {
-    padding-left: 5%;
-    font-family: 'Cardo', serif;
-    font-size: 29px;
-    font-weight: 700;
-    text-align: left;
-}
-
 /* For the box items with rounded images in header (small avatar logo)*/
 
 .box-parent{
