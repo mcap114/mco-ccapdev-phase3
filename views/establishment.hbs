@@ -97,9 +97,9 @@
                                 </div>
                                 
                                 <!-- Review Title -->
-                                <input type="text" class="review-title" id="title-field" placeholder="Enter your review title">
-                                <input type="text" class="review-location" id="location-field" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
-                                <textarea class="review-description" id="description-field" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
+                                <input type="text" class="review-title" id="review-title" placeholder="Enter your review title">
+                                <input type="text" class="review-location" id="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
+                                <textarea class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
 
                                 <hr class="write-review-hr">
                                 
@@ -280,7 +280,7 @@
                 {{#if (eq currentUserType 'owner')}}
                 {{#if (eq currentUser establishment.owner_username)}}
                     <div class="edit-establishment">
-                        <button class="reaction-btn review-option" onclick="showEditEstablishmentWidget()">
+                        <button class="reaction-btn review-option" onclick="showEditReviewWidget()">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -289,7 +289,7 @@
                 
 
                     <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
-                    <div id="edit-establishment-widget" class="edit-establishment-widget-container" style="display: none;">
+                    <div id="edit-establishment-widget" class="edit-establishment-widget-container">
                         <div class="edit-establishmentwidget">
                             <div class="edit-establishment-title">Edit Establishment Details</div>
                             <div class="establishment-info">

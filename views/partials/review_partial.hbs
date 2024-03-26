@@ -13,13 +13,52 @@
            {{#if (eq username currentUser)}}
             <!-- Display review menu -->
             <div class="review-menu">
-                <button class="reaction-btn review-option"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
-                <button class="reaction-btn review-option" onclick="deleteWidget(this)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                <button class="reaction-btn review-option" onclick="showEditReviewWidget()">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> 
+                </button>
+     
+                <button class="reaction-btn review-option" onclick="deleteWidget(this)">
+                    <i class="fa fa-trash" aria-hidden="true"></i> 
+                </button>
+
+            </div>
+
+             <!-- Edit Review  Widget is displaying but not yet fully functioning -->
+            <div id="edit-review-widget" class="edit-review-widget-container"style="display: none;">
+                <div class="edit-review-widget">
+                    <div class="edit-review-title">Edit Review Details</div>
+                    <div class="review-info">
+                        
+                        <div class="write-review-rating">
+                            <div class="review-rating">
+                                <span class="fa fa-star" data-rating="1"></span>
+                                <span class="fa fa-star" data-rating="2"></span>
+                                <span class="fa fa-star" data-rating="3"></span>
+                                <span class="fa fa-star" data-rating="4"></span>
+                                <span class="fa fa-star" data-rating="5"></span>
+                            </div>
+                        </div>
+
+                        <div class="review-info-item">
+                            <label for="review-title">Review Title</label>
+                            <input type="text" id="review-title" value="{{review.review_title}}" placeholder="Update review title">
+                        </div>
+                        <div class="review-info-item">
+                            <label for="review-location">Location</label>
+                                <input type="text" id="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
+                        </div>
+                        <div class="review-info-item">
+                            <label for="review-description">Description</label>
+                            <input type="text" id="review-description" value="{{review.review_description}}"  placeholder="Update review descripton">
+                        </div>
+                    </div>
+                    
+                    <div class="review-options">
+                        <button id="options" class="save-button">Save</button>
+                    </div>
+                </div>
             </div>
         {{/if}}
-
-
-
 
         <div onclick="redirectToProfile('{{username}}')" class="user-profile-establishment">
             <img src="{{user_photo}}" alt="{{display_name}}">
@@ -52,5 +91,6 @@
                         <button class="reaction-btn not-helpful"><i class="fa fa-thumbs-down" aria-hidden="true"></i> This was not helpful</button>
             <button class="reaction-btn comment"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
         </div>
+
+        </div>
     </div>
-</div>

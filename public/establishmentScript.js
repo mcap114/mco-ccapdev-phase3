@@ -1,5 +1,9 @@
 // 
 document.addEventListener("DOMContentLoaded", function() {
+  
+  document.getElementById("edit-review-widget").style.display = "none";
+  document.getElementById("edit-establishment-widget").style.display = "none";
+
   // Set the Create Post's date to the current date
   let today = new Date();
   let formattedDate = formatDate(today);
@@ -168,8 +172,21 @@ document.addEventListener("DOMContentLoaded", function() {
     return starsHTML;
   }
 
-  // owner edit establishment functions
 
+  // user edit review functions 
+  // function to show the edit profile widget
+  function showEditReviewWidget() {
+    var editReviewWidget = document.getElementById("edit-review-widget");
+    editReviewWidget.style.display = "block";
+  }
+
+  // function to hide the edit profile widget
+  function hideEditReviewWidget() {
+    var editReviewWidget = document.getElementById("edit-review-widget");
+    editReviewWidget.style.display = "none";
+  }
+
+  // owner edit establishment functions
   // function to show the edit profile widget
   function showEditEstablishmentWidget() {
     var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
@@ -186,8 +203,8 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Save Changes");
   }
 
-  // event listener for go back button to hide the edit profile widget
-  document.querySelector('.go-back-button').addEventListener('click', hideEditProfileWidget);
+  // event listener for go back button to hide the edit establishment widget
+  document.querySelector('.go-back-button').addEventListener('click', hideEditEstablishmentWidget);
 
   // event listener for save button to save changes
   document.querySelector('.save-button').addEventListener('click', saveChanges);
