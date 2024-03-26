@@ -63,5 +63,71 @@
         "createdreview": ["Frank & Dean Coffee"],
         "followers": ["reginaaa","cadyyy"],
         "following": ["reginaaa","cadyyy"]
+    },
+
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "John Mark Miranda",
+        "username":"johnmiranda",
+        "bio":"Owner of Kape Benito Community Cafe",
+        "email":"john.miranda@gmail.com",
+        "password":"1234",
+        "userType": "owner",
+        "favoriteplace":["Kape Benito"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Allue Hortaleza",
+        "username":"alluehortaleza",
+        "bio":"Owner of Angkan Coffee Company",
+        "email":"allue.hortaleza@gmail.com",
+        "password":"1234",
+        "userType": "owner",
+        "favoriteplace":["Angkan Coffee Company"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Miguel Escueta",
+        "username":"miguelescueta",
+        "bio":"Owner of Frank & Dean Coffee",
+        "email":"miguel.escueta@gmail.com",
+        "password":"1234",
+        "userType": "owner",
+        "favoriteplace":["Frank & Dean Coffee"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Bernard Manuel Syching",
+        "username":"bernardsyching",
+        "bio":"Owner of Parameter Coffee",
+        "email":"bernard.syching@gmail.com",
+        "password":"1234",
+        "userType": "owner",
+        "favoriteplace":["Parameter Coffee"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Andre Chanco",
+        "username":"andrechanco",
+        "bio":"Owner of Yardstick Coffee",
+        "email":"andre.chanco@gmail.com",
+        "password":"1234",
+        "userType": "owner",
+        "favoriteplace":["Yardstick Coffee"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
     }
 ]

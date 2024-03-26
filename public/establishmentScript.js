@@ -1,8 +1,9 @@
-// 
+
 document.addEventListener("DOMContentLoaded", function() {
   
   hideEditReviewWidget();
   hideEditEstablishmentWidget();
+
   // Set the Create Post's date to the current date
   let today = new Date();
   let formattedDate = formatDate(today);

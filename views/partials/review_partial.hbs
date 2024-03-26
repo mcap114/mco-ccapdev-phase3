@@ -31,7 +31,7 @@
                     <div class="edit-review-title">Edit Review Details</div>
                     <div class="review-info">
                         
-                        <div class="write-review-rating">
+                        <div class="edit-review-rating">
                             <div class="review-rating">
                                 <span class="fa fa-star" data-rating="1"></span>
                                 <span class="fa fa-star" data-rating="2"></span>
@@ -43,16 +43,24 @@
 
                         <div class="review-info-item">
                             <label for="review-title">Review Title</label>
-                            <input type="text" id="review-title" value="{{review.review_title}}" placeholder="Update review title">
+                            <input type="text" id="title-field" value="{{review.review_title}}" placeholder="Update review title">
                         </div>
                         <div class="review-info-item">
                             <label for="review-location">Location</label>
-                                <input type="text" id="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
+                                <input type="text" id="location-field" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
                         </div>
                         <div class="review-info-item">
                             <label for="review-description">Description</label>
-                            <input type="text" id="review-description" value="{{review.review_description}}"  placeholder="Update review descripton">
+                            <input type="text" id="description-field" value="{{review.review_description}}"  placeholder="Update review descripton">
                         </div>
+                        
+                        <div class="review-info-item">
+                            <label for="photo-upload" class="photo-edit-label">
+                                <i class="fa fa-camera"></i> Upload Photo
+                            </label>
+                        </div>
+                        <div class="photo-preview" id="photo-preview"></div>
+
                     </div>
                     
                     <div class="edit-options">

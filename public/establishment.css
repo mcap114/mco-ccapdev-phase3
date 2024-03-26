@@ -864,6 +864,13 @@ label[for="star-filter"], label[for="sort"] {
     border: 5px solid white;
 
 }
+/*
+.edit-review-rating {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+}
+*/
 .establishment-info-item {
     margin-bottom: 20px;
     position: relative;
@@ -878,7 +885,7 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 .establishment-info-item input {
-    width: 100%;
+    width: 90%;
     padding: 12px 0; 
     margin: 3%;
     margin-top: 8px;
