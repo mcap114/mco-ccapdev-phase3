@@ -20,16 +20,22 @@ document.addEventListener("DOMContentLoaded", function() {
         reviewForm.addEventListener('submit', submitReview);
     }
     
-    const starContainers = document.querySelectorAll('.star-rating');
-    starContainers.forEach(container => {
-        container.addEventListener('click', function(event) {
-            const rating = parseInt(event.target.getAttribute('data-rating'), 10);
-            // Update data-rating attribute of parent container
-            container.setAttribute('data-rating', rating);
-            updateStarRatings();
+    // review rating stars to automatically light up the previous stars
+    const stars = document.querySelectorAll('.review-rating .fa');
+    const ratingHandler = (e) => {
+        const ratingValue = parseInt(e.target.dataset.rating, 10);
+        stars.forEach((star, index) => {
+            if (index < ratingValue) {
+                star.classList.add('highlighted'); 
+            } else {
+                star.classList.remove('highlighted'); 
+            }
         });
-    });
+    };
 
+    stars.forEach(star => {
+        star.addEventListener('click', ratingHandler);
+    });
 });
 
   // function to add establishment to current user's favorites
@@ -64,11 +70,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Function to handle review submission
   function submitReview(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     // Get form data
     const formData = new FormData(event.target);
 
+    // Manually append the star rating
+    const highlightedStars = document.querySelectorAll('.review-rating .fa.highlighted');
+    const ratingValue = highlightedStars.length; // Number of highlighted stars equals the rating
+    formData.append('review_rating', ratingValue);
+    
     // Log the form data before sending it to the server
     console.log('Form Data:', formData);
 
@@ -87,8 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(data);
         if (data.success) {
             alert('Review submitted successfully!');
-            // Optionally, redirect to the establishment page or update UI
-            // window.location.href = '/establishment/' + encodeURIComponent(formData.get('review-location'));
         } else {
             alert(data.message);
         }

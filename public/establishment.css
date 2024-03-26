@@ -51,7 +51,7 @@
 }
 
 .checked, .fa.fa-star-half-o{
-    color: orange;
+    color: #FFD700;
     margin-right: 5px;
   }
 
@@ -184,22 +184,6 @@
     margin-right: 8px; 
 }
 
-/* Star Rating Styles */
-.star-rating {
-    margin-bottom: 10px;
-}
-
-.star-rating i {
-    font-size: 24px;
-    color: #ccc;
-    cursor: pointer;
-}
-
-.star-rating i:hover,
-.star-rating i.active {
-    color: #FFD700; 
-}
-
 /* Styles for Write a Review*/
 
 .write-review {
@@ -264,22 +248,28 @@ textarea {
 }
 
 /* star rating for write a review*/
-.write-review-rating > .star-rating{
-    margin: 0;
-    margin-top: 3%;
-}
-.write-review .star-rating {
-    margin-bottom: 10px;
+
+.write-review-rating {
+    display: flex;
+    align-items: center;
 }
 
-.write-review .star-rating i {
-    font-size: 24px;
-    color: #ccc;
+.review-rating {
+    position: relative;
+}
+
+.review-rating span {
+    display: inline-block;
+    color: #666;
     cursor: pointer;
+    font-size: 30px;
 }
 
-.write-review .star-rating i:hover,
-.write-review .star-rating i.active {
+.review-rating .fa {
+    margin-right: 5px;
+}
+/* clicked stars */
+.review-rating .fa.highlighted {
     color: #FFD700; 
 }
 
