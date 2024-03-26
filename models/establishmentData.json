@@ -92,5 +92,125 @@
         "establishment_images": ["https://i.imgocean.com/2024-03-12ec67f7d76607b61b.jpeg","https://i.imgocean.com/2023-06-13b72f74f63b4bf791.jpeg","https://i.imgocean.com/414008016_753247463506157_534189165469876896_n49a9a3f7358fdd1b.jpeg", "https://i.imgocean.com/2024-02-26a9a943b033515cbc.jpeg"],
         "establishment_owner": "Andre Chanco",
         "owner_username": "andrechanco"
+    },
+
+    {
+        "banner_image": "https://www.imgocean.com/image/2022-11-07.67Gk",
+        "establishment_name": "Obscure Cafe", 
+        "establishment_address": "2311 Taft Ave, Malate, malate, 1004 Metro Manila",
+        "establishment_description": "Where time flies and coffee powers the chaos",
+        "establishment_ratings": "4.5",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
+        "contact_details_FB": "Obscure Café",
+        "contact_details_IG": "@obscurecafe",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    }, 
+
+    {
+        "banner_image": "https://www.imgocean.com/image/6bJb",
+        "establishment_name": "Prelude Cafe & Restaurant", 
+        "establishment_address": "810 Fidel A.Reyes, Malate, Manila, 1004 Metro Manila",
+        "establishment_description": "We've got breakfast, rice bowls, pastas, & even burgers to satisfy any craving",
+        "establishment_ratings": "4.9",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
+        "contact_details_FB": "Prelude Cafe & Restaurant",
+        "contact_details_IG": "prelude.cafe",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Coffee St. Manila", 
+        "establishment_address": "HX8V+C4W, Agno, Malate, Manila, 1004 Metro Manila",
+        "establishment_description": "Good coffee. Good food.",
+        "establishment_ratings": "5.0",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
+        "contact_details_FB": "coffeestreetmanila",
+        "contact_details_IG": "coffeestreetmanila",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Drip Kofi", 
+        "establishment_address": "Unit G5, Burgundy Transpacific Place, 2444-A Taft Ave, Malate, Manila, 1004 Metro Manila",
+        "establishment_description": "A local café that's passionate about serving authentic Vietnamese coffee",
+        "establishment_ratings": "5.0",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM"],
+        "contact_details_FB": "Drip Kofi DLSU ",
+        "contact_details_IG": "dripkofidlsu",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "TOMO Coffee - Miguelin", 
+        "establishment_address": "241 Miguelin St, Sampaloc, Manila, 1008 Metro Manila",
+        "establishment_description": "A companion in a cup, brewed right around the corner.",
+        "establishment_ratings": "4.9",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
+        "contact_details_FB": "TOMO Coffee",
+        "contact_details_IG": "tomocoffeeph",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Coffee Project", 
+        "establishment_address": "",
+        "establishment_description": "",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
+        "contact_details_FB": "",
+        "contact_details_IG": "",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "https://www.imgocean.com/image/1-26.6tKi",
+        "establishment_name": "Because Coffee", 
+        "establishment_address": "5th Ave, Taguig, Metro Manila",
+        "establishment_description": "The brand's strong identity offers a serene space for those seeking solace or a moment of reflection.",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
+        "contact_details_FB": "",
+        "contact_details_IG": "harlanholden.coffee",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Tyler’s Cafe", 
+        "establishment_address": "",
+        "establishment_description": "",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
+        "contact_details_FB": "",
+        "contact_details_IG": "",
+        "establishment_images": [],
+        "establishment_owner": "",
+        "owner_username": ""
     }
 ]
