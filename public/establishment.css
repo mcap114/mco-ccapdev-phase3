@@ -581,9 +581,8 @@ label[for="star-filter"], label[for="sort"] {
     display: none;
 }
 /*Edit Review Widget*/
-
 .edit-review-widget-container {
-    transform: translate(-50%, -10%);
+    transform: translate(-50%, 100%);
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -637,7 +636,7 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 
-.review-options{
+.edit-options{
     margin: 20px;
     display: flex;
 }
@@ -879,7 +878,7 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 .establishment-info-item input {
-    width: 90%;
+    width: 100%;
     padding: 12px 0; 
     margin: 3%;
     margin-top: 8px;

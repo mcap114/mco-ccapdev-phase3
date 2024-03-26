@@ -85,7 +85,6 @@
 
                             <form name="post-form" action="/submit-review" method="post" id="post-form">
                                 <!-- Star Rating -->
-                                <!-- Star Rating -->
                                 <div class="write-review-rating">
                                     <div class="review-rating">
                                         <span class="fa fa-star" data-rating="1"></span>
@@ -280,17 +279,16 @@
                 {{#if (eq currentUserType 'owner')}}
                 {{#if (eq currentUser establishment.owner_username)}}
                     <div class="edit-establishment">
-                        <button class="reaction-btn review-option" onclick="showEditReviewWidget()">
+                        <button class="reaction-btn establishment-option" onclick="showEditEstablishmentWidget()">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                     </div>
-                {{/if}}
-                {{/if}}
-                
 
                     <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
                     <div id="edit-establishment-widget" class="edit-establishment-widget-container">
                         <div class="edit-establishmentwidget">
+                            <button class="close-button" onclick="hideEditEstablishmentWidget()">X</button>
+
                             <div class="edit-establishment-title">Edit Establishment Details</div>
                             <div class="establishment-info">
                                 <div class="establishment-info-item">
@@ -308,11 +306,14 @@
                             </div>
                             
                             <div class="establishment-options">
-                                <button id="options" class="go-back-button" onclick="hideEditEstablishmentWidget()">Go Back</button>
                                 <button id="options" class="save-button">Save</button>
                             </div>
                         </div>
                     </div>
+                {{/if}}
+                {{/if}}
+                
+
                 </div>
             
                 

@@ -1,9 +1,8 @@
 // 
 document.addEventListener("DOMContentLoaded", function() {
   
-  document.getElementById("edit-review-widget").style.display = "none";
-  document.getElementById("edit-establishment-widget").style.display = "none";
-
+  hideEditReviewWidget();
+  hideEditEstablishmentWidget();
   // Set the Create Post's date to the current date
   let today = new Date();
   let formattedDate = formatDate(today);
