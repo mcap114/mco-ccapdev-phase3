@@ -1,5 +1,4 @@
 .registration-body {
-    margin: 0;
     background-color: #959D90;
     display: flex;
     flex-direction: column;
@@ -239,9 +238,4 @@ input[type=submit]:hover {
 
 .avatar:hover img {
     transform: scale(1.1); 
-}
-
-/* Override styles for header and footer */
-.parent-header, .parent-footer {
-    display: none; /* or adjust other styles */
 }

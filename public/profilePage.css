@@ -1,5 +1,3 @@
-
-
 /* parent container for the content */
 .parent-content-profile{
     background-color: #959D90; 
@@ -8,10 +6,7 @@
     justify-content: space-around;
     align-items: center;
     height: auto;
-
- }
- 
-
+}
 
 /* For the box items with rounded images in header (small avatar logo)*/
 

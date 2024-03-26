@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Biryani', sans-serif;
+    overflow: scroll;
 }
 
 /* container for the body */
@@ -9,9 +10,7 @@ body {
     flex-direction: column;
 }
 
-.parent-header,
-.parent-content,
-.parent-footer {
+.parent-header, .parent-content, .parent-footer {
     display: flex;
 }
 
@@ -21,7 +20,6 @@ body {
     align-items: center;
     height: auto;
 }
-
 
 /* banner */
 .banner-block {

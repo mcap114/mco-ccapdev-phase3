@@ -1,94 +1,91 @@
-<!-- container for the body -->
-<div class="body-container">
-    
-    <!-- container for the header -->
-    <div class="parent-header">
-    {{> headerNonUser}}
-    </div>
-    
-    <!-- container for the content -->
-    <div class="parent-content">
-    <!-- miguel ikaw na bahala ah -->
-        <!--BANNER/HERO IMAGE-->
-        <div class="banner-block">
+<!-- container for the header -->
+<div class="parent-header">
+{{> headerNonUser}}
+</div>
 
-            <!--SPIEL BOX-->
-            <div class="banner-text-box">
-                <p class="banner-text headline">The go-to for students seeking the ideal blend of productivity and relaxation.</p>
-                <p class="banner-text body">Discover hidden gems and share your experiences at different working spaces and coffee shops. Cofeed is your go-to platform to find the coziest corners, the quietest nooks, and the most inspiring atmospheres where you can sip on your favorite brew, leave insightful reviews, and evelate your study sessions.</p>
-                <a class="join-button" href="/registration">Join Now!</a>
-            </div>
+<!-- container for the content -->
+<div class="parent-content">
+<!-- miguel ikaw na bahala ah -->
+    <!--BANNER/HERO IMAGE-->
+    <div class="banner-block">
+
+        <!--SPIEL BOX-->
+        <div class="banner-text-box">
+            <p class="banner-text headline">The go-to for students seeking the ideal blend of productivity and relaxation.</p>
+            <p class="banner-text body">Discover hidden gems and share your experiences at different working spaces and coffee shops. Cofeed is your go-to platform to find the coziest corners, the quietest nooks, and the most inspiring atmospheres where you can sip on your favorite brew, leave insightful reviews, and evelate your study sessions.</p>
+            <a class="join-button" href="/registration">Join Now!</a>
         </div>
     </div>
+</div>
 
-    <!--COFEED LETS YOU.. -->
-    <div class="functionalities-block">
-        <p class="serif">Cofeed lets you..</p>
-        <div class="functionalities-list">
-            <div class="functionalities discover">
-                <i class="fa fa-eye"></i>
-                <p>Discover new study spaces and coffee shops</p>
-            </div>
-
-            <div class="functionalities rate">
-                <i class="fa fa-star"></i>
-                <p>Review and rate places you've been to</p>
-            </div>
-
-            <div class="functionalities others">
-                <i class="fa fa-commenting"></i>
-                <p>Share your reviews, follow friends and other members to read theirs</p>
-            </div>
+<!--COFEED LETS YOU.. -->
+<div class="functionalities-block">
+    <p class="serif">Cofeed lets you..</p>
+    <div class="functionalities-list">
+        <div class="functionalities discover">
+            <i class="fa fa-eye"></i>
+            <p>Discover new study spaces and coffee shops</p>
         </div>
-        <hr>
+
+        <div class="functionalities rate">
+            <i class="fa fa-star"></i>
+            <p>Review and rate places you've been to</p>
+        </div>
+
+        <div class="functionalities others">
+            <i class="fa fa-commenting"></i>
+            <p>Share your reviews, follow friends and other members to read theirs</p>
+        </div>
     </div>
+    <hr>
+</div>
 
-     <!--RECENT REVIEWS -->
-    <div class="recent-activity-block">
-        <p class="recent-activity-block-text serif">Recent Reviews</p>
+    <!--RECENT REVIEWS -->
+<div class="recent-activity-block">
+    <p class="recent-activity-block-text serif">Recent Reviews</p>
 
-        <!--RECENT REVIEWS CONTAINER -->
-        <div class="recent-activity-list">
-        {{#each review-data}}
-        <!--REVIEW 1 -->
-            <!--REVIEW CONTAINER -->
-            <div class="review">
-                
-                <!--TOP PART / GREEN-->
-                
-                <div class="user-profile">
-                    <div class="profile-image-username-container">
-                        <img src="{{user_photo}}" >                             
-                        <div class="profile-text">
-                            <span class="display-name">{{display_name}}</span>
-                            <br>
-                            
-                        </div>
-                    </div>
-                        <p>
-                            <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
-                        </p>
-                    </div>
-                
-                <!--BOTTOM PART-->
-                <div class="review-image-caption-container">
-                    
-                    <div class="review-photo-box">
-                        <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
-                    </div>
-
-                    <div class="review-text">
-                    <p class="place-name">{{establishment_name}}</p>
-                    <p class="caption">{{caption}}</p>
-                    <p class="date-posted">{{date_posted}}</p>
+    <!--RECENT REVIEWS CONTAINER -->
+    <div class="recent-activity-list">
+    {{#each review-data}}
+    <!--REVIEW 1 -->
+        <!--REVIEW CONTAINER -->
+        <div class="review">
+            
+            <!--TOP PART / GREEN-->
+            
+            <div class="user-profile">
+                <div class="profile-image-username-container">
+                    <img src="{{user_photo}}" >                             
+                    <div class="profile-text">
+                        <span class="display-name">{{display_name}}</span>
+                        <br>
+                        
                     </div>
                 </div>
-              </div>
-            {{/each}}
-    </div>
-    </div>
-    <!-- container for the footer -->
-    <div class="parent-footer">
-    {{> footer}}
-    </div>
+                    <p>
+                        <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
+                    </p>
+                </div>
+            
+            <!--BOTTOM PART-->
+            <div class="review-image-caption-container">
+                
+                <div class="review-photo-box">
+                    <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
+                </div>
+
+                <div class="review-text">
+                <p class="place-name">{{establishment_name}}</p>
+                <p class="caption">{{caption}}</p>
+                <p class="date-posted">{{date_posted}}</p>
+                </div>
+            </div>
+            </div>
+        {{/each}}
+</div>
+</div>
+
+<!-- container for the footer -->
+<div class="parent-footer">
+{{> footer}}
 </div>

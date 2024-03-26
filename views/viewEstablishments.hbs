@@ -1,122 +1,118 @@
-<!-- container for the body -->
-<div class="body-container">
-    
-    <!-- container for the header -->
-    <div class="parent-header">
-        {{#if isLoggedIn}}
-            {{> headerUser}}
-        {{else}}
-            {{> headerNonUser}}
-        {{/if}}
-    </div>
-    
-    <!-- container for the content -->
-    <div class="parent-contentVE">
-         
-         <div class="left-VE">
-                    
-                    <div class="filter-section">
-                        
-                        <h2>Filters</h2>
-                        
-                        <div class="filter-options">
-                            <h3>Price</h3>
-                            <ul>
-                                <li><input type="checkbox" id="price-low"> <label for="price-low">Low</label></li>
-                                <li><input type="checkbox" id="price-medium"> <label for="price-medium">Medium</label></li>
-                                <li><input type="checkbox" id="price-high"> <label for="price-high">High</label></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="filter-options">
-                            <h3>Features</h3>
-                            <ul>
-                                <li><input type="checkbox" id="feature-wifi"> <label for="feature-wifi">Wifi</label></li>
-                                <li><input type="checkbox" id="feature-parking"> <label for="feature-parking">Parking</label></li>
-                                <li><input type="checkbox" id="feature-outdoor-seating"> <label for="feature-outdoor-seating">Outdoor Seating</label></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="filter-options">
-                            <h3>Accommodation</h3>
-                            <ul>
-                                <li>
-                                    <input type="radio" name="accommodation" id="1person" value="1person">
-                                    <label for="1person">1 Person</label>
-                                </li>
-                                <li>
-                                    <input type="radio" name="accommodation" id="2people" value="2people">
-                                    <label for="2people">2 People</label>
-                                </li>
-                                <li>
-                                    <input type="radio" name="accommodation" id="group" value="group">
-                                    <label for="group">Group</label>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="filter-options">
-                            <h3>Location</h3>
-                            <input type="text" id="location" placeholder="Enter location">
-                        </div>
-                        
-                        <div class="button-container">
-                            <button type="button">Apply Filters</button>
-                        </div>
-                    
-                    </div>
-                    
-                    <div class="map">
-                        <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30894.201662836367!2d121.00387488814593!3d14.554843537836048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90264a0ed01%3A0x2b066ed57830cace!2sMakati%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1708014677505!5m2!1sen!2sph"></iframe>
-                    </div>
-        </div>
+<!-- container for the header -->
+<div class="parent-header">
+    {{#if isLoggedIn}}
+        {{> headerUser}}
+    {{else}}
+        {{> headerNonUser}}
+    {{/if}}
+</div>
 
-        <div class="right-VE">
-                <div class="headline">
-                    <div class="headline-location">Best in Metro Manila</div>
-                    <div class="sort-by">
-                        <label for="sort">Sort By</label>
-                        <select id="sort">
-                            <option value="latest">Location Name</option>
-                            <option value="rating-high">Rating (High to Low)</option>
-                            <option value="rating-low">Rating (Low to High)</option>
-                        </select>
+<!-- container for the content -->
+<div class="parent-contentVE">
+        
+        <div class="left-VE">
+                
+                <div class="filter-section">
+                    
+                    <h2>Filters</h2>
+                    
+                    <div class="filter-options">
+                        <h3>Price</h3>
+                        <ul>
+                            <li><input type="checkbox" id="price-low"> <label for="price-low">Low</label></li>
+                            <li><input type="checkbox" id="price-medium"> <label for="price-medium">Medium</label></li>
+                            <li><input type="checkbox" id="price-high"> <label for="price-high">High</label></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="places">
-                    {{#each establishment}}
-                    <div class="establishment">
-                        <img class="place-img" src={{banner_image}} alt="establishment"/>
-                        <div class="info">
-                            <div class="cafe-container">
-                                <p class="cafe">{{establishment_name}}</p>
-                                <div class="ratings-container">
-                                    <i class="fa fa-star star-icon"></i>
-                                    <i class="fa fa-star star-icon"></i>
-                                    <i class="fa fa-star star-icon"></i>
-                                    <i class="fa fa-star star-icon"></i>
-                                    <i class="fa fa-star-half star-icon"></i>
-                                </div>                                 
-                            </div>
-                        <div class="details">
-                                <p class="location"><i class="fa fa-map-marker"></i>{{establishment_address}}</p>
-                            </div>
-                            <div class="description">
-                                <p class="desc"><i class="fa fa-info-circle"></i>{{establishment_description}}</p>
-                            </div>
-                            <div class="button-container2">
-                                <button id="see_more" onclick="redirectToEstablishment('{{establishment_name}}')">See More</button>
-                            </div>
-                        </div>       
+                    
+                    <div class="filter-options">
+                        <h3>Features</h3>
+                        <ul>
+                            <li><input type="checkbox" id="feature-wifi"> <label for="feature-wifi">Wifi</label></li>
+                            <li><input type="checkbox" id="feature-parking"> <label for="feature-parking">Parking</label></li>
+                            <li><input type="checkbox" id="feature-outdoor-seating"> <label for="feature-outdoor-seating">Outdoor Seating</label></li>
+                        </ul>
                     </div>
-                    {{/each}}
+                    
+                    <div class="filter-options">
+                        <h3>Accommodation</h3>
+                        <ul>
+                            <li>
+                                <input type="radio" name="accommodation" id="1person" value="1person">
+                                <label for="1person">1 Person</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="accommodation" id="2people" value="2people">
+                                <label for="2people">2 People</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="accommodation" id="group" value="group">
+                                <label for="group">Group</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-options">
+                        <h3>Location</h3>
+                        <input type="text" id="location" placeholder="Enter location">
+                    </div>
+                    
+                    <div class="button-container">
+                        <button type="button">Apply Filters</button>
+                    </div>
+                
                 </div>
-               
-        </div>
+                
+                <div class="map">
+                    <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30894.201662836367!2d121.00387488814593!3d14.554843537836048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90264a0ed01%3A0x2b066ed57830cace!2sMakati%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1708014677505!5m2!1sen!2sph"></iframe>
+                </div>
     </div>
 
-    <!-- container for the footer -->
-    <div class="parent-footer">
-    {{> footer}}
+    <div class="right-VE">
+            <div class="headline">
+                <div class="headline-location">Best in Metro Manila</div>
+                <div class="sort-by">
+                    <label for="sort">Sort By</label>
+                    <select id="sort">
+                        <option value="latest">Location Name</option>
+                        <option value="rating-high">Rating (High to Low)</option>
+                        <option value="rating-low">Rating (Low to High)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="places">
+                {{#each establishment}}
+                <div class="establishment">
+                    <img class="place-img" src={{banner_image}} alt="establishment"/>
+                    <div class="info">
+                        <div class="cafe-container">
+                            <p class="cafe">{{establishment_name}}</p>
+                            <div class="ratings-container">
+                                <i class="fa fa-star star-icon"></i>
+                                <i class="fa fa-star star-icon"></i>
+                                <i class="fa fa-star star-icon"></i>
+                                <i class="fa fa-star star-icon"></i>
+                                <i class="fa fa-star-half star-icon"></i>
+                            </div>                                 
+                        </div>
+                    <div class="details">
+                            <p class="location"><i class="fa fa-map-marker"></i>{{establishment_address}}</p>
+                        </div>
+                        <div class="description">
+                            <p class="desc"><i class="fa fa-info-circle"></i>{{establishment_description}}</p>
+                        </div>
+                        <div class="button-container2">
+                            <button id="see_more" onclick="redirectToEstablishment('{{establishment_name}}')">See More</button>
+                        </div>
+                    </div>       
+                </div>
+                {{/each}}
+            </div>
+            
     </div>
+</div>
+
+<!-- container for the footer -->
+<div class="parent-footer">
+{{> footer}}
 </div>

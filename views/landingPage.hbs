@@ -1,124 +1,119 @@
-<!-- container for the body -->
-<div class="body-container">
-    {{log review-data}}
-    <!-- container for the header -->
-    <div class="parent-header">
+{{log review-data}}
+<!-- container for the header -->
+<div class="parent-header">
+    {{#if isLoggedIn}}
+        {{> headerUser}}
+    {{else}}
+        {{> headerNonUser}}
+    {{/if}}
+</div>
+
+<div class="greeting-container">
+    <div class="greeting">
         {{#if isLoggedIn}}
-            {{> headerUser}}
+            <p class="serif brown">Welcome back, {{currentUser}}. Here's what your brew buddies have been up to..</p>
         {{else}}
-            {{> headerNonUser}}
-        {{/if}}
+            <p class="serif brown">Welcome Cofeed User. Here's what our brew buddies have been up to..</p>
+        {{/if}} 
     </div>
+</div>
 
-    <div class="greeting-container">
-        <div class="greeting">
-            {{#if isLoggedIn}}
-                <p class="serif brown">Welcome back, {{currentUser}}. Here's what your brew buddies have been up to..</p>
-            {{else}}
-                <p class="serif brown">Welcome Cofeed User. Here's what our brew buddies have been up to..</p>
-            {{/if}} 
-        </div>
-    </div>
+<div class="view-more">
+    <a class="sans-serif green bold">NEW FROM FRIENDS</a>
+    <p>
+    <a class="sans-serif green bold">See all activity</a>
+    <i class="fa fa-angle-right"></i>
+    </p>
+</div>
 
-    <div class="view-more">
-        <a class="sans-serif green bold">NEW FROM FRIENDS</a>
-        <p>
-        <a class="sans-serif green bold">See all activity</a>
-        <i class="fa fa-angle-right"></i>
-        </p>
-    </div>
+<hr>
+<!-- insert each here -->
 
-    <hr>
-    <!-- insert each here -->
-    
-    <div class="friend-reviews-container">
-    {{#each review-data}}    
-        <div  class="review overflow margin-right">
+<div class="friend-reviews-container">
+{{#each review-data}}    
+    <div  class="review overflow margin-right">
+                
+        <!--TOP PART / GREEN-->
+        
+        <div class="user-profile">
+            <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
+                <img src="{{user_photo}}">                             
+                <div class="profile-text">
+                    <span class="display-name">{{display_name}}</span>
+                    <br>
+                    <span class="username">@{{username}}</span>
                     
-            <!--TOP PART / GREEN-->
-            
-            <div class="user-profile">
-                <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
-                    <img src="{{user_photo}}">                             
-                    <div class="profile-text">
-                        <span class="display-name">{{display_name}}</span>
-                        <br>
-                        <span class="username">@{{username}}</span>
-                        
-                    </div>
                 </div>
-                    <p>
-                    <p>{{rating}}</p>
-                    <span class="fa fa-star checked"></span> 
-                    </p>
             </div>
-            
-            <!--BOTTOM PART-->
-            <div class="review-image-caption-container">
-                
-                <div class="review-photo-box">
-                    <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
-                </div>
-
-                <div class="review-text">
-                <a onclick="redirectToEstablishment('{{place_name}}')" class="place-name brown">{{place_name}}</a>
-                <p class="caption">{{caption}}</p>
-                <p class="date-posted">{{date}}</p>
-                
-                </div>
-
-                
-            </div>
+                <p>
+                <p>{{rating}}</p>
+                <span class="fa fa-star checked"></span> 
+                </p>
         </div>
-    
+        
+        <!--BOTTOM PART-->
+        <div class="review-image-caption-container">
+            
+            <div class="review-photo-box">
+                <img class="review-photo" src="{{review_photo}}" alt="Review Picture">
+            </div>
+
+            <div class="review-text">
+            <a onclick="redirectToEstablishment('{{place_name}}')" class="place-name brown">{{place_name}}</a>
+            <p class="caption">{{caption}}</p>
+            <p class="date-posted">{{date}}</p>
+            
+            </div>
+
+            
+        </div>
+    </div>
+
+    {{/each}}
+</div> 
+
+<div class="view-more">
+    <a class="sans-serif green bold">POPULAR ON CO.FEED</a>
+    <p>
+    <a class="sans-serif green bold" href="/viewEstablishments">See all establishments</a>
+    <i class="fa fa-angle-right"></i>
+    </p>
+</div>
+
+<hr>
+
+<div class="trending-spots-container">
+    <div class="trending-spots-list">
+        {{#each establishment-data}}
+        <div class="establishment">
+            <img class="place-img" src={{banner_image}} alt="establishment"/>
+            <div class="info">
+                <div class="cafe-container">
+                    <p class="cafe">{{establishment_name}}</p>
+                    <div class="ratings-container">
+                        <i class="fa fa-star star-icon"></i>
+                        <i class="fa fa-star star-icon"></i>
+                        <i class="fa fa-star star-icon"></i>
+                        <i class="fa fa-star star-icon"></i>
+                        <i class="fa fa-star-half star-icon"></i>
+                    </div>                                 
+                </div>
+                <div class="details">
+                    <p class="location"><i class="fa fa-map-marker"></i>{{establishment_address}}</p>
+                </div>
+                <div class="description">
+                    <p class="desc"><i class="fa fa-info-circle"></i>{{establishment_description}}</p>
+                </div>
+                <div class="button-container2">
+                    <button id="see_more" onclick="redirectToEstablishment('{{establishment_name}}')">See More</button>
+                </div>
+            </div>       
+        </div>
         {{/each}}
-    </div> 
-
-
-    <div class="view-more">
-        <a class="sans-serif green bold">POPULAR ON CO.FEED</a>
-        <p>
-        <a class="sans-serif green bold" href="/viewEstablishments">See all establishments</a>
-        <i class="fa fa-angle-right"></i>
-        </p>
     </div>
+</div>
 
-    <hr>
-
-    <div class="trending-spots-container">
-        <div class="trending-spots-list">
-            {{#each establishment-data}}
-            <div class="establishment">
-                <img class="place-img" src={{banner_image}} alt="establishment"/>
-                <div class="info">
-                    <div class="cafe-container">
-                        <p class="cafe">{{establishment_name}}</p>
-                        <div class="ratings-container">
-                            <i class="fa fa-star star-icon"></i>
-                            <i class="fa fa-star star-icon"></i>
-                            <i class="fa fa-star star-icon"></i>
-                            <i class="fa fa-star star-icon"></i>
-                            <i class="fa fa-star-half star-icon"></i>
-                        </div>                                 
-                    </div>
-                   <div class="details">
-                        <p class="location"><i class="fa fa-map-marker"></i>{{establishment_address}}</p>
-                    </div>
-                    <div class="description">
-                        <p class="desc"><i class="fa fa-info-circle"></i>{{establishment_description}}</p>
-                    </div>
-                    <div class="button-container2">
-                        <button id="see_more" onclick="redirectToEstablishment('{{establishment_name}}')">See More</button>
-                    </div>
-                </div>       
-            </div>
-            {{/each}}
-        </div>
-    </div>
-
-    <!-- container for the footer -->
-    <div class="parent-footer">
-        {{> footer}}
-    </div>
-    
- </div>
+<!-- container for the footer -->
+<div class="parent-footer">
+    {{> footer}}
+</div>

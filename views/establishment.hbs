@@ -1,447 +1,444 @@
-<!-- container for the body -->
-<div class="body-container">
-    <!-- container for the header -->
-    <div class="parent-header">
-        {{#if isLoggedIn}}
-            {{> headerUser}}
-        {{else}}
-            {{> headerNonUser}}
-        {{/if}}
-    </div>
+<!-- container for the header -->
+<div class="parent-header">
+    {{#if isLoggedIn}}
+        {{> headerUser}}
+    {{else}}
+        {{> headerNonUser}}
+    {{/if}}
+</div>
+
+<!-- container for the content -->
+<div class="parent-content">
+
+            
+    <!-- container for the top banner of the establishment -->
+    <div class="parent-row blockA">
+
+        <!--Establishment header photo-->
+        <div class="establishment-main-photo">
+            <img src={{establishment.banner_image}} alt="nafinia-putra-Kwdp-0pok-I-unsplash9b22f405e66f51cd.jpeg">
     
-    <!-- container for the content -->
-    <div class="parent-content">
-
-                
-        <!-- container for the top banner of the establishment -->
-        <div class="parent-row blockA">
-
-            <!--Establishment header photo-->
-            <div class="establishment-main-photo">
-                <img src={{establishment.banner_image}} alt="nafinia-putra-Kwdp-0pok-I-unsplash9b22f405e66f51cd.jpeg">
-       
-            </div>
-
-            <!--Establishment box that contains basic info (name, overall rating, location)-->
-            <div class="establishment-text-box">
-
-                <div class="establishment-name">
-                <b>{{establishment.establishment_name}}</b>
-                </div>
-
-                <div class="star-rating">
-
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star-half-o checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="average"> {{establishment.establishment_ratings}} (54 reviews)</span>
-    
-                </div>
-
-                <div class="location">
-                   
-                        <span class="fa fa-map-marker"></span>
-                        {{establishment.establishment_address}} <br>
-                
-                </div>
-
-            </div>
         </div>
 
-        <!--main area of the establishment page-->
-        <div class="parent-row main-area">
+        <!--Establishment box that contains basic info (name, overall rating, location)-->
+        <div class="establishment-text-box">
 
-            <div class="left-side">
-                <section>
-                    
-                    <!--buttons row-->
-                    <div class="navigate-container">
+            <div class="establishment-name">
+            <b>{{establishment.establishment_name}}</b>
+            </div>
 
-                        <button class="favorite" data-establishment_name="{{establishment.establishment_name}}">
-                            <i class="fa fa-bookmark" aria-hidden="true"></i> Favorite
-                        </button>
+            <div class="star-rating">
 
-                        <div class="share-dropdown">
-                            <button class="reaction-btn share"><i class="fa fa-share-square-o" aria-hidden="true"></i>Share</button>
-                            <div class="share-dropdown-content">
-                                <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
-                                <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
-                                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
-                                <a href="#"><i class="fa fa-tiktok"></i> TikTok</a>
-                                <a href="#"><i class="fa fa-envelope"></i> Email</a>
-                                <a href="#"><i class="fa fa-link"></i> Copy Link</a>
-                            </div>
-                        </div>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="average"> {{establishment.establishment_ratings}} (54 reviews)</span>
+
+            </div>
+
+            <div class="location">
                 
-                    </div>        
-           
-                    <!-- 'Write a Review' Form -->
-                    {{#if isLoggedIn}}
-                        <div class="write-review">
-                            <div class="write-review-container">
-                                <div class="user-profile-establishment">
-                                    <img src="{{currentUserIcon}}" alt="user">
-                                </div> 
-
-                                <form name="post-form" action="/submit-review" method="post" id="post-form">
-                                    <!-- Star Rating -->
-                                    <div class="write-review-rating">
-                                        <div class="star-rating">
-                                            <i class="fa fa-star one" data-rating="1"></i>
-                                            <i class="fa fa-star two" data-rating="2"></i>
-                                            <i class="fa fa-star three" data-rating="3"></i>
-                                            <i class="fa fa-star four" data-rating="4"></i>
-                                            <i class="fa fa-star five" data-rating="5"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Review Title -->
-                                    <input type="text" class="review-title" id="title-field" placeholder="Enter your review title">
-                                    <input type="text" class="review-location" id="location-field" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
-                                    <textarea class="review-description" id="description-field" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
-
-                                    <hr class="write-review-hr">
-                                    
-                                    <!-- Photo Upload and Date -->
-                                    <div class="photo-upload-date">
-                                        <!-- Photo Upload -->
-                                        <div class="photo-upload-container">
-                                            <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
-                                            <label for="photo-upload" class="photo-upload-label">
-                                                <i class="fa fa-camera"></i> Upload Photo
-                                            </label>
-                                        </div>
-                                        <div class="photo-preview" id="photo-preview"></div>
-
-                                        <!-- Date -->
-                                        <div class="date-and-submit">
-                                            <input type="datetime-local" id="post-date" readonly>                                    
-                                        </div>
-                            
-                                        <!-- Submit Button -->
-                                        <button type="submit" class="post-review-button" value="Save">Post Review</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    {{/if}}
-
-        
+                    <span class="fa fa-map-marker"></span>
+                    {{establishment.establishment_address}} <br>
             
-                <!--Reviews (overview of ratings)-->
-                <div class="reviews">
+            </div>
 
-                    <div class="reviews-header">
-                        <b>Reviews</b>
-                    </div>
+        </div>
+    </div>
 
-                    <div class="review-section">
-                        
-                          <div class="star-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star fa-star-half-o checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="average"> {{establishment.establishment_ratings}} (54 Reviews)</span>
-                          </div>
-                          
-                          <hr>
+    <!--main area of the establishment page-->
+    <div class="parent-row main-area">
 
-                         
-                        <div class="progress-bars">
-                        
-                            <div class="progress-bar" style="width:80%;">
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                (28)
-                            </div>
-                            
-                            <div class="progress-bar" style="width: 60%;">
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                (14)
-                            </div>
-                            
-                            <div class="progress-bar" style="width: 50%;">
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                (8)
-                            </div>
-                            
-                            <div class="progress-bar" style="width: 40%;">
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                (3)
-                            </div>
-                            
-                            <div class="progress-bar" style="width: 20%;">
-                                <span class="progress-star fa fa-star checked"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                <span class="progress-star fa fa-star"></span>
-                                (2)
-                            </div>
-                            
-                            <hr>
-                        
-                        </div>
-                    
-                    </div>
-                   
-                    <!--Timeline of reviews-->
-                    <div class="timeline">
-                        <div class="feed-header">
-                            <b>Let's see what our Brew Buddies have to say!</b>
-                        </div>
-
-                        <!-- Filter and Sort Options -->
-                        <div class="filter-sort-options">
-
-                            <!-- Filter by Number of Stars -->
-                            <div class="star-filter">
-                                <label for="star-filter">Filter by Stars:</label>
-                            </br>
-                                <div class="star-dropdown">
-                                    <input type="checkbox" id="star-1" value="1">
-                                    <label for="star-1">1</label>
-                                    <input type="checkbox" id="star-2" value="2">
-                                    <label for="star-2">2</label>
-                                    <input type="checkbox" id="star-3" value="3">
-                                    <label for="star-3">3</label>
-                                    <input type="checkbox" id="star-4" value="4">
-                                    <label for="star-4">4</label>
-                                    <input type="checkbox" id="star-5" value="5">
-                                    <label for="star-5">5</label>
-                                </div>
-                            </div>
-
-                            <!-- Sort By -->
-                            <div class="sort-by">
-                                <label for="sort">Sort By:</label>
-                                <select id="sort">
-                                    <option value="latest">Latest</option>
-                                    <option value="oldest">Oldest</option>
-                                    <option value="rating-high">Rating (High to Low)</option>
-                                    <option value="rating-low">Rating (Low to High)</option>
-                                </select>
-                            </div>
-
-                        </div>
-                    
-                    <!--success! review is reviewing boogsh wah!!!-->
-                    <!--!Call review partial to display review data-->
-                    <div class="review-feed">
-                    {{#if reviewData.length}}
-                        {{#each reviewData}}
-                         {{> review_partial currentUser=../currentUser}}
-                        {{/each}}
-                    {{else}}
-                        <p>Our brew buddies are still brewing up something to say.</p>
-                    {{/if}}
-                </div>
-
-
-                </section>
-                </div>
-                    
-        
-            <div class="right-side">
-                <section>
-                        
-                    <div class="about-edit-container">
-                   
-                    <!--About the establishment-->
-                    <div class="about-section">
-                        
-                        <span class="fa fa-info-circle"></span>
-                        <a class="about-header"><b>About</b></a>
-
-                        <div class="introduction">
-                            {{establishment.establishment_description}}
-                        </div>
-                    </div>
+        <div class="left-side">
+            <section>
                 
-                <!-- trying to display to establishment owner only-->
-                  {{#if (eq currentUserType 'owner')}}
-                    {{#if (eq currentUser establishment.owner_username)}}
-                        <div class="edit-establishment">
-                            <button class="reaction-btn review-option" onclick="showEditEstablishmentWidget()">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    {{/if}}
-                    {{/if}}
-                 
+                <!--buttons row-->
+                <div class="navigate-container">
 
-                       <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
-                        <div id="edit-establishment-widget" class="edit-establishment-widget-container" style="display: none;">
-                            <div class="edit-establishmentwidget">
-                                <div class="edit-establishment-title">Edit Establishment Details</div>
-                                <div class="establishment-info">
-                                    <div class="establishment-info-item">
-                                        <label for="establishment-name">Name</label>
-                                        <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
-                                    </div>
-                                    <div class="establishment-info-item">
-                                        <label for="address">Address</label>
-                                        <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
-                                    </div>
-                                    <div class="establishment-info-item">
-                                        <label for="description">Description</label>
-                                        <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
+                    <button class="favorite" data-establishment_name="{{establishment.establishment_name}}">
+                        <i class="fa fa-bookmark" aria-hidden="true"></i> Favorite
+                    </button>
+
+                    <div class="share-dropdown">
+                        <button class="reaction-btn share"><i class="fa fa-share-square-o" aria-hidden="true"></i>Share</button>
+                        <div class="share-dropdown-content">
+                            <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+                            <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
+                            <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+                            <a href="#"><i class="fa fa-tiktok"></i> TikTok</a>
+                            <a href="#"><i class="fa fa-envelope"></i> Email</a>
+                            <a href="#"><i class="fa fa-link"></i> Copy Link</a>
+                        </div>
+                    </div>
+            
+                </div>        
+        
+                <!-- 'Write a Review' Form -->
+                {{#if isLoggedIn}}
+                    <div class="write-review">
+                        <div class="write-review-container">
+                            <div class="user-profile-establishment">
+                                <img src="{{currentUserIcon}}" alt="user">
+                            </div> 
+
+                            <form name="post-form" action="/submit-review" method="post" id="post-form">
+                                <!-- Star Rating -->
+                                <div class="write-review-rating">
+                                    <div class="star-rating">
+                                        <i class="fa fa-star one" data-rating="1"></i>
+                                        <i class="fa fa-star two" data-rating="2"></i>
+                                        <i class="fa fa-star three" data-rating="3"></i>
+                                        <i class="fa fa-star four" data-rating="4"></i>
+                                        <i class="fa fa-star five" data-rating="5"></i>
                                     </div>
                                 </div>
                                 
-                                <div class="establishment-options">
-                                    <button id="options" class="go-back-button" onclick="hideEditEstablishmentWidget()">Go Back</button>
-                                    <button id="options" class="save-button">Save</button>
+                                <!-- Review Title -->
+                                <input type="text" class="review-title" id="title-field" placeholder="Enter your review title">
+                                <input type="text" class="review-location" id="location-field" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
+                                <textarea class="review-description" id="description-field" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
+
+                                <hr class="write-review-hr">
+                                
+                                <!-- Photo Upload and Date -->
+                                <div class="photo-upload-date">
+                                    <!-- Photo Upload -->
+                                    <div class="photo-upload-container">
+                                        <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
+                                        <label for="photo-upload" class="photo-upload-label">
+                                            <i class="fa fa-camera"></i> Upload Photo
+                                        </label>
+                                    </div>
+                                    <div class="photo-preview" id="photo-preview"></div>
+
+                                    <!-- Date -->
+                                    <div class="date-and-submit">
+                                        <input type="datetime-local" id="post-date" readonly>                                    
+                                    </div>
+                        
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="post-review-button" value="Save">Post Review</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
+                    </div>
+                {{/if}}
+
+    
+        
+            <!--Reviews (overview of ratings)-->
+            <div class="reviews">
+
+                <div class="reviews-header">
+                    <b>Reviews</b>
+                </div>
+
+                <div class="review-section">
+                    
+                        <div class="star-rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star fa-star-half-o checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="average"> {{establishment.establishment_ratings}} (54 Reviews)</span>
+                        </div>
+                        
+                        <hr>
+
+                        
+                    <div class="progress-bars">
+                    
+                        <div class="progress-bar" style="width:80%;">
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            (28)
+                        </div>
+                        
+                        <div class="progress-bar" style="width: 60%;">
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            (14)
+                        </div>
+                        
+                        <div class="progress-bar" style="width: 50%;">
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            (8)
+                        </div>
+                        
+                        <div class="progress-bar" style="width: 40%;">
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            (3)
+                        </div>
+                        
+                        <div class="progress-bar" style="width: 20%;">
+                            <span class="progress-star fa fa-star checked"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            <span class="progress-star fa fa-star"></span>
+                            (2)
+                        </div>
+                        
+                        <hr>
+                    
                     </div>
                 
-                  
+                </div>
+                
+                <!--Timeline of reviews-->
+                <div class="timeline">
+                    <div class="feed-header">
+                        <b>Let's see what our Brew Buddies have to say!</b>
+                    </div>
+
+                    <!-- Filter and Sort Options -->
+                    <div class="filter-sort-options">
+
+                        <!-- Filter by Number of Stars -->
+                        <div class="star-filter">
+                            <label for="star-filter">Filter by Stars:</label>
+                        </br>
+                            <div class="star-dropdown">
+                                <input type="checkbox" id="star-1" value="1">
+                                <label for="star-1">1</label>
+                                <input type="checkbox" id="star-2" value="2">
+                                <label for="star-2">2</label>
+                                <input type="checkbox" id="star-3" value="3">
+                                <label for="star-3">3</label>
+                                <input type="checkbox" id="star-4" value="4">
+                                <label for="star-4">4</label>
+                                <input type="checkbox" id="star-5" value="5">
+                                <label for="star-5">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Sort By -->
+                        <div class="sort-by">
+                            <label for="sort">Sort By:</label>
+                            <select id="sort">
+                                <option value="latest">Latest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="rating-high">Rating (High to Low)</option>
+                                <option value="rating-low">Rating (Low to High)</option>
+                            </select>
+                        </div>
+
+                    </div>
+                
+                <!--success! review is reviewing boogsh wah!!!-->
+                <!--!Call review partial to display review data-->
+                <div class="review-feed">
+                {{#if reviewData.length}}
+                    {{#each reviewData}}
+                        {{> review_partial currentUser=../currentUser}}
+                    {{/each}}
+                {{else}}
+                    <p>Our brew buddies are still brewing up something to say.</p>
+                {{/if}}
+            </div>
+
+
+            </section>
+            </div>
+                
+    
+        <div class="right-side">
+            <section>
                     
-                    <!--Services offered-->
-                    <div class="services-section">
-                        
+                <div class="about-edit-container">
+                
+                <!--About the establishment-->
+                <div class="about-section">
+                    
+                    <span class="fa fa-info-circle"></span>
+                    <a class="about-header"><b>About</b></a>
+
+                    <div class="introduction">
+                        {{establishment.establishment_description}}
+                    </div>
+                </div>
+            
+            <!-- trying to display to establishment owner only-->
+                {{#if (eq currentUserType 'owner')}}
+                {{#if (eq currentUser establishment.owner_username)}}
+                    <div class="edit-establishment">
+                        <button class="reaction-btn review-option" onclick="showEditEstablishmentWidget()">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                {{/if}}
+                {{/if}}
+                
+
+                    <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
+                    <div id="edit-establishment-widget" class="edit-establishment-widget-container" style="display: none;">
+                        <div class="edit-establishmentwidget">
+                            <div class="edit-establishment-title">Edit Establishment Details</div>
+                            <div class="establishment-info">
+                                <div class="establishment-info-item">
+                                    <label for="establishment-name">Name</label>
+                                    <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
+                                </div>
+                                <div class="establishment-info-item">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
+                                </div>
+                                <div class="establishment-info-item">
+                                    <label for="description">Description</label>
+                                    <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
+                                </div>
+                            </div>
+                            
+                            <div class="establishment-options">
+                                <button id="options" class="go-back-button" onclick="hideEditEstablishmentWidget()">Go Back</button>
+                                <button id="options" class="save-button">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                
+                
+                <!--Services offered-->
+                <div class="services-section">
+                    
+                    <hr class="hr1">
+
+                    <span class="fa fa-coffee"></span>
+                    <a class="services-header"><b>Services Offered</b></a>
+
+                <div class="services-list">
+                    {{#each establishment.services_offered}}
+                        <span class="fa fa-check"></span> {{this}} <br>
+                    {{/each}}
+                </div>
+
+
+                </div>
+                <!--Schedule of establishment-->
+                    <div class="schedule-section">
                         <hr class="hr1">
 
-                        <span class="fa fa-coffee"></span>
-                        <a class="services-header"><b>Services Offered</b></a>
+                        <span class="fa fa-clock-o"></span>
+                        <a class="schedule-header"><b>Store Hours</b></a>
 
-                    <div class="services-list">
-                        {{#each establishment.services_offered}}
-                            <span class="fa fa-check"></span> {{this}} <br>
+                        <div class="row-schedule">
+
+                            <div class="column-weekdays">
+                                <b>
+                                    Monday<br>
+                                    Tuesday<br>
+                                    Wednesday<br>
+                                    Thursday<br>
+                                    Friday<br>
+                                    Saturday<br>
+                                    Sunday<br>
+                                </b>
+                            </div>
+
+                            <div class="column-schedule">
+                                {{#each establishment.establishment_schedule}}
+                                    {{this}}<br>
+                                {{/each}}
+                            </div>
+
+                        </div>
+                    </div>
+
+                <!--Contact Details of the Establishment-->
+                <div class="contact-details-section">
+
+                    <hr class="hr1">
+
+                    <span class="fa fa-phone"></span>
+                    <a class="contact-header"><b>Contact Us!</b></a>
+                    
+                    <div class="facebook-page">
+                        <span class="fa fa-facebook-square"></span>
+                        {{establishment.contact_details_FB}} <br>
+                    </div>
+
+                    <div class="instagram-page">
+                        <span class="fa fa-instagram"></span>
+                        {{establishment.contact_details_IG}}
+                    </div>
+
+                </div>
+
+
+                <div class="establishment-photos">
+                
+                    <hr class="hr1">
+
+                    <span class="fa fa-camera"></span>
+                    <a class="header-text-photogrid"><b>More Photos</b></a>
+
+                <!-- Photo Grid -->
+                <div class="photo-grid">
+                    <div class="row">
+                        {{#each establishment.establishment_images}}
+                        <div class="column">
+                            <img src="{{this}}" alt="Establishment Image">
+                        </div>
                         {{/each}}
                     </div>
+                </div>
 
+                <!-- Location Map of Establishment -->
+                <div class="location-map-section">
+                
+                    <hr class="hr1">
 
-                    </div>
-                    <!--Schedule of establishment-->
-                        <div class="schedule-section">
-                            <hr class="hr1">
-
-                            <span class="fa fa-clock-o"></span>
-                            <a class="schedule-header"><b>Store Hours</b></a>
-
-                            <div class="row-schedule">
-
-                                <div class="column-weekdays">
-                                    <b>
-                                        Monday<br>
-                                        Tuesday<br>
-                                        Wednesday<br>
-                                        Thursday<br>
-                                        Friday<br>
-                                        Saturday<br>
-                                        Sunday<br>
-                                    </b>
-                                </div>
-
-                                <div class="column-schedule">
-                                    {{#each establishment.establishment_schedule}}
-                                        {{this}}<br>
-                                    {{/each}}
-                                </div>
-
-                            </div>
-                        </div>
-
-                    <!--Contact Details of the Establishment-->
-                    <div class="contact-details-section">
-
-                        <hr class="hr1">
-
-                        <span class="fa fa-phone"></span>
-                        <a class="contact-header"><b>Contact Us!</b></a>
-                        
-                        <div class="facebook-page">
-                            <span class="fa fa-facebook-square"></span>
-                            {{establishment.contact_details_FB}} <br>
-                        </div>
-
-                        <div class="instagram-page">
-                            <span class="fa fa-instagram"></span>
-                            {{establishment.contact_details_IG}}
-                        </div>
-
-                    </div>
-
-
-                    <div class="establishment-photos">
+                    <span class="fa fa-map-marker"></span>
+                    <a class="location-map-header"><b>Locate on the Map</b></a>
                     
-                        <hr class="hr1">
-    
-                        <span class="fa fa-camera"></span>
-                        <a class="header-text-photogrid"><b>More Photos</b></a>
+                    <p class="address">{{establishment.establishment_address}}</p>
 
-                    <!-- Photo Grid -->
-                    <div class="photo-grid">
-                        <div class="row">
-                            {{#each establishment.establishment_images}}
-                            <div class="column">
-                                <img src="{{this}}" alt="Establishment Image">
-                            </div>
-                            {{/each}}
-                        </div>
+                    <div class="map">
+                        <iframe class="google-map" src={{establishment.establishment_map}}></iframe>
                     </div>
+                </div>
 
-                    <!-- Location Map of Establishment -->
-                    <div class="location-map-section">
+                <!--About the establishment-->
+                <div class="owner-section">
                     
-                        <hr class="hr1">
-    
-                        <span class="fa fa-map-marker"></span>
-                        <a class="location-map-header"><b>Locate on the Map</b></a>
-                        
-                        <p class="address">{{establishment.establishment_address}}</p>
+                    <hr class="hr1">
 
-                        <div class="map">
-                            <iframe class="google-map" src={{establishment.establishment_map}}></iframe>
-                        </div>
-                    </div>
+                    <span class="fa fa-user"></span>
+                    <a class="user-header"><b>Owner of the Establishment</b></a>
 
-                    <!--About the establishment-->
-                    <div class="owner-section">
-                       
-                        <hr class="hr1">
-
-                        <span class="fa fa-user"></span>
-                        <a class="user-header"><b>Owner of the Establishment</b></a>
-
-                        <p class="owner"> {{establishment.establishment_owner}}</p>
-                    </div>
+                    <p class="owner"> {{establishment.establishment_owner}}</p>
+                </div>
 
 
-                </section>
-             
+            </section>
+            
 
-            </div>
-        
         </div>
     
-    
     </div>
 
-    <!-- container for the footer -->
-    <div class="parent-footer">
-    {{> footer}}
-    </div>
+
+</div>
+
+<!-- container for the footer -->
+<div class="parent-footer">
+{{> footer}}
 </div>

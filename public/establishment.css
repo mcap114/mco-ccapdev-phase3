@@ -1,37 +1,6 @@
-body {
-    margin: 0;
-}
-
-/* container for the body */
-.body-container{
-    display: flex;
-    flex-direction: column;
-}
-
-/* container for the header */
-.parent-header{
-    display: flex;
-}
-
-/* container for the content */
-.parent-content{
-    height: auto;
-    flex-direction: column;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: auto;
-
-}
-
-/* container for the footer */
-.parent-footer{
-    display: flex;
-}
-
- /* Styles for Main banner of Establishment (Block A)*/
+/* Styles for Main banner of Establishment (Block A)*/
  
- .blockA {
+.blockA {
     margin: 0;
     width: 100%;
     position: relative;

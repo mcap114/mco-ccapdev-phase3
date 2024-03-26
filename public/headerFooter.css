@@ -35,9 +35,8 @@ a{
     width: 70%;
     display: flex;
     justify-content: center;
- }
+}
  
-
 ::placeholder{
     font-family: 'Biryani', sans-serif;
     padding-left: 20px;
