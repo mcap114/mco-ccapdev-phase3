@@ -115,6 +115,7 @@ body {
 .functionalities{
     margin:0;
     width: 20%;
+    height: 200px;
     background-color: #223030;
     border: 1px solid black;
     color:white;
@@ -171,6 +172,7 @@ hr{
     padding: 2%;
     display:flex;
 }
+
 .place-name{
     font-family:'Biryani', 'sans-serif';
     margin-top: 10px;
@@ -194,7 +196,7 @@ hr{
 
 .user-profile {
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center; 
     justify-content: space-between;
     background-color: #BBA58E;
     padding-left: 2%;
@@ -219,11 +221,11 @@ hr{
 }
 
 .profile-text{
-width: 70%;
+    width: 70%;
 }
 
 .display-name {
-font-weight: bold;
+    font-weight: bold;
     font-family: 'Biryani', sans-serif;
     color: white;
 }
