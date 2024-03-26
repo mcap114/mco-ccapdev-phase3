@@ -1,8 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-  
-  hideEditReviewWidget();
-  hideEditEstablishmentWidget();
 
   // Set the Create Post's date to the current date
   let today = new Date();
@@ -24,22 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
         reviewForm.addEventListener('submit', submitReview);
     }
     
-    // review rating stars to automatically light up the previous stars
-    const stars = document.querySelectorAll('.review-rating .fa');
-    const ratingHandler = (e) => {
-        const ratingValue = parseInt(e.target.dataset.rating, 10);
-        stars.forEach((star, index) => {
-            if (index < ratingValue) {
-                star.classList.add('highlighted'); 
-            } else {
-                star.classList.remove('highlighted'); 
-            }
-        });
-    };
-
-    stars.forEach(star => {
-        star.addEventListener('click', ratingHandler);
-    });
+    initStarRatings(); //write review star rating baka makalimutan ko ulit
+    initEditReviewStars();
+    hideEditReviewWidget();
+    hideEditEstablishmentWidget();
 });
 
   // function to add establishment to current user's favorites
@@ -72,6 +57,35 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+// initialize write review star rating
+function initStarRatings() {
+  const writeReviewStars = document.querySelectorAll('.write-review-rating .fa');
+  writeReviewStars.forEach(star => {
+      star.addEventListener('click', function(e) {
+          updateStars(writeReviewStars, e.target.dataset.rating);
+      });
+  });
+}
+
+// initialize edit review star rating
+function initEditReviewStars() {
+  const editReviewStars = document.querySelectorAll('.edit-review-rating .fa');
+  editReviewStars.forEach(star => {
+      star.addEventListener('click', function(e) {
+          updateStars(editReviewStars, e.target.dataset.rating);
+      });
+  });
+}
+
+function updateStars(starSet, ratingValue) {
+  starSet.forEach((star, index) => {
+      if (index < ratingValue) {
+          star.classList.add('highlighted');
+      } else {
+          star.classList.remove('highlighted');
+      }
+  });
+}
   // Function to handle review submission
   function submitReview(event) {
     event.preventDefault(); 
@@ -173,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  // user edit review functions 
   // function to show the edit profile widget
   function showEditReviewWidget() {
     var editReviewWidget = document.getElementById("edit-review-widget");
@@ -186,7 +199,6 @@ document.addEventListener("DOMContentLoaded", function() {
     editReviewWidget.style.display = "none";
   }
 
-  // owner edit establishment functions
   // function to show the edit profile widget
   function showEditEstablishmentWidget() {
     var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
@@ -198,13 +210,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
     editEstablishmentWidget.style.display = "none";
   }
-  // function to save changes
+  // not yet implemented function to save changes
   function saveChanges() {
     console.log("Save Changes");
   }
 
-  // event listener for go back button to hide the edit establishment widget
-  document.querySelector('.go-back-button').addEventListener('click', hideEditEstablishmentWidget);
 
   // event listener for save button to save changes
   document.querySelector('.save-button').addEventListener('click', saveChanges);
