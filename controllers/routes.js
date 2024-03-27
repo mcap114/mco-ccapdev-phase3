@@ -284,7 +284,7 @@ function addRoutes(server) {
   });
   
   // still a work in progress 
-  // \nCurrently it is able to reflect the submitted user_photo, username and date posted to the database
+  // Currently it is able to reflect the submitted user_photo, username and date posted to the database
   router.post('/submit-review', function(req, res) {
     try {
       // extract review data from the request body

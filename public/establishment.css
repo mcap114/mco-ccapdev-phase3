@@ -952,6 +952,7 @@ hr.h1 {border:1px solid #223030; }
 .establishment-photos,
 .about-section,
 .services-section,
+.price-range-section
 .schedule-section, 
 .contact-details-section,
 .location-map-section,
@@ -963,6 +964,7 @@ hr.h1 {border:1px solid #223030; }
 .establishment-photos > .fa.fa-camera,
 .fa.fa-info-circle, 
 .fa.fa-coffee,
+.fa.fa-money,
 .fa.fa-clock-o, 
 .fa.fa-phone, 
 .fa.fa-map-marker,
@@ -975,6 +977,7 @@ hr.h1 {border:1px solid #223030; }
 .header-text-photogrid,
 .about-header, 
 .services-header,
+.price-range-header,
 .schedule-header, 
 .contact-header, 
 .location-map-header,
@@ -1016,9 +1019,10 @@ hr.h1 {border:1px solid #223030; }
     clear: both;
 }
 
-/* Style for About section*/
+/* Style for About  and Price range section*/
 
-.introduction {
+.introduction,
+.price-range {
     font-family: 'Biryani', sans-serif;
     font-weight: 400;
     color: #223030; 
@@ -1027,6 +1031,9 @@ hr.h1 {border:1px solid #223030; }
     padding: 0;
 }
 
+.price-range{
+    font-size: medium;
+}
 /* Style for Services list*/
 
 .services-list.fa.fa-check {
@@ -1099,9 +1106,9 @@ hr.h1 {border:1px solid #223030; }
 }
 
 .google-map {
-    margin: 1%;
+    margin: 2%;
     align-items: center;
-    width: 400px; 
+    width: 350px; 
     height: 350px;
     border: 0;
 }

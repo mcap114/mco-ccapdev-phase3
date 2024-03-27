@@ -330,8 +330,20 @@
                     {{/each}}
                 </div>
 
+                <!--Price Range-->
+                <div class="price-range-section">
+                    
+                    <hr class="hr1">
 
+                    <span class="fa fa-money"></span>
+                    <a class="price-range-header"><b>Price Range</b></a>
+
+                    <div class="price-range">
+                        {{establishment.price_range}}
+                    </div>
                 </div>
+
+               
                 <!--Schedule of establishment-->
                     <div class="schedule-section">
                         <hr class="hr1">
@@ -425,6 +437,7 @@
                     <a class="user-header"><b>Owner of the Establishment</b></a>
 
                     <p class="owner"> {{establishment.establishment_owner}}</p>
+
                 </div>
 
 

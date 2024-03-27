@@ -6,6 +6,7 @@ const establishmentSchema = new mongoose.Schema({
   establishment_name: {type: String},
   establishment_address: {type: String},
   establishment_description: {type: String},
+  price_range: {type: String},
   establishment_ratings: {type: Number},
   services_offered: {type: Array},
   establishment_schedule: {type: Array},
