@@ -48,6 +48,26 @@
     font-size: 40px;
 }
 
+.review-ratings-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 20%;
+    height: 50%;
+    margin-right: 20px;
+}
+
+.review-ratings{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+    color: white;
+}
+
+.review-ratings, #reviewstar{
+    color: #ffea00;
+}
+
 .overflow{
     flex: 0 0 600px;
 }
