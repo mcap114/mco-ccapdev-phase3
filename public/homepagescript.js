@@ -38,20 +38,10 @@ function logout() {
     res.locals.isLoggedOut = true;
 }
 
-// closes the dropdown menu in avatar (header) 
-window.addEventListener('click', function(event) {
-    var dropdown = document.getElementById("myDropdown");
-    var avatarButton = document.querySelector('.avatar-button');
-
-    if (!event.target.closest('.avatar-button') && !event.target.closest('.avatar-dropdown-content')) {
-        dropdown.style.display = 'none';
-    }
-});
-
-// 
+// function to show logout dropdown
 function toggleOptions(event) {
     const dropdown = event.target.nextElementSibling;
-    dropdown.classList.toggle("show");
+    dropdown.classList.add("show");
 }
 
 //
