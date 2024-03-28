@@ -194,9 +194,9 @@ function addRoutes(server) {
   router.get('/viewEstablishments', function(req, resp){
     console.log('\nCurrently at View Establishments Page');
     const searchQuery = {};
-    
+    let headlineLocation = 'List of Establishments';
+
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-      // Determine if each establishment is in Metro Manila or not
       establishment_data.forEach(function(establishment) {
         establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
       });
@@ -205,6 +205,7 @@ function addRoutes(server) {
         layout: 'index',
         title: 'Cofeed',
         establishment: establishment_data,
+        headlineLocation: headlineLocation,
         currentUser: req.session.username,
         currentUserIcon: req.session.user_icon
       });
@@ -235,16 +236,29 @@ function addRoutes(server) {
         searchQuery.establishment_address = selectedArea === 'metro' ? /Metro Manila/ : { $not: /Metro Manila/ };
     }
 
+    // filter by location
+    const location = req.body.location; 
+    if (location) {
+        searchQuery.establishment_address = { $regex: new RegExp(location, 'i') };
+    }
+
+    let headlineLocation;
+    if (location.includes('Metro Manila')) {
+      headlineLocation = 'Best in Metro Manila';
+    } else {
+      headlineLocation = 'Best outside Metro Manila';
+    }
+
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-      // Determine if each establishment is in Metro Manila or not
       establishment_data.forEach(function(establishment) {
         establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
-    });
+      });
 
         resp.render('viewEstablishments', {
           layout: 'index',
           title: 'Cofeed',
           establishment: establishment_data,
+          headlineLocation: headlineLocation,
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon
         });

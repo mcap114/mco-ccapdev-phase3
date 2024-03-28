@@ -27,7 +27,6 @@
     flex-grow: 1;
 }
 
-
 /* left panel */ 
 .filter-section {
     background-color: #523D35;
@@ -87,6 +86,11 @@
 
 .button-container {
     text-align: center;
+}
+
+.apply-filter{
+    display: flex;
+    justify-content: center;
 }
 
 #applyfilter {
