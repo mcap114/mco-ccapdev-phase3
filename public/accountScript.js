@@ -266,22 +266,6 @@ function hideListReview() {
     listReviewWidget.classList.remove("visible");
 }
 
-// function when logging out
-function logout() {
-    console.log("Logout clicked");
-    window.location.href = "homepageuser.html";
-}
-
-// closes the dropdown menu in avatar (header) 
-window.addEventListener('click', function(event) {
-    var dropdown = document.getElementById("myDropdown");
-    var avatarButton = document.querySelector('.avatar-button');
-
-    if (!event.target.closest('.avatar-button') && !event.target.closest('.avatar-dropdown-content')) {
-        dropdown.style.display = 'none';
-    }
-});
-
 // function to show the edit profile widget
 function showEditProfileWidget() {
     var editProfileWidget = document.getElementById("edit-profile-widget");
@@ -327,7 +311,7 @@ function hideWriteAReviewWidget() {
     writeReviewWidget.style.display = "none";
 }
 
-
+// 
 function unlikeWidget(establishmentName) {
     // Confirm action with the user (optional)
     if (confirm('Are you sure you want to remove this from favorites?')) {
@@ -365,6 +349,7 @@ function unlikeWidget(establishmentName) {
     }
 }
 
+// 
 function deleteCoffeeShopReview(placeName) {
     // Confirm action with the user (optional)
     if (confirm('Are you sure you want to remove this from your created reviews?')) {
@@ -407,7 +392,6 @@ function getCurrentUser(loggedInUsername) {
     // Assuming userData is a global variable containing user data from userData.json
     return userData.find(user => user.username === loggedInUsername);
 }
-
 
 // Function to toggle follow/unfollow and update button text
 function toggleFollow(username) {
@@ -466,8 +450,6 @@ function toggleFollow(username) {
     });
 }
 
-
-
 // event listener for go back button to hide the write a review widget
 document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);
 
@@ -476,9 +458,3 @@ document.querySelector('.go-back-button').addEventListener('click', hideEditProf
 
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);
-
-// 
-function toggleOptions(event) {
-    const dropdown = event.target.nextElementSibling;
-    dropdown.classList.toggle("show");
-}

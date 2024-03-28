@@ -30,12 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// function to expand text area
-function autoExpand(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-}
-
 // function when logging out
 function logout() {
     console.log("Logout clicked");
@@ -53,20 +47,6 @@ window.addEventListener('click', function(event) {
         dropdown.style.display = 'none';
     }
 });
-
-// function to save changes
-function saveChanges() {
-    console.log("Save Changes");
-}
-
-// function to hide the write a review widget
-function hideWriteAReviewWidget() {
-    var writeReviewWidget = document.getElementById("review-widget");
-    writeReviewWidget.style.display = "none";
-}
-
-// event listener for go back button to hide the write a review widget
-document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);
 
 // 
 function toggleOptions(event) {
