@@ -220,10 +220,19 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 50%;
 }
 
-.star-icon {
+.ratings, .star-icon {
     color: white;
+}
+
+.ratings{
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 5px;
 }
 
 .address, .description {
