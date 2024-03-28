@@ -28,11 +28,11 @@
                         <a  id="following-count" onclick="showFollowing()">{{user-data.following.length}} following</a> 
                     </div> 
                     <div id="follow-btn-container">
-                        {{#isFollowingUser user-data.loggedInUser user-data.username}}
-                            <button id="follow-btn" onclick="toggleFollow('{{user-data.username}}')">Unfollow</button>
+                         {{#if isFollowing}}
+                            <button id="unfollow-btn" onclick="unfollowUser('{{user-data.username}}')">Unfollow</button>
                         {{else}}
-                            <button id="follow-btn" onclick="toggleFollow('{{user-data.username}}')">Follow</button>
-                        {{/isFollowingUser}}
+                            <button id="follow-btn" onclick="followUser('{{user-data.username}}')">Follow</button>
+                        {{/if}}
                     </div>
 
                 </div>

@@ -387,68 +387,57 @@ function deleteCoffeeShopReview(placeName) {
     }
 }
 
-// Example function to get current logged-in user data based on logged-in username
-function getCurrentUser(loggedInUsername) {
-    // Assuming userData is a global variable containing user data from userData.json
-    return userData.find(user => user.username === loggedInUsername);
-}
-
-// Function to toggle follow/unfollow and update button text
-function toggleFollow(username) {
-    const followBtn = document.getElementById('follow-btn');
-    const isFollowing = followBtn.innerText === 'Unfollow';
-
-    // Get the username of the currently logged-in user dynamically
-    const loggedInUsername = 'cadyyy'; // Replace this with your actual logic to get the logged-in username
-    const currentUser = getCurrentUser(loggedInUsername);
-
-    // Check if the user is already in your following list
-    const isAlreadyFollowing = currentUser.following.includes(username);
-
-    // Placeholder API request logic
-    const url = isFollowing ? '/unfollow-user' : '/follow-user';
-    const method = 'POST';
-    const data = { username: username }; // You may need to pass additional data
-
-    fetch(url, {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-            // Add any additional headers as needed
+// Function to handle following a user
+function followUser(username) {
+    $.ajax({
+        url: '/follow-user',
+        type: 'POST',
+        data: { username: username },
+        success: function(response) {
+            console.log(response); // Optional: Log the response from the server
+            // Update the UI as needed
+            updateFollowingList(); // Update the following list after following a user
         },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
+        error: function(xhr, status, error) {
+            console.error(error);
         }
-        throw new Error('Network response was not ok.');
-    })
-    .then(result => {
-        // Update UI based on API response
-        if (isFollowing || isAlreadyFollowing) {
-            followBtn.innerText = 'Follow';
-            // Update followers count if needed
-            const followersCount = document.getElementById('followers-count');
-            followersCount.innerText = parseInt(followersCount.innerText) - 1 + ' followers';
-
-            // Remove username from following list in UI
-            currentUser.following = currentUser.following.filter(user => user !== username);
-        } else {
-            followBtn.innerText = 'Unfollow';
-            // Update followers count if needed
-            const followersCount = document.getElementById('followers-count');
-            followersCount.innerText = parseInt(followersCount.innerText) + 1 + ' followers';
-
-            // Add username to following list in UI
-            currentUser.following.push(username);
-        }
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        // Handle error scenario
     });
 }
+
+// Function to handle unfollowing a user
+function unfollowUser(username) {
+    $.ajax({
+        url: '/unfollow-user',
+        type: 'POST',
+        data: { username: username },
+        success: function(response) {
+            console.log(response); // Optional: Log the response from the server
+            // Update the UI as needed
+            updateFollowingList(); // Update the following list after unfollowing a user
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+// Function to update the following list on the myProfile page
+function updateFollowingList() {
+    $.ajax({
+        url: '/get-following-list',
+        type: 'GET',
+        success: function(response) {
+            console.log('Updated following list:', response);
+            $('#following-widget').html(response); // Update the following widget with the new HTML
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+
+
 
 // event listener for go back button to hide the write a review widget
 document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);

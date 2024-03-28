@@ -158,11 +158,11 @@
 
 .favorite-places,
 .coffee-shop-reviews {
-    display: flex; /* Use flexbox to arrange items in a row */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 20px; /* Add spacing between items */
-    padding-bottom: 20px; /* Add padding to avoid cutting off the last item */
-    width: calc(100% + 20px); /* Extend width to include scrollbar space */
+    display: flex; 
+    overflow-x: auto; 
+    gap: 20px; 
+    padding-bottom: 20px; 
+    width: calc(100% + 20px); 
 }
 
 .favorite-place,
@@ -170,9 +170,9 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
-    margin-right: 20px; /* Add spacing between items */
-    flex: 0 0 auto; /* Let items grow and shrink based on available space */
-    width: 300px; /* Set width for each item */
+    margin-right: 20px; 
+    flex: 0 0 auto; 
+    width: 300px; 
 
 }
 
@@ -544,5 +544,21 @@
 }
 
 #follow-btn:hover {
+    background-color: #fafafa;
+}
+
+#unfollow-btn {
+    padding: 8px 16px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #262626;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#unfollow-btn:hover {
     background-color: #fafafa;
 }

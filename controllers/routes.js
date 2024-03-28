@@ -397,6 +397,8 @@ function addRoutes(server) {
     const searchQuery = { username: userName };
     console.log('\nCurrently at Profile Page of ' + userName);
   
+    const loggedInUser = req.session.username;
+
     userModel.findOne(searchQuery).lean().then(function(user_data) {
       if (!user_data) {
         console.log('User data not found.');
@@ -416,6 +418,7 @@ function addRoutes(server) {
       establishmentModel.find(establishmentSearchQuery).lean().then(function(establishment_data){
         
         const isOwnProfile = user_data.username === req.session.username;
+        const isFollowing = user_data.followers.includes(loggedInUser);
   
         // console.log('User Data:', user_data);
         // console.log('Establishment Data:', establishment_data);
@@ -427,63 +430,99 @@ function addRoutes(server) {
           'review-data': review_data,
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon,
-          user: user_data
+          user: user_data,
+          isFollowing: isFollowing
         });
       });
     });
     }).catch(errorFn);
   });
 
-  // Helper function to find a user by username
-  function getUserByUsername(username) {
-    return userData.find(user => user.username === username);
-  }
+  // Route to handle following a user
+router.post('/follow-user', function(req, res) {
+    const loggedInUser = req.session.username;
+    const followedUser = req.body.username; // Assuming username is sent in the request body
 
-  // POST endpoint for following a user
-  router.post('/follow-user', (req, res) => {
-    const { username } = req.body;
-    const loggedInUsername = req.session.username; // Assuming you have session management middleware
-
-    // Find logged-in user and user to follow
-    const loggedInUser = getUserByUsername(loggedInUsername);
-    const userToFollow = getUserByUsername(username);
-
-    if (loggedInUser && userToFollow) {
-        // Check if user is already followed
-        if (!loggedInUser.following.includes(username)) {
-            loggedInUser.following.push(username); // Add to following list
-            userToFollow.followers.push(loggedInUsername); // Add to followers list
-            res.status(200).json({ message: `You are now following ${username}` });
-        } else {
-            res.status(400).json({ error: `You are already following ${username}` });
+    // Update the followed user's followers list
+    userModel.findOneAndUpdate(
+        { username: followedUser },
+        { $addToSet: { followers: loggedInUser } }, // Add the follower to the followers list
+        function(err, doc) {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error following user');
+            } else {
+                // Update the follower's following list
+                userModel.findOneAndUpdate(
+                    { username: loggedInUser },
+                    { $addToSet: { following: followedUser } }, // Add the followed user to the following list
+                    function(err, doc) {
+                        if (err) {
+                            console.error(err);
+                            res.status(500).send('Error following user');
+                        } else {
+                            res.send('User followed successfully');
+                        }
+                    }
+                );
+            }
         }
-    } else {
-        res.status(404).json({ error: 'User not found' });
-    }
-  });
+    );
+});
 
-  // POST endpoint for unfollowing a user
-  router.post('/unfollow-user', (req, res) => {
-    const { username } = req.body;
-    const loggedInUsername = req.session.username; // Assuming you have session management middleware
+// Route to handle unfollowing a user
+router.post('/unfollow-user', function(req, res) {
+    const loggedInUser = req.session.username;
+    const unfollowedUser = req.body.username; // Assuming username is sent in the request body
 
-    // Find logged-in user and user to unfollow
-    const loggedInUser = getUserByUsername(loggedInUsername);
-    const userToUnfollow = getUserByUsername(username);
-
-    if (loggedInUser && userToUnfollow) {
-        // Check if user is currently followed
-        if (loggedInUser.following.includes(username)) {
-            loggedInUser.following = loggedInUser.following.filter(user => user !== username); // Remove from following list
-            userToUnfollow.followers = userToUnfollow.followers.filter(user => user !== loggedInUsername); // Remove from followers list
-            res.status(200).json({ message: `You have unfollowed ${username}` });
-        } else {
-            res.status(400).json({ error: `You are not following ${username}` });
+    // Update the unfollowed user's followers list
+    userModel.findOneAndUpdate(
+        { username: unfollowedUser },
+        { $pull: { followers: loggedInUser } }, // Remove the follower from the followers list
+        function(err, doc) {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error unfollowing user');
+            } else {
+                // Update the follower's following list
+                userModel.findOneAndUpdate(
+                    { username: loggedInUser },
+                    { $pull: { following: unfollowedUser } }, // Remove the unfollowed user from the following list
+                    function(err, doc) {
+                        if (err) {
+                            console.error(err);
+                            res.status(500).send('Error unfollowing user');
+                        } else {
+                            res.send('User unfollowed successfully');
+                        }
+                    }
+                );
+            }
         }
-    } else {
-        res.status(404).json({ error: 'User not found' });
-    }
-  });
+    );
+});
+
+// Route to get the updated following list for the current user
+router.get('/get-following-list', function(req, res) {
+  const loggedInUser = req.session.username;
+
+  // Assuming you have a userModel with a schema that contains the following field
+  userModel.findOne({ username: loggedInUser })
+      .then(function(user) {
+          if (!user) {
+              res.status(404).send('User not found');
+              return;
+          }
+          // Send the following list back as a response
+          res.render('following-list', { following: user.following }); // Assuming you have a following-list partial or template
+      })
+      .catch(function(err) {
+          console.error(err);
+          res.status(500).send('Error fetching following list');
+      });
+});
+
+
 
   // update user's information on profile page
   router.post('/update-user', function(req, resp){
