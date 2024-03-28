@@ -233,20 +233,13 @@ function addRoutes(server) {
     // filter by area
     const selectedArea = req.body.area; 
     if (selectedArea) {
-        searchQuery.establishment_address = selectedArea === 'metro' ? /Metro Manila/ : { $not: /Metro Manila/ };
+      searchQuery.establishment_address = selectedArea === 'metro' ? /Metro Manila/ : { $not: /Metro Manila/ };
     }
 
     // filter by location
     const location = req.body.location; 
     if (location) {
-        searchQuery.establishment_address = { $regex: new RegExp(location, 'i') };
-    }
-
-    let headlineLocation;
-    if (location.includes('Metro Manila')) {
-      headlineLocation = 'Best in Metro Manila';
-    } else {
-      headlineLocation = 'Best outside Metro Manila';
+      searchQuery.establishment_address = { $regex: new RegExp(location, 'i') };
     }
 
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
@@ -254,14 +247,33 @@ function addRoutes(server) {
         establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
       });
 
-        resp.render('viewEstablishments', {
-          layout: 'index',
-          title: 'Cofeed',
-          establishment: establishment_data,
-          headlineLocation: headlineLocation,
-          currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon
-        });
+      let isMetroEstablishmentPresent = false;
+      let isNonMetroEstablishmentPresent = false;
+
+      establishment_data.forEach(function(establishment) {
+        if (establishment.isMetro) {
+          isMetroEstablishmentPresent = true;
+        } else {
+          isNonMetroEstablishmentPresent = true;
+        }
+      });
+
+      if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
+        headlineLocation = 'Best in Metro Manila and Outside Metro Manila';
+      } else if (isMetroEstablishmentPresent) {
+        headlineLocation = 'Best in Metro Manila';
+      } else {
+        headlineLocation = 'Best outside Metro Manila';
+      }
+
+      resp.render('viewEstablishments', {
+        layout: 'index',
+        title: 'Cofeed',
+        establishment: establishment_data,
+        headlineLocation: headlineLocation, 
+        currentUser: req.session.username,
+        currentUserIcon: req.session.user_icon
+      });
     });
   });
 
