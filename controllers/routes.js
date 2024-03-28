@@ -196,6 +196,11 @@ function addRoutes(server) {
     const searchQuery = {};
     
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
+      // Determine if each establishment is in Metro Manila or not
+      establishment_data.forEach(function(establishment) {
+        establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
+      });
+
       resp.render('viewEstablishments', {
         layout: 'index',
         title: 'Cofeed',
@@ -203,6 +208,46 @@ function addRoutes(server) {
         currentUser: req.session.username,
         currentUserIcon: req.session.user_icon
       });
+    });
+  });
+
+  // route for view establishments with filters
+  router.post('/viewEstablishments', function(req, resp){
+    console.log('\nCurrently at View Establishments Page with Filters');
+
+    let searchQuery = {};
+
+    // filter by price
+    const priceRanges = req.body.price_range;
+    if (priceRanges && priceRanges.length > 0) {
+      searchQuery.price_range = { $in: priceRanges };
+    }
+
+    // filter by services offered
+    const servicesOffered = req.body.services_offered;
+    if (servicesOffered && servicesOffered.length > 0) {
+      searchQuery.services_offered = { $in: servicesOffered };
+    }
+
+    // filter by area
+    const selectedArea = req.body.area; 
+    if (selectedArea) {
+        searchQuery.establishment_address = selectedArea === 'metro' ? /Metro Manila/ : { $not: /Metro Manila/ };
+    }
+
+    establishmentModel.find(searchQuery).lean().then(function(establishment_data){
+      // Determine if each establishment is in Metro Manila or not
+      establishment_data.forEach(function(establishment) {
+        establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
+    });
+
+        resp.render('viewEstablishments', {
+          layout: 'index',
+          title: 'Cofeed',
+          establishment: establishment_data,
+          currentUser: req.session.username,
+          currentUserIcon: req.session.user_icon
+        });
     });
   });
 

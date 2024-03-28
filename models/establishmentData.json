@@ -204,22 +204,6 @@
 
     {
         "banner_image": "",
-        "establishment_name": "Coffee Project", 
-        "establishment_address": "",
-        "establishment_description": "",
-        "price_range": "₱120 - ₱220",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out", "Parking"],
-        "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
-        "contact_details_FB": "",
-        "contact_details_IG": "",
-        "establishment_images": [],
-        "establishment_owner": "",
-        "owner_username": ""
-    },
-
-    {
-        "banner_image": "",
         "establishment_name": "Tyler’s Cafe", 
         "establishment_address": "319 Katipunan Ave, Quezon City, 1108 Metro Manila",
         "establishment_description": "Your neighborhood cafe. Start the day right!",
