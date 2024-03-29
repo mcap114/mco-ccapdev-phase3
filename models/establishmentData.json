@@ -34,6 +34,23 @@
     },
 
     {
+        "banner_image": "",
+        "establishment_name": "Inarawan Coffee", 
+        "establishment_address": "2 Sampaguita St, Marikina, 1807 Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱70 - ₱150",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Outdoor Seating"],
+        "establishment_schedule": ["9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM"],
+        "contact_details_FB": "Inarawan Coffee",
+        "contact_details_IG": "@inarawancoffee",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.1089933916533!2d121.10538907581356!3d14.649753875869905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b93cf1c0649b%3A0x4376b699290fce48!2sInarawan%20Coffee%20-%20Marikina!5e0!3m2!1sen!2sph!4v1711708634673!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
         "banner_image": "https://i.imgocean.com/291054945_995555321131823_921828119692218450_n203d18d695a891ca.jpeg",
         "establishment_name": "Deuces Coffee", 
         "establishment_address": "103 Perea St. corner Dela Rosa St., Makati, Metro Manila",
@@ -221,6 +238,57 @@
 
     {
         "banner_image": "",
+        "establishment_name": "Nitro 7 Coffee and Tea Bar", 
+        "establishment_address": "Taft Avenue WH Taft Residences, Unit G7 (Ground Floor), Malate, Manila, Metro Manila",
+        "establishment_description": "We're your favorite spot in Taft for premium coffee, cozy vibes, and delicious treats",
+        "price_range": "₱ - ₱",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 10:00 PM"],
+        "contact_details_FB": "Nitro 7 Coffee & Tea - WH Taft ",
+        "contact_details_IG": "@nitro7taft",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.58139308161!2d120.98852188480879!3d14.565914641627817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a0d2688335%3A0x200b1b9871ef3ee1!2sNitro%207%20Coffee%20%26%20Tea%20Bar%20%7C%20WH%20Taft!5e0!3m2!1sen!2sph!4v1711708665814!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Flight Cafe", 
+        "establishment_address": "2nd Floor, University Mall, Vito Cruz, Taft Ave, Manila, Metro Manila",
+        "establishment_description": "A cafe, study and productivity business located in the heart of Manila",
+        "price_range": "₱120 - ₱220",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
+        "contact_details_FB": "Flight Cafe",
+        "contact_details_IG": "@flightcafemnl",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.629690232972!2d120.99182347581262!3d14.563156577990874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c98b81fdbf55%3A0x4308e94331fc749f!2sFlight%20Cafe%20by%20Flightwings!5e0!3m2!1sen!2sph!4v1711708685433!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Bo's Coffee", 
+        "establishment_address": "Unit 110 G/F SMDC Green Residences, Taft, Zone 78, Malate, Manila, Metro Manila",
+        "establishment_description": "We serve world-class Philippine coffee from local farmers from Sagada, Benguet, Bukidnon, and Davao.",
+        "price_range": "₱100 - ₱200",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM"],
+        "contact_details_FB": "Bo's Coffee",
+        "contact_details_IG": "@",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5575493275473!2d120.98963877581245!3d14.56727607789026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97f5c7aabd5%3A0x5cb750d334428e01!2sBo&#39;s%20Coffee!5e0!3m2!1sen!2sph!4v1711708718448!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
         "establishment_name": "Tyler’s Cafe", 
         "establishment_address": "319 Katipunan Ave, Quezon City, 1108 Metro Manila",
         "establishment_description": "Your neighborhood cafe. Start the day right!",
@@ -255,6 +323,159 @@
 
     {
         "banner_image": "",
+        "establishment_name": "The Nook", 
+        "establishment_address": "942 Aurora Blvd, Project 4, Quezon City, 1109 Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱70 - ₱150",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM"],
+        "contact_details_FB": "The Nook Cafe",
+        "contact_details_IG": "@thenook.cafe",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.5124211067987!2d121.05653058481482!3d14.626829239998514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x856d92e717356a1d%3A0xd3cd107d8346772!2sThe%20Nook%20-%20Anonas!5e0!3m2!1sen!2sph!4v1711708741616!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Greyhound Cafe", 
+        "establishment_address": "1880 Eastwood Ave, Bagumbayan, Quezon City, 1800 Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱150 - ₱300",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM"],
+        "contact_details_FB": "",
+        "contact_details_IG": "@greyhoundcafe.ph",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.808025729599!2d121.07654097581322!3d14.610009276844874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b7376e648493%3A0xb958943a6b8eabad!2sGreyhound%20Cafe%20Eastwood!5e0!3m2!1sen!2sph!4v1711708766082!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "The Coffee Bean & Tea Leaf", 
+        "establishment_address": "G/F Eastwood Mall Veranda, E. Rodriguez Jr. Avenue Quezon City, 1800 Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱150 - ₱300",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 2:00 AM", "7:00 AM - 2:00 PM", "7:00 AM - 1:00 AM"],
+        "contact_details_FB": "The Coffee Bean & Tea Leaf Philippines (Eastwood Mall)",
+        "contact_details_IG": "@",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.814385844394!2d121.0771688758131!3d14.609647176853647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9c984f4914b%3A0x2711b3c9089f516c!2sThe%20Coffee%20Bean%20%26%20Tea%20Leaf!5e0!3m2!1sen!2sph!4v1711708791972!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Tim Hortons", 
+        "establishment_address": "Orchard Road, Eastwood City, Libis 1100 Quezon City, Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱150 - ₱300",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM"],
+        "contact_details_FB": "Tim Hortons, Eastwood",
+        "contact_details_IG": "@",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.806581904104!2d121.07640697581309!3d14.610091476842776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b81d8052ead9%3A0x461115acc1fbc121!2sTim%20Hortons!5e0!3m2!1sen!2sph!4v1711708822984!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Couchclub Kapitolyo", 
+        "establishment_address": "76 San Rafael St, Pasig, 1634 Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱100 - ₱200",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["Closed", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM"],
+        "contact_details_FB": "",
+        "contact_details_IG": "",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.44118697038!2d121.05871397581281!3d14.573918377727994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c901856dbb11%3A0x5153803c50181ceb!2sCouch%20Club%20Kapitolyo!5e0!3m2!1sen!2sph!4v1711708845335!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Habagat Coffee and Outdoor Lifestyle", 
+        "establishment_address": "77 San Rafael St, Pasig, Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱200 - ₱400",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["Closed", "Closed", "9:00 AM - 9:00 PM", "10:00 AM - 9:00 PM", "9:00 AM - 9:00 PM", "9:00 AM - 9:00 PM", "9:00 AM - 6:00 PM"],
+        "contact_details_FB": "Habagat Coffee and Outdoor Lifestyle",
+        "contact_details_IG": "@habagatcoffee",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4347211653467!2d121.05804537581275!3d14.574287377718923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397bfbeca4b9861%3A0x552089b7de897ad9!2sHabagat%20Coffee%20and%20Outdoor%20Lifestyle!5e0!3m2!1sen!2sph!4v1711708869832!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Stay Up Espresso Bar", 
+        "establishment_address": "43 E Capitol Dr, Pasig, 1603 Metro Manila",
+        "establishment_description": "Energy Flows Where Coffee Goes.",
+        "price_range": "₱150 - ₱300",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
+        "contact_details_FB": "Stay Up Espresso Bar - Kapitolyo",
+        "contact_details_IG": "@stayupespressobar",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.512884223645!2d121.0557311848091!3d14.569826041523447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a0ee7ed1c3%3A0xe409af766656e3b8!2sStay%20Up%20Espresso%20Bar%20-%20Kapitolyo!5e0!3m2!1sen!2sph!4v1711708892999!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "But First Coffee", 
+        "establishment_address": "373 Boni Ave, Mandaluyong, Metro Manila",
+        "establishment_description": "",
+        "price_range": "₱70 - ₱150",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out"],
+        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
+        "contact_details_FB": "But First, Coffee PH",
+        "contact_details_IG": "@butfirstcoffeeph",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4257301008806!2d121.04022517581282!3d14.57480047770642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dce47c9995%3A0xf9bf0a9029b70601!2sBut%20First%2C%20Coffee%20(BFC)%20-%20Boni!5e0!3m2!1sen!2sph!4v1711708925382!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Wildflour", 
+        "establishment_address": "The Podium, Ground, 18 ADB Ave, Ortigas Center, Mandaluyong, 1550 Metro Manila",
+        "establishment_description": "Serving the best food & drink in Manila, with an ambience unlike any other",
+        "price_range": "₱200 - ₱400",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
+        "contact_details_FB": "Wildflour Restaurant",
+        "contact_details_IG": "@wildflourmanila",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.238880381505!2d121.05641557581292!3d14.585459577445775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c816f79826f1%3A0x66f2f5783a6eb880!2sWildflour%20Restaurant%20-%20Podium!5e0!3m2!1sen!2sph!4v1711708950732!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
         "establishment_name": "Ghost Coffee Cafe, Events, and Collab Space", 
         "establishment_address": "Marikina-Infanta Hwy, Barangay Mayamot, Antipolo, 1870 Rizal",
         "establishment_description": "The perfect place to 'ghost' to with friends and family",
@@ -283,6 +504,40 @@
         "contact_details_IG": "@chaptercoffeeph",
         "establishment_images": [],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.606104477456!2d121.15142157510657!3d14.621500685867371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b99600a061d5%3A0xc109195359109599!2sChapter%20Coffee%20Roastery%20%26%20Cafe%20-%20Antipolo%20City!5e0!3m2!1sen!2sph!4v1711606461020!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "GC Café", 
+        "establishment_address": "7 Felix Ave, Cainta, 1900 Rizal",
+        "establishment_description": "Good Coffee, Good Company",
+        "price_range": "₱150 - ₱300",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM"],
+        "contact_details_FB": "GC Café",
+        "contact_details_IG": "@iluvgccafe",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.709539324137!2d121.09922687581313!3d14.615615276707455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9fc839d7a39%3A0x1c337f763e481b07!2zR0MgQ2Fmw6k!5e0!3m2!1sen!2sph!4v1711708970799!5m2!1sen!2sph",
+        "establishment_owner": "",
+        "owner_username": ""
+    },
+
+    {
+        "banner_image": "",
+        "establishment_name": "Kalinaw Coffee Co.", 
+        "establishment_address": "J434+PVQ, Vista Verde Ave, Cainta, 1900 Rizal",
+        "establishment_description": "",
+        "price_range": "₱70 - ₱150",
+        "establishment_ratings": "",
+        "services_offered":  ["Dine-in", "Take Out", "Parking"],
+        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
+        "contact_details_FB": "Kalinaw Coffee Co. - Cainta",
+        "contact_details_IG": "@kalinaw.coffee.co",
+        "establishment_images": [],
+        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.9073460570316!2d121.10467497581311!3d14.60435367698331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b99a0a8a51a7%3A0x5ed4ab31d9d76c64!2sKalinaw%20Coffee%20Co.%20-%20Cainta!5e0!3m2!1sen!2sph!4v1711708992732!5m2!1sen!2sph",
         "establishment_owner": "",
         "owner_username": ""
     }
