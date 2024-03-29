@@ -243,29 +243,33 @@ function addRoutes(server) {
     }
 
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-      establishment_data.forEach(function(establishment) {
-        establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
-      });
-
-      let isMetroEstablishmentPresent = false;
-      let isNonMetroEstablishmentPresent = false;
-
-      establishment_data.forEach(function(establishment) {
-        if (establishment.isMetro) {
-          isMetroEstablishmentPresent = true;
-        } else {
-          isNonMetroEstablishmentPresent = true;
-        }
-      });
-
-      if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
-        headlineLocation = 'Best in Metro Manila and Outside Metro Manila';
-      } else if (isMetroEstablishmentPresent) {
-        headlineLocation = 'Best in Metro Manila';
+      if (establishment_data.length === 0) {
+        headlineLocation = 'No establishments found matching the criteria.';
       } else {
-        headlineLocation = 'Best outside Metro Manila';
+          establishment_data.forEach(function(establishment) {
+            establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
+          });
+  
+          let isMetroEstablishmentPresent = false;
+          let isNonMetroEstablishmentPresent = false;
+  
+          establishment_data.forEach(function(establishment) {
+            if (establishment.isMetro) {
+              isMetroEstablishmentPresent = true;
+            } else {
+              isNonMetroEstablishmentPresent = true;
+            }
+          });
+  
+          if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
+            headlineLocation = 'Best in Metro Manila and Outside Metro Manila';
+          } else if (isMetroEstablishmentPresent) {
+            headlineLocation = 'Best in Metro Manila';
+          } else {
+            headlineLocation = 'Best outside Metro Manila';
+          }
       }
-
+  
       resp.render('viewEstablishments', {
         layout: 'index',
         title: 'Cofeed',
@@ -274,7 +278,7 @@ function addRoutes(server) {
         currentUser: req.session.username,
         currentUserIcon: req.session.user_icon
       });
-    });
+    });  
   });
 
   // read establishment
