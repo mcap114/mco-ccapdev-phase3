@@ -18,7 +18,7 @@
 
     <!--COFEED LETS YOU.. -->
     <div class="functionalities-block">
-        <p class="serif">Cofeed lets you..</p>
+        <div class="serif">Cofeed lets you..</div>
         <div class="functionalities-list">
             <div class="functionalities">
                 <i class="fa fa-eye"></i>
@@ -35,7 +35,7 @@
                 <p>Share your reviews, follow friends and other members to read theirs</p>
             </div>
         </div>
-        <hr>
+        <div class="serif"><hr></div>
     </div>
 
     <!--RECENT REVIEWS -->
@@ -43,11 +43,11 @@
         <div class="recent-activity-block-text serif">Recent Reviews</div>
 
         <!--RECENT REVIEWS CONTAINER -->
-        <div class="recent-activity-list">
+        <div class="recent-reviews-container">
         {{#each review-data}}    
             <div  class="review overflow margin-right">
                         
-            <!--TOP PART / GREEN-->
+                <!--TOP PART / GREEN-->
                 
                 <div class="user-profile">
                     <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
@@ -59,10 +59,9 @@
                             
                         </div>
                     </div>
-                        <p>
-                        <p>{{rating}}</p>
-                        <span class="fa fa-star checked"></span> 
-                        </p>
+                    <div class="review-ratings-container">
+                        <p class="review-ratings">{{rating}}</p><i class="fa fa-star star-icon" id="reviewstar"></i>
+                    </div>
                 </div>
                 
                 <!--BOTTOM PART-->
@@ -84,7 +83,7 @@
             </div>
 
         {{/each}}
-        </div>
+        </div> 
     </div>
 </div>
 
