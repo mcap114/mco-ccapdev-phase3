@@ -282,6 +282,7 @@ function addRoutes(server) {
     const establishmentName = req.params.name;
     const establishmentSearchQuery = { establishment_name: establishmentName };
     const reviewSearchQuery = { place_name: establishmentName};
+    const ratingFilter = req.query.rating;
     console.log('\nCurrently at Establishment Page: ' + establishmentName);
     console.log('Username:', req.session.username);
     
@@ -293,6 +294,10 @@ function addRoutes(server) {
           return;
         }
 
+        if (ratingFilter) {
+          review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
+        }
+          
         //console.log('Establishment Data:', establishment_data);
         //console.log('Review Data: ', review_data);
         resp.render('establishment', {
@@ -302,7 +307,8 @@ function addRoutes(server) {
           establishment: establishment_data,
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon,
-          currentUserType: req.session.userType
+          currentUserType: req.session.userType,
+          selectedRatingFilter: ratingFilter 
         });
       });
     });

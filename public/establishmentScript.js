@@ -27,35 +27,35 @@ document.addEventListener("DOMContentLoaded", function() {
     hideEditEstablishmentWidget();
 });
 
-  // function to add establishment to current user's favorites
-  function addToFavorites(establishment_name) {
-    // Send a POST request to the server with the establishment name
-    fetch('/add-to-favorites', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ establishment_name }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to add to favorites. Please try again.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        if (data.success) {
-            alert('Added to favorites!');
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while processing your request.');
-    });
-  }
+// function to add establishment to current user's favorites
+function addToFavorites(establishment_name) {
+  // Send a POST request to the server with the establishment name
+  fetch('/add-to-favorites', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ establishment_name }),
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed to add to favorites. Please try again.');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data);
+      if (data.success) {
+          alert('Added to favorites!');
+      } else {
+          alert(data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while processing your request.');
+  });
+}
 
 // initialize write review star rating
 function initStarRatings() {
@@ -86,135 +86,139 @@ function updateStars(starSet, ratingValue) {
       }
   });
 }
-  // Function to handle review submission
-  function submitReview(event) {
-    event.preventDefault(); 
 
-    // Get form data
-    const formData = new FormData(event.target);
+// Function to handle review submission
+function submitReview(event) {
+  event.preventDefault(); 
 
-    // Manually append the star rating
-    const highlightedStars = document.querySelectorAll('.review-rating .fa.highlighted');
-    const ratingValue = highlightedStars.length; // Number of highlighted stars equals the rating
-    formData.append('review_rating', ratingValue);
-    
-    // Log the form data before sending it to the server
-    console.log('Form Data:', formData);
+  // Get form data
+  const formData = new FormData(event.target);
 
-    // Send POST request to server
-    fetch('/submit-review', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to submit review. Please try again.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        if (data.success) {
-            alert('Review submitted successfully!');
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while processing your request.');
-    });
+  // Manually append the star rating
+  const highlightedStars = document.querySelectorAll('.review-rating .fa.highlighted');
+  const ratingValue = highlightedStars.length; // Number of highlighted stars equals the rating
+  formData.append('review_rating', ratingValue);
+  
+  // Log the form data before sending it to the server
+  console.log('Form Data:', formData);
+
+  // Send POST request to server
+  fetch('/submit-review', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed to submit review. Please try again.');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data);
+      if (data.success) {
+          alert('Review submitted successfully!');
+      } else {
+          alert(data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while processing your request.');
+  });
+}
+
+// write a review date
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+// write a review preview of photo when uploading
+function previewPhoto(event) {
+  const fileInput = event.target;
+  const photoPreview = document.getElementById('photo-preview');
+
+  photoPreview.innerHTML = '';
+
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      
+      const previewImage = document.createElement('img');
+      previewImage.setAttribute('src', e.target.result);
+      previewImage.setAttribute('alt', 'Preview');
+      previewImage.classList.add('preview-image');
+
+      photoPreview.prepend(previewImage);
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
   }
+}
 
-  // write a review date
-  function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+//
+function redirectToEstablishment(establishmentName) {
+  window.location.href = '/establishment/' + encodeURIComponent(establishmentName);
+}
 
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
+// 
+function updateStarRatings() {
+  // Target only review ratings
+  const ratingContainers = document.querySelectorAll('.dynamic-star-rating');
+  ratingContainers.forEach(container => {
+      const rating = parseInt(container.getAttribute('data-rating'), 10);
+      container.innerHTML = getStarsHTML(rating);
+  });
+}
+
+// function to display the rating number to stars from review
+function getStarsHTML(rating) {
+  let starsHTML = '';
+  for (let i = 1; i <= 5; i++) {
+      starsHTML += i <= rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
   }
+  return starsHTML;
+}
 
-  // write a review preview of photo when uploading
-  function previewPhoto(event) {
-    const fileInput = event.target;
-    const photoPreview = document.getElementById('photo-preview');
+// function to show the edit profile widget
+function showEditReviewWidget() {
+  var editReviewWidget = document.getElementById("edit-review-widget");
+  editReviewWidget.style.display = "block";
+}
 
-    photoPreview.innerHTML = '';
+// function to hide the edit profile widget
+function hideEditReviewWidget() {
+  var editReviewWidget = document.getElementById("edit-review-widget");
+  editReviewWidget.style.display = "none";
+}
 
-    if (fileInput.files && fileInput.files[0]) {
-      const reader = new FileReader();
+// function to show the edit profile widget
+function showEditEstablishmentWidget() {
+  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
+  editEstablishmentWidget.style.display = "block";
+}
 
-      reader.onload = function (e) {
-        
-        const previewImage = document.createElement('img');
-        previewImage.setAttribute('src', e.target.result);
-        previewImage.setAttribute('alt', 'Preview');
-        previewImage.classList.add('preview-image');
+// function to hide the edit profile widget
+function hideEditEstablishmentWidget() {
+  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
+  editEstablishmentWidget.style.display = "none";
+}
 
-        photoPreview.prepend(previewImage);
-      };
+// not yet implemented function to save changes
+function saveChanges() {
+  console.log("Save Changes");
+}
 
-      reader.readAsDataURL(fileInput.files[0]);
-    }
-  }
+// function when filtering reviews by its ratings
+function applyRatingFilter(rating) {
+  window.location.href = window.location.pathname + '?rating=' + rating;
+}
 
-  //
-  function redirectToEstablishment(establishmentName) {
-    window.location.href = '/establishment/' + encodeURIComponent(establishmentName);
-  }
-
-
-  // 
-  function updateStarRatings() {
-    // Target only review ratings
-    const ratingContainers = document.querySelectorAll('.dynamic-star-rating');
-    ratingContainers.forEach(container => {
-        const rating = parseInt(container.getAttribute('data-rating'), 10);
-        container.innerHTML = getStarsHTML(rating);
-    });
-  }
-
-  // function to display the rating number to stars from review
-  function getStarsHTML(rating) {
-    let starsHTML = '';
-    for (let i = 1; i <= 5; i++) {
-        starsHTML += i <= rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
-    }
-    return starsHTML;
-  }
-
-
-  // function to show the edit profile widget
-  function showEditReviewWidget() {
-    var editReviewWidget = document.getElementById("edit-review-widget");
-    editReviewWidget.style.display = "block";
-  }
-
-  // function to hide the edit profile widget
-  function hideEditReviewWidget() {
-    var editReviewWidget = document.getElementById("edit-review-widget");
-    editReviewWidget.style.display = "none";
-  }
-
-  // function to show the edit profile widget
-  function showEditEstablishmentWidget() {
-    var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
-    editEstablishmentWidget.style.display = "block";
-  }
-
-  // function to hide the edit profile widget
-  function hideEditEstablishmentWidget() {
-    var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
-    editEstablishmentWidget.style.display = "none";
-  }
-  // not yet implemented function to save changes
-  function saveChanges() {
-    console.log("Save Changes");
-  }
-
-
-  // event listener for save button to save changes
-  document.querySelector('.save-button').addEventListener('click', saveChanges);
+// event listener for save button to save changes
+document.querySelector('.save-button').addEventListener('click', saveChanges);

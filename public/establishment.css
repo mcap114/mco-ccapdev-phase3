@@ -468,6 +468,14 @@ input#post-date {
 
 }
 
+.rating-option {
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
 .star-filter {
     display: flex;
     align-items: center;
