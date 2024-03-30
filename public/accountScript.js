@@ -176,6 +176,8 @@ function submitForgotPasswordForm() {
     return false;
 }
 
+// profile page script 
+
 // function when updating user information
 function updatingUserForm() {
     let nameString = document.getElementById("name-field").value;
@@ -221,8 +223,6 @@ function updatingUserForm() {
 
     return false;
 }
-
-// profile page script 
 
 // function to expand text area
 function autoExpand(textarea) {
@@ -435,9 +435,6 @@ function updateFollowingList() {
         }
     });
 }
-
-
-
 
 // event listener for go back button to hide the write a review widget
 document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);
