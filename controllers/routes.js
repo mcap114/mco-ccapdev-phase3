@@ -202,22 +202,45 @@ function addRoutes(server) {
     console.log('\nCurrently at View Establishments Page');
     const searchQuery = {};
     let headlineLocation = 'List of Establishments';
-
+  
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-      establishment_data.forEach(function(establishment) {
-        establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
+      let establishmentUpdatedRating = 0;
+  
+      establishment_data.forEach(function(establishment, index, establishments) {
+        let totalRating = 0;
+        let reviewCount = 0;
+        reviewModel.find({ place_name: establishment.establishment_name }).lean().then(function(reviews) {
+          reviewCount = reviews.length;
+          reviews.forEach(function(review) {
+            totalRating += parseInt(review.rating);
+          });
+          establishment.establishment_ratings = reviewCount > 0 ? (totalRating / reviewCount).toFixed(1) : 0;
+          establishmentModel.findOneAndUpdate({ establishment_name: establishment.establishment_name }, { establishment_ratings: establishment.establishment_ratings }, { new: true }).then(function(updatedEstablishment) {
+            establishmentUpdatedRating++;
+            if (establishmentUpdatedRating === establishments.length) {
+              resp.render('viewEstablishments', {
+                layout: 'index',
+                title: 'Cofeed',
+                establishment: establishment_data,
+                headlineLocation: headlineLocation,
+                currentUser: req.session.username,
+                currentUserIcon: req.session.user_icon
+              });
+            }
+          }).catch(function(error) {
+            console.error('Error updating establishment with rating:', error);
+            resp.redirect('/error');
+          });
+        }).catch(function(error) {
+          console.error('Error fetching reviews for establishment:', error);
+          resp.redirect('/error');
+        });
       });
-
-      resp.render('viewEstablishments', {
-        layout: 'index',
-        title: 'Cofeed',
-        establishment: establishment_data,
-        headlineLocation: headlineLocation,
-        currentUser: req.session.username,
-        currentUserIcon: req.session.user_icon
-      });
+    }).catch(function(error) {
+      console.error('Error fetching establishments:', error);
+      resp.redirect('/error');
     });
-  });
+  });  
 
   // route for view establishments with filters
   router.post('/viewEstablishments', function(req, resp){
@@ -276,12 +299,17 @@ function addRoutes(server) {
             headlineLocation = 'Best outside Metro Manila';
           }
       }
+
+      const formattedAverageRatings = establishment_data.map(function(est) {
+        return est.establishment_ratings !== null ? est.establishment_ratings.toFixed(1) : 0;
+      });
   
       resp.render('viewEstablishments', {
         layout: 'index',
         title: 'Cofeed',
         establishment: establishment_data,
-        headlineLocation: headlineLocation, 
+        headlineLocation: headlineLocation,
+        formattedAverageRating: formattedAverageRatings, 
         currentUser: req.session.username,
         currentUserIcon: req.session.user_icon
       });
