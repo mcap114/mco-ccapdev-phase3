@@ -174,7 +174,7 @@
     width: 30%; 
     margin: 0 15px 30px;
     width: 250px;
-    height: 400px;
+    height: 430px;
     background-color: #EFEFE9;
     display: flex;
     flex-direction: column;
@@ -239,7 +239,7 @@
     margin-right: 5px;
 }
 
-.address, .description {
+.details, .description {
     display: flex; 
     width: 100%;
     margin-bottom: 10px;
@@ -251,6 +251,7 @@
     font-size: 12px;
     text-align: left;
     color: gray;
+    display: inline;
 }
 
 .desc{

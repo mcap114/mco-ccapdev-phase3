@@ -24,12 +24,49 @@ function addRoutes(server) {
     // search query to find reviews posted in the past week
     const searchQuery = { date_posted: { $gte: oneWeekAgo } };
 
-    reviewModel.find(searchQuery).lean().then(function (review_data) {
-      resp.render('main', {
-        layout: 'index',
-        title: 'Cofeed',
-        'review-data': review_data
+    establishmentModel.find({}).lean().then(function(establishment_data){
+      let establishmentUpdatedRating = 0;
+
+      establishment_data.forEach(function(establishment, index, establishments) {
+        let totalRating = 0;
+        let reviewCount = 0;
+
+        reviewModel.find({ place_name: establishment.establishment_name }).lean().then(function(reviews) {
+          reviewCount = reviews.length;
+          reviews.forEach(function(review) {
+            totalRating += parseInt(review.rating);
+          });
+          establishment.establishment_ratings = reviewCount > 0 ? (totalRating / reviewCount).toFixed(1) : 0;
+
+          establishmentModel.findOneAndUpdate({ establishment_name: establishment.establishment_name }, { establishment_ratings: establishment.establishment_ratings }, { new: true }).then(function(updatedEstablishment) {
+            establishmentUpdatedRating++;
+            if (establishmentUpdatedRating === establishments.length) {
+              reviewModel.find(searchQuery).lean().then(function (review_data) {
+                resp.render('main', {
+                  layout: 'index',
+                  title: 'Cofeed',
+                  'review-data': review_data,
+                  establishment: establishment_data,
+                  currentUser: req.session.username,
+                  currentUserIcon: req.session.user_icon
+                });
+              }).catch(function(error) {
+                console.error('Error fetching reviews:', error);
+                resp.redirect('/error');
+              });
+            }
+          }).catch(function(error) {
+            console.error('Error updating establishment with rating:', error);
+            resp.redirect('/error');
+          });
+        }).catch(function(error) {
+          console.error('Error fetching reviews for establishment:', error);
+          resp.redirect('/error');
+        });
       });
+    }).catch(function(error) {
+      console.error('Error fetching establishments:', error);
+      resp.redirect('/error');
     });
   });
 
@@ -202,45 +239,22 @@ function addRoutes(server) {
     console.log('\nCurrently at View Establishments Page');
     const searchQuery = {};
     let headlineLocation = 'List of Establishments';
-  
+
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-      let establishmentUpdatedRating = 0;
-  
-      establishment_data.forEach(function(establishment, index, establishments) {
-        let totalRating = 0;
-        let reviewCount = 0;
-        reviewModel.find({ place_name: establishment.establishment_name }).lean().then(function(reviews) {
-          reviewCount = reviews.length;
-          reviews.forEach(function(review) {
-            totalRating += parseInt(review.rating);
-          });
-          establishment.establishment_ratings = reviewCount > 0 ? (totalRating / reviewCount).toFixed(1) : 0;
-          establishmentModel.findOneAndUpdate({ establishment_name: establishment.establishment_name }, { establishment_ratings: establishment.establishment_ratings }, { new: true }).then(function(updatedEstablishment) {
-            establishmentUpdatedRating++;
-            if (establishmentUpdatedRating === establishments.length) {
-              resp.render('viewEstablishments', {
-                layout: 'index',
-                title: 'Cofeed',
-                establishment: establishment_data,
-                headlineLocation: headlineLocation,
-                currentUser: req.session.username,
-                currentUserIcon: req.session.user_icon
-              });
-            }
-          }).catch(function(error) {
-            console.error('Error updating establishment with rating:', error);
-            resp.redirect('/error');
-          });
-        }).catch(function(error) {
-          console.error('Error fetching reviews for establishment:', error);
-          resp.redirect('/error');
-        });
+      establishment_data.forEach(function(establishment) {
+        establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
       });
-    }).catch(function(error) {
-      console.error('Error fetching establishments:', error);
-      resp.redirect('/error');
+
+      resp.render('viewEstablishments', {
+        layout: 'index',
+        title: 'Cofeed',
+        establishment: establishment_data,
+        headlineLocation: headlineLocation,
+        currentUser: req.session.username,
+        currentUserIcon: req.session.user_icon
+      });
     });
-  });  
+  }); 
 
   // route for view establishments with filters
   router.post('/viewEstablishments', function(req, resp){
