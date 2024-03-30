@@ -714,6 +714,22 @@ function addRoutes(server) {
     }
   });
 
+  //route for search bar functionality
+  router.get('/search', async function(req, resp) {
+    let key = req.query.key;
+    try {
+        let data = await establishmentModel.find({
+            "establishment_name": { $regex: key, $options: "i" } 
+        }).lean();
+        resp.render('search', { 
+          layout: 'index',
+          establishment: data,
+          key: key });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
   return router;
 }
 
