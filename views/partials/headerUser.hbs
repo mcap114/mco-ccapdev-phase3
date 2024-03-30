@@ -9,10 +9,13 @@
                 </div>
     
                 <!--SEARCH BAR-->
-                <div class="header-search">
-                    <input class="search-bar" type="text" placeholder="Coffee shop, study area, etc...">
-                    <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
-                </div>
+                <form action="/search" method="GET">
+                    <div class="header-search">
+                        <input class="search-bar" type="text" name="key" placeholder="Coffee shop, study area, etc...">
+                        <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+
             </div>
 
             <div class="header-right">
