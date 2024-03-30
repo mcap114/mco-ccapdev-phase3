@@ -333,13 +333,11 @@ textarea.review-description::placeholder,
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
-
     background-color: #F5F5F5;
     color: #523D35;
     font-family: 'Biryani', sans-serif;
     font-size: 12px;
     font-weight: bolder;
-
 }
 
 .photo-preview {

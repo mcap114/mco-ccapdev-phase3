@@ -58,14 +58,14 @@
 }
 
 .review-ratings{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     margin-right: 5px;
     color: white;
 }
 
 .review-ratings, #reviewstar{
-    color: #ffea00;
+    color: #FFD700;
 }
 
 .overflow{
