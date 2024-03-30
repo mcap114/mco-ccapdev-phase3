@@ -42,13 +42,16 @@ function addRoutes(server) {
             establishmentUpdatedRating++;
             if (establishmentUpdatedRating === establishments.length) {
               reviewModel.find(searchQuery).lean().then(function (review_data) {
+                const noRecentReviews = review_data.length === 0;
+
                 resp.render('main', {
                   layout: 'index',
                   title: 'Cofeed',
                   'review-data': review_data,
                   establishment: establishment_data,
                   currentUser: req.session.username,
-                  currentUserIcon: req.session.user_icon
+                  currentUserIcon: req.session.user_icon,
+                  noRecentReviews: noRecentReviews 
                 });
               }).catch(function(error) {
                 console.error('Error fetching reviews:', error);

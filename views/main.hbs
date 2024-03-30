@@ -41,7 +41,9 @@
     <!--RECENT REVIEWS -->
     <div class="recent-activity-block">
         <div class="recent-activity-block-text serif">Recent Reviews</div>
-
+        {{#if noRecentReviews}}
+        <div class="brewing">No recent reviews. Our brew buddies are still brewing up something to say.</div>
+        {{else}}
         <!--RECENT REVIEWS CONTAINER -->
         <div class="recent-reviews-container">
         {{#each review-data}}    
@@ -83,7 +85,8 @@
             </div>
 
         {{/each}}
-        </div> 
+        </div>
+        {{/if}}
     </div>
 </div>
 

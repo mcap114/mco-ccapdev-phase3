@@ -92,7 +92,7 @@ body {
     color:#523D35;
     font-weight: 900;
     font-size: 30px;
-    margin-bottom: -10%;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -133,7 +133,7 @@ body {
 }
 
 .recent-activity-block-text{
-    padding-top: 12%;
+    padding-top: 2%;
     text-align: center;
     font-family: 'Cardo', serif;
     color:#523D35;
@@ -144,6 +144,13 @@ body {
 hr{
     width: 98%;
     margin:auto;
+}
+
+.brewing{
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    font-style: italic;
 }
 
 .recent-reviews-container{
