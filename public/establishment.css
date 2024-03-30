@@ -1098,10 +1098,6 @@ hr.h1 {border:1px solid #223030; }
     font-weight: bold;
 }
 
-.map{
-    border-color: 1 px solid #E5D9CE;
-}
-
 .address{
     margin-top: 5px;
     margin-bottom: 0px;
@@ -1111,10 +1107,10 @@ hr.h1 {border:1px solid #223030; }
     color: #223030;
 }
 
-.google-map {
+#establishment-map{
     margin: 2%;
     align-items: center;
-    width: 350px; 
+    width: 420px; 
     height: 350px;
     border: 0;
 }

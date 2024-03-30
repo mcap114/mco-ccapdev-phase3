@@ -123,7 +123,7 @@
     border-color: 1 px solid #E5D9CE;
 }
 
-.google-map {
+#google-map {
     width: 300px; 
     height: 250px;
     border: 0;
