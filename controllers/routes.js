@@ -305,6 +305,8 @@ function addRoutes(server) {
           return;
         }
 
+        const reviewCount = review_data.length;
+
         if (ratingFilter) {
           review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
         }
@@ -316,6 +318,7 @@ function addRoutes(server) {
           title: establishmentName,
           reviewData: review_data,
           establishment: establishment_data,
+          reviewCount: reviewCount,
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon,
           currentUserType: req.session.userType,
