@@ -85,7 +85,7 @@
                             </div>
                             
                             <!-- Review Title -->
-                            <input type="text" class="review-title" id="review-title" placeholder="Enter your review title">
+                            <input type="text" class="review-title" id="review-title" placeholder="Enter your review title" required>
                             <input type="text" class="review-location" id="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
                             <textarea class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
 
@@ -95,7 +95,7 @@
                             <div class="photo-upload-date">
                                 <!-- Photo Upload -->
                                 <div class="photo-upload-container">
-                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
+                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)" required>
                                     <label for="photo-upload" class="photo-upload-label">
                                         <i class="fa fa-camera"></i> Upload Photo
                                     </label>

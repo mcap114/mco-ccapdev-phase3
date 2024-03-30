@@ -1,6 +1,6 @@
 // command prompt (node js)
 // npm init
-// npm i express express-handlebars body-parser mongoose express-session bcrypt
+// npm i express express-handlebars body-parser mongoose express-session bcrypt moment
 // node app.js -- after, check the browser --> localhost:3000
 
 // command prompt (git)

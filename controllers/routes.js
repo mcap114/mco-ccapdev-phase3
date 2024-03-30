@@ -4,6 +4,7 @@ const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const establishmentModel = require('../models/Establishment');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 // Define the errorFn function
 const errorFn = function (error) {
@@ -16,9 +17,14 @@ function addRoutes(server) {
   // route for non-user view homepage
   router.get('/', function (req, resp) {
     console.log('\nCurrently at Home Page');
-    const searchQuery = {};
 
-    reviewModel.find(searchQuery).lean().then(function(review_data){
+    // calculate the date one week ago from the current date
+    const oneWeekAgo = moment().subtract(7, 'days').toDate();
+
+    // search query to find reviews posted in the past week
+    const searchQuery = { date_posted: { $gte: oneWeekAgo } };
+
+    reviewModel.find(searchQuery).lean().then(function (review_data) {
       resp.render('main', {
         layout: 'index',
         title: 'Cofeed',
