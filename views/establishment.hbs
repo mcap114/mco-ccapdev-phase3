@@ -85,8 +85,11 @@
                             </div>
                             
                             <!-- Review Title -->
+                            <div class="location-container">
+                                <i class="fa fa-coffee"></i>
+                                <div class="review-location" id="review-location">{{establishment.establishment_name}}</div>
+                            </div>
                             <input type="text" class="review-title" id="review-title" placeholder="Enter your review title" required>
-                            <input type="text" class="review-location" id="review-location" placeholder="Location" value="{{establishment.establishment_name}}" readonly>
                             <textarea class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
 
                             <hr class="write-review-hr">

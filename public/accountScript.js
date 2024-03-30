@@ -224,12 +224,6 @@ function updatingUserForm() {
     return false;
 }
 
-// function to expand text area
-function autoExpand(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-}
-
 // function to show followers list
 function showFollowers() {
     let followersWidget = document.getElementById("followers-widget");

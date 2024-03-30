@@ -10,15 +10,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const favoriteButtons = document.querySelectorAll('.favorite');
     favoriteButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            const establishment_name = event.target.dataset.establishment_name;
-            addToFavorites(establishment_name);
-          });
+      button.addEventListener('click', function(event) {
+        const establishment_name = event.target.dataset.establishment_name;
+        addToFavorites(establishment_name);
         });
+      });
 
     const reviewForm = document.getElementById('post-form');
     if (reviewForm) {
-        reviewForm.addEventListener('submit', submitReview);
+      reviewForm.addEventListener('submit', submitReview);
     }
     
     initStarRatings(); //write review star rating baka makalimutan ko ulit
@@ -31,29 +31,29 @@ document.addEventListener("DOMContentLoaded", function() {
 function addToFavorites(establishment_name) {
   // Send a POST request to the server with the establishment name
   fetch('/add-to-favorites', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ establishment_name }),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ establishment_name }),
   })
   .then(response => {
       if (!response.ok) {
-          throw new Error('Failed to add to favorites. Please try again.');
+        throw new Error('Failed to add to favorites. Please try again.');
       }
       return response.json();
   })
   .then(data => {
       console.log(data);
       if (data.success) {
-          alert('Added to favorites!');
+        alert('Added to favorites!');
       } else {
-          alert(data.message);
+        alert(data.message);
       }
   })
   .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred while processing your request.');
+    console.error('Error:', error);
+    alert('An error occurred while processing your request.');
   });
 }
 
@@ -61,9 +61,9 @@ function addToFavorites(establishment_name) {
 function initStarRatings() {
   const writeReviewStars = document.querySelectorAll('.write-review-rating .fa');
   writeReviewStars.forEach(star => {
-      star.addEventListener('click', function(e) {
-          updateStars(writeReviewStars, e.target.dataset.rating);
-      });
+    star.addEventListener('click', function(e) {
+      updateStars(writeReviewStars, e.target.dataset.rating);
+    });
   });
 }
 
@@ -71,20 +71,27 @@ function initStarRatings() {
 function initEditReviewStars() {
   const editReviewStars = document.querySelectorAll('.edit-review-rating .fa');
   editReviewStars.forEach(star => {
-      star.addEventListener('click', function(e) {
-          updateStars(editReviewStars, e.target.dataset.rating);
-      });
+    star.addEventListener('click', function(e) {
+      updateStars(editReviewStars, e.target.dataset.rating);
+    });
   });
 }
 
+// 
 function updateStars(starSet, ratingValue) {
   starSet.forEach((star, index) => {
-      if (index < ratingValue) {
-          star.classList.add('highlighted');
-      } else {
-          star.classList.remove('highlighted');
-      }
+    if (index < ratingValue) {
+      star.classList.add('highlighted');
+    } else {
+      star.classList.remove('highlighted');
+    }
   });
+}
+
+// function to expand text area
+function autoExpand(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
 }
 
 // Function to handle review submission
@@ -104,26 +111,26 @@ function submitReview(event) {
 
   // Send POST request to server
   fetch('/submit-review', {
-      method: 'POST',
-      body: formData
+    method: 'POST',
+    body: formData
   })
   .then(response => {
-      if (!response.ok) {
-          throw new Error('Failed to submit review. Please try again.');
-      }
-      return response.json();
+    if (!response.ok) {
+      throw new Error('Failed to submit review. Please try again.');
+    }
+    return response.json();
   })
   .then(data => {
-      console.log(data);
-      if (data.success) {
-          alert('Review submitted successfully!');
-      } else {
-          alert(data.message);
-      }
+    console.log(data);
+    if (data.success) {
+      alert('Review submitted successfully!');
+    } else {
+      alert(data.message);
+    }
   })
   .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred while processing your request.');
+    console.error('Error:', error);
+    alert('An error occurred while processing your request.');
   });
 }
 
@@ -172,8 +179,8 @@ function updateStarRatings() {
   // Target only review ratings
   const ratingContainers = document.querySelectorAll('.dynamic-star-rating');
   ratingContainers.forEach(container => {
-      const rating = parseInt(container.getAttribute('data-rating'), 10);
-      container.innerHTML = getStarsHTML(rating);
+    const rating = parseInt(container.getAttribute('data-rating'), 10);
+    container.innerHTML = getStarsHTML(rating);
   });
 }
 
@@ -181,7 +188,7 @@ function updateStarRatings() {
 function getStarsHTML(rating) {
   let starsHTML = '';
   for (let i = 1; i <= 5; i++) {
-      starsHTML += i <= rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+    starsHTML += i <= rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
   }
   return starsHTML;
 }
