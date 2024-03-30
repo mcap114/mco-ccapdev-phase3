@@ -1,5 +1,5 @@
 // INSTALLS:
-// npm i express express-handlebars body-parser mongoose express-session bcrypt
+// npm i express express-handlebars body-parser mongoose express-session bcrypt moment
 
 // DB SETUP:
 // Run the program once through 'node app.js'
