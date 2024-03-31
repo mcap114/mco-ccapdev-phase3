@@ -413,54 +413,45 @@ function deleteCoffeeShopReview(placeName) {
     }
 }
 
-// Function to handle following a user
+// Function to follow a user
 function followUser(username) {
-    $.ajax({
-        url: '/follow-user',
-        type: 'POST',
-        data: { username: username },
-        success: function(response) {
-            console.log(response); // Optional: Log the response from the server
-            // Update the UI as needed
-            updateFollowingList(); // Update the following list after following a user
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
+    fetch(`/follow/${username}`, { method: 'POST' })
+    .then(response => {
+        if (response.ok) {
+            updateFollowUI(true);
+            alert(`You followed ${username}`);
+        } else {
+            console.error('Error following user:', response.statusText);
         }
-    });
+    })
+    .catch(error => console.error('Error following user:', error));
 }
 
-// Function to handle unfollowing a user
+// Function to unfollow a user
 function unfollowUser(username) {
-    $.ajax({
-        url: '/unfollow-user',
-        type: 'POST',
-        data: { username: username },
-        success: function(response) {
-            console.log(response); // Optional: Log the response from the server
-            // Update the UI as needed
-            updateFollowingList(); // Update the following list after unfollowing a user
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
+    fetch(`/unfollow/${username}`, { method: 'POST' })
+    .then(response => {
+        if (response.ok) {
+            updateFollowUI(false);
+            alert(`You unfollowed ${username}`);
+        } else {
+            console.error('Error unfollowing user:', response.statusText);
         }
-    });
+    })
+    .catch(error => console.error('Error unfollowing user:', error));
 }
 
-// Function to update the following list on the myProfile page
-function updateFollowingList() {
-    $.ajax({
-        url: '/get-following-list',
-        type: 'GET',
-        success: function(response) {
-            console.log('Updated following list:', response);
-            $('#following-widget').html(response); // Update the following widget with the new HTML
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
+
+// Function to update UI after following/unfollowing
+function updateFollowUI(isFollowing) {
+    const followBtnContainer = document.getElementById('follow-btn-container');
+    if (isFollowing) {
+        followBtnContainer.innerHTML = '<button id="unfollow-btn" onclick="unfollowUser()">Unfollow</button>';
+    } else {
+        followBtnContainer.innerHTML = '<button id="follow-btn" onclick="followUser()">Follow</button>';
+    }
 }
+
 
 // event listener for go back button to hide the write a review widget
 document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);
