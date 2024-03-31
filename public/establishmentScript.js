@@ -8,17 +8,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var starsHtml = '';
     for (var i = 0; i < fullStars; i++) {
-        starsHtml += '<span class="fa fa-star checked"></span>';
+      starsHtml += '<span class="fa fa-star checked"></span>';
     }
     if (hasHalfStar) {
-        starsHtml += '<span class="fa fa-star-half-o checked"></span>';
+      starsHtml += '<span class="fa fa-star-half-o checked"></span>';
     }
     for (var j = 0; j < 5 - Math.ceil(establishmentRating); j++) {
-        starsHtml += '<span class="fa fa-star"></span>';
+      starsHtml += '<span class="fa fa-star"></span>';
     }
 
     container.querySelector('.star-rating').innerHTML = starsHtml;
   });
+
+  var reviewCount = parseInt(document.getElementById('progressBars').dataset.reviewCount);
+  var ratingDistribution = JSON.parse(document.getElementById('progressBars').dataset.ratingDistribution);
+  var progressBarsContainer = document.getElementById('progressBars');
+
+  for (var rating = 5; rating >= 1; rating--) {
+    var progressBar = document.createElement('div');
+    progressBar.classList.add('progress-bar');
+    var width = (ratingDistribution[rating] || 0) / reviewCount * 100;
+    progressBar.style.width = width + '%';
+
+    var stars = '';
+    for (var i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars += '<span class="progress-star fa fa-star checked"></span>';
+      } else {
+        stars += '<span class="progress-star fa fa-star"></span>';
+      }
+    }
+    var reviewText = '(' + (ratingDistribution[rating] || 0) + ')';
+    progressBar.innerHTML = stars + ' ' + reviewText;
+
+    progressBarsContainer.appendChild(progressBar);
+  }
 
   // Set the Create Post's date to the current date
   let today = new Date();

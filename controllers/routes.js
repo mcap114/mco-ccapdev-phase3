@@ -426,6 +426,20 @@ function addRoutes(server) {
         if (ratingFilter) {
           review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
         }
+
+        const ratingDistribution = {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0
+        };
+        
+        review_data.forEach(function (review) {
+            ratingDistribution[review.rating]++;
+        });
+
+        console.log('Rating Distribution:', ratingDistribution);
           
         //console.log('Establishment Data:', establishment_data);
         //console.log('Review Data: ', review_data);
@@ -439,7 +453,8 @@ function addRoutes(server) {
           currentUserIcon: req.session.user_icon,
           currentUserType: req.session.userType,
           selectedRatingFilter: ratingFilter,
-          establishmentRating: establishment_data.establishment_ratings
+          establishmentRating: establishment_data.establishment_ratings,
+          ratingDistribution: JSON.stringify(ratingDistribution)
         });
       });
     });

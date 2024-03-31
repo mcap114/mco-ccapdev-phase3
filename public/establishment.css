@@ -430,12 +430,15 @@ input#post-date {
 }
 
 .progress-bar {
+    display: flex;
+    align-items: center;
     background-color: #BBA58E;
     color: white;
     padding: 5px;
     margin-bottom: 5px;
     font-family: 'Biryani', sans-serif;
-    width: 100%;
+    height: 30px;
+    min-width: 140px;
 }
 
 .progress-star.checked {
