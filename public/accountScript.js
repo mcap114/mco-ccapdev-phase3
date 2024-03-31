@@ -20,8 +20,8 @@ function submitForm() {
     let bioString = document.forms["create-user"]["bio"].value;
     let pass1String = document.forms["create-user"]["password"].value;
     let pass2String = document.forms["create-user"]["password2"].value;
-
     let userType = document.querySelector('input[name="userType"]:checked').value;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
     if (nameString.length < 1) {
         alert("Name cannot be empty");
@@ -34,6 +34,11 @@ function submitForm() {
         return false;
     } else if (pass1String !== pass2String) {
         alert("Passwords do not match!");
+        return false;
+    }
+
+    if (!passwordRegex.test(pass1String)) {
+        alert("Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, and one number.");
         return false;
     }
 
@@ -112,8 +117,6 @@ function submitAvatarForm(currentUser) {
     return false;
 }
 
-
-
 // function when submitting the form of a user logging in
 function submitLoginForm() {
     let usernameString = document.getElementById("username-field").value;
@@ -166,12 +169,18 @@ function submitLoginForm() {
 function submitForgotPasswordForm() {
     let usernameString = document.getElementById("username-field").value;
     let passString = document.getElementById("password-field").value;
-
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    
     if (usernameString.length < 1) {
         alert("Username cannot be empty");
         return false;
     } else if (passString.length < 1) {
         alert("Password cannot be empty");
+        return false;
+    }
+
+    if (!passwordRegex.test(passString)) {
+        alert("Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, and one number.");
         return false;
     }
 
