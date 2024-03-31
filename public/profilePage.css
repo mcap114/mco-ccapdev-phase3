@@ -562,3 +562,10 @@
 #unfollow-btn:hover {
     background-color: #fafafa;
 }
+
+.sub-title{
+    font-size: 12px; /* Reduce font size for subtitle */
+    font-weight: bold; /* Bold font for emphasis */
+    color: #777; /* Darker color for subtitle */
+    margin-left: 5px;
+}
