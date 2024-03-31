@@ -261,32 +261,35 @@ function addRoutes(server) {
 
   // route for view establishments with filters
   router.post('/viewEstablishments', function(req, resp){
-    console.log('\nCurrently at View Establishments Page with Filters');
-
     let searchQuery = {};
+    let headlineLocation = '';
 
     // filter by price
     const priceRanges = req.body.price_range;
     if (priceRanges && priceRanges.length > 0) {
       searchQuery.price_range = { $in: priceRanges };
+      console.log('\nCurrently searching establishments with price range: ', priceRanges);
     }
 
     // filter by services offered
     const servicesOffered = req.body.services_offered;
     if (servicesOffered && servicesOffered.length > 0) {
       searchQuery.services_offered = { $in: servicesOffered };
+      console.log('\nCurrently searching establishments with services offered: ', servicesOffered);
     }
 
     // filter by area
     const selectedArea = req.body.area; 
     if (selectedArea) {
       searchQuery.establishment_address = selectedArea === 'metro' ? /Metro Manila/ : { $not: /Metro Manila/ };
+      console.log('\nCurrently searching establishments in ', selectedArea);
     }
 
     // filter by location
     const location = req.body.location; 
     if (location) {
       searchQuery.establishment_address = { $regex: new RegExp(location, 'i') };
+      console.log('\nCurrently searching establishments in ' + location);
     }
 
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
@@ -308,25 +311,24 @@ function addRoutes(server) {
             }
           });
   
-          if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
-            headlineLocation = 'Best in Metro Manila and Outside Metro Manila';
-          } else if (isMetroEstablishmentPresent) {
-            headlineLocation = 'Best in Metro Manila';
-          } else {
-            headlineLocation = 'Best outside Metro Manila';
-          }
+          if (location) {
+            headlineLocation = 'Establishments in ' + location;
+        } else if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
+            headlineLocation = 'Establishments in Metro Manila and Outside Metro Manila';
+            console.log('\nCurrently searching establishments both in Metro Manila and Outside Metro Manila');
+        } else if (isMetroEstablishmentPresent) {
+            headlineLocation = 'Establishments in Metro Manila';
+        } else {
+            headlineLocation = 'Establishments Outside Metro Manila';
+        }
+        
       }
 
-      const formattedAverageRatings = establishment_data.map(function(est) {
-        return est.establishment_ratings !== null ? est.establishment_ratings.toFixed(1) : 0;
-      });
-  
       resp.render('viewEstablishments', {
         layout: 'index',
         title: 'Cofeed',
         establishment: establishment_data,
         headlineLocation: headlineLocation,
-        formattedAverageRating: formattedAverageRatings, 
         currentUser: req.session.username,
         currentUserIcon: req.session.user_icon
       });
