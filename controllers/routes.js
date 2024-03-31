@@ -3,6 +3,7 @@ const sessionController = require('./sessionController');
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const establishmentModel = require('../models/Establishment');
+const avatarModel = require('../models/Avatar');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 
@@ -84,15 +85,6 @@ function addRoutes(server) {
     });
   });
 
-  // route for registration page (choosing an avatar)
-  router.get('/registrationAvatar', function (req, res) {
-    console.log('\nCurrently at Registration Avatar Page');
-    res.render('registrationAvatar', {
-      layout: 'index',
-      title: 'Registration Avatar',
-    })
-  });
-
   // route for creating user in the database
   router.post('/create-user', function(req, resp) {
     const saltRounds = 10;
@@ -111,6 +103,7 @@ function addRoutes(server) {
       })
       .then(function(user) {
         console.log('User created');
+        req.session.username = req.body.username;
         resp.json({ success: true, message: 'User created successfully' });
       })
       .catch(function(error) {
@@ -118,6 +111,55 @@ function addRoutes(server) {
         resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
       });
   });
+
+  // route for registration page (choosing an avatar)
+  router.get('/registrationAvatar', function (req, res) {
+    console.log('\nCurrently choosing an avatar');
+    const { username } = req.session; 
+    const searchQuery = {};
+
+    console.log('\nUser ', username);
+
+    userModel.findOne({ username: username }).then(user =>{
+      avatarModel.find(searchQuery).lean().then(function(avatars){
+        res.render('registrationAvatar', {
+          layout: 'index',
+          title: 'Registration Avatar',
+          username: username,
+          user_icon: avatars
+        });
+      });
+    });
+  });
+
+  // route for choosing avatar user in the database
+  router.post('/choose-avatar', function(req, res) {
+    console.log('\nAvatar saved successfully');
+    const { username } = req.session;
+    const { user_icon } = req.body;
+
+    if (!username) {
+      return res.status(401).json({ success: false, message: 'User not authenticated' });
+    }
+
+    userModel.findOne({ username: username }).then(user => {
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+
+      user.user_icon = user_icon;
+
+      return user.save();
+    })
+    .then(() => {
+      console.log('Avatar saved for user:', username);
+      res.json({ success: true, message: 'Avatar saved successfully'});
+    })
+    .catch(error => {
+      console.error('Error saving avatar:', error);
+      res.status(500).json({ success: false, message: 'Failed to save avatar' });
+    });
+});
 
   // route for login page
   router.get('/login', function (req, res) {

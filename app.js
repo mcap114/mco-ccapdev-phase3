@@ -99,6 +99,7 @@ mongoose.connection.on('error', (err) => {
 const userModel = require('./models/User');
 const reviewModel = require('./models/Review');
 const establishmentModel = require('./models/Establishment');
+const avatarModel = require('./models/Avatar');
 
 // hashing passwords
 const bcrypt = require('bcrypt');
@@ -148,6 +149,8 @@ function importJSONFilesToDB() {
           model = reviewModel;
         } else if (file.startsWith('establishment')) {
           model = establishmentModel;
+        } else if (file.startsWith('avatar')) {
+          model = avatarModel;
         }
 
         return model.find().then(existingData => {

@@ -1,8 +1,7 @@
 .registration-body {
-    background-color: #959D90;
+    background-color: #EFEFE9;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: 100vh;
 }
@@ -10,24 +9,24 @@
 /* Parent container for the content */
 .parent-content-reg {
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: auto;
-    background-color: #EFEFE9;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 15px;
-    margin: 50px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
 }
 
+/* Left and right sections */
 .left-reg, .right-reg {
-    width: 50%;
-    margin: 80px;
-    padding: 10px;
+    padding: 40px;
     box-sizing: border-box;
 }
 
+/* Vertical line */
 .vertical-line-reg {
     background-color: gray;
     width: 2px;
@@ -35,124 +34,17 @@
     margin: 0 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.form-group input[type=text], 
-.form-group input[type=password] {
-    width: 100%;
-    padding: 12px 0;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: none; 
-    border-bottom: 1px solid gray; 
-    background-color: transparent; 
-    outline: none; 
-    color: gray;
-}
-
-.form-group img{
-    width: 20px;
-    cursor: pointer;
-    position: absolute; 
-    right: 0;
+/* Logo */
+.logo {
+    width: 120px;
+    height: auto;
     margin-bottom: 20px;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
 }
 
-.form-group ::placeholder  {
-    color: #959D90; 
-}
-
-.form-group label {
-    display: flex; 
-    align-items: center; 
-    position: relative;
-    user-select: none;
-    font-size: 14px;
-}
-
-#userTypeRegister {
-    display: block;
-}
-
-.radio-buttons {
-    display: inline-flex; 
-    align-items: flex-start;
-    padding-top: 5px;
-    font-size: 14px;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.radio-buttons input[type="radio"] {
-    cursor: pointer;
-}
-
-.radio-buttons input[type="radio"]:checked + label {
-    font-weight: bold;
-}
-
-.form-group input[type="checkbox"] {
-    position: relative;
-    cursor: pointer;
-}
-
-
-.checkmark {
-    height: 40px;
-    width: 40px;
-    background-color: #EFEFE9;
-    border: 1px solid #EFEFE9;
-    border-radius: 3px;
-    margin-right: 10px; 
-}
-
-.form-group input[type="checkbox"]:checked ~ .checkmark {
-    background-color: #523D35;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-
-.form-group input[type="checkbox"]:checked ~ .checkmark:after {
-    display: block;
-}
-
-.form-group input[type="checkbox"]:checked ~ .checkmark:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid #EFEFE9;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-}
-
-input[type=submit] {
-    display: block;
-    margin: auto;
-    width: 60%; 
-    font-family: 'Biryani', sans-serif;
-    font-size: 16px; 
-    font-weight: bolder;
-    color: #523D35;
-    border: 3px solid #523D35;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #523D35;
-    color: #EFEFE9;
-    border: 3px solid #523D35;
+.logo:hover {
+    filter: brightness(1);
 }
 
 .greeting, .main {
@@ -162,80 +54,162 @@ input[type=submit]:hover {
     display: inline-block;
 }
 
-.greeting{
-    margin: 0;
-    margin-top: 5%;
-}
-
-.tagline, .forgot-page, 
-.forgot-page a, 
-.create-user input,
-.signup-page, 
-.login-page{
-    font-family: 'Biryani', sans-serif;
+.tagline {
     font-size: 12px;
-    display: block;
-}
-
-.forgot-page a{
-    text-decoration: none;
-    color: #959D90; 
-    cursor: pointer;
-}
-
-
-.signup-page a, 
-.login-page a {
-    text-decoration: none;
-    color: gray; 
-    cursor: pointer;
     font-style: italic;
 }
 
-.forgot-page, 
-.signup-page, 
-.login-page {
-    text-align: center;
-    margin-top: 10%;
-    font-weight: 600;
+/* Form styling */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 12px;
 }
 
-.logo {
-    width: 120px;
-    height: auto;
+.form-group input[type="text"], 
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: #f9f9f9;
+    outline: none;
 }
 
-.main2 {
-    font-family: 'Cardo', serif;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
+.form-group input[type="text"]::placeholder,
+.form-group input[type="password"]::placeholder {
+    color: #959D90;
+    position: absolute;
+    top: 5px; 
+    left: -15px;
 }
 
-.avatar-container {
+.form-group img {
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    filter: grayscale(50%);
+    transition: filter 0.3s ease;
+}
+
+.form-group img:hover {
+    filter: grayscale(0%);
+}
+
+/* Radio buttons */
+.radio-buttons {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.radio-buttons input[type="radio"] {
+    margin-right: -21px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+/* Checkboxes */
+.form-group input[type="checkbox"] {
+    margin-bottom: 6px;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkmark:hover {
+    background-color: #f9f9f9;
+}
+
+.checkmark:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 5px;
+    border: solid #ccc;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.form-group input[type="checkbox"]:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Submit button */
+input[type="submit"], button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #523d35;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover, button[type="submit"]:hover {
+    background-color: #fff;
+    color: #523D35;
+    border: 1px solid #523D35;
+}
+
+/* Text and links */
+.forgot-page a, .signup-page a, .login-page a {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.forgot-page, .signup-page, .login-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-page a, .login-page a {
+    font-style: italic;
+}
+
+.signup-page a:hover, .login-page a:hover {
+    text-decoration: none;
+}
+
+/* Avatar container */
+#avatar-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatarForm{
+    text-align: center;
 }
 
 .avatar {
+    display: flex;
     width: 100px;
     height: 100px; 
     margin: 10px;
-    text-align: center;
-    position: relative;
 }
 
 .avatar img {
     width: 100%;
     height: 100%; 
-    border-radius: 50%;
-    cursor: pointer;
     object-fit: cover; 
-    transition: transform 0.3s;
-}
-
-.avatar:hover img {
-    transform: scale(1.1); 
 }

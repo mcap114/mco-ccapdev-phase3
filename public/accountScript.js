@@ -75,11 +75,44 @@ function submitForm() {
     return false;
 }
 
-// function to redirect to login page
-function redirectToLoginPage() {
-    window.location.href = 'login';
-    return false; 
+// function to submit the form and choose an avatar for the user
+function submitAvatarForm(currentUser) {
+    let selectedAvatarURL = document.querySelector('input[name="avatar"]:checked').value;
+
+    fetch('/choose-avatar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: currentUser,
+            user_icon: selectedAvatarURL
+        })
+    })
+    .then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;        
+        } else {
+            return response.json(); // parsing the JSON response
+        }
+    })
+    .then(data => {
+        if (data && data.success) {
+            alert(data.message);
+            window.location.href = 'login'; 
+        } else {
+            alert('Failed to choose avatar: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while choosing the avatar.');
+    });
+
+    return false;
 }
+
+
 
 // function when submitting the form of a user logging in
 function submitLoginForm() {
