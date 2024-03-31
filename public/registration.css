@@ -148,7 +148,7 @@
 }
 
 /* Submit button */
-input[type="submit"], button[type="submit"] {
+input[type="submit"], .choose-avatar-button {
     display: block;
     width: 100%;
     padding: 15px;
@@ -162,7 +162,7 @@ input[type="submit"], button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover, button[type="submit"]:hover {
+input[type="submit"]:hover, .choose-avatar-button:hover {
     background-color: #fff;
     color: #523D35;
     border: 1px solid #523D35;
