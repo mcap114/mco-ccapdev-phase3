@@ -114,8 +114,13 @@ function addRoutes(server) {
   // route for creating user in the database
   router.post('/create-user', function(req, resp) {
     const saltRounds = 10;
-  
-    bcrypt.hash(req.body.password, saltRounds).then(function(hashedPassword) {
+
+    userModel.findOne({ username: req.body.username }).then(existingUser => {
+      if (existingUser) {
+        return resp.status(400).json({ status: 'error', message: 'Username already exists. Please choose another one.' });
+      }
+
+      bcrypt.hash(req.body.password, saltRounds).then(function(hashedPassword) {
         const userInstance = userModel({
           name: req.body.name,
           username: req.body.username,
@@ -124,7 +129,7 @@ function addRoutes(server) {
           password: hashedPassword,
           userType: req.body.userType
         });
-  
+
         return userInstance.save();
       })
       .then(function(user) {
@@ -136,6 +141,7 @@ function addRoutes(server) {
         errorFn(error);
         resp.status(500).json({ status: 'error', message: 'Internal Server Error' });
       });
+    });
   });
 
   // route for registration page (choosing an avatar)
