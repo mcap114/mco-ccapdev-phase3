@@ -586,7 +586,7 @@ function addRoutes(server) {
         });
   });
 
-  // update user's information on profile page
+  // route for updating user's information on profile page
   router.post('/update-user', function(req, resp){
     const updateQuery = { username: req.session.username };
 
@@ -621,6 +621,7 @@ function addRoutes(server) {
     });
   });
 
+  //
   router.post('/remove-from-favorites', function(req, res) {
     try {
       console.log('Request body:', req.body); 
@@ -667,7 +668,7 @@ function addRoutes(server) {
     }
   });
 
-  // Route to delete a coffee shop review
+  // route to delete a coffee shop review
   router.post('/delete-coffee-shop-review', function(req, res) {
     try {
       console.log('Request body:', req.body); 
@@ -714,21 +715,31 @@ function addRoutes(server) {
     }
   });
 
-  //route for search bar functionality
-  router.get('/search', async function(req, resp) {
+  // route for search bar functionality
+  router.get('/search', function(req, resp) {
     let key = req.query.key;
+    console.log('\nCurrently searching ' + key);
+
     try {
-        let data = await establishmentModel.find({
-            "establishment_name": { $regex: key, $options: "i" } 
-        }).lean();
-        resp.render('search', { 
-          layout: 'index',
-          establishment: data,
-          key: key });
+      establishmentModel.find({
+          $or: [
+            { "establishment_name": { $regex: key, $options: "i" } },
+            { "establishment_address": { $regex: key, $options: "i" } }
+          ]
+      }).lean().then(function(data) {
+          resp.render('viewEstablishments', { 
+            layout: 'index',
+            establishment: data,
+            key: key 
+          });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
     } catch (error) {
         console.error(error);
     }
-});
+  });
 
   return router;
 }

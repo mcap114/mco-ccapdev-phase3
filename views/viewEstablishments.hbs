@@ -62,7 +62,11 @@
 
     <div class="right-VE">
         <div class="headline">
+            {{#if headlineLocation}}
             <div class="headline-location">{{headlineLocation}}</div>
+            {{else}}
+            <div class="headline-location">Search Results for "{{key}}"</div>
+            {{/if}}
             <div class="sort-by">
                 <label for="sort">Sort By</label>
                 <select id="sort">
