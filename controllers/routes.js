@@ -651,16 +651,17 @@ router.post('/unfollow/:username', function(req, res) {
                 req.session.username = user.username;
                 req.session.user_icon = user.user_icon;
                 req.session.userType = user.userType;
-                return resp.json({success: true, message: 'User updated successfully!'});
+                console.log('User updated successfully:', result);
+                return resp.redirect('/profile/' + user.username); // Redirect to profile page
             }).catch(function(error) {
-                errorFn(error);
+                console.error('Error saving user:', error);
                 return resp.status(500).json({ success: false, message: 'Failed to update user information' });
             });
         } else {
             return resp.status(404).json({ success: false, message: 'User not found' });
         }
     }).catch(function(error) {
-        errorFn(error);
+        console.error('Error finding user:', error); // Log find error
         return resp.status(500).json({ success: false, message: 'Internal Server Error' });
     });
   });
