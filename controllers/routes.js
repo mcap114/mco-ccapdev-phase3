@@ -697,52 +697,21 @@ router.post('/unfollow/:username', function(req, res) {
     }
   });
 
-  // route to delete a coffee shop review
-  router.post('/delete-coffee-shop-review', function(req, res) {
+  router.post('/remove-review', async (req, res) => {
+    const reviewId = req.body.review_id;
+
     try {
-      console.log('Request body:', req.body); 
-
-      // Retrieve the establishment name from the request body
-      const placeName = req.body.establishment_name;
-      console.log('Establishment name:', placeName);
-
-      const username = req.session.username;
-      console.log('Username:', username);
-
-      // Find the user document in the database
-      userModel.findOne({ username }).then(function(user) {
-          console.log('User found:', user);
-
-          // Check if the user exists
-          if (!user) {
-            console.log('User not found');
-            return res.status(404).json({ success: false, message: 'User not found' });
-          }
-
-          // Update the user's favorite establishments
-          const index = user.createdreview.indexOf(placeName);
-          if (index !== -1) {
-            user.createdreview.splice(index, 1);
-            console.log('Ceated review place removed:', placeName);
-            return user.save();
-          } else {
-            // Establishment not found in favorites
-            console.log('Establishment not found in favorites.');
-            return Promise.reject({ success: false, message: 'Establishment not found in favorites.' });
-          }
-        })
-        .then(function() {
-          return res.json({ success: true, message: 'Removed from Created Reviews!' });
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-          return res.status(500).json({ success: false, message: 'An error occurred' });
-        });
-    } catch (error) {
-      console.error('Error:', error);
-      return res.status(500).json({ success: false, message: 'An error occurred' });
+        const deletedReview = await reviewModel.findByIdAndDelete(reviewId);
+        if (!deletedReview) {
+            return res.status(404).json({ success: false, message: 'Review not found' });
+        }
+        // Optionally, update other data or perform additional actions here
+        return res.json({ success: true, message: 'Review removed successfully' });
+    } catch (err) {
+        console.error('Error deleting review:', err);
+        return res.status(500).json({ success: false, message: 'An error occurred' });
     }
-  });
+});
 
   return router;
 }

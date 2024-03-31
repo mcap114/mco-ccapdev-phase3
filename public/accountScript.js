@@ -375,43 +375,7 @@ function unlikeWidget(establishmentName) {
     }
 }
 
-// 
-function deleteCoffeeShopReview(placeName) {
-    // Confirm action with the user (optional)
-    if (confirm('Are you sure you want to remove this from your created reviews?')) {
-        // Send AJAX request to remove from favorites
-        fetch('/delete-coffee-shop-review', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ placeName: placeName }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Response from server:', data);
-            if (data.success) {
-                // Remove the favorite place widget element from the UI
-                const createdRevElement = document.querySelector(`.createdrev-place-name:contains('${placeName}')`);
-                console.log('Found element:', createdRevElement);
-                if (createdRevElement) {
-                    createdRevElement.parentElement.parentElement.remove();
-                    console.log('Widget removed from DOM.');
-                } else {
-                    console.log('Widget element not found in DOM.');
-                    alert('Widget element not found!');
-                }
-            } else {
-                console.log('Failed to remove from favorites:', data.message);
-                alert('Failed to remove from favorites!');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
 
-        });
-    }
-}
 
 // Function to follow a user
 function followUser(username) {
@@ -449,6 +413,33 @@ function updateFollowUI(isFollowing) {
         followBtnContainer.innerHTML = '<button id="unfollow-btn" onclick="unfollowUser()">Unfollow</button>';
     } else {
         followBtnContainer.innerHTML = '<button id="follow-btn" onclick="followUser()">Follow</button>';
+    }
+}
+
+async function removeReview(reviewId) {
+    if (confirm('Are you sure you want to delete this review?')) {
+        try {
+            const response = await fetch('/remove-review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ review_id: reviewId }),
+            });
+            const data = await response.json();
+            if (data.success) {
+                const reviewElement = document.querySelector(`.coffee-shop-review[data-review-id="${reviewId}"]`);
+                if (reviewElement) {
+                    reviewElement.remove(); // Remove the review widget from the UI
+                    alert('Review removed successfully!');
+                }
+            } else {
+                alert('Failed to remove review!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while removing review.');
+        }
     }
 }
 
