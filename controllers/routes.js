@@ -438,7 +438,8 @@ function addRoutes(server) {
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon,
           currentUserType: req.session.userType,
-          selectedRatingFilter: ratingFilter 
+          selectedRatingFilter: ratingFilter,
+          establishmentRating: establishment_data.establishment_ratings
         });
       });
     });

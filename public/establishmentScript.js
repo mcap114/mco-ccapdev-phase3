@@ -1,5 +1,24 @@
 
 document.addEventListener("DOMContentLoaded", function() {
+  var starRatingContainers = document.querySelectorAll(".star-rating-container");
+  starRatingContainers.forEach(function(container) {
+    var establishmentRating = parseFloat(container.dataset.rating);
+    var fullStars = Math.floor(establishmentRating);
+    var hasHalfStar = establishmentRating - fullStars >= 0.5;
+
+    var starsHtml = '';
+    for (var i = 0; i < fullStars; i++) {
+        starsHtml += '<span class="fa fa-star checked"></span>';
+    }
+    if (hasHalfStar) {
+        starsHtml += '<span class="fa fa-star-half-o checked"></span>';
+    }
+    for (var j = 0; j < 5 - Math.ceil(establishmentRating); j++) {
+        starsHtml += '<span class="fa fa-star"></span>';
+    }
+
+    container.querySelector('.star-rating').innerHTML = starsHtml;
+  });
 
   // Set the Create Post's date to the current date
   let today = new Date();
