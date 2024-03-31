@@ -640,6 +640,7 @@ router.post('/unfollow/:username', function(req, res) {
             const { name, username, bio, password } = req.body;
 
             // updating user information
+            const oldUsername = user.username; // Store old username for updating reviews
             user.name = name;
             user.username = username;
             user.bio = bio;
@@ -651,8 +652,18 @@ router.post('/unfollow/:username', function(req, res) {
                 req.session.username = user.username;
                 req.session.user_icon = user.user_icon;
                 req.session.userType = user.userType;
-                console.log('User updated successfully:', result);
-                return resp.redirect('/profile/' + user.username); // Redirect to profile page
+
+                // Update reviewData with new username
+                const reviewUpdateQuery = { username: oldUsername }; // Find reviews by old username
+                const reviewUpdateFields = { username: username }; // Update username to new username
+                reviewModel.updateMany(reviewUpdateQuery, { $set: reviewUpdateFields }).then(function(reviewUpdateResult) {
+                    console.log('Reviews updated with new username:', reviewUpdateResult);
+                    // Redirect to profile page after updating both user and reviews
+                    return resp.redirect('/profile/' + user.username);
+                }).catch(function(reviewError) {
+                    console.error('Error updating reviews:', reviewError);
+                    return resp.status(500).json({ success: false, message: 'Failed to update reviews' });
+                });
             }).catch(function(error) {
                 console.error('Error saving user:', error);
                 return resp.status(500).json({ success: false, message: 'Failed to update user information' });
@@ -661,10 +672,11 @@ router.post('/unfollow/:username', function(req, res) {
             return resp.status(404).json({ success: false, message: 'User not found' });
         }
     }).catch(function(error) {
-        console.error('Error finding user:', error); // Log find error
+        console.error('Error finding user:', error);
         return resp.status(500).json({ success: false, message: 'Internal Server Error' });
     });
-  });
+});
+
 
   //
   router.post('/remove-from-favorites', function(req, res) {
