@@ -289,12 +289,13 @@ function addRoutes(server) {
     const location = req.body.location; 
     if (location) {
       searchQuery.establishment_address = { $regex: new RegExp(location, 'i') };
-      console.log('\nCurrently searching establishments in ' + location);
+      console.log('\nCurrently searching establishments in ', location);
     }
 
     establishmentModel.find(searchQuery).lean().then(function(establishment_data){
       if (establishment_data.length === 0) {
         headlineLocation = 'No establishments found matching the criteria.';
+        console.log('\nNo establishments found matching the filter applied');
       } else {
           establishment_data.forEach(function(establishment) {
             establishment.isMetro = establishment.establishment_address.includes('Metro Manila');
