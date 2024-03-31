@@ -54,7 +54,6 @@ function isFollowingUser(loggedInUser, targetUser, options) {
   return isFollowing ? options.fn(this) : options.inverse(this);
 }
 
-
 // Include the helper in your Handlebars engine configuration
 server.engine(
   'hbs',
@@ -69,8 +68,6 @@ server.engine(
       },
   })
 );
-
-
 
 // manage user sessions
 const session = require('./controllers/sessionController');
@@ -89,6 +86,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/cofeedDB');
 
 mongoose.connection.on('connected', () => {
   console.log('\nDatabase connected successfully\n');
+  importedFiles.length = 0;
+  importJSONFilesToDB();
 });
 
 mongoose.connection.on('error', (err) => {
@@ -112,20 +111,26 @@ const fs = require('fs');
 const path = require('path');
 const modelsFolder = path.join(__dirname, 'models');
 
+// array to keep track of imported files
+const importedFiles = [];
+
 // function to compare items based on uniqueness 
 function compareItems(existingItem, newItem, itemType) {
   switch (itemType) {
-    case 'user':
-      // users: compare based on username
+    case 'userData':
       return existingItem.username === newItem.username;
-    case 'review':
-      // reviews: compare based on username, place_name, and date
-      return existingItem.username === newItem.username &&
-             existingItem.place_name === newItem.place_name && 
-             existingItem.date_posted === newItem.date_posted
-    case 'establishment':
-      // establishments: compare based on establishment_name
+    case 'reviewData':
+      const existingDate = new Date(existingItem.date_posted).toISOString();
+      const newDate = new Date(newItem.date_posted).toISOString();
+      return (
+        existingItem.username === newItem.username &&
+        existingItem.place_name === newItem.place_name &&
+        existingDate === newDate
+      );
+    case 'establishmentData':
       return existingItem.establishment_name === newItem.establishment_name;
+    case 'avatarData':
+      return existingItem.user_icon === newItem.user_icon;
     default:
       return false;
   }
@@ -135,13 +140,17 @@ function compareItems(existingItem, newItem, itemType) {
 function importJSONFilesToDB() {
   try {
     const files = fs.readdirSync(modelsFolder);
-    const promises = files.map((file) => {
-      if (file.endsWith('.json')) {
+    const fileCount = files.length;
+    let processedFiles = 0;
+
+    files.forEach(function (file) {
+      if (file.endsWith('.json') && !importedFiles.includes(file)) {
+        importedFiles.push(file); 
         const filePath = path.join(modelsFolder, file);
         const data = require(filePath);
         let model;
         if (file.startsWith('user')) {
-          data.forEach((user) => {
+          data.forEach(function (user) {
             user.password = hashPassword(user.password);
           });
           model = userModel;
@@ -153,41 +162,44 @@ function importJSONFilesToDB() {
           model = avatarModel;
         }
 
-        return model.find().then(existingData => {
-          console.log(`Existing data for ${file}:`);
-          const newData = data.filter(newItem =>
-            !existingData.some(existingItem =>
-              compareItems(existingItem, newItem, file.split('.')[0])
-            )
-          );
-          console.log(`New data for ${file}:`);
+        model.find().then(function (existingData) {
+          const newData = data.filter(function (newItem) {
+            return !existingData.some(function (existingItem) {
+              return compareItems(existingItem, newItem, file.split('.')[0]);
+            });
+          });
+
+          console.log(`\nNew data for ${file}:`);
           if (newData.length > 0) {
-            return model.create(newData).then(() => {
+            model.create(newData).then(function () {
               console.log(`Data from ${file} imported successfully.`);
+              processedFiles++;
+              if (processedFiles === fileCount) {
+                console.log('\nAll JSON files imported successfully.');
+              }
+            }).catch(function (err) {
+              console.error(`Error importing data from ${file}:`, err);
             });
           } else {
-            console.log(`\nNo new data to import from ${file}.`);
+            console.log(`No new data to import from ${file}.`);
+            processedFiles++;
+            if (processedFiles === fileCount) {
+              console.log('\nAll JSON files imported successfully.');
+            }
           }
+        }).catch(function (err) {
+          console.error(`Error finding existing data for ${file}:`, err);
         });
+      } else {
+        processedFiles++;
+        if (processedFiles === fileCount) {
+          console.log('\nAll JSON files imported successfully.');
+        }
       }
-    });
-
-    Promise.all(promises).then(() => {
-      console.log('\nAll JSON files imported successfully.');
-    }).catch((err) => {
-      console.error('Error importing JSON files:', err);
     });
   } catch (err) {
     console.error('Error reading models folder:', err);
   }
-}
-
-importJSONFilesToDB();
-
-// error handling
-function errorFn(err) {
-  console.log('Error found. Please trace!');
-  console.error(err);
 }
 
 // closing the database

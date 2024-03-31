@@ -15,6 +15,32 @@ const errorFn = function (error) {
 function addRoutes(server) {
   const router = express.Router();
 
+  // route for search bar functionality
+  router.get('/search', function(req, resp) {
+    let key = req.query.key;
+    console.log('\nCurrently searching ' + key);
+
+    try {
+      establishmentModel.find({
+          $or: [
+            { "establishment_name": { $regex: key, $options: "i" } },
+            { "establishment_address": { $regex: key, $options: "i" } }
+          ]
+      }).lean().then(function(data) {
+          resp.render('viewEstablishments', { 
+            layout: 'index',
+            establishment: data,
+            key: key 
+          });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+    } catch (error) {
+        console.error(error);
+    }
+  });
+
   // route for non-user view homepage
   router.get('/', function (req, resp) {
     console.log('\nCurrently at Home Page');
@@ -132,7 +158,7 @@ function addRoutes(server) {
     });
   });
 
-  // route for choosing avatar user in the database
+  // route for saving the avatar chosen by the user in the database
   router.post('/choose-avatar', function(req, res) {
     console.log('\nAvatar saved successfully');
     const { username } = req.session;
@@ -159,7 +185,7 @@ function addRoutes(server) {
       console.error('Error saving avatar:', error);
       res.status(500).json({ success: false, message: 'Failed to save avatar' });
     });
-});
+  });
 
   // route for login page
   router.get('/login', function (req, res) {
@@ -222,7 +248,7 @@ function addRoutes(server) {
     });
   });
 
-  // route for posting forgot password page
+  // route for updating the database of new password when forgotten
   router.post('/forgot-password', function(req, resp) {
     const { username, newPassword } = req.body;
     const saltRounds = 10; 
@@ -757,32 +783,6 @@ function addRoutes(server) {
     } catch (error) {
       console.error('Error:', error);
       return res.status(500).json({ success: false, message: 'An error occurred' });
-    }
-  });
-
-  // route for search bar functionality
-  router.get('/search', function(req, resp) {
-    let key = req.query.key;
-    console.log('\nCurrently searching ' + key);
-
-    try {
-      establishmentModel.find({
-          $or: [
-            { "establishment_name": { $regex: key, $options: "i" } },
-            { "establishment_address": { $regex: key, $options: "i" } }
-          ]
-      }).lean().then(function(data) {
-          resp.render('viewEstablishments', { 
-            layout: 'index',
-            establishment: data,
-            key: key 
-          });
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-    } catch (error) {
-        console.error(error);
     }
   });
 
