@@ -6,7 +6,7 @@
     height: 100vh;
 }
 
-/* Parent container for the content */
+/* parent container */
 .parent-content-reg {
     display: flex;
     justify-content: space-around;
@@ -20,13 +20,13 @@
     width: 100%;
 }
 
-/* Left and right sections */
+/* left and right sections */
 .left-reg, .right-reg {
     padding: 40px;
     box-sizing: border-box;
 }
 
-/* Vertical line */
+/* vertical line */
 .vertical-line-reg {
     background-color: gray;
     width: 2px;
@@ -34,7 +34,7 @@
     margin: 0 20px;
 }
 
-/* Logo */
+/* logo */
 .logo {
     width: 120px;
     height: auto;
@@ -47,6 +47,7 @@
     filter: brightness(1);
 }
 
+/* texts */
 .greeting, .main {
     font-family: 'Cardo', serif;
     font-size: 30px;
@@ -59,7 +60,7 @@
     font-style: italic;
 }
 
-/* Form styling */
+/* form styling */
 .form-group {
     margin-bottom: 20px;
     position: relative;
@@ -99,7 +100,7 @@
     filter: grayscale(0%);
 }
 
-/* Radio buttons */
+/* radio button */
 .radio-buttons {
     display: flex;
     align-items: center;
@@ -112,7 +113,7 @@
     cursor: pointer;
 }
 
-/* Checkboxes */
+/* checkbox */
 .form-group input[type="checkbox"] {
     margin-bottom: 6px;
 }
@@ -147,8 +148,8 @@
     display: block;
 }
 
-/* Submit button */
-input[type="submit"], .choose-avatar-button {
+/* submit button */
+.registration, .choose-avatar-button {
     display: block;
     width: 100%;
     padding: 15px;
@@ -167,13 +168,13 @@ input[type="submit"], .choose-avatar-button {
     margin-top: 30px;
 }
 
-input[type="submit"]:hover, .choose-avatar-button:hover {
+.registration:hover, .choose-avatar-button:hover {
     background-color: #fff;
     color: #523D35;
     border: 3px solid #523D35;
 }
 
-/* Text and links */
+/* links */
 .forgot-page a, .signup-page a, .login-page a {
     color: #333;
     margin-bottom: 10px;
@@ -195,7 +196,7 @@ input[type="submit"]:hover, .choose-avatar-button:hover {
     text-decoration: none;
 }
 
-/* Avatar container */
+/* avatar container */
 #avatar-container{
     display: flex;
     flex-direction: column;

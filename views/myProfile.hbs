@@ -51,7 +51,6 @@
         <div class="followers-title">Followers</div>
         {{#each user.followers}}
         <div class="follower">
-            <!--<img class="follower-avatar" src="{{../currentUserIcon}}" alt="Follower Avatar">-->
             <a onclick="redirectToProfile('{{this}}')">@{{this}}</a>
         </div>
         {{/each}}
@@ -96,19 +95,17 @@
             </div>
             <div class="photo-upload-container">
                 <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
-                <label for="photo-upload" class="photo-upload-label"><i class="fa fa-camera"></i> Change Profile Picture</label>
+                <label for="photo-upload" class="change-photo-label"><i class="fa fa-camera"></i> Change Profile Picture</label>
             </div>
             <div class="photo-preview" id="photo-preview"></div>
-            <input type="submit" value="Save"></input>
+            <input id="save-profile-details" type="submit" value="Save"></input>
         </form>
     </div>
 
     <!-- container for the user's reviews -->
     <div class="blockc">
         <!-- favorite Places -->
-        <div class="main-area-titles"> FAVORITE PLACES 
-            <a href="#" class="see-all"></a>
-        </div>
+        <div class="main-area-titles">FAVORITE PLACES</div>
                 
         <div class="horizontal-line"></div>
 
