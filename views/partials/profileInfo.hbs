@@ -14,23 +14,4 @@
                     <a  id="followers-count" onclick="showFollowers()">{{user-data.followers.length}} followers</a>
                     <a  id="following-count" onclick="showFollowing()">{{user-data.following.length}} following</a>
                 </div> 
-
-                {{#if currentUser}}
-                {{#if isOwnProfile}}
-                    <div class="edit-prof">
-                        <a onclick="showEditProfileWidget()">Edit Profile</a>
-                    </div>
-                {{else}}
-                    <div id="follow-btn-container">
-                    {{#if isFollowing}}
-                        <button id="unfollow-btn" onclick="unfollowUser('{{user-data.username}}')">Unfollow</button>
-                    {{else}}
-                        <button id="follow-btn" onclick="followUser('{{user-data.username}}')">Follow</button>
-                    {{/if}}
-                    </div>
-                {{/if}}
-                {{/if}}
-            </div>
-        </div>
-    </div>
-</div>
+                

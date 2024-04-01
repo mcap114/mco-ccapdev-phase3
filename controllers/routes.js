@@ -607,7 +607,7 @@ function addRoutes(server) {
         const createdReviewCount = review_data.length;
         const noFavoritePlaces = favoritePlacesCount === 0;
         const noCreatedReviews = createdReviewCount === 0;
-  
+
         // console.log('User Data:', user_data);
         // console.log('Establishment Data:', establishment_data);
         resp.render(isOwnProfile ? 'myProfile' : 'profile', {
@@ -671,49 +671,56 @@ function addRoutes(server) {
   });
 
   // route for updating user's information on profile page
-  router.post('/update-user', function(req, resp){
+  router.post('/update-user', function(req, resp) {
     const updateQuery = { username: req.session.username };
 
     userModel.findOne(updateQuery).then(function(user) {
-        // if user found
-        if (user && user._id) {
-            const { name, username, bio, password } = req.body;
+      // if user found
+      if (user && user._id) {
+        const { name, username, bio, password } = req.body;
 
-            // updating user information
-            const oldUsername = user.username; // Store old username for updating reviews
-            user.name = name;
-            user.username = username;
-            user.bio = bio;
-            user.password = password;
-            user.confirmpassword = password;
+        // Hash the password
+        bcrypt.hash(password, 10, function(err, hashedPassword) {
+          if (err) {
+            console.error('Error hashing password:', err);
+            return resp.status(500).json({ success: false, message: 'Failed to update user information' });
+          }
 
-            // saving the updated user information
-            user.save().then(function(result) {
-                req.session.username = user.username;
-                req.session.user_icon = user.user_icon;
-                req.session.userType = user.userType;
+          // updating user information
+          const oldUsername = user.username; 
+          user.name = name;
+          user.username = username;
+          user.bio = bio;
+          user.password = hashedPassword; 
 
-                // Update reviewData with new username
-                const reviewUpdateQuery = { username: oldUsername }; // Find reviews by old username
-                const reviewUpdateFields = { username: username }; // Update username to new username
-                reviewModel.updateMany(reviewUpdateQuery, { $set: reviewUpdateFields }).then(function(reviewUpdateResult) {
-                    console.log('Reviews updated with new username:', reviewUpdateResult);
-                    // Redirect to profile page after updating both user and reviews
-                    return resp.redirect('/profile/' + user.username);
-                }).catch(function(reviewError) {
-                    console.error('Error updating reviews:', reviewError);
-                    return resp.status(500).json({ success: false, message: 'Failed to update reviews' });
-                });
-            }).catch(function(error) {
-                console.error('Error saving user:', error);
-                return resp.status(500).json({ success: false, message: 'Failed to update user information' });
+          // saving the updated user information
+          user.save().then(function(result) {
+            req.session.username = user.username;
+            req.session.user_icon = user.user_icon;
+            req.session.userType = user.userType;
+
+            // update reviewData with new username
+            const reviewUpdateQuery = { username: oldUsername }; // Find reviews by old username
+            const reviewUpdateFields = { username: username }; // Update username to new username
+            reviewModel.updateMany(reviewUpdateQuery, { $set: reviewUpdateFields }).then(function(reviewUpdateResult) {
+              console.log('Reviews updated with new username:', reviewUpdateResult);
+              // Redirect to profile page after updating both user and reviews
+              return resp.redirect('/profile/' + user.username);
+            }).catch(function(reviewError) {
+              console.error('Error updating reviews:', reviewError);
+              return resp.status(500).json({ success: false, message: 'Failed to update reviews' });
             });
-        } else {
-            return resp.status(404).json({ success: false, message: 'User not found' });
-        }
+          }).catch(function(error) {
+            console.error('Error saving user:', error);
+            return resp.status(500).json({ success: false, message: 'Failed to update user information' });
+          });
+        });
+      } else {
+        return resp.status(404).json({ success: false, message: 'User not found' });
+      }
     }).catch(function(error) {
-        console.error('Error finding user:', error);
-        return resp.status(500).json({ success: false, message: 'Internal Server Error' });
+      console.error('Error finding user:', error);
+      return resp.status(500).json({ success: false, message: 'Internal Server Error' });
     });
   });
 

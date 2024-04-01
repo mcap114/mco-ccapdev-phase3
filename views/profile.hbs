@@ -11,6 +11,16 @@
 <div class="parent-content-profile">
     <!-- profile information -->
     {{> profileInfo}}
+    {{#if isLoggedIn}}
+    <div id="follow-btn-container">
+    {{#if isFollowing}}
+        <button id="unfollow-btn" onclick="unfollowUser('{{user-data.username}}')">Unfollow</button>
+    {{else}}
+        <button id="follow-btn" onclick="followUser('{{user-data.username}}')">Follow</button>
+    {{/if}}
+    </div>
+    {{/if}}
+    {{> profileInfoDiv}}
 
     <!-- following and followers -->
     {{> widgetProfile}}

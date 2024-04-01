@@ -11,6 +11,10 @@
 <div class="parent-content-profile">
     <!-- profile information -->
     {{> profileInfo}}
+    <div class="edit-prof">
+        <a onclick="showEditProfileWidget()">Edit Profile</a>
+    </div>
+    {{> profileInfoDiv}}
         
     <!-- following and followers -->
     {{> widgetProfile}}
@@ -38,7 +42,7 @@
             </div>
             <div class="profile-info-item">
                 <label for="password">Password</label>
-                <input type="password" id="password-field" value="{{user-data.password}}">
+                <input type="password" id="password-field" placeholder="Update your password">
                 <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
             </div>
             <div class="photo-upload-container">
