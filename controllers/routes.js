@@ -203,47 +203,60 @@ function addRoutes(server) {
   });
 
   // route for reading user from the database to login
-  router.post('/read-user', function(req, resp) {
-    try {
-      const { username, password } = req.body;
-  
-      // Find user by username
-      userModel.findOne({ username }).then(function(user) {
-        console.log("\nFinding user: ", username);
-  
-        if (user) {
-          // Compare hashed password from database with provided password
-          bcrypt.compare(password, user.password).then(function(passwordMatch) {
-            if (passwordMatch) {
-              req.session.username = user.username;
-              req.session.user_icon = user.user_icon;
-              req.session.userType = user.userType;
-              if (req.body.rememberMe) {
-                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
-              }
-              console.log("\nUser ", req.session.username, " Found");
-              console.log("User Type:", req.session.userType);
-              resp.json({ success: true });
-            } else {
-              // Passwords don't match
-              console.log("\nPasswords do not match for user: ", username);
-              resp.json({ success: false });
+router.post('/read-user', function(req, resp) {
+  try {
+    const { username, password } = req.body;
+    const rememberMe = req.body['remember-me'] === 'on';
+
+    console.log("\n REMEMBER ME CHECKED? "+rememberMe);
+
+    // Find user by username
+    userModel.findOne({ username }).then(function(user) {
+      console.log("\nFinding user: ", username);
+
+      if (user) {
+        // Compare hashed password from database with provided password
+        bcrypt.compare(password, user.password).then(function(passwordMatch) {
+          if (passwordMatch) {
+            req.session.username = user.username;
+            req.session.user_icon = user.user_icon;
+            req.session.userType = user.userType;
+            if (rememberMe) {
+              req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
+              
+              const rememberMeToken = generateRememberMeToken();
+              user.rememberMeToken = rememberMeToken;
+              user.save();
+
+              resp.cookie('remember_me', rememberMeToken, {
+                expires: moment().add(30, 'days').toDate(), 
+                httpOnly: true,
+              });
             }
-          });
-        } else {
-          // User not found
-          console.log("\nUser not found with username: ", username);
-          resp.json({ success: false });
-        }
-      }).catch(function(error) {
-        errorFn(error);
-        return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
-      });
-    } catch (error) {
-      errorFn(error);
-      return resp.status(500).json({ status: 'error', msg: 'Internal Server Error' });
-    }
-  });
+            console.log("\nUser ", req.session.username, " Found");
+            console.log("User Type:", req.session.userType);
+            resp.json({ success: true });
+          } else {
+            // Passwords don't match
+            console.log("\nPasswords do not match for user: ", username);
+            resp.json({ success: false });
+          }
+        });
+      } else {
+        // User not found
+        console.log("\nUser not found: ", username);
+        resp.json({ success: false });
+      }
+    }).catch(function(error) {
+      console.error("Error finding user:", error);
+      resp.status(500).json({ success: false, error: "Internal Server Error" });
+    });
+  } catch (error) {
+    console.error("Error processing login:", error);
+    resp.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+});
+
 
   // route for getting forgot password page
   router.get('/forgotpassword', function (req, res) {
