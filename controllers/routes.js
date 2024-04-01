@@ -206,7 +206,10 @@ function addRoutes(server) {
 router.post('/read-user', function(req, resp) {
   try {
     const { username, password } = req.body;
-    const rememberMe = req.body['remember-me'] === 'on';
+
+    //this line takes input from the "Remember Me" checkbox and checks if 'on'/ticked
+    //this seems to be where the problem is as it always reads as FALSE
+    const rememberMe = req.body['remember-me'] === 'on'; 
 
     console.log("\n REMEMBER ME CHECKED? "+rememberMe);
 
@@ -222,8 +225,10 @@ router.post('/read-user', function(req, resp) {
             req.session.user_icon = user.user_icon;
             req.session.userType = user.userType;
             if (rememberMe) {
-              req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; 
+              req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; // sets expiry of user login (in seconds)
               
+              // creates unique cookie and stores in browser
+
               const rememberMeToken = generateRememberMeToken();
               user.rememberMeToken = rememberMeToken;
               user.save();
