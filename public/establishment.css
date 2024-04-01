@@ -592,6 +592,7 @@ label[for="star-filter"], label[for="sort"] {
 .hidden {
     display: none;
 }
+
 /*Edit Review Widget*/
 .edit-review-widget-container {
     transform: translate(-50%, 100%);
@@ -604,12 +605,11 @@ label[for="star-filter"], label[for="sort"] {
     width:50%;
     top: 50%;
     left: 50%;
-    
     background-color: #E5D9CE;
-    opacity: 100%;
     border: 5px solid white;
 
 }
+
 .review-info-item {
     margin-bottom: 20px;
     position: relative;
@@ -881,21 +881,18 @@ label[for="star-filter"], label[for="sort"] {
 
 /* Edit Establishment Widget */
 .edit-establishment-widget-container {
-    transform: translate(-50%, -10%);
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    position: absolute;
-    z-index: 1000; 
-    width:50%;
+    display: none;
+    position: fixed;
     top: 50%;
     left: 50%;
-    
-    background-color: #E5D9CE;
-    opacity: 100%;
-    border: 5px solid white;
-
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 600px;
 }
 /*
 .edit-review-rating {
@@ -911,40 +908,50 @@ label[for="star-filter"], label[for="sort"] {
 
 .establishment-info-item label {
     display: block;
-    margin: 3%;
+    margin-bottom: 5px;
     color: #523D35;
-    font-family: 'Biryani', sans-serif;
-    font-size: 15px;
+    font-family: 'Cardo', serif;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .establishment-info-item input {
-    width: 90%;
-    padding: 12px 0; 
-    margin: 3%;
+    width: 95%;
+    padding: 10px;
+    border: none;
     margin-top: 8px;
-    box-sizing: border-box;
-    border: none; 
-    border-bottom: 1px solid gray; 
-    background-color: transparent; 
-    outline: none; 
-    display: block; 
+    border-bottom: 2px solid #ccc;
+    background-color: #f9f9f9;
+    outline: none;
 }
 
 .edit-establishment-title{
-    color: #523D35;
     font-family: 'Cardo', serif;
     font-size: 32px;
-    margin-left: 3%;
+    font-weight: bold;
     margin-right: 3%;
     margin-bottom: 10px;
     margin-top: 25px;
     padding-bottom: 15px;
 }
 
-
 .establishment-options{
     margin: 20px;
     display: flex;
+}
+
+#options{
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #523d35;
+    color: #fff;
+    border: 3px solid #523D35;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: -20px;
 }
 
 .options-dropdown button {
@@ -959,7 +966,9 @@ label[for="star-filter"], label[for="sort"] {
     text-align: left;
 }
 
-hr.h1 {border:1px solid #223030; }
+hr.h1 {
+    border:1px solid #223030; 
+}
  
 .establishment-photos,
 .about-section,
