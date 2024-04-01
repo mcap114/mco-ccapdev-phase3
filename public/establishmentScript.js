@@ -236,30 +236,6 @@ function getStarsHTML(rating) {
   return starsHTML;
 }
 
-// function to show the edit profile widget
-function showEditReviewWidget() {
-  var editReviewWidget = document.getElementById("edit-review-widget");
-  editReviewWidget.style.display = "block";
-}
-
-// function to hide the edit profile widget
-function hideEditReviewWidget() {
-  var editReviewWidget = document.getElementById("edit-review-widget");
-  editReviewWidget.style.display = "none";
-}
-
-// function to show the edit profile widget
-function showEditEstablishmentWidget() {
-  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
-  editEstablishmentWidget.style.display = "block";
-}
-
-// function to hide the edit profile widget
-function hideEditEstablishmentWidget() {
-  var editEstablishmentWidget = document.getElementById("edit-establishment-widget");
-  editEstablishmentWidget.style.display = "none";
-}
-
 // not yet implemented function to save changes
 function saveChanges() {
   console.log("Save Changes");

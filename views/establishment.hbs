@@ -198,35 +198,33 @@
                     {{#if (eq currentUserType 'owner')}}
                     {{#if (eq currentUser establishment.owner_username)}}
                         <div class="edit-establishment">
-                            <button class="reaction-btn establishment-option" onclick="showEditEstablishmentWidget()">
+                            <button class="reaction-btn establishment-option" onclick="showEditWidget()">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
                         </div>
 
                         <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
-                        <div id="edit-establishment-widget" class="edit-establishment-widget-container">
+                        <div id="edit-widget" class="edit-widget-container">
                             <div class="edit-establishmentwidget">
-                                <button class="close-button" onclick="hideEditEstablishmentWidget()">X</button>
-
-                                <div class="edit-establishment-title">Edit Establishment Details</div>
-                                <div class="establishment-info">
-                                    <div class="establishment-info-item">
-                                        <label for="establishment-name">Name</label>
-                                        <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
-                                    </div>
-                                    <div class="establishment-info-item">
-                                        <label for="address">Address</label>
-                                        <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
-                                    </div>
-                                    <div class="establishment-info-item">
-                                        <label for="description">Description</label>
-                                        <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
-                                    </div>
+                                <button class="close-button" onclick="hideEditWidget()">X</button>
+                                <form name="" action="" method="POST" onsubmit="return ()">
+                                <p class="main"><b>Edit Establishment Details</b></p>
+                                <div class="info-item">
+                                    <label for="establishment-name">Name</label>
+                                    <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
                                 </div>
-                                
+                                <div class="info-item">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
+                                </div>
+                                <div class="info-item">
+                                    <label for="description">About the Establishment</label>
+                                    <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
+                                </div>
                                 <div class="establishment-options">
-                                    <button id="options">Save</button>
+                                    <input id="save-details" type="submit" value="Save"></input>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     {{/if}}

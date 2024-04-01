@@ -12,7 +12,7 @@
     <!-- profile information -->
     {{> profileInfo}}
     <div class="edit-prof">
-        <a onclick="showEditProfileWidget()">Edit Profile</a>
+        <a onclick="showEditWidget()">Edit Profile</a>
     </div>
     {{> profileInfoDiv}}
         
@@ -20,27 +20,27 @@
     {{> widgetProfile}}
 
     <!-- edit profile widget -->
-    <div id="edit-profile-widget" class="edit-profile-widget-container">
+    <div id="edit-widget" class="edit-widget-container">
         <p class="main"><b>Edit Profile</b></p>
-        <button class="close-button" onclick="hideEditProfileWidget()">X</button>
+        <button class="close-button" onclick="hideEditWidget()">X</button>
         <form name="update-user" action="/update-user" method="post" onsubmit="return updatingUserForm()">
-            <div class="profile-info-item">
+            <div class="info-item">
                 <label for="name">Name</label>
                 <input type="text" id="name-field" value="{{user-data.name}}" placeholder="Enter your name">
             </div>
-            <div class="profile-info-item">
+            <div class="info-item">
                 <label for="username">Username</label>
                 <input type="text" id="username-field" value="{{user-data.username}}" placeholder="Enter your username">
             </div>
-            <div class="profile-info-item">
+            <div class="info-item">
                 <label for="biotext">User Bio</label>
                 <input type="text" id="bio-field" value="{{user-data.bio}}" placeholder="Update your bio">
             </div>
-            <div class="profile-info-item">
+            <div class="info-item">
                 <label for="email">Email</label>
                 <input type="text" id="email" value="{{user-data.email}}" readonly>
             </div>
-            <div class="profile-info-item">
+            <div class="info-item">
                 <label for="password">Password</label>
                 <input type="password" id="password-field" placeholder="Update your password">
                 <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
@@ -50,7 +50,7 @@
                 <label for="photo-upload" class="change-photo-label"><i class="fa fa-camera"></i> Change Profile Picture</label>
             </div>
             <div class="photo-preview" id="photo-preview"></div>
-            <input id="save-profile-details" type="submit" value="Save"></input>
+            <input id="save-details" type="submit" value="Save"></input>
         </form>
     </div>
 

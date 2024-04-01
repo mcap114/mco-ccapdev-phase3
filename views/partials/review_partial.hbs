@@ -13,7 +13,7 @@
            {{#if (eq username currentUser)}}
             <!-- Display review menu -->
             <div class="review-menu">
-                <button class="reaction-btn review-option" onclick="showEditReviewWidget()">
+                <button class="reaction-btn review-option" onclick="showEditWidget()">
                     <i class="fa fa-pencil" aria-hidden="true"></i> 
                 </button>
      
@@ -24,50 +24,35 @@
             </div>
 
             <!-- Edit Review  Widget is displaying but not yet fully functioning -->
-            <div id="edit-review-widget" class="edit-review-widget-container">
-                <div class="edit-review-widget">
-                    <button class="close-button" onclick="hideEditReviewWidget()">X</button>
-
-                    <form id="edit-review-form" method="POST" onsubmit="submitEditReview(event)">
-                        <div class="edit-review-title">Edit Review Details</div>
-                        <div class="review-info">
-                            
-                            <div class="edit-review-rating">
-                                <div class="review-rating">
-                                    <span class="fa fa-star" data-rating="1"></span>
-                                    <span class="fa fa-star" data-rating="2"></span>
-                                    <span class="fa fa-star" data-rating="3"></span>
-                                    <span class="fa fa-star" data-rating="4"></span>
-                                    <span class="fa fa-star" data-rating="5"></span>
-                                </div>
-                            </div>
-
-                            <div class="review-info-item">
-                                <label for="review-title">Review Title</label>
-                                <input type="text" name="review_title" id="title-field" placeholder="Update review title">
-                            </div>
-                            <div class="review-info-item">
-                                <label for="review-location">Location</label>
-                                <input type="text" name="review_location" id="location-field" placeholder="Location" readonly>
-                            </div>
-                            <div class="review-info-item">
-                                <label for="review-description">Description</label>
-                                <input type="text" name="review_description" id="description-field" placeholder="Update review description">
-                            </div>
-                            
-                            <div class="review-info-item">
-                                <label for="photo-upload" class="photo-edit-label">
-                                    <i class="fa fa-camera"></i> Upload Photo
-                                </label>
-                                <input type="file" id="photo-upload" name="photo" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
-                            </div>
-                            <div class="photo-preview" id="photo-preview"></div>
-
+            <div id="edit-widget" class="edit-widget-container">
+                <div class="edit-establishmentwidget">
+                    <button class="close-button" onclick="hideEditWidget()">X</button>
+                    <form name="" action="" method="POST" onsubmit="return ()">
+                    <p class="main"><b>Edit Review Details</b></p>
+                    <div class="edit-review-rating">
+                        <div class="review-rating">
+                            <span class="fa fa-star" data-rating="1"></span>
+                            <span class="fa fa-star" data-rating="2"></span>
+                            <span class="fa fa-star" data-rating="3"></span>
+                            <span class="fa fa-star" data-rating="4"></span>
+                            <span class="fa fa-star" data-rating="5"></span>
                         </div>
-                        
-                       
-                        <button type="submit" class="save-button">Save Changes</button>
-                    
+                    </div>
+                    <div class="info-item">
+                        <label for="review-title">Review Title</label>
+                        <input type="text" id="review-title" value="" placeholder="Update review title">
+                    </div>
+                    <div class="info-item">
+                        <label for="location">Location</label>
+                        <input type="text" name="review_location" id="location-field" value="{{establishment.establishment_address}}" placeholder="Location" readonly>
+                    </div>
+                    <div class="info-item">
+                        <label for="description">Description</label>
+                        <input type="text" id="caption" value=""  placeholder="Update review descripton">
+                    </div>
+                    <div class="establishment-options">
+                        <input id="save-details" type="submit" value="Save"></input>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -101,7 +86,7 @@
 
         <div class="reactions">
             <button class="reaction-btn helpful"><i class="fa fa-thumbs-up" aria-hidden="true"></i> This was helpful!</button>
-                        <button class="reaction-btn not-helpful"><i class="fa fa-thumbs-down" aria-hidden="true"></i> This was not helpful</button>
+                <button class="reaction-btn not-helpful"><i class="fa fa-thumbs-down" aria-hidden="true"></i> This was not helpful</button>
             <button class="reaction-btn comment"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
         </div>
 

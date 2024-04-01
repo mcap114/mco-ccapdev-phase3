@@ -301,23 +301,11 @@ function hideListReview() {
     listReviewWidget.classList.remove("visible");
 }
 
-// function to show the edit profile widget
-function showEditProfileWidget() {
-    var editProfileWidget = document.getElementById("edit-profile-widget");
-    editProfileWidget.style.display = "block";
-}
-
 // function to update profile page with new data
 function updateProfilePage(userData) {
     document.getElementById("name-field").innerText = userData.name;
     document.getElementById("username-field").innerText = userData.username;
     document.getElementById("bio-field").innerText = userData.bio;
-}
-
-// function to hide the edit profile widget
-function hideEditProfileWidget() {
-    var editProfileWidget = document.getElementById("edit-profile-widget");
-    editProfileWidget.style.display = "none";
 }
 
 // function to show the photo upload section

@@ -91,7 +91,6 @@
     margin: 1%;
     background-color: #959D90;
     border: 3px solid #223030;
-    opacity: 90%;
 }
 
 /* buttons container (write a review, share, favorite)*/
@@ -507,7 +506,6 @@ label[for="star-filter"], label[for="sort"] {
 
 /* review menu (edit, delete, report) */
 .review-menu {
-    position: relative;
     justify-content: flex-end;
     display: flex;
     margin-right: 10px;
@@ -559,94 +557,9 @@ label[for="star-filter"], label[for="sort"] {
     display: none;
 }
 
-/* edit review widget */
-.edit-review-widget-container {
-    transform: translate(-50%, 100%);
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    position: absolute;
-    z-index: 1000; 
-    width:50%;
-    top: 50%;
-    left: 50%;
-    background-color: #E5D9CE;
-    border: 5px solid white;
-}
-
-.review-info-item {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.review-info-item label {
-    display: block;
-    margin: 3%;
-    color: #523D35;
-    font-family: 'Biryani', sans-serif;
-    font-size: 15px;
-}
-
-.review-info-item input {
-    width: 90%;
-    padding: 12px 0; 
-    margin: 3%;
-    margin-top: 8px;
-    box-sizing: border-box;
-    border: none; 
-    border-bottom: 1px solid gray; 
-    background-color: transparent; 
-    outline: none; 
-    display: block; 
-}
-
-.edit-review-title{
-    color: #523D35;
-    font-family: 'Cardo', serif;
-    font-size: 32px;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 10px;
-    margin-top: 25px;
-    padding-bottom: 15px;
-}
-
+/* edit star review rating */
 .edit-review-rating{
-    margin-left: 3%;
-}
-
-.save-button{
-    margin: 20px;
-    display: flex;
-    padding: 12px 24px; 
-    border-radius: 4px;
-    background-color: #523D35;
-    color: white; 
-    border: 2px solid white; 
-    cursor: pointer;
-    font-family: 'Biryani', sans-serif;
-    font-size: 12px; 
-    font-weight: bolder;
-    transition: background-color 0.3s;
-}
-
-.save-button:hover {
-    background-color: white;
-    color: #523D35; 
-    border: 2px solid #523D35;
-}
-
-.save-button button {
-    color: #523D35;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-family: 'Biryani', sans-serif;
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    text-align: left;
+    margin-bottom: 3%;
 }
 
 /* user profile */
@@ -837,81 +750,6 @@ label[for="star-filter"], label[for="sort"] {
 
 .edit-establishment a:hover {
     color: #666;
-}
-
-/* edit establishment widget */
-.edit-establishment-widget-container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding-left: 50px;
-    padding-right: 50px;
-    width: 600px;
-}
-/*
-.edit-review-rating {
-    display: flex;
-    align-items: center;
-    margin-left: 2%;
-}
-*/
-.establishment-info-item {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.establishment-info-item label {
-    display: block;
-    margin-bottom: 5px;
-    color: #523D35;
-    font-family: 'Cardo', serif;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.establishment-info-item input {
-    width: 95%;
-    padding: 10px;
-    border: none;
-    margin-top: 8px;
-    border-bottom: 2px solid #ccc;
-    background-color: #f9f9f9;
-    outline: none;
-}
-
-.edit-establishment-title{
-    font-family: 'Cardo', serif;
-    font-size: 32px;
-    font-weight: bold;
-    margin-right: 3%;
-    margin-bottom: 10px;
-    margin-top: 25px;
-    padding-bottom: 15px;
-}
-
-.establishment-options{
-    margin: 20px;
-    display: flex;
-}
-
-#options{
-    display: block;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #523d35;
-    color: #fff;
-    border: 3px solid #523D35;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-left: -20px;
 }
 
 .options-dropdown button {
