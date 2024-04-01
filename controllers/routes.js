@@ -292,11 +292,22 @@ function addRoutes(server) {
   });
   
   // route for user view homepage
-  router.get('/landingPage', function (req, resp) {
-    console.log('\nCurrently at Landing Page');
-    const searchQuery = {};
+router.get('/landingPage', function (req, resp) {
+  console.log('\nCurrently at Landing Page');
+  const searchQuery = {};
 
-    reviewModel.find(searchQuery).lean().then(function(review_data){
+  const loggedInUser = req.session.username;
+
+  userModel.findOne(searchQuery).lean().then(function(user_data) {
+    if (!user_data) {
+      console.log('User data not found.');
+      resp.redirect('/error');
+      return;
+    }
+
+    const followingList = user_data.following || [];
+
+    reviewModel.find({ username: { $in: followingList } }).lean().then(function(review_data){
       establishmentModel.find(searchQuery).lean().then(function(establishment_data){
         resp.render('landingPage', {
           layout: 'index',
@@ -308,8 +319,11 @@ function addRoutes(server) {
           currentUserType: req.session.userType
         });
       });
+    }).catch(function(error) {
     });
   });
+});
+
 
   // route for view establishments
   router.get('/viewEstablishments', function(req, resp){
