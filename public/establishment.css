@@ -1,5 +1,4 @@
-/* Styles for Main banner of Establishment (Block A)*/
- 
+/* style for main banner area */
 .blockA {
     margin: 0;
     width: 100%;
@@ -14,7 +13,6 @@
     object-fit: cover;
     object-position: 70% 70%;
 }
-
 
 .establishment-text-box {
     position: absolute;
@@ -32,7 +30,6 @@
     box-sizing: border-box;
 }
 
-/* Content style inside the text box*/
 .establishment-name {
     font-family: 'Cardo';
     font-size: xx-large;
@@ -58,9 +55,9 @@
 .checked, .fa.fa-star-half-o{
     color: #FFD700;
     margin-right: 5px;
-  }
+}
 
-  .average {
+.average {
     font-size: smaller;
     margin-left: 5px; 
 }
@@ -76,8 +73,7 @@
     margin-bottom: 5px;
 }
 
-/* style for main area*/
-
+/* style for main area */
 .main-area {
     margin: 2px;
     width: 100%;
@@ -87,7 +83,6 @@
 .left-side {
     width: 70%;
     margin: 1%;
-
 }
 
 .right-side{
@@ -99,7 +94,6 @@
     opacity: 90%;
 }
 
-
 /* buttons container (write a review, share, favorite)*/
 .navigate-container {
     display: flex;
@@ -108,12 +102,12 @@
     margin-left: 10%;
     margin-top: 15px; 
 }
-/* Share button 380 */
+
+/* share button 380 */
 .navigate-container button.share {
     margin-right: 10px;
     padding: 10px 20px;
     width: 380%; 
-    
     font-family: 'Biryani', sans-serif;
     font-size: 14px; 
     font-weight: bolder;
@@ -124,12 +118,11 @@
     cursor: pointer;
 }
 
-/* Favorite button */
+/* favorite button */
 .navigate-container button.favorite {
     margin-right: 10px;
     padding: 10px 20px;
     width: 40%;
-
     font-family: 'Biryani', sans-serif;
     font-size: 14px; 
     font-weight: bolder;
@@ -140,7 +133,7 @@
     cursor: pointer;
 }
 
-/* Hover styles for both buttons */
+/* hover styles for both buttons */
 .navigate-container button.share:hover,
 .navigate-container button.favorite:hover {
     background-color: white;
@@ -148,14 +141,13 @@
     border: 3px solid #523D35;
 }
 
-
-/* Dropdown container */
+/* dropdown container */
 .share-dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown content (hidden by default) */
+/* dropdown content (hidden by default) */
 .share-dropdown-content {
     display: none;
     position: absolute;
@@ -165,7 +157,7 @@
     z-index: 1;
 }
 
-/* Links inside the dropdown */
+/* links inside the dropdown */
 .share-dropdown-content a {
     color: #523D35;
     padding: 12px 16px;
@@ -174,28 +166,25 @@
     align-items: center;
 }
 
-/* Change color on hover */
+/* hover style */
 .share-dropdown-content a:hover {
     background-color: #f1f1f1;
 }
 
-/* Show the dropdown content when the share button is hovered over */
 .share-dropdown:hover .share-dropdown-content {
     display: block;
 }
 
-/* Icon styles */
+/* icons */
 .share-dropdown-content a i {
     margin-right: 8px; 
 }
 
-/* Styles for Write a Review*/
-
+/* write a review */
 .write-review {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .write-review-container {
@@ -203,7 +192,6 @@
     width: 80%;
     margin: 2%;
     padding: 10px; 
-
     background-color: #F5F5F5;
     border: 5px solid #523D35;
     border-radius: 15px; 
@@ -215,11 +203,9 @@ div#create-review {
 	width: 80%;
     margin-left: 10%;
     margin-right: 8%;
-
     display: flex;
 	flex-direction: column;
 	align-items: center;
-
 	border: 1px solid #826155;
 	background-color: #826155;
 	font-size: 16px;
@@ -237,13 +223,10 @@ div#create-review {
     width: 100%;
 }
 
-input:focus,
-textarea:focus,
-button:focus,
-select:focus {
+input:focus, textarea:focus,
+button:focus, select:focus {
 	outline: none;
 }
-
 
 textarea {
 	border: 1px solid #E5E5E5;
@@ -253,7 +236,6 @@ textarea {
 }
 
 /* star rating for write a review*/
-
 .write-review-rating {
     display: flex;
     align-items: center;
@@ -273,14 +255,12 @@ textarea {
 .review-rating .fa {
     margin-right: 5px;
 }
-/* clicked stars */
+
 .review-rating .fa.highlighted {
     color: #FFD700; 
 }
 
-.review-title,
-.location-container,
-.review-description {
+.review-title, .location-container, .review-description {
     margin-top: 1%;
     width: 95%;
     border-radius: 15px;
@@ -293,7 +273,6 @@ textarea {
     padding: 10px;
 }
 
-/* For text placeholder */
 input.review-title::placeholder,
 textarea.review-description::placeholder,
 .location-container {
@@ -313,14 +292,12 @@ textarea.review-description::placeholder,
     border-radius: 5px;
 }
 
-/* File Input Styles */
 .photo-upload-date {
     display: flex;
     align-items: center;
     margin-top: 10px; 
 }
 
-/* Photo Upload Styles */
 .photo-upload-container {
     display: flex;
     align-items: center;
@@ -329,7 +306,6 @@ textarea.review-description::placeholder,
 .photo-upload {
     display: none;
 }
-
 
 .photo-upload-label {
     width: 120%;
@@ -347,7 +323,7 @@ textarea.review-description::placeholder,
 
 .photo-preview {
     margin-top: 10px;
-    max-width: 100%; /* Ensure the preview doesn't exceed its container width */
+    max-width: 100%; 
 }
 
 .photo-upload-label:hover {
@@ -357,12 +333,11 @@ textarea.review-description::placeholder,
     color: #F5F5F5;
 }
 
-/* Date and Submit Styles */
 .date-and-submit {
     margin-left: 10px; 
 }
 
-/* Submit Button Styles */
+/* submit button */
 input#post-date {
     width: 100%; 
     font-family: 'Lato', sans-serif;
@@ -375,7 +350,6 @@ input#post-date {
 	font-size: 12px;
     border: 1px solid #f5f5f5;
     border-radius: 15px;
-
 }
 
 .post-review-button { 
@@ -386,15 +360,13 @@ input#post-date {
     width: 20%;
     border: 2px solid #523D35;
     border-radius: 15px;
-
-
     background-color: #F5F5F5;
     color: #523D35;
     font-family: 'Biryani', sans-serif;
     font-size: 12px;
     font-weight: bolder;
-
 }
+
 .post-review-button:hover {
 	border: 2px solid #523D35;
     border-radius: 15px;
@@ -402,9 +374,7 @@ input#post-date {
 	color: #F5F5F5;
 }
 
-
-/* Styles for Overall rating */
-
+/* overall rating */
 .reviews-header {
     color: #523D35;
     font-family: 'Cardo';
@@ -423,7 +393,7 @@ input#post-date {
     margin-bottom: 20px;
 }
 
-
+/* progress bars */
 .progress-bars {
     display: flex;
     flex-direction: column;
@@ -449,7 +419,7 @@ input#post-date {
     color: #523D35;
 }
 
-/* Feed Header */
+/* feed header */
 .feed-header {
     color: #523D35;
     font-family: 'Cardo';
@@ -460,7 +430,7 @@ input#post-date {
     margin-bottom: 1%;
 }
 
-/* Filter and Sort Options Styles */
+/* filter and sort section */
 .filter-sort-options {
     display: flex;
     justify-content: space-between;
@@ -469,7 +439,6 @@ input#post-date {
     margin-bottom: 1%;
     margin-left: 10%;
     margin-right: 10%;
-
 }
 
 .rating-option {
@@ -514,7 +483,6 @@ label[for="star-filter"], label[for="sort"] {
     color: white;
 }
 
-/* Sort By Styles */
 .sort-by select {
     padding: 8px 12px;
     border: 1px solid #ddd;
@@ -522,14 +490,12 @@ label[for="star-filter"], label[for="sort"] {
     cursor: pointer;
 }
 
-
-/* Review Feed */
+/* review feed */
 .review-feed {
-    margin: 0 auto; /* Center the review feed */
+    margin: 0 auto;
     width: 80%; 
 }
 
-/* Review Container */
 .review-container {
     display: flex;
     align-items: flex-start;
@@ -539,8 +505,7 @@ label[for="star-filter"], label[for="sort"] {
     padding: 10px;
 }
 
-/* Review Menu (edit, delete, report) */
-
+/* review menu (edit, delete, report) */
 .review-menu {
     position: relative;
     justify-content: flex-end;
@@ -568,6 +533,7 @@ label[for="star-filter"], label[for="sort"] {
     display: block;
     margin-right: 40px;
 }
+
 .review-menu button {
     padding: 4px 8px;
     width: auto; 
@@ -588,12 +554,12 @@ label[for="star-filter"], label[for="sort"] {
     border: 2px solid #523D35;
 }
 
-/*used for hiding widget*/
+/* used for hiding widget */
 .hidden {
     display: none;
 }
 
-/*Edit Review Widget*/
+/* edit review widget */
 .edit-review-widget-container {
     transform: translate(-50%, 100%);
     display: flex; 
@@ -607,7 +573,6 @@ label[for="star-filter"], label[for="sort"] {
     left: 50%;
     background-color: #E5D9CE;
     border: 5px solid white;
-
 }
 
 .review-info-item {
@@ -651,13 +616,11 @@ label[for="star-filter"], label[for="sort"] {
     margin-left: 3%;
 }
 
-
 .save-button{
     margin: 20px;
     display: flex;
     padding: 12px 24px; 
     border-radius: 4px;
-
     background-color: #523D35;
     color: white; 
     border: 2px solid white; 
@@ -665,7 +628,7 @@ label[for="star-filter"], label[for="sort"] {
     font-family: 'Biryani', sans-serif;
     font-size: 12px; 
     font-weight: bolder;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: background-color 0.3s;
 }
 
 .save-button:hover {
@@ -686,8 +649,7 @@ label[for="star-filter"], label[for="sort"] {
     text-align: left;
 }
 
-
-/* User Profile */
+/* user profile */
 .user-profile-establishment {
     display: flex;
     align-items: center;
@@ -718,13 +680,14 @@ label[for="star-filter"], label[for="sort"] {
     color: #959D90;
 }
 
-/* Star Rating */
+/* star rating */
 .star-rating {
     font-size: 0.8em;
     color: #777;
     text-align: left;
 }
-/* Review-title */
+
+/* review-title */
 .title {
     margin-bottom: 0; 
     font-family: 'Biryani', sans-serif;
@@ -732,23 +695,22 @@ label[for="star-filter"], label[for="sort"] {
     font-weight:800;
 }
 
-/* Caption */
+/* caption */
 .caption {
-    margin-top: 0; /* Adjust margin-top to reduce space between title and caption */
-    margin-bottom: 5px; /* Add margin-bottom if necessary */
+    margin-top: 0; 
+    margin-bottom: 5px; 
     font-family: 'Biryani', sans-serif;
     font-size: smaller;
 }
 
-/* Date posted */
+/* date posted */
 .date-posted {
     font-size: 0.8em;
     color: #777;
     text-align: left;
 }
 
-
-/* Review Photo Box */
+/* review photo box */
 .review-photo-box {
     width: 400px;
     height: 275px;
@@ -764,7 +726,7 @@ label[for="star-filter"], label[for="sort"] {
     object-position: bottom bottom;
 }
 
-/* Reactions */
+/* reactions */
 .reactions {
     margin-top: auto; 
 }
@@ -777,7 +739,6 @@ label[for="star-filter"], label[for="sort"] {
     cursor: pointer;
     background-color: #959D90;
     color: #223030;
-
     font-family: 'Biryani', sans-serif;
     font-size: 11px;
     font-weight: bold;
@@ -798,7 +759,7 @@ label[for="star-filter"], label[for="sort"] {
     color: white;
 }
 
-/* Comment Section */
+/* comment section */
 .comment-section {
     border-top: 1px solid #ddd;
     padding-top: 10px;
@@ -838,11 +799,10 @@ label[for="star-filter"], label[for="sort"] {
     line-height: 1.4;
 }
 
-/* General Styles for the right section of the page */
+/* right section of the page */
 
 
-/* Edit Establishment */
-
+/* edit establishment button */
 .edit-establishment {
     position:relative;
     display: flex;
@@ -879,7 +839,7 @@ label[for="star-filter"], label[for="sort"] {
     color: #666;
 }
 
-/* Edit Establishment Widget */
+/* edit establishment widget */
 .edit-establishment-widget-container {
     display: none;
     position: fixed;
@@ -966,43 +926,32 @@ label[for="star-filter"], label[for="sort"] {
     text-align: left;
 }
 
+/* other services */
+
 hr.h1 {
     border:1px solid #223030; 
 }
  
-.establishment-photos,
-.about-section,
-.services-section,
-.price-range-section
-.schedule-section, 
-.contact-details-section,
-.location-map-section,
-.owner-section {
+.establishment-photos, .about-section,
+.services-section, .price-range-section
+.schedule-section, .contact-details-section,
+.location-map-section, .owner-section {
     margin: 3%;
     padding: 0;
 }
 
-.establishment-photos > .fa.fa-camera,
-.fa.fa-info-circle, 
-.fa.fa-coffee,
-.fa.fa-money,
-.fa.fa-clock-o, 
-.fa.fa-phone, 
-.fa.fa-map-marker,
-.fa.fa-user {
+.establishment-photos > .fa.fa-camera, .fa.fa-info-circle, 
+.fa.fa-coffee, .fa.fa-money, .fa.fa-clock-o, 
+.fa.fa-phone,  .fa.fa-map-marker, .fa.fa-user {
     color: white;
     font-size: large; 
     margin-right: 3px;
 }
 
-.header-text-photogrid,
-.about-header, 
-.services-header,
-.price-range-header,
-.schedule-header, 
-.contact-header, 
-.location-map-header,
-.owner-section {
+.header-text-photogrid, .about-header, 
+.services-header, .price-range-header,
+.schedule-header,  .contact-header, 
+.location-map-header, .owner-section {
     font-family: 'Cardo';
     font-weight: 400;
     color: white;
@@ -1017,14 +966,13 @@ hr.h1 {
     align-items: center;
 }
 
-/* Style for Photo Grid */
+/* photo grid section */
 .column {
     float: left;
     width: 50%;
     padding: 10px;
     box-sizing: border-box;
-
- }
+}
 
 .column img {
     display: block;
@@ -1040,10 +988,8 @@ hr.h1 {
     clear: both;
 }
 
-/* Style for About  and Price range section*/
-
-.introduction,
-.price-range {
+/* about and price range section */
+.introduction, .price-range {
     font-family: 'Biryani', sans-serif;
     font-weight: 400;
     color: #223030; 
@@ -1055,8 +1001,8 @@ hr.h1 {
 .price-range{
     font-size: medium;
 }
-/* Style for Services list*/
 
+/* services list section */
 .services-list.fa.fa-check {
     color: #223030;
     font-size: 26px;
@@ -1064,15 +1010,15 @@ hr.h1 {
     margin-right: 5px;
     vertical-align: middle; 
 }
+
 .services-list { 
     font-family: 'Biryani', sans-serif;
     font-size: small;
     color: #223030;
 }
 
-/* Style for Schedule of establishment*/
-.column-weekdays, 
-.column-schedule {
+/* schedule section */
+.column-weekdays, .column-schedule {
     font-family: 'Biryani', sans-serif;
     font-weight: 400;
     color: #223030; 
@@ -1096,9 +1042,8 @@ hr.h1 {
     overflow: hidden; 
 }
 
-/* Style for Contact Details */
-.fa.fa-facebook-square, 
-.fa.fa-instagram {
+/* contact details section */
+.fa.fa-facebook-square, .fa.fa-instagram {
     color: #223030;
     font-size: 26px;
     margin-top: 5px;
@@ -1113,6 +1058,7 @@ hr.h1 {
     font-weight: bold;
 }
 
+/* map section */
 .address{
     margin-top: 5px;
     margin-bottom: 0px;
@@ -1130,6 +1076,7 @@ hr.h1 {
     border: 0;
 }
 
+/* owner details section */
 .owner {
     margin: 2px;
     font-family: 'Biryani', sans-serif;
