@@ -203,64 +203,64 @@ function addRoutes(server) {
   });
 
   // route for reading user from the database to login
-router.post('/read-user', function(req, resp) {
-  try {
-    const { username, password } = req.body;
+  router.post('/read-user', function(req, resp) {
+    try {
+      const { username, password } = req.body;
 
-    //this line takes input from the "Remember Me" checkbox and checks if 'on'/ticked
-    //this seems to be where the problem is as it always reads as FALSE
-    const rememberMe = req.body['remember-me'] === 'on'; 
+      //this line takes input from the "Remember Me" checkbox and checks if 'on'/ticked
+      //this seems to be where the problem is as it always reads as FALSE
+      const rememberMe = req.body['remember-me'] === 'on'; 
 
-    console.log("\n REMEMBER ME CHECKED? "+rememberMe);
+      console.log("\n REMEMBER ME CHECKED? "+rememberMe);
 
-    // Find user by username
-    userModel.findOne({ username }).then(function(user) {
-      console.log("\nFinding user: ", username);
+      // Find user by username
+      userModel.findOne({ username }).then(function(user) {
+        console.log("\nFinding user: ", username);
 
-      if (user) {
-        // Compare hashed password from database with provided password
-        bcrypt.compare(password, user.password).then(function(passwordMatch) {
-          if (passwordMatch) {
-            req.session.username = user.username;
-            req.session.user_icon = user.user_icon;
-            req.session.userType = user.userType;
-            if (rememberMe) {
-              req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; // sets expiry of user login (in seconds)
-              
-              // creates unique cookie and stores in browser
+        if (user) {
+          // Compare hashed password from database with provided password
+          bcrypt.compare(password, user.password).then(function(passwordMatch) {
+            if (passwordMatch) {
+              req.session.username = user.username;
+              req.session.user_icon = user.user_icon;
+              req.session.userType = user.userType;
+              if (rememberMe) {
+                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; // sets expiry of user login (in seconds)
+                
+                // creates unique cookie and stores in browser
 
-              const rememberMeToken = generateRememberMeToken();
-              user.rememberMeToken = rememberMeToken;
-              user.save();
+                const rememberMeToken = generateRememberMeToken();
+                user.rememberMeToken = rememberMeToken;
+                user.save();
 
-              resp.cookie('remember_me', rememberMeToken, {
-                expires: moment().add(30, 'days').toDate(), 
-                httpOnly: true,
-              });
+                resp.cookie('remember_me', rememberMeToken, {
+                  expires: moment().add(30, 'days').toDate(), 
+                  httpOnly: true,
+                });
+              }
+              console.log("\nUser ", req.session.username, " Found");
+              console.log("User Type:", req.session.userType);
+              resp.json({ success: true });
+            } else {
+              // Passwords don't match
+              console.log("\nPasswords do not match for user: ", username);
+              resp.json({ success: false });
             }
-            console.log("\nUser ", req.session.username, " Found");
-            console.log("User Type:", req.session.userType);
-            resp.json({ success: true });
-          } else {
-            // Passwords don't match
-            console.log("\nPasswords do not match for user: ", username);
-            resp.json({ success: false });
-          }
-        });
-      } else {
-        // User not found
-        console.log("\nUser not found: ", username);
-        resp.json({ success: false });
-      }
-    }).catch(function(error) {
-      console.error("Error finding user:", error);
+          });
+        } else {
+          // User not found
+          console.log("\nUser not found: ", username);
+          resp.json({ success: false });
+        }
+      }).catch(function(error) {
+        console.error("Error finding user:", error);
+        resp.status(500).json({ success: false, error: "Internal Server Error" });
+      });
+    } catch (error) {
+      console.error("Error processing login:", error);
       resp.status(500).json({ success: false, error: "Internal Server Error" });
-    });
-  } catch (error) {
-    console.error("Error processing login:", error);
-    resp.status(500).json({ success: false, error: "Internal Server Error" });
-  }
-});
+    }
+  });
 
 
   // route for getting forgot password page
@@ -310,37 +310,37 @@ router.post('/read-user', function(req, resp) {
   });
   
   // route for user view homepage
-router.get('/landingPage', function (req, resp) {
-  console.log('\nCurrently at Landing Page');
-  const searchQuery = {};
+  router.get('/landingPage', function (req, resp) {
+    console.log('\nCurrently at Landing Page');
+    const searchQuery = {};
 
-  const loggedInUser = req.session.username;
+    const loggedInUser = req.session.username;
 
-  userModel.findOne(searchQuery).lean().then(function(user_data) {
-    if (!user_data) {
-      console.log('User data not found.');
-      resp.redirect('/error');
-      return;
-    }
+    userModel.findOne(searchQuery).lean().then(function(user_data) {
+      if (!user_data) {
+        console.log('User data not found.');
+        resp.redirect('/error');
+        return;
+      }
 
-    const followingList = user_data.following || [];
+      const followingList = user_data.following || [];
 
-    reviewModel.find({ username: { $in: followingList } }).lean().then(function(review_data){
-      establishmentModel.find(searchQuery).lean().then(function(establishment_data){
-        resp.render('landingPage', {
-          layout: 'index',
-          title: 'Cofeed',
-          'review-data': review_data,
-          'establishment-data': establishment_data,
-          currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon,
-          currentUserType: req.session.userType
+      reviewModel.find({ username: { $in: followingList } }).lean().then(function(review_data){
+        establishmentModel.find(searchQuery).lean().then(function(establishment_data){
+          resp.render('landingPage', {
+            layout: 'index',
+            title: 'Cofeed',
+            'review-data': review_data,
+            'establishment-data': establishment_data,
+            currentUser: req.session.username,
+            currentUserIcon: req.session.user_icon,
+            currentUserType: req.session.userType
+          });
         });
+      }).catch(function(error) {
       });
-    }).catch(function(error) {
     });
   });
-});
 
 
   // route for view establishments
@@ -465,16 +465,10 @@ router.get('/landingPage', function (req, resp) {
           review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
         }
 
-        const ratingDistribution = {
-          1: 0,
-          2: 0,
-          3: 0,
-          4: 0,
-          5: 0
-        };
+        const ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
         
         review_data.forEach(function (review) {
-            ratingDistribution[review.rating]++;
+          ratingDistribution[review.rating]++;
         });
 
         console.log('Rating Distribution:', ratingDistribution);
@@ -608,6 +602,11 @@ router.get('/landingPage', function (req, resp) {
         
         const isOwnProfile = user_data.username === req.session.username;
         const isFollowing = user_data.followers.includes(loggedInUser);
+
+        const favoritePlacesCount = favoritePlaces.length;
+        const createdReviewCount = review_data.length;
+        const noFavoritePlaces = favoritePlacesCount === 0;
+        const noCreatedReviews = createdReviewCount === 0;
   
         // console.log('User Data:', user_data);
         // console.log('Establishment Data:', establishment_data);
@@ -620,53 +619,56 @@ router.get('/landingPage', function (req, resp) {
           currentUser: req.session.username,
           currentUserIcon: req.session.user_icon,
           user: user_data,
-          isFollowing: isFollowing
+          isFollowing: isFollowing,
+          favoritePlacesCount: favoritePlacesCount,
+          createdReviewCount: createdReviewCount,
+          noFavoritePlaces: noFavoritePlaces,
+          noCreatedReviews: noCreatedReviews
         });
       });
     });
     }).catch(errorFn);
   });
 
- // Route to follow a user
-router.post('/follow/:username', function(req, res) {
-  const loggedInUser = req.session.username;
-  const usernameToFollow = req.params.username;
+  // route to follow a user
+  router.post('/follow/:username', function(req, res) {
+    const loggedInUser = req.session.username;
+    const usernameToFollow = req.params.username;
 
-  userModel.findOneAndUpdate(
-      { username: loggedInUser },
-      { $addToSet: { following: usernameToFollow } }, // Add to following list
-      { new: true }
-  ).then(user => {
-      if (!user) {
-          return res.status(404).send('User not found.');
-      }
-      res.send(user);
-  }).catch(err => {
-      console.error('Error following user:', err);
-      res.status(500).send('Error following user.');
+    userModel.findOneAndUpdate(
+        { username: loggedInUser },
+        { $addToSet: { following: usernameToFollow } }, // Add to following list
+        { new: true }
+    ).then(user => {
+        if (!user) {
+            return res.status(404).send('User not found.');
+        }
+        res.send(user);
+    }).catch(err => {
+        console.error('Error following user:', err);
+        res.status(500).send('Error following user.');
+    });
   });
-});
 
-// Route to unfollow a user
-router.post('/unfollow/:username', function(req, res) {
-  const loggedInUser = req.session.username;
-  const usernameToUnfollow = req.params.username;
+  // route to unfollow a user
+  router.post('/unfollow/:username', function(req, res) {
+    const loggedInUser = req.session.username;
+    const usernameToUnfollow = req.params.username;
 
-  userModel.findOneAndUpdate(
-      { username: loggedInUser },
-      { $pull: { following: usernameToUnfollow } }, // Remove from following list
-      { new: true }
-  ).then(user => {
-      if (!user) {
-          return res.status(404).send('User not found.');
-      }
-      res.send(user);
-  }).catch(err => {
-      console.error('Error unfollowing user:', err);
-      res.status(500).send('Error unfollowing user.');
+    userModel.findOneAndUpdate(
+        { username: loggedInUser },
+        { $pull: { following: usernameToUnfollow } }, // Remove from following list
+        { new: true }
+    ).then(user => {
+        if (!user) {
+            return res.status(404).send('User not found.');
+        }
+        res.send(user);
+    }).catch(err => {
+        console.error('Error unfollowing user:', err);
+        res.status(500).send('Error unfollowing user.');
+    });
   });
-});
-
 
   // route for updating user's information on profile page
   router.post('/update-user', function(req, resp){
@@ -713,8 +715,7 @@ router.post('/unfollow/:username', function(req, res) {
         console.error('Error finding user:', error);
         return resp.status(500).json({ success: false, message: 'Internal Server Error' });
     });
-});
-
+  });
 
   //
   router.post('/remove-from-favorites', function(req, res) {
@@ -763,21 +764,22 @@ router.post('/unfollow/:username', function(req, res) {
     }
   });
 
+  //
   router.post('/remove-review', async (req, res) => {
     const reviewId = req.body.review_id;
 
     try {
-        const deletedReview = await reviewModel.findByIdAndDelete(reviewId);
-        if (!deletedReview) {
-            return res.status(404).json({ success: false, message: 'Review not found' });
-        }
-        // Optionally, update other data or perform additional actions here
-        return res.json({ success: true, message: 'Review removed successfully' });
+      const deletedReview = await reviewModel.findByIdAndDelete(reviewId);
+      if (!deletedReview) {
+        return res.status(404).json({ success: false, message: 'Review not found' });
+      }
+      // Optionally, update other data or perform additional actions here
+      return res.json({ success: true, message: 'Review removed successfully' });
     } catch (err) {
-        console.error('Error deleting review:', err);
-        return res.status(500).json({ success: false, message: 'An error occurred' });
+      console.error('Error deleting review:', err);
+      return res.status(500).json({ success: false, message: 'An error occurred' });
     }
-});
+  });
 
   return router;
 }
