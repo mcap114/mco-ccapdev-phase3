@@ -32,10 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // function when logging out
 function logout() {
-    console.log("Logout clicked");
-    window.location.href = '/';
-    res.locals.isLoggedIn = false;
-    res.locals.isLoggedOut = true;
+    window.location.href = "/logout";
 }
 
 // function to show logout dropdown

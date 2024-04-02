@@ -262,6 +262,17 @@ function addRoutes(server) {
     }
   });
 
+  // logout route
+  router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
+      if (err) {
+        console.error('Error destroying session:', err);
+        res.status(500).json({ success: false, message: 'Failed to logout' });
+      } else {
+        res.redirect('/');
+      }
+    });
+  });
 
   // route for getting forgot password page
   router.get('/forgotpassword', function (req, res) {
