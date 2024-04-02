@@ -1,9 +1,10 @@
 <div class="widget-container" id="followers-widget">
     <span class="close-btn" onclick="hideFollowers()">x</span>
     <div class="followers-title">Followers</div>
-    {{#each user.followers}}
+    {{#each followers}}
     <div class="follower">
-        <a onclick="redirectToProfile('{{this}}')">@{{this}}</a>
+        <img class="follower-avatar" src="{{this.user_icon}}" alt="user">
+        <a onclick="redirectToProfile('{{this.username}}')">@{{this.username}}</a>
     </div>
     {{/each}}
 </div>
@@ -11,9 +12,10 @@
 <div class="widget-container" id="following-widget">
     <span class="close-btn" onclick="hideFollowing()">x</span>
     <div class="following-title">Following</div>
-    {{#each user.following}}
+    {{#each following}}
     <div class="following">
-        <a onclick="redirectToProfile('{{this}}')">@{{this}}</a>
+        <img class="follower-avatar" src="{{this.user_icon}}" alt="user">
+        <a onclick="redirectToProfile('{{this.username}}')">@{{this.username}}</a>
     </div>
     {{/each}}
 </div>

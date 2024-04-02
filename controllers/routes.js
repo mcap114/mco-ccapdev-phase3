@@ -609,41 +609,52 @@ function addRoutes(server) {
     const followingList = user_data.following || [];
     const followerList = user_data.followers || [];
 
+    console.log("\nFOLLOWING: " +followingList);
+    console.log("\nFOLLOWERS: " +followerList);
+
     const reviewSearchQuery = {username : user_data.username};
 
-    reviewModel.find(reviewSearchQuery).lean().then(function(review_data) {
-      const favoritePlaces = user_data.favoriteplace || []; 
-      const establishmentSearchQuery = { establishment_name: { $in: favoritePlaces } };
-      
-      establishmentModel.find(establishmentSearchQuery).lean().then(function(establishment_data){
-        
-        const isOwnProfile = user_data.username === req.session.username;
-        const isFollowing = user_data.followers.includes(loggedInUser);
-
-        const favoritePlacesCount = favoritePlaces.length;
-        const createdReviewCount = review_data.length;
-        const noFavoritePlaces = favoritePlacesCount === 0;
-        const noCreatedReviews = createdReviewCount === 0;
-
-        // console.log('User Data:', user_data);
-        // console.log('Establishment Data:', establishment_data);
-        resp.render(isOwnProfile ? 'myProfile' : 'profile', {
-          layout: 'index',
-          title: user_data.name,
-          'user-data': user_data,
-          'establishment-data': establishment_data,
-          'review-data': review_data,
-          currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon,
-          user: user_data,
-          isFollowing: isFollowing,
-          favoritePlacesCount: favoritePlacesCount,
-          createdReviewCount: createdReviewCount,
-          noFavoritePlaces: noFavoritePlaces,
-          noCreatedReviews: noCreatedReviews
+    userModel.find({username : {$in : followingList}}).lean().then(function(following_data){
+      userModel.find({username : {$in : followerList}}).lean().then(function(follower_data){
+        reviewModel.find(reviewSearchQuery).lean().then(function(review_data) {
+          const favoritePlaces = user_data.favoriteplace || []; 
+          const establishmentSearchQuery = { establishment_name: { $in: favoritePlaces } };
+          
+          establishmentModel.find(establishmentSearchQuery).lean().then(function(establishment_data){
+            
+            const isOwnProfile = user_data.username === req.session.username;
+            const isFollowing = user_data.followers.includes(loggedInUser);
+    
+            const favoritePlacesCount = favoritePlaces.length;
+            const createdReviewCount = review_data.length;
+            const noFavoritePlaces = favoritePlacesCount === 0;
+            const noCreatedReviews = createdReviewCount === 0;
+    
+            // console.log('User Data:', user_data);
+            // console.log('Establishment Data:', establishment_data);
+            resp.render(isOwnProfile ? 'myProfile' : 'profile', {
+              layout: 'index',
+              title: user_data.name,
+              'user-data': user_data,
+              'establishment-data': establishment_data,
+              'review-data': review_data,
+              currentUser: req.session.username,
+              currentUserIcon: req.session.user_icon,
+              user: user_data,
+              following : following_data,
+              followers : follower_data,
+              isFollowing: isFollowing,
+              favoritePlacesCount: favoritePlacesCount,
+              createdReviewCount: createdReviewCount,
+              noFavoritePlaces: noFavoritePlaces,
+              noCreatedReviews: noCreatedReviews
+            });
+          });
         });
-      });
-    });
+      })
+    })
+
+    
     }).catch(errorFn);
   });
 
