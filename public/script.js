@@ -1,3 +1,19 @@
+// function to show logout dropdown in header
+function toggleOptions(event) {
+    const dropdown = event.target.nextElementSibling;
+    dropdown.classList.add("show");
+}
+
+// function when logging out
+function logout() {
+    window.location.href = "/logout";
+}
+
+// function to redirect to someone's profile
+function redirectToProfile(userName) {
+    window.location.href = '/profile/' + encodeURIComponent(userName);
+}
+
 // function to show the edit widget
 function showEditWidget() {
     var editWidget = document.getElementById("edit-widget");
