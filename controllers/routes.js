@@ -384,7 +384,6 @@ function addRoutes(server) {
 
   // route for view establishments with filters
   router.post('/viewEstablishments', function(req, resp){
-    console.log('\nFilter Applied');
     let searchQuery = {};
     let headlineLocation = '';
 
@@ -438,14 +437,15 @@ function addRoutes(server) {
   
           if (location) {
             headlineLocation = 'Establishments in ' + location;
-          } else if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
+        } else if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
             headlineLocation = 'Establishments in Metro Manila and Outside Metro Manila';
             console.log('\nCurrently searching establishments both in Metro Manila and Outside Metro Manila');
-          } else if (isMetroEstablishmentPresent) {
+        } else if (isMetroEstablishmentPresent) {
             headlineLocation = 'Establishments in Metro Manila';
-          } else {
+        } else {
             headlineLocation = 'Establishments Outside Metro Manila';
-          }
+        }
+        
       }
 
       resp.render('viewEstablishments', {
@@ -458,30 +458,6 @@ function addRoutes(server) {
       });
     });  
   });
-
-  // route for sorting establishments
-  router.post('/sortEstablishments', function(req, resp){
-    console.log('\nSorting Applied');
-    const sortOption = req.body.sortOption;
-    let sortQuery = {};
-    let headlineLocation = '';
-
-    if (sortOption === 'latest') {
-      sortQuery = { establishment_name: 1 }; 
-      headlineLocation = 'Browse Establishments Alphabetically';
-    } else if (sortOption === 'rating-high') {
-      sortQuery = { establishment_ratings: -1 }; 
-      headlineLocation = 'Discover Highly Rated Establishments';
-    } else if (sortOption === 'rating-low') {
-      sortQuery = { establishment_ratings: 1 }; 
-      headlineLocation = 'Discover Hidden Gems';
-    }
-
-    establishmentModel.find({}).sort(sortQuery).lean().then(function(establishment_data){
-      resp.json({ establishment_data, headlineLocation });
-    });    
-  });
-
 
   // read establishment
   router.get('/establishment/:name', function (req, resp) {
