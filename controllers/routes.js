@@ -12,6 +12,14 @@ const errorFn = function (error) {
   console.error('Error:', error);
 };
 
+function isLoggedIn(req, res, next) {
+  if (req.session.username) {
+    next();
+  } else {
+    res.redirect('/'); 
+  }
+}
+
 function addRoutes(server) {
   const router = express.Router();
 
@@ -99,8 +107,6 @@ function addRoutes(server) {
       resp.redirect('/error');
     });
   });
-
-  //TODO: logic for checking ifLoggedin, displays landingPage if true otherwise goes to main
     
   // route for registration page
   router.get('/registration', function (req, res) {
@@ -321,7 +327,7 @@ function addRoutes(server) {
   });
   
   // route for user view homepage
-  router.get('/landingPage', function (req, resp) {
+  router.get('/landingPage', isLoggedIn, function (req, resp) {
     console.log('\nCurrently at Landing Page');
     const searchQuery = {};
     const searchRatingQuery = { establishment_ratings: { $gte: 4, $lte: 5 } };
@@ -353,7 +359,6 @@ function addRoutes(server) {
       });
     });
   });
-
 
   // route for view establishments
   router.get('/viewEstablishments', function(req, resp){
