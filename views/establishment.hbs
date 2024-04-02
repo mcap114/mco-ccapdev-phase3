@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <!--main area of the establishment page-->
+    <!-- main area of the establishment page -->
     <div class="parent-row main-area">
 
         <div class="left-side">
@@ -60,16 +60,17 @@
                     </div>
                 </div>        
         
-                <!-- 'Write a Review' Form -->
+                <!-- write a review section -->
                 {{#if isLoggedIn}}
                 <div class="write-review">
                     <div class="write-review-container">
+                        <!-- user icon -->
                         <div class="user-profile-establishment">
                             <img src="{{currentUserIcon}}" alt="user">
                         </div> 
 
                         <form name="post-form" action="/submit-review" method="post" id="post-form">
-                            <!-- Star Rating -->
+                            <!-- star rating -->
                             <div class="write-review-rating">
                                 <div class="review-rating">
                                     <span class="fa fa-star" data-rating="1"></span>
@@ -80,19 +81,16 @@
                                 </div>
                             </div>
                             
-                            <!-- Review Title -->
-                            <div class="location-container">
-                                <i class="fa fa-coffee"></i>
-                                <div class="review-location" id="review-location">{{establishment.establishment_name}}</div>
-                            </div>
+                            <!-- review location, title & description -->
+                            <input type="text" class="review-location" id="review-location" value="{{establishment.establishment_name}}" hidden>
                             <input type="text" class="review-title" id="review-title" placeholder="Enter your review title" required>
                             <textarea class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
 
                             <hr class="write-review-hr">
                             
-                            <!-- Photo Upload and Date -->
+                            <!-- photo upload and date -->
                             <div class="photo-upload-date">
-                                <!-- Photo Upload -->
+                                <!-- photo upload -->
                                 <div class="photo-upload-container">
                                     <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)" required>
                                     <label for="photo-upload" class="photo-upload-label">
@@ -101,12 +99,12 @@
                                 </div>
                                 <div class="photo-preview" id="photo-preview"></div>
 
-                                <!-- Date -->
+                                <!-- date -->
                                 <div class="date-and-submit">
                                     <input type="datetime-local" id="post-date" readonly>                                    
                                 </div>
                     
-                                <!-- Submit Button -->
+                                <!-- submit button -->
                                 <button type="submit" class="post-review-button" value="Save">Post Review</button>
                             </div>
                         </form>
@@ -114,11 +112,12 @@
                 </div>
                 {{/if}}
 
-            <!--Reviews (overview of ratings)-->
+            <!-- reviews (overview of ratings) -->
             <div class="reviews">
 
                 <div class="reviews-header"><b>Reviews</b></div>
 
+                <!-- establishment rating, review count & progress bar -->
                 <div class="review-section">
                     
                     <div class="star-rating-container" data-rating="{{ establishmentRating }}">
@@ -134,11 +133,11 @@
                 
                 </div>
                 
-                <!--Timeline of reviews-->
+                <!-- timeline of reviews -->
                 <div class="timeline">
                     <div class="feed-header"><b>Let's see what our Brew Buddies have to say!</b></div>
 
-                    <!-- Filter and Sort Options -->
+                    <!-- filter and sort options -->
                     <div class="filter-sort-options">
 
                         <!-- Filter by Number of Stars -->
@@ -165,17 +164,17 @@
 
                     </div>
                 
-                <!--success! review is reviewing boogsh wah!!!-->
-                <!--!Call review partial to display review data-->
-                <div class="review-feed">
-                {{#if reviewData.length}}
-                    {{#each reviewData}}
-                        {{> review_partial currentUser=../currentUser}}
-                    {{/each}}
-                {{else}}
-                    <p>Our brew buddies are still brewing up something to say.</p>
-                {{/if}}
-                </div>
+                    <!--success! review is reviewing boogsh wah!!!-->
+                    <!--!Call review partial to display review data-->
+                    <div class="review-feed">
+                    {{#if reviewData.length}}
+                        {{#each reviewData}}
+                            {{> review_partial currentUser=../currentUser}}
+                        {{/each}}
+                    {{else}}
+                        <p>Our brew buddies are still brewing up something to say.</p>
+                    {{/if}}
+                    </div>
 
                 </div>
             </div>
@@ -187,14 +186,14 @@
                     
                 <div class="about-edit-container">
                 
-                    <!--About the establishment-->
+                    <!-- about the establishment-->
                     <div class="about-section">
                         <span class="fa fa-info-circle"></span>
                         <a class="about-header"><b>About</b></a>
                         <div class="introduction">{{establishment.establishment_description}}</div>
                     </div>
                 
-                    <!-- trying to display to establishment owner only-->
+                    <!-- trying to display to establishment owner only -->
                     {{#if (eq currentUserType 'owner')}}
                     {{#if (eq currentUser establishment.owner_username)}}
                         <div class="edit-establishment">
@@ -203,7 +202,8 @@
                             </button>
                         </div>
 
-                        <!-- Edit Establishment Widget is displaying but not yet fully functioning -->
+                        <!-- edit establishment widget -->
+                        <!-- displaying but not yet fully functioning -->
                         <div id="edit-widget" class="edit-widget-container">
                             <div class="edit-establishmentwidget">
                                 <button class="close-button" onclick="hideEditWidget()">X</button>
@@ -232,20 +232,20 @@
 
                 </div>
             
-                <!--Services offered-->
+                <!-- services offered -->
                 <div class="services-section">
                     <hr class="hr1">
                     <span class="fa fa-coffee"></span>
                     <a class="services-header"><b>Services Offered</b></a>
 
-                    <!--Services List-->
+                    <!-- services list-->
                     <div class="services-list">
                         {{#each establishment.services_offered}}
                             <span class="fa fa-check"></span> {{this}} <br>
                         {{/each}}
                     </div>
 
-                    <!--Price Range-->
+                    <!-- price range -->
                     <div class="price-range-section">
                         <hr class="hr1">
                         <span class="fa fa-money"></span>
@@ -253,7 +253,7 @@
                         <div class="price-range">{{establishment.price_range}} </div>
                     </div>
 
-                    <!--Schedule of establishment-->
+                    <!-- schedule of establishment -->
                     <div class="schedule-section">
                         <hr class="hr1">
                         <span class="fa fa-clock-o"></span>
@@ -282,7 +282,7 @@
                         </div>
                     </div>
 
-                    <!--Contact Details of the Establishment-->
+                    <!-- contact details -->
                     <div class="contact-details-section">
 
                         <hr class="hr1">
@@ -302,7 +302,7 @@
 
                     </div>
 
-                    <!--Other Photos of the Establishment-->
+                    <!-- other photos -->
                     <div class="establishment-photos">
                     
                         <hr class="hr1">
@@ -310,7 +310,7 @@
                         <span class="fa fa-camera"></span>
                         <a class="header-text-photogrid"><b>More Photos</b></a>
 
-                        <!-- Photo Grid -->
+                        <!-- photo grid -->
                         <div class="photo-grid">
                             <div class="row">
                                 {{#each establishment.establishment_images}}
@@ -322,7 +322,7 @@
                         </div>
                     </div>
 
-                    <!-- Location Map of Establishment -->
+                    <!-- location map -->
                     <div class="location-map-section">
                     
                         <hr class="hr1">
@@ -337,7 +337,7 @@
                         </div>
                     </div>
 
-                    <!--About the establishment-->
+                    <!-- owner information -->
                     <div class="owner-section">
                         
                         <hr class="hr1">
