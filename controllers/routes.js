@@ -329,10 +329,11 @@ function addRoutes(server) {
   // route for user view homepage
   router.get('/landingPage', isLoggedIn, function (req, resp) {
     console.log('\nCurrently at Landing Page');
-    const searchQuery = {};
+    const loggedInUser = req.session.username;
+    const searchQuery = {username: loggedInUser};
     const searchRatingQuery = { establishment_ratings: { $gte: 4, $lte: 5 } };
 
-    const loggedInUser = req.session.username;
+    
 
     userModel.findOne(searchQuery).lean().then(function(user_data) {
       if (!user_data) {
@@ -658,45 +659,69 @@ function addRoutes(server) {
     }).catch(errorFn);
   });
 
-  // route to follow a user
-  router.post('/follow/:username', function(req, res) {
-    const loggedInUser = req.session.username;
-    const usernameToFollow = req.params.username;
+ // route to follow a user
+router.post('/follow/:username', async function(req, res) {
+  try {
+      const loggedInUser = req.session.username;
+      const usernameToFollow = req.params.username;
 
-    userModel.findOneAndUpdate(
-        { username: loggedInUser },
-        { $addToSet: { following: usernameToFollow } }, // Add to following list
-        { new: true }
-    ).then(user => {
-        if (!user) {
-            return res.status(404).send('User not found.');
-        }
-        res.send(user);
-    }).catch(err => {
-        console.error('Error following user:', err);
-        res.status(500).send('Error following user.');
-    });
-  });
+      const updateLoggedInUser = userModel.findOneAndUpdate(
+          { username: loggedInUser },
+          { $addToSet: { following: usernameToFollow } }, // Add to following list
+          { new: true }
+      );
+
+      const updateFollowedUser = userModel.findOneAndUpdate(
+          { username: usernameToFollow },
+          { $addToSet: { followers: loggedInUser } }, // Add to following list
+          { new: true }
+      );
+
+      const [loggedInUserUpdated, followedUserUpdated] = await Promise.all([updateLoggedInUser, updateFollowedUser]);
+
+      if (!loggedInUserUpdated || !followedUserUpdated) {
+          return res.status(404).send('User not found.');
+      }
+
+      res.send(loggedInUserUpdated);
+  } catch (err) {
+      console.error('Error following user:', err);
+      res.status(500).send('Error following user.');
+  }
+});
+
 
   // route to unfollow a user
-  router.post('/unfollow/:username', function(req, res) {
-    const loggedInUser = req.session.username;
-    const usernameToUnfollow = req.params.username;
+router.post('/unfollow/:username', async function(req, res) {
+  try {
+      const loggedInUser = req.session.username;
+      const usernameToUnfollow = req.params.username;
 
-    userModel.findOneAndUpdate(
-        { username: loggedInUser },
-        { $pull: { following: usernameToUnfollow } }, // Remove from following list
-        { new: true }
-    ).then(user => {
-        if (!user) {
-            return res.status(404).send('User not found.');
-        }
-        res.send(user);
-    }).catch(err => {
-        console.error('Error unfollowing user:', err);
-        res.status(500).send('Error unfollowing user.');
-    });
-  });
+      const updateLoggedInUser = userModel.findOneAndUpdate(
+          { username: loggedInUser },
+          { $pull: { following: usernameToUnfollow } }, // Remove from following list
+          { new: true }
+      );
+
+      const updateUnfollowedUser = userModel.findOneAndUpdate(
+          { username: usernameToUnfollow },
+          { $pull: { followers: loggedInUser } }, // Remove from followers list
+          { new: true }
+      );
+
+      const [loggedInUserUpdated, unfollowedUserUpdated] = await Promise.all([updateLoggedInUser, updateUnfollowedUser]);
+
+      if (!loggedInUserUpdated || !unfollowedUserUpdated) {
+          return res.status(404).send('User not found.');
+      }
+
+      res.send(loggedInUserUpdated);
+  } catch (err) {
+      console.error('Error unfollowing user:', err);
+      res.status(500).send('Error unfollowing user.');
+  }
+});
+
 
   // route for updating user's information on profile page
   router.post('/update-user', function(req, resp) {
