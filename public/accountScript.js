@@ -308,32 +308,6 @@ function updateProfilePage(userData) {
     document.getElementById("bio-field").innerText = userData.bio;
 }
 
-// function to show the photo upload section
-function showPhotoUpload() {
-    console.log("Show Photo Upload");
-}
-
-// function to update bio 
-function updateBioText() {
-    console.log("Update BioText");
-}
-
-// Function to change password
-function changePassword() {
-    console.log("Change Password");
-}
-
-// function to save changes
-function saveChanges() {
-    console.log("Save Changes");
-}
-
-// function to hide the write a review widget
-function hideWriteAReviewWidget() {
-    var writeReviewWidget = document.getElementById("review-widget");
-    writeReviewWidget.style.display = "none";
-}
-
 // 
 function unlikeWidget(establishmentName) {
     // Confirm action with the user (optional)
@@ -372,9 +346,7 @@ function unlikeWidget(establishmentName) {
     }
 }
 
-
-
-// Function to follow a user
+// function to follow a user
 function followUser(username) {
     fetch(`/follow/${username}`, { method: 'POST' })
     .then(response => {
@@ -388,7 +360,7 @@ function followUser(username) {
     .catch(error => console.error('Error following user:', error));
 }
 
-// Function to unfollow a user
+// function to unfollow a user
 function unfollowUser(username) {
     fetch(`/unfollow/${username}`, { method: 'POST' })
     .then(response => {
@@ -402,8 +374,7 @@ function unfollowUser(username) {
     .catch(error => console.error('Error unfollowing user:', error));
 }
 
-
-// Function to update UI after following/unfollowing
+// function to update UI after following/unfollowing
 function updateFollowUI(isFollowing) {
     const followBtnContainer = document.getElementById('follow-btn-container');
     if (isFollowing) {
@@ -439,13 +410,3 @@ async function removeReview(reviewId) {
         }
     }
 }
-
-
-// event listener for go back button to hide the write a review widget
-document.querySelector('.go-back-button').addEventListener('click', hideWriteAReviewWidget);
-
-// event listener for go back button to hide the edit profile widget
-document.querySelector('.go-back-button').addEventListener('click', hideEditProfileWidget);
-
-// event listener for save button to save changes
-document.querySelector('.save-button').addEventListener('click', saveChanges);
