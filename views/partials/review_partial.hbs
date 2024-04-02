@@ -7,73 +7,66 @@
 
     <div class="review-details">
 
-            <!-- {{log "Username:" username}}
-            {{log "CurrentUser:" currentUser}} --> 
-
-           {{#if (eq username currentUser)}}
-            <!-- Display review menu -->
-            <div class="review-menu">
-                <button class="reaction-btn review-option" onclick="showEditWidget()">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> 
-                </button>
-     
-                <button class="reaction-btn review-option" onclick="deleteWidget(this)">
-                    <i class="fa fa-trash" aria-hidden="true"></i> 
-                </button>
-
-            </div>
-
-            <!-- Edit Review  Widget is displaying but not yet fully functioning -->
-            <div id="edit-widget" class="edit-widget-container">
-                <div class="edit-establishmentwidget">
-                    <button class="close-button" onclick="hideEditWidget()">X</button>
-                    <form name="" action="" method="POST" onsubmit="return ()">
-                    <p class="main"><b>Edit Review Details</b></p>
-                    <div class="edit-review-rating">
-                        <div class="review-rating">
-                            <span class="fa fa-star" data-rating="1"></span>
-                            <span class="fa fa-star" data-rating="2"></span>
-                            <span class="fa fa-star" data-rating="3"></span>
-                            <span class="fa fa-star" data-rating="4"></span>
-                            <span class="fa fa-star" data-rating="5"></span>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <label for="review-title">Review Title</label>
-                        <input type="text" id="review-title" value="" placeholder="Update review title">
-                    </div>
-                    <div class="info-item">
-                        <label for="location">Location</label>
-                        <input type="text" name="review_location" id="location-field" value="{{establishment.establishment_address}}" placeholder="Location" readonly>
-                    </div>
-                    <div class="info-item">
-                        <label for="description">Description</label>
-                        <input type="text" id="caption" value=""  placeholder="Update review descripton">
-                    </div>
-                    <div class="establishment-options">
-                        <input id="save-details" type="submit" value="Save"></input>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            {{/if}}
-
-        <div onclick="redirectToProfile('{{username}}')" class="user-profile-establishment">
-            <img src="{{user_photo}}" alt="{{display_name}}">
-            <div class="profile-text">
-                <span class="display-name">{{display_name}}</span>
-                <br>
-                <span class="username">@{{username}}</span>
-            </div>
+        {{#if (eq username currentUser)}}
+        <div class="review-menu">
+            <button class="reaction-btn review-option" onclick="showEditWidget()">
+                <i class="fa fa-pencil" aria-hidden="true"></i> 
+            </button>
+    
+            <button class="reaction-btn review-option" onclick="deleteWidget(this)">
+                <i class="fa fa-trash" aria-hidden="true"></i> 
+            </button>
         </div>
 
-    <div class="review-data">
-        <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
-        <p class="title">{{review_title}}</p>
-        <p class="caption">{{caption}}</p>
-        <p class="date-posted">{{date}}</p>
-    </div>
+        <!-- edit review  widget -->
+        <!-- displaying but not yet fully functioning -->
+        <div id="edit-widget" class="edit-widget-container">
+            <div class="edit-establishmentwidget">
+                <button class="close-button" onclick="hideEditWidget()">X</button>
+                <form name="" action="" method="POST" onsubmit="return ()">
+                <p class="main"><b>Edit Review Details</b></p>
+                <div class="edit-review-rating">
+                    <div class="review-rating">
+                        <span class="fa fa-star" data-rating="1"></span>
+                        <span class="fa fa-star" data-rating="2"></span>
+                        <span class="fa fa-star" data-rating="3"></span>
+                        <span class="fa fa-star" data-rating="4"></span>
+                        <span class="fa fa-star" data-rating="5"></span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <!-- review location is hidden since you are in establishment page -->
+                    <input type="text" name="review_location" id="location-field" value="{{establishment.establishment_address}}" hidden>
+                </div>
+                <div class="info-item">
+                    <label for="review-title">Review Title</label>
+                    <input type="text" id="review-title" value="" placeholder="Update review title">
+                </div>
+                <div class="info-item">
+                    <label for="description">Description</label>
+                    <input type="text" id="caption" value=""  placeholder="Update review descripton">
+                </div>
+                <div class="establishment-options">
+                    <input id="save-details" type="submit" value="Save"></input>
+                </div>
+                </form>
+            </div>
+        </div>
+        {{/if}}
 
+        <div onclick="redirectToProfile('{{username}}')" class="user-profile-establishment">
+            {{> redirectProfile}}
+        </div>
+
+        <!-- review section -->
+        <div class="review-data">
+            <div class="dynamic-star-rating star-rating" data-rating="{{rating}}"></div>
+            <p class="title">{{review_title}}</p>
+            <p class="caption">{{caption}}</p>
+            <p class="date-posted">{{date}}</p>
+        </div>
+
+        <!-- comment section -->
         <div class="comment-section" id="commentSection">
             <div class="user-profile-establishment">
                 <img src="https://i.imgocean.com/IMG_583878e7f9f7129aa4bc.jpeg" alt="abby">
@@ -84,11 +77,13 @@
             </div>
         </div>
 
+        <!-- reactions section -->
         <div class="reactions">
             <button class="reaction-btn helpful"><i class="fa fa-thumbs-up" aria-hidden="true"></i> This was helpful!</button>
-                <button class="reaction-btn not-helpful"><i class="fa fa-thumbs-down" aria-hidden="true"></i> This was not helpful</button>
+            <button class="reaction-btn not-helpful"><i class="fa fa-thumbs-down" aria-hidden="true"></i> This was not helpful</button>
             <button class="reaction-btn comment"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
         </div>
 
-        </div>
     </div>
+
+</div>

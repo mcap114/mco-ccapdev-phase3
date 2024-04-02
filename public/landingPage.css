@@ -76,18 +76,23 @@
     display: flex;
     justify-content: space-between;
     margin-top: 3%;
-    margin-bottom: -1%;
+    margin-bottom: -0.5%;
 }
 
 .view-more>a{ 
     align-self: flex-start;
     padding-left: 1%;
+    padding-bottom: 10px;
 }
 
 .view-more>p{
     text-align: right;
     margin-top: 0;
     padding-right: 1%;
+}
+
+.trending-spots-container{
+    margin-top: 1%;
 }
 
 .trending-spots-list{

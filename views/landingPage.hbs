@@ -19,14 +19,9 @@
 
 <div class="view-more">
     <a class="sans-serif green bold">NEW FROM FRIENDS</a>
-    <p>
-    <a class="sans-serif green bold">See all activity</a>
-    <i class="fa fa-angle-right"></i>
-    </p>
 </div>
 
 <hr>
-<!-- insert each here -->
 
 <div class="friend-reviews-container">
 {{#each review-data}}    
@@ -36,13 +31,7 @@
         
         <div class="user-profile">
             <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
-                <img src="{{user_photo}}">                             
-                <div class="profile-text">
-                    <span class="display-name">{{display_name}}</span>
-                    <br>
-                    <span class="username">@{{username}}</span>
-                    
-                </div>
+                {{> redirectProfile}}
             </div>
             <div class="review-ratings-container">
                 <p class="review-ratings">{{rating}}</p><i class="fa fa-star star-icon" id="reviewstar"></i>

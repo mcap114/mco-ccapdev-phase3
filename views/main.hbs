@@ -53,13 +53,7 @@
                 
                 <div class="user-profile">
                     <div onclick="redirectToProfile('{{username}}')" class="profile-image-username-container">
-                        <img src="{{user_photo}}">                             
-                        <div class="profile-text">
-                            <span class="display-name">{{display_name}}</span>
-                            <br>
-                            <span class="username">@{{username}}</span>
-                            
-                        </div>
+                        {{> redirectProfile}}
                     </div>
                     <div class="review-ratings-container">
                         <p class="review-ratings">{{rating}}</p><i class="fa fa-star star-icon" id="reviewstar"></i>

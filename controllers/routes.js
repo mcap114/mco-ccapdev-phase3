@@ -313,6 +313,7 @@ function addRoutes(server) {
   router.get('/landingPage', function (req, resp) {
     console.log('\nCurrently at Landing Page');
     const searchQuery = {};
+    const searchRatingQuery = { establishment_ratings: { $gte: 4, $lte: 5 } };
 
     const loggedInUser = req.session.username;
 
@@ -326,7 +327,7 @@ function addRoutes(server) {
       const followingList = user_data.following || [];
 
       reviewModel.find({ username: { $in: followingList } }).lean().then(function(review_data){
-        establishmentModel.find(searchQuery).lean().then(function(establishment_data){
+        establishmentModel.find(searchRatingQuery).lean().then(function(establishment_data){
           resp.render('landingPage', {
             layout: 'index',
             title: 'Cofeed',
