@@ -351,7 +351,7 @@ function addRoutes(server) {
       const reviewSearchQuery = { date_posted: { $gte: oneWeekAgo }, username: { $in: followingList } };
 
       reviewModel.find({ reviewSearchQuery }).lean().then(function(review_data){
-        establishmentModel.find(searchRatingQuery).lean().then(function(establishment_data){
+        establishmentModel.find(searchRatingQuery).sort({ establishment_ratings: 1 }).lean().then(function(establishment_data){
           const noRecentReviewsFromFriends = review_data.length === 0;
           resp.render('landingPage', {
             layout: 'index',
