@@ -8,7 +8,7 @@
         "password":"Cadyyy12345",
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Kape Benito"],
-        "createdreview": ["Kape Benito"],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
         "followers": ["reginaaa","aaaaron"],
         "following": ["aaaaron","karen_"]
     },
@@ -21,7 +21,8 @@
         "password":"Reginageorgee1",
         "userType": "rater",
         "favoriteplace":["Angkan Coffee Company"],
-        "createdreview": ["Kape Benito"],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}, 
+                        { "place_name": "Kape Benito",  "review_title": "Sakto lang" }],
         "followers": ["gretchh","karen_"],
         "following": ["aaaaron"]
     },
@@ -34,7 +35,7 @@
         "password":"weineeerS3",
         "userType": "rater",
         "favoriteplace":["Angkan Coffee Company"],
-        "createdreview": ["Frank & Dean Coffee"],
+        "createdreview": [{ "place_name": "Frank & Dean Coffee", "review_title": "New favorite Cafe"}],
         "followers": ["karen_"],
         "following": ["karen_","cadyyy"]
     },
@@ -47,7 +48,7 @@
         "password":"karen_Smith4",
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Angkan Coffee Company"],
-        "createdreview": ["Kape Benito"],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
         "followers": ["reginaaa","gretchh","cadyyy","karen_"],
         "following": ["aaaaron","karen_"]
     },
@@ -60,11 +61,11 @@
         "password":"AAAAron24",
         "userType": "rater",
         "favoriteplace":["Kape Benito","Angkan Coffee Company"],
-        "createdreview": ["Frank & Dean Coffee"],
+        "createdreview": [{ "place_name": "Angkan Coffee Company", "review_title": "New favorite Cafe"},
+                        { "place_name": "Obscure Cafe", "review_title": "Chill Spot"}],
         "followers": ["reginaaa","cadyyy"],
         "following": ["reginaaa","cadyyy"]
     },
-
     {
         "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
         "name": "John Mark Miranda",
