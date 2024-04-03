@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   followers: { type: Array },
   favoriteplace: { type: Array },
   createdreview: [{
+    review_photo: { type: String },
     place_name: { type: String },
     review_title: { type: String },
   }]
