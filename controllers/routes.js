@@ -648,7 +648,7 @@ function addRoutes(server) {
           establishmentModel.find(establishmentSearchQuery).lean().then(function(establishment_data){
             
             const isOwnProfile = user_data.username === req.session.username;
-            const isFollowing = user_data.followers.includes(loggedInUser);
+            const isFollowing = user_data.following.includes(loggedInUser);
     
             const favoritePlacesCount = favoritePlaces.length;
             const createdReviewCount = review_data.length;
