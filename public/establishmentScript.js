@@ -214,8 +214,12 @@ function submitReview() {
   const review_title = document.getElementById('review-title').value;
   const place_name = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
-
   const rating = getStarRating();
+  
+  if (rating === 0) {
+    alert('Please select a star rating.');
+    return; 
+  }
 
   fetch('/submit-review', {
       method: 'POST',
