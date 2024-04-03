@@ -3,7 +3,7 @@
     <div class="listreview-title">Created Reviews</div>
     {{#each review-data}}
     <div class="listreviews">
-        <a onclick="redirectToEstablishment('{{place_name}}')" class="createdrev-place-name">{{this.place_name}}</a>
+        <a onclick="redirectToEstablishment('{{place_name}}')">{{this.place_name}}: {{review_title}}</a>
     </div>
     {{/each}}
 </div>

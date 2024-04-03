@@ -215,6 +215,7 @@ function submitReview() {
   const place_name = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
   const rating = getStarRating();
+  const reviewsCountElement = document.getElementById('reviews-count');
   
   if (rating === 0) {
     alert('Please select a star rating.');
@@ -242,7 +243,7 @@ function submitReview() {
   .then(data => {
     if (data && data.success) {
       alert(data.message);
-      const reviewsCountElement = document.getElementById('reviews-count');
+      
       if (reviewsCountElement) {
         const newReviewCount = parseInt(reviewsCountElement.innerText.split(' ')[0]) + 1;
         reviewsCountElement.innerText = newReviewCount + ' reviews';
