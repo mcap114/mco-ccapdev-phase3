@@ -91,9 +91,9 @@
             <div class="brewing">No reviews created yet.</div>
         {{else}}
             <div class="coffee-shop-reviews widget" data-widget-id="2">
-                {{#each user-data.createdreview}}
+                {{#each review-data}}
                 <div class="coffee-shop-review">
-                    <img src="{{user-data.review_photo}}" alt="Coffee Shop Review">
+                    <img src="{{review_photo}}" alt="Coffee Shop Review">
                     <div class="profpage-widget-details">
                         <span onclick="redirectToEstablishment('{{place_name}}')" class="createdrev-place-name">{{place_name}}</span>
                         <div class="profpage-menu">

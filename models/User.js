@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema({
   createdreview: [{
     place_name: { type: String },
     review_title: { type: String },
-    review_photo: {type: String}
   }]
 },{ versionKey: false });
   
