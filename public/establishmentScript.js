@@ -242,6 +242,11 @@ function submitReview() {
   .then(data => {
     if (data && data.success) {
       alert(data.message);
+      const reviewsCountElement = document.getElementById('reviews-count');
+      if (reviewsCountElement) {
+        const newReviewCount = parseInt(reviewsCountElement.innerText.split(' ')[0]) + 1;
+        reviewsCountElement.innerText = newReviewCount + ' reviews';
+      }
   } else {
       alert('Failed to create review: ' + data.message);
   }
