@@ -18,7 +18,9 @@
 </div>
 
 <hr>
-
+{{#if noRecentReviewsFromFriends}}
+<div class="brewing">No recent reviews from brew buddies. They are still brewing up something to say.</div>
+{{else}}
 <div class="friend-reviews-container">
 {{#each review-data}}    
     <div  class="review overflow margin-right">
@@ -54,6 +56,7 @@
 
 {{/each}}
 </div> 
+{{/if}}
 
 <div class="view-more">
     <a class="sans-serif green bold">POPULAR ON CO.FEED</a>

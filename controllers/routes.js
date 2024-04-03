@@ -134,7 +134,9 @@ function addRoutes(server) {
           bio: req.body.bio,
           email: req.body.email,
           password: hashedPassword,
-          userType: req.body.userType
+          userType: req.body.userType,
+          following: [], 
+          followers: []
         });
 
         return userInstance.save();
@@ -334,6 +336,9 @@ function addRoutes(server) {
     console.log('\nCurrently at Landing Page');
     const loggedInUser = req.session.username;
     const searchQuery = {username: loggedInUser};
+    
+    const oneWeekAgo = moment().subtract(7, 'days').toDate();
+    
     const searchRatingQuery = { establishment_ratings: { $gte: 4, $lte: 5 } };
 
     userModel.findOne(searchQuery).lean().then(function(user_data) {
@@ -342,11 +347,12 @@ function addRoutes(server) {
         resp.redirect('/error');
         return;
       }
-
       const followingList = user_data.following || [];
+      const reviewSearchQuery = { date_posted: { $gte: oneWeekAgo }, username: { $in: followingList } };
 
-      reviewModel.find({ username: { $in: followingList } }).lean().then(function(review_data){
+      reviewModel.find({ reviewSearchQuery }).lean().then(function(review_data){
         establishmentModel.find(searchRatingQuery).lean().then(function(establishment_data){
+          const noRecentReviewsFromFriends = review_data.length === 0;
           resp.render('landingPage', {
             layout: 'index',
             title: 'Cofeed',
@@ -355,7 +361,8 @@ function addRoutes(server) {
             currentUser: req.session.username,
             currentUserName: req.session.name,
             currentUserIcon: req.session.user_icon,
-            currentUserType: req.session.userType
+            currentUserType: req.session.userType,
+            noRecentReviewsFromFriends: noRecentReviewsFromFriends
           });
         });
       }).catch(function(error) {
@@ -679,7 +686,7 @@ function addRoutes(server) {
     }).catch(errorFn);
   });
 
- // route to follow a user
+  // route to follow a user
   router.post('/follow/:username', async function(req, res) {
     try {
         const loggedInUser = req.session.username;
@@ -702,6 +709,13 @@ function addRoutes(server) {
         if (!loggedInUserUpdated || !followedUserUpdated) {
             return res.status(404).send('User not found.');
         }
+
+        if (loggedInUserUpdated.following.length === 0) {
+          await userModel.findOneAndUpdate(
+              { username: loggedInUser },
+              { following: [] } // Set following list to empty array
+          );
+      }
 
         res.send(loggedInUserUpdated);
     } catch (err) {
@@ -733,6 +747,20 @@ function addRoutes(server) {
         if (!loggedInUserUpdated || !unfollowedUserUpdated) {
             return res.status(404).send('User not found.');
         }
+
+        if (unfollowedUserUpdated.followers.length === 0) {
+          await userModel.findOneAndUpdate(
+              { username: usernameToUnfollow },
+              { followers: [] } 
+          );
+        }
+
+        if (loggedInUserUpdated.following.length === 0) {
+          await userModel.findOneAndUpdate(
+              { username: loggedInUser },
+              { following: [] } // Set following list to empty array
+          );
+      }
 
         res.send(loggedInUserUpdated);
     } catch (err) {
