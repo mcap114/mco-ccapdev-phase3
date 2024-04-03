@@ -385,6 +385,7 @@ function addRoutes(server) {
 
   // route for view establishments with filters
   router.post('/viewEstablishments', function(req, resp){
+    console.log('\nFilters Applied');
     let searchQuery = {};
     let headlineLocation = '';
 
@@ -438,14 +439,14 @@ function addRoutes(server) {
   
           if (location) {
             headlineLocation = 'Establishments in ' + location;
-        } else if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
+          } else if (isMetroEstablishmentPresent && isNonMetroEstablishmentPresent) {
             headlineLocation = 'Establishments in Metro Manila and Outside Metro Manila';
             console.log('\nCurrently searching establishments both in Metro Manila and Outside Metro Manila');
-        } else if (isMetroEstablishmentPresent) {
+          } else if (isMetroEstablishmentPresent) {
             headlineLocation = 'Establishments in Metro Manila';
-        } else {
+          } else {
             headlineLocation = 'Establishments Outside Metro Manila';
-        }
+          }
         
       }
 
@@ -458,6 +459,29 @@ function addRoutes(server) {
         currentUserIcon: req.session.user_icon
       });
     });  
+  });
+
+  // route for sorting establishments
+  router.post('/sortEstablishments', function(req, resp){
+    console.log('\nSorting Applied');
+    const sortOption = req.body.sortOption;
+    let sortQuery = {};
+    let headlineLocation = '';
+
+    if (sortOption === 'latest') {
+      sortQuery = { establishment_name: 1 }; 
+      headlineLocation = 'Browse Establishments Alphabetically';
+    } else if (sortOption === 'rating-high') {
+      sortQuery = { establishment_ratings: -1 }; 
+      headlineLocation = 'Discover Highly Rated Establishments';
+    } else if (sortOption === 'rating-low') {
+      sortQuery = { establishment_ratings: 1 }; 
+      headlineLocation = 'Discover Hidden Gems';
+    }
+
+    establishmentModel.find({}).sort(sortQuery).lean().then(function(establishment_data){
+      resp.json({ establishment_data, headlineLocation });
+    });    
   });
 
   // read establishment
@@ -660,68 +684,67 @@ function addRoutes(server) {
   });
 
  // route to follow a user
-router.post('/follow/:username', async function(req, res) {
-  try {
-      const loggedInUser = req.session.username;
-      const usernameToFollow = req.params.username;
+  router.post('/follow/:username', async function(req, res) {
+    try {
+        const loggedInUser = req.session.username;
+        const usernameToFollow = req.params.username;
 
-      const updateLoggedInUser = userModel.findOneAndUpdate(
-          { username: loggedInUser },
-          { $addToSet: { following: usernameToFollow } }, // Add to following list
-          { new: true }
-      );
+        const updateLoggedInUser = userModel.findOneAndUpdate(
+            { username: loggedInUser },
+            { $addToSet: { following: usernameToFollow } }, // Add to following list
+            { new: true }
+        );
 
-      const updateFollowedUser = userModel.findOneAndUpdate(
-          { username: usernameToFollow },
-          { $addToSet: { followers: loggedInUser } }, // Add to following list
-          { new: true }
-      );
+        const updateFollowedUser = userModel.findOneAndUpdate(
+            { username: usernameToFollow },
+            { $addToSet: { followers: loggedInUser } }, // Add to following list
+            { new: true }
+        );
 
-      const [loggedInUserUpdated, followedUserUpdated] = await Promise.all([updateLoggedInUser, updateFollowedUser]);
+        const [loggedInUserUpdated, followedUserUpdated] = await Promise.all([updateLoggedInUser, updateFollowedUser]);
 
-      if (!loggedInUserUpdated || !followedUserUpdated) {
-          return res.status(404).send('User not found.');
-      }
+        if (!loggedInUserUpdated || !followedUserUpdated) {
+            return res.status(404).send('User not found.');
+        }
 
-      res.send(loggedInUserUpdated);
-  } catch (err) {
-      console.error('Error following user:', err);
-      res.status(500).send('Error following user.');
-  }
-});
+        res.send(loggedInUserUpdated);
+    } catch (err) {
+        console.error('Error following user:', err);
+        res.status(500).send('Error following user.');
+    }
+  });
 
 
   // route to unfollow a user
-router.post('/unfollow/:username', async function(req, res) {
-  try {
-      const loggedInUser = req.session.username;
-      const usernameToUnfollow = req.params.username;
+  router.post('/unfollow/:username', async function(req, res) {
+    try {
+        const loggedInUser = req.session.username;
+        const usernameToUnfollow = req.params.username;
 
-      const updateLoggedInUser = userModel.findOneAndUpdate(
-          { username: loggedInUser },
-          { $pull: { following: usernameToUnfollow } }, // Remove from following list
-          { new: true }
-      );
+        const updateLoggedInUser = userModel.findOneAndUpdate(
+            { username: loggedInUser },
+            { $pull: { following: usernameToUnfollow } }, // Remove from following list
+            { new: true }
+        );
 
-      const updateUnfollowedUser = userModel.findOneAndUpdate(
-          { username: usernameToUnfollow },
-          { $pull: { followers: loggedInUser } }, // Remove from followers list
-          { new: true }
-      );
+        const updateUnfollowedUser = userModel.findOneAndUpdate(
+            { username: usernameToUnfollow },
+            { $pull: { followers: loggedInUser } }, // Remove from followers list
+            { new: true }
+        );
 
-      const [loggedInUserUpdated, unfollowedUserUpdated] = await Promise.all([updateLoggedInUser, updateUnfollowedUser]);
+        const [loggedInUserUpdated, unfollowedUserUpdated] = await Promise.all([updateLoggedInUser, updateUnfollowedUser]);
 
-      if (!loggedInUserUpdated || !unfollowedUserUpdated) {
-          return res.status(404).send('User not found.');
-      }
+        if (!loggedInUserUpdated || !unfollowedUserUpdated) {
+            return res.status(404).send('User not found.');
+        }
 
-      res.send(loggedInUserUpdated);
-  } catch (err) {
-      console.error('Error unfollowing user:', err);
-      res.status(500).send('Error unfollowing user.');
-  }
-});
-
+        res.send(loggedInUserUpdated);
+    } catch (err) {
+        console.error('Error unfollowing user:', err);
+        res.status(500).send('Error unfollowing user.');
+    }
+  });
 
   // route for updating user's information on profile page
   router.post('/update-user', function(req, resp) {
