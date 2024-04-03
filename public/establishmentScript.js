@@ -1,5 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
+  // stars for establishment_ratings
   var starRatingContainers = document.querySelectorAll(".star-rating-container");
   starRatingContainers.forEach(function(container) {
     var establishmentRating = parseFloat(container.dataset.rating);
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     container.querySelector('.star-rating').innerHTML = starsHtml;
   });
 
+  // progress bar for reviews
   var reviewCount = parseInt(document.getElementById('progressBars').dataset.reviewCount);
   var ratingDistribution = JSON.parse(document.getElementById('progressBars').dataset.ratingDistribution);
   var progressBarsContainer = document.getElementById('progressBars');
@@ -51,23 +53,29 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelector("input#post-date").value = formattedDate;
   updateStarRatings();
 
-    const favoriteButtons = document.querySelectorAll('.favorite');
-    favoriteButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        const establishment_name = event.target.dataset.establishment_name;
-        addToFavorites(establishment_name);
-        });
+  const favoriteButtons = document.querySelectorAll('.favorite');
+  favoriteButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+      const establishment_name = event.target.dataset.establishment_name;
+      addToFavorites(establishment_name);
       });
+    });
 
-    const reviewForm = document.getElementById('post-form');
-    if (reviewForm) {
-      reviewForm.addEventListener('submit', submitReview);
-    }
+  const reviewForm = document.getElementById('post-form');
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', submitReview);
+  }
+
+  document.querySelectorAll('.review-rating .fa-star').forEach(function(star) {
+    star.addEventListener('click', function() {
+        const rating = parseInt(this.getAttribute('data-rating'));
+        highlightStars(rating);
+    });
+  });
+  
     
-    initStarRatings(); //write review star rating baka makalimutan ko ulit
-    initEditReviewStars();
-    hideEditReviewWidget();
-    hideEditEstablishmentWidget();
+  initStarRatings(); //write review star rating baka makalimutan ko ulit
+  initEditReviewStars();
 });
 
 // function to add establishment to current user's favorites
@@ -137,46 +145,6 @@ function autoExpand(textarea) {
   textarea.style.height = textarea.scrollHeight + 'px';
 }
 
-// Function to handle review submission
-function submitReview(event) {
-  event.preventDefault(); 
-
-  // Get form data
-  const formData = new FormData(event.target);
-
-  // Manually append the star rating
-  const highlightedStars = document.querySelectorAll('.review-rating .fa.highlighted');
-  const ratingValue = highlightedStars.length; // Number of highlighted stars equals the rating
-  formData.append('review_rating', ratingValue);
-  
-  // Log the form data before sending it to the server
-  console.log('Form Data:', formData);
-
-  // Send POST request to server
-  fetch('/submit-review', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to submit review. Please try again.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    if (data.success) {
-      alert('Review submitted successfully!');
-    } else {
-      alert(data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('An error occurred while processing your request.');
-  });
-}
-
 // write a review date
 function formatDate(date) {
   const year = date.getFullYear();
@@ -236,25 +204,19 @@ function getStarsHTML(rating) {
   return starsHTML;
 }
 
-// not yet implemented function to save changes
-function saveChanges() {
-  console.log("Save Changes");
-}
-
 // function when filtering reviews by its ratings
 function applyRatingFilter(rating) {
   window.location.href = window.location.pathname + '?rating=' + rating;
 }
 
-// Function to handle form submission
+// function to handle write a review
 function submitReview() {
-  // Retrieve form data
   const review_title = document.getElementById('review-title').value;
   const place_name = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
 
+  const rating = getStarRating();
 
-  // Send POST request to server
   fetch('/submit-review', {
       method: 'POST',
       headers: {
@@ -263,7 +225,8 @@ function submitReview() {
       body: JSON.stringify({
         review_title: review_title,
         place_name: place_name,
-        caption: caption
+        caption: caption,
+        rating: rating
       })
   })
   .then(response => {
@@ -278,14 +241,29 @@ function submitReview() {
   } else {
       alert('Failed to create review: ' + data.message);
   }
-      // Optionally, display a success message or redirect the user
   })
   .catch(error => {
       console.error('Error submitting review:', error);
-      // Optionally, display an error message to the user
   });
 }
 
+// function to highlight selected stars in writing a review
+function highlightStars(rating) {
+  const stars = document.querySelectorAll('.review-rating .fa-star');
+  stars.forEach(function(star, index) {
+      if (index < rating) {
+        star.classList.add('checked');
+      } else {
+        star.classList.remove('checked');
+      }
+  });
+}
+
+// function to retrieve the selected star rating in writing a review
+function getStarRating() {
+  const stars = document.querySelectorAll('.review-rating .fa-star.checked');
+  return stars.length; 
+}
 
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);

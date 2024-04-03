@@ -1,8 +1,4 @@
 const express = require('express');
-const server = express();
-const bodyParser = require('body-parser');
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
 const sessionController = require('./sessionController');
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
@@ -16,6 +12,7 @@ const errorFn = function (error) {
   console.error('Error:', error);
 };
 
+// function to check if current user is logged in or not
 function isLoggedIn(req, res, next) {
   if (req.session.username) {
     next();
@@ -585,39 +582,35 @@ function addRoutes(server) {
     }
   });
   
-  // still a work in progress 
-  // Currently it is able to reflect the submitted user_photo, username and date posted to the database
+  // route for writing a review
   router.post('/submit-review', function(req, res) {
     try {
-        // extract review data from the request body
-        const { review_title, place_name, caption } = req.body;
+      const { rating, review_title, place_name, caption } = req.body;
 
-        // Assuming you're using Mongoose for MongoDB interaction
-        const newReview = new reviewModel({
-            user_photo: req.session.user_icon,
-            display_name: req.session.name,
-            username: req.session.username,
-            review_title,
-            place_name,
-            caption,
-            date_posted: new Date()
-        });
+      const newReview = new reviewModel({
+        user_photo: req.session.user_icon,
+        display_name: req.session.name,
+        username: req.session.username,
+        rating,
+        review_title,
+        place_name,
+        caption,
+        date_posted: new Date()
+      });
 
-        // Save the review to the database
-        newReview.save().then(function() {
-            console.log('Review submitted');
-            res.json({ success: true, message: 'Review submitted successfully!' });
-        })
-        .catch(function(error) {
-            console.error('Error:', error);
-            res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
-        });
-    } catch (error) {
+      newReview.save().then(function() {
+        console.log('\nReview submitted');
+        res.json({ success: true, message: 'Review submitted successfully!' });
+      })
+      .catch(function(error) {
         console.error('Error:', error);
         res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
-});
-
+  });
 
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
@@ -716,7 +709,6 @@ function addRoutes(server) {
         res.status(500).send('Error following user.');
     }
   });
-
 
   // route to unfollow a user
   router.post('/unfollow/:username', async function(req, res) {
