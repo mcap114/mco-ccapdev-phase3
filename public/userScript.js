@@ -330,6 +330,9 @@ function unlikeWidget(establishmentName) {
                 if (favPlaceElement) {
                     favPlaceElement.parentElement.parentElement.remove();
                     console.log('Widget removed from DOM.');
+                    alert('Removed from favorites successfully!');
+                    window.location.reload(); // Reload the page
+
                 } else {
                     console.log('Widget element not found in DOM.');
                     alert('Widget element not found!');
@@ -384,29 +387,31 @@ function updateFollowUI(isFollowing) {
     }
 }
 
-async function removeReview(reviewId) {
+function removeReview(reviewId) {
     if (confirm('Are you sure you want to delete this review?')) {
-        try {
-            const response = await fetch('/remove-review', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ review_id: reviewId }),
-            });
-            const data = await response.json();
+        fetch('/remove-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ review_id: reviewId }),
+        })
+        .then(response => response.json())
+        .then(data => {
             if (data.success) {
                 const reviewElement = document.querySelector(`.coffee-shop-review[data-review-id="${reviewId}"]`);
                 if (reviewElement) {
                     reviewElement.remove(); // Remove the review widget from the UI
                     alert('Review removed successfully!');
+                    window.location.reload(); // Reload the page
                 }
             } else {
                 alert('Failed to remove review!');
             }
-        } catch (error) {
+        })
+        .catch(error => {
             console.error('Error:', error);
             alert('An error occurred while removing review.');
-        }
+        });
     }
 }
