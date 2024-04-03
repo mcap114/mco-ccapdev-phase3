@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
   favoriteplace: { type: Array },
   createdreview: [{
     place_name: { type: String },
-    review_title: { type: String }
+    review_title: { type: String },
+    review_photo: {type: String}
   }]
 },{ versionKey: false });
   

@@ -8,7 +8,7 @@
         "password":"Cadyyy12345",
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Kape Benito"],
-        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe", "review_photo": "https://i.imgocean.com/41C757A2-A946-4CD1-9B03-481F6781456F7560930fd7b92ffb.jpeg"}],
         "followers": ["reginaaa","aaaaron"],
         "following": ["aaaaron","karen_"]
     },
@@ -21,8 +21,7 @@
         "password":"Reginageorgee1",
         "userType": "rater",
         "favoriteplace":["Angkan Coffee Company"],
-        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}, 
-                        { "place_name": "Kape Benito",  "review_title": "Sakto lang" }],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe", "review_photo": "https://i.imgocean.com/IMG_20230620_141448575394c9a2c88a00.jpeg"}],
         "followers": ["gretchh","karen_"],
         "following": ["aaaaron"]
     },
@@ -35,7 +34,7 @@
         "password":"weineeerS3",
         "userType": "rater",
         "favoriteplace":["Angkan Coffee Company"],
-        "createdreview": [{ "place_name": "Frank & Dean Coffee", "review_title": "New favorite Cafe"}],
+        "createdreview": [{ "place_name": "Frank & Dean Coffee", "review_title": "New favorite Cafe", "review_photo": "https://lh3.googleusercontent.com/p/AF1QipN4AQDAGcfH6o9oGDflJCytFfSg_xAF2Borkpn3=s1360-w1360-h1020"}],
         "followers": ["karen_"],
         "following": ["karen_","cadyyy"]
     },
@@ -48,7 +47,7 @@
         "password":"karen_Smith4",
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Angkan Coffee Company"],
-        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
+        "createdreview": [{ "place_name": "Kape Benito", "review_title": "New favorite Cafe", "review_photo": "https://i.imgocean.com/IMG_6738b035f9a5f774ec5f.jpeg"}],
         "followers": ["reginaaa","gretchh","cadyyy","karen_"],
         "following": ["aaaaron","karen_"]
     },
@@ -61,8 +60,8 @@
         "password":"AAAAron24",
         "userType": "rater",
         "favoriteplace":["Kape Benito","Angkan Coffee Company"],
-        "createdreview": [{ "place_name": "Angkan Coffee Company", "review_title": "New favorite Cafe"},
-                        { "place_name": "Obscure Cafe", "review_title": "Chill Spot"}],
+        "createdreview": [{ "place_name": "Angkan Coffee Company", "review_title": "New favorite Cafe", "review_photo": "https://lh3.googleusercontent.com/p/AF1QipNuKcXgBB4tn_ugaN0uSjt8TOrOHMs2SiSS4W7p=s1360-w1360-h1020"},
+                        { "place_name": "Obscure Cafe", "review_title": "Chill Spot", "review_photo": ""}],
         "followers": ["reginaaa","cadyyy"],
         "following": ["reginaaa","cadyyy"]
     },
