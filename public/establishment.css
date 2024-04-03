@@ -679,7 +679,7 @@ label[for="star-filter"], label[for="sort"] {
     margin-top: 10px;
     margin-bottom: 2%;
     display: flex;
-    align-items: center; 
+    flex-direction: column;
 }
 
 .comment-section .user-profile-establishment img {

@@ -516,7 +516,7 @@ function addRoutes(server) {
         });
 
         console.log('Rating Distribution:', ratingDistribution);
-          
+
         //console.log('Establishment Data:', establishment_data);
         //console.log('Review Data: ', review_data);
         resp.render('establishment', {

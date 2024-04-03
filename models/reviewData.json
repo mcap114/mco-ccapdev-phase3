@@ -7,7 +7,19 @@
   "review_title": "New favorite Cafe",
   "place_name": "Kape Benito",
   "caption": "A haven for study sessions! Cozy ambiance, ample seating, and excellent coffee. Perfect for productivity and focus. Highly recommended!",
-  "date_posted": "2024-01-15T09:45:00.000Z"
+  "date_posted": "2024-01-15T09:45:00.000Z",
+  "comments": [
+    {
+    "user_icon": "https://i.pinimg.com/originals/c7/2f/cc/c72fcc17928f3b200bf3f0c79820ea20.jpg",
+    "username": "gretchh",
+    "comment": "nice review"
+    },
+    {
+      "user_icon": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
+      "username": "reginaaa",
+      "comment": "oooo"
+    }
+  ]
 },
 {
   "user_photo": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
@@ -18,7 +30,14 @@
   "review_title": "New favorite Cafe",
   "place_name": "Kape Benito",
   "caption": "Average experience. Decent coffee, okay ambiance. Limited seating, and a bit noisy. Suitable for a quick caffeine fix, but not for a focused study session.",
-  "date_posted": "2024-02-05T14:20:00.000Z"
+  "date_posted": "2024-02-05T14:20:00.000Z",
+  "comments": [
+    {
+    "user_icon": "https://i.pinimg.com/736x/37/09/38/370938b94a8317ea6f3836cfceff4308.jpg",
+    "username": "cadyyy",
+    "comment": "woooow"
+    }
+  ]
 },
 {
   "user_photo": "https://i.pinimg.com/originals/d6/14/5c/d6145c2c8ee384d8cf0061918f2a3fa5.jpg",
