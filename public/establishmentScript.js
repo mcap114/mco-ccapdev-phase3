@@ -246,5 +246,46 @@ function applyRatingFilter(rating) {
   window.location.href = window.location.pathname + '?rating=' + rating;
 }
 
+// Function to handle form submission
+function submitReview() {
+  // Retrieve form data
+  const review_title = document.getElementById('review-title').value;
+  const place_name = document.getElementById('review-location').value;
+  const caption = document.getElementById('review-description').value;
+
+
+  // Send POST request to server
+  fetch('/submit-review', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        review_title: review_title,
+        place_name: place_name,
+        caption: caption
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+    if (data && data.success) {
+      alert(data.message);
+  } else {
+      alert('Failed to create review: ' + data.message);
+  }
+      // Optionally, display a success message or redirect the user
+  })
+  .catch(error => {
+      console.error('Error submitting review:', error);
+      // Optionally, display an error message to the user
+  });
+}
+
+
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);

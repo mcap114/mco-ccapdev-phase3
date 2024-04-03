@@ -69,7 +69,7 @@
                             <img src="{{currentUserIcon}}" alt="user">
                         </div> 
 
-                        <form name="post-form" action="/submit-review" method="post" id="post-form">
+                        <form name="post-form" method="post" id="post-form">
                             <!-- star rating -->
                             <div class="write-review-rating">
                                 <div class="review-rating">
@@ -82,9 +82,9 @@
                             </div>
                             
                             <!-- review location, title & description -->
-                            <input type="text" class="review-location" id="review-location" value="{{establishment.establishment_name}}" hidden>
-                            <input type="text" class="review-title" id="review-title" placeholder="Enter your review title" required>
-                            <textarea class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></textarea>
+                            <input type="text" name="place_name" class="review-location" id="review-location" value="{{establishment.establishment_name}}" hidden>
+                            <input type="text" name="review_title" class="review-title" id="review-title" placeholder="Enter your review title" required>
+                            <input type="text" name="caption" class="review-description" id="review-description" placeholder="Sip, Snap, Share your Coffee Story!" oninput="autoExpand(this)"></input>
 
                             <hr class="write-review-hr">
                             
@@ -92,7 +92,7 @@
                             <div class="photo-upload-date">
                                 <!-- photo upload -->
                                 <div class="photo-upload-container">
-                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)" required>
+                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
                                     <label for="photo-upload" class="photo-upload-label">
                                         <i class="fa fa-camera"></i> Upload Photo
                                     </label>
@@ -105,7 +105,7 @@
                                 </div>
                     
                                 <!-- submit button -->
-                                <button type="submit" class="post-review-button" value="Save">Post Review</button>
+                                <input type="button" onclick="submitReview()" class="post-review-button" value="Post Review"></input>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,8 @@
 const express = require('express');
+const server = express();
+const bodyParser = require('body-parser');
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 const sessionController = require('./sessionController');
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
@@ -141,6 +145,7 @@ function addRoutes(server) {
       .then(function(user) {
         console.log('User created');
         req.session.username = req.body.username;
+        req.session.name = req.body.name;
         resp.json({ success: true, message: 'User created successfully' });
       })
       .catch(function(error) {
@@ -228,6 +233,7 @@ function addRoutes(server) {
           bcrypt.compare(password, user.password).then(function(passwordMatch) {
             if (passwordMatch) {
               req.session.username = user.username;
+              req.session.name = user.name;
               req.session.user_icon = user.user_icon;
               req.session.userType = user.userType;
               if (rememberMe) {
@@ -333,8 +339,6 @@ function addRoutes(server) {
     const searchQuery = {username: loggedInUser};
     const searchRatingQuery = { establishment_ratings: { $gte: 4, $lte: 5 } };
 
-    
-
     userModel.findOne(searchQuery).lean().then(function(user_data) {
       if (!user_data) {
         console.log('User data not found.');
@@ -352,6 +356,7 @@ function addRoutes(server) {
             'review-data': review_data,
             'establishment-data': establishment_data,
             currentUser: req.session.username,
+            currentUserName: req.session.name,
             currentUserIcon: req.session.user_icon,
             currentUserType: req.session.userType
           });
@@ -584,37 +589,35 @@ function addRoutes(server) {
   // Currently it is able to reflect the submitted user_photo, username and date posted to the database
   router.post('/submit-review', function(req, res) {
     try {
-      // extract review data from the request body
-      const review_title = req.body.review_title;
-      const review_location = req.body.review_location;
-      const review_description = req.body.review_description;
-      const review_rating = req.body.review_rating;
-  
-      // create a new review document
-      const newReview = new reviewModel({
-        user_photo: req.session.user_icon,
-        display_name: req.session.name,
-        username: req.session.username,
-        rating: review_rating,
-        review_title: review_title,
-        establishment_name: review_location,
-        caption: review_description,
-        date_posted: new Date()
-      });
-  
-      // save the review to the database
-      newReview.save().then(function() {
-          res.json({ success: true, message: 'Review submitted successfully!' });
+        // extract review data from the request body
+        const { review_title, place_name, caption } = req.body;
+
+        // Assuming you're using Mongoose for MongoDB interaction
+        const newReview = new reviewModel({
+            user_photo: req.session.user_icon,
+            display_name: req.session.name,
+            username: req.session.username,
+            review_title,
+            place_name,
+            caption,
+            date_posted: new Date()
+        });
+
+        // Save the review to the database
+        newReview.save().then(function() {
+            console.log('Review submitted');
+            res.json({ success: true, message: 'Review submitted successfully!' });
         })
         .catch(function(error) {
-          console.error('Error:', error);
-          res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+            console.error('Error:', error);
+            res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
         });
     } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
-  });
+});
+
 
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
