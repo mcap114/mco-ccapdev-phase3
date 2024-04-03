@@ -593,7 +593,7 @@ function addRoutes(server) {
   router.post('/submit-review', function(req, res) {
     try {
       const { rating, review_title, place_name, caption } = req.body;
-
+  
       const newReview = new reviewModel({
         user_photo: req.session.user_icon,
         display_name: req.session.name,
@@ -604,12 +604,18 @@ function addRoutes(server) {
         caption,
         date_posted: new Date()
       });
-
-      newReview.save().then(function() {
+  
+      newReview.save().then(() => {
+        return userModel.findOneAndUpdate(
+          { username: req.session.username },
+          { $push: { createdreview: { place_name, review_title } } }
+        );
+      })
+      .then(() => {
         console.log('\nReview submitted');
         res.json({ success: true, message: 'Review submitted successfully!' });
       })
-      .catch(function(error) {
+      .catch(error => {
         console.error('Error:', error);
         res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
       });
@@ -618,6 +624,7 @@ function addRoutes(server) {
       res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
   });
+  
 
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
