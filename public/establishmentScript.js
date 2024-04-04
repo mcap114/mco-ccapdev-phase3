@@ -287,12 +287,12 @@ function getStarRating() {
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);
 
-function showEditWidget(reviewId) {
+function showEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = 'block';
 }
 
-function hideEditWidget(reviewId) {
+function hideEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = "none";;
 }
