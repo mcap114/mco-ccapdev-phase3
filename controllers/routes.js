@@ -214,12 +214,19 @@ function addRoutes(server) {
     });
   });
 
-  // route for file uploads
-router.post('/upload', upload.single('file'), (req, res) => {
-  // Handle the uploaded file
-  res.json({ message: 'File uploaded successfully!' });
+  router.post('/upload', (req, res) => {
+    upload(req, res, function(err) {
+        if (err instanceof multer.MulterError) {
+            // Handle Multer errors
+            return res.status(500).json({ error: err.message });
+        } else if (err) {
+            // Handle other errors
+            return res.status(500).json({ error: err.message });
+        }
+        // File uploaded successfully
+        res.json({ message: 'File uploaded successfully!' });
+    });
 });
-
   // route for login page
   router.get('/login', function (req, res) {
     console.log('\nCurrently at Login Page');
@@ -599,20 +606,20 @@ router.post('/upload', upload.single('file'), (req, res) => {
   // route for writing a review
   router.post('/submit-review', function(req, res) {
     try {
-      const { rating, review_title, place_name, caption } = req.body;
-      const image = req.body.file;
-
-      const newReview = new reviewModel({
-        user_photo: req.session.user_icon,
-        display_name: req.session.name,
-        username: req.session.username,
-        rating,
-        review_photo: req.body.file,
-        review_title,
-        place_name,
-        caption,
-        date_posted: new Date()
-      });
+        const { rating, review_title, place_name, caption } = req.body;
+        const review_photo = req.file
+        
+        const newReview = new reviewModel({
+            user_photo: req.session.user_icon,
+            display_name: req.session.name,
+            username: req.session.username,
+            rating,
+            review_photo, // Use the file name
+            review_title,
+            place_name,
+            caption,
+            date_posted: new Date()
+        });
 
       newReview.save().then(() => {
         return userModel.findOneAndUpdate(
