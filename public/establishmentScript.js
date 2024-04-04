@@ -66,6 +66,15 @@ document.addEventListener("DOMContentLoaded", function() {
     reviewForm.addEventListener('submit', submitReview);
   }
 
+  const editreviewForms = document.querySelectorAll('[id^="editForm-"]');
+  editreviewForms.forEach(function(form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      const reviewId = this.dataset.reviewId; 
+      editReview(reviewId); 
+    });
+  });
+
   document.querySelectorAll('.review-rating .fa-star').forEach(function(star) {
     star.addEventListener('click', function() {
         const rating = parseInt(this.getAttribute('data-rating'));
@@ -277,3 +286,53 @@ function getStarRating() {
 
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);
+
+function showEditWidget(reviewId) {
+  const editWidget = document.getElementById(`edit-widget-${reviewId}`);
+  editWidget.style.display = 'block';
+}
+
+function hideEditWidget(reviewId) {
+  const editWidget = document.getElementById(`edit-widget-${reviewId}`);
+  editWidget.style.display = "none";;
+}
+
+function editReview(reviewId) {
+  const review_title = document.getElementById('edit-review-title').value;
+  const caption = document.getElementById('edit-review-description').value;
+  const rating = getStarRating();
+  
+  if (rating === 0) {
+      alert('Please select a star rating.');
+      return;
+  }
+
+  fetch(`/establishment/${place_name}/${reviewId}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          review_title: review_title,
+          caption: caption,
+          rating: rating
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      if (data && data.success) {
+          alert(data.message);
+          hideEditWidget(reviewId);
+      } else {
+          alert('Failed to edit review: ' + data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error editing review:', error);
+  });
+}

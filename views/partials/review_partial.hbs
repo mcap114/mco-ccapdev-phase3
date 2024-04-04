@@ -1,4 +1,3 @@
-<!-- Review Sample -->
 <div class="review-container">
     
     <div class="review-photo-box">
@@ -9,7 +8,7 @@
 
         {{#if (eq username currentUser)}}
         <div class="review-menu">
-            <button class="reaction-btn review-option" onclick="showEditWidget()">
+            <button class="reaction-btn review-option" onclick="showEditWidget('{{_id}}')">
                 <i class="fa fa-pencil" aria-hidden="true"></i> 
             </button>
     
@@ -20,35 +19,35 @@
 
         <!-- edit review  widget -->
         <!-- displaying but not yet fully functioning -->
-        <div id="edit-widget" class="edit-widget-container">
+        <div id="edit-widget-{{_id}}" class="edit-widget-container" >
             <div class="edit-establishmentwidget">
-                <button class="close-button" onclick="hideEditWidget()">X</button>
-                <form name="" action="" method="POST" onsubmit="return ()">
-                <p class="main"><b>Edit Review Details</b></p>
-                <div class="edit-review-rating">
-                    <div class="review-rating">
-                        <span class="fa fa-star" data-rating="1"></span>
-                        <span class="fa fa-star" data-rating="2"></span>
-                        <span class="fa fa-star" data-rating="3"></span>
-                        <span class="fa fa-star" data-rating="4"></span>
-                        <span class="fa fa-star" data-rating="5"></span>
+                <button class="close-button" onclick="hideEditWidget('{{_id}}')">X</button>
+               <form name="editForm-{{_id}}" id="editForm-{{_id}}" method="POST">
+                    <p class="main"><b>Edit Review Details</b></p>
+                    <div class="edit-review-rating">
+                        <div class="review-rating">
+                            <span class="fa fa-star" data-rating="1"></span>
+                            <span class="fa fa-star" data-rating="2"></span>
+                            <span class="fa fa-star" data-rating="3"></span>
+                            <span class="fa fa-star" data-rating="4"></span>
+                            <span class="fa fa-star" data-rating="5"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="info-item">
-                    <!-- review location is hidden since you are in establishment page -->
-                    <input type="text" name="review_location" id="location-field" value="{{establishment.establishment_address}}" hidden>
-                </div>
-                <div class="info-item">
-                    <label for="review-title">Review Title</label>
-                    <input type="text" id="review-title" value="" placeholder="Update review title">
-                </div>
-                <div class="info-item">
-                    <label for="description">Description</label>
-                    <input type="text" id="caption" value=""  placeholder="Update review descripton">
-                </div>
-                <div class="establishment-options">
-                    <input id="save-details" type="submit" value="Save"></input>
-                </div>
+                    <div class="info-item">
+                        <!-- review location is hidden since you are in establishment page -->
+                        <input type="text" name="review_location" id="location-field" value="{{place_name}}" hidden>
+                    </div>
+                    <div class="info-item">
+                        <label for="review-title">Review Title</label>
+                        <input type="text" id="review-title" name="review_title" value="{{review_title}}" placeholder="Update review title">
+                    </div>
+                    <div class="info-item">
+                        <label for="description">Description</label>
+                        <input type="text" id="caption" name="description" value="{{caption}}"  placeholder="Update review descripton">
+                    </div>
+                    <div class="establishment-options">
+                        <input type="button" onclick="editReview('{{_id}}')" value="Save" id="save-details"></input>
+                    </div>
                 </form>
             </div>
         </div>
@@ -68,15 +67,15 @@
 
         <!-- comment section -->
         <div class="comment-section" id="commentSection">
-        {{#each comments}}
-        <div class="user-profile-establishment">
-            <img src="{{user_icon}}" alt="{{username}}">
-            <div class="profile-text">
-                <span class="username">{{username}}</span>
-                <span class="comment-box">{{comment}}</span>
+            {{#each comments}}
+            <div class="user-profile-establishment">
+                <img src="{{user_icon}}" alt="{{username}}">
+                <div class="profile-text">
+                    <span class="username">{{username}}</span>
+                    <span class="comment-box">{{comment}}</span>
+                </div>
             </div>
-        </div>
-        {{/each}}
+            {{/each}}
         </div>
         
         <!-- reactions section -->
