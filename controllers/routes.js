@@ -21,6 +21,34 @@ function isLoggedIn(req, res, next) {
   }
 }
 
+// function to calculate and update establishment ratings
+function calculateAndUpdateRatings(establishment_data) {
+  let establishmentUpdatedRating = 0;
+  establishment_data.forEach(function(establishment) {
+    let totalRating = 0;
+    let reviewCount = 0;
+
+    reviewModel.find({ place_name: establishment.establishment_name }).lean().then(function(reviews) {
+      reviewCount = reviews.length;
+      reviews.forEach(function(review) {
+        totalRating += parseInt(review.rating);
+      });
+      establishment.establishment_ratings = reviewCount > 0 ? (totalRating / reviewCount).toFixed(1) : 0;
+
+      establishmentModel.findOneAndUpdate({ establishment_name: establishment.establishment_name }, { establishment_ratings: establishment.establishment_ratings }, { new: true }).then(function(updatedEstablishment) {
+        establishmentUpdatedRating++;
+        if (establishmentUpdatedRating === establishment.length) {
+          console.log('All establishments ratings have been updated.');
+        }
+      }).catch(function(error) {
+        console.error('Error updating establishment with rating:', error);
+      });
+    }).catch(function(error) {
+      console.error('Error fetching reviews for establishment:', error);
+    });
+  });
+}
+
 function addRoutes(server) {
   const router = express.Router();
 
@@ -561,7 +589,7 @@ function addRoutes(server) {
   router.post('/submit-review', function(req, res) {
     try {
       const { rating, review_title, place_name, caption } = req.body;
-  
+
       const newReview = new reviewModel({
         user_photo: req.session.user_icon,
         display_name: req.session.name,
@@ -572,15 +600,21 @@ function addRoutes(server) {
         caption,
         date_posted: new Date()
       });
-  
+
       newReview.save().then(() => {
         return userModel.findOneAndUpdate(
-          { username: req.session.username },
-          { $push: { createdreview: { place_name, review_title } } }
+        { username: req.session.username },
+        { $push: { createdreview: { place_name, review_title } } }
         );
       })
       .then(() => {
         console.log('\nReview submitted');
+        establishmentModel.find({ establishment_name: place_name }).lean().then(function(establishment_data){
+          calculateAndUpdateRatings(establishment_data);
+        }).catch(function(error) {
+          console.error('Error fetching establishments:', error);
+          res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+        });
         res.json({ success: true, message: 'Review submitted successfully!' });
       })
       .catch(error => {
@@ -592,7 +626,6 @@ function addRoutes(server) {
       res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
     }
   });
-  
 
   //goofy route, 100% scalable industry-ready
   router.get('/profile/:name', function (req, resp) {
@@ -849,19 +882,18 @@ function addRoutes(server) {
   router.post('/remove-review', function(req, res) {
     const reviewId = req.body.review_id;
 
-    reviewModel.findByIdAndDelete(reviewId)
-        .then(deletedReview => {
-            if (!deletedReview) {
-                return res.status(404).json({ success: false, message: 'Review not found' });
-            }
-            // Optionally, update other data or perform additional actions here
-            return res.json({ success: true, message: 'Review removed successfully' });
-        })
-        .catch(err => {
-            console.error('Error deleting review:', err);
-            return res.status(500).json({ success: false, message: 'An error occurred' });
-        });
-});
+    reviewModel.findByIdAndDelete(reviewId) .then(deletedReview => {
+      if (!deletedReview) {
+          return res.status(404).json({ success: false, message: 'Review not found' });
+      }
+      // Optionally, update other data or perform additional actions here
+      return res.json({ success: true, message: 'Review removed successfully' });
+    })
+    .catch(err => {
+      console.error('Error deleting review:', err);
+      return res.status(500).json({ success: false, message: 'An error occurred' });
+    });
+  });
 
   return router;
 }
