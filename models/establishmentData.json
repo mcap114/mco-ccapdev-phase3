@@ -356,24 +356,24 @@
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/coffee-bean-bannerb995d131e42c58aa.jpeg",
         "establishment_name": "The Coffee Bean & Tea Leaf", 
         "establishment_address": "G/F Eastwood Mall Veranda, E. Rodriguez Jr. Avenue Quezon City, 1800 Metro Manila",
-        "establishment_description": "",
+        "establishment_description": "Coffeehouse chain serving a variety of beverages including its signature ice-blended options.",
         "price_range": "₱150 - ₱300",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out", "Parking"],
         "establishment_schedule": ["7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 1:00 AM", "7:00 AM - 2:00 AM", "7:00 AM - 2:00 PM", "7:00 AM - 1:00 AM"],
         "contact_details_FB": "The Coffee Bean & Tea Leaf Philippines (Eastwood Mall)",
         "contact_details_IG": "@",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/coffee-bean-1e1fac9fc2a0a9e34.jpeg","https://i.imgocean.com/coffee-bean-205d6b78e7133f0a7.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.814385844394!2d121.0771688758131!3d14.609647176853647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9c984f4914b%3A0x2711b3c9089f516c!2sThe%20Coffee%20Bean%20%26%20Tea%20Leaf!5e0!3m2!1sen!2sph!4v1711708791972!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "John Fuller",
+        "owner_username": "johnfuller"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/tim-hortons-banner0f577c35ed17bd09.jpeg",
         "establishment_name": "Tim Hortons", 
         "establishment_address": "Orchard Road, Eastwood City, Libis 1100 Quezon City, Metro Manila",
         "establishment_description": "",
@@ -383,14 +383,14 @@
         "establishment_schedule": ["6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM", "6:00 AM - 9:00 PM"],
         "contact_details_FB": "Tim Hortons, Eastwood",
         "contact_details_IG": "@",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/tim-hortons-1ef878feda2ad81c2.jpeg","https://i.imgocean.com/tim-hortons-2b63df7af9015d37d.jpeg","https://i.imgocean.com/tim-hortons-3532ef86bf2de13b4.jpeg","https://i.imgocean.com/tim-hortons-41de87821ace4f9a2.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.806581904104!2d121.07640697581309!3d14.610091476842776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b81d8052ead9%3A0x461115acc1fbc121!2sTim%20Hortons!5e0!3m2!1sen!2sph!4v1711708822984!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Tim Hortons",
+        "owner_username": "timhortons"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/couch-club-baner2df3590d7550c273.jpeg",
         "establishment_name": "Couchclub Kapitolyo", 
         "establishment_address": "76 San Rafael St, Pasig, 1634 Metro Manila",
         "establishment_description": "",
@@ -399,32 +399,32 @@
         "services_offered":  ["Dine-in", "Take Out"],
         "establishment_schedule": ["Closed", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM", "11:00 AM - 7:00 PM"],
         "contact_details_FB": "",
-        "contact_details_IG": "",
-        "establishment_images": [],
+        "contact_details_IG": "@couchclubkapitolyo",
+        "establishment_images": ["https://i.imgocean.com/couch-club-176f8c4f5a2898b56.jpeg","https://i.imgocean.com/couch-club-2e81f96febae98f24.jpeg","https://i.imgocean.com/couch-club-3e0cdacfa26c566be.jpeg","https://i.imgocean.com/couch-club-401899e34f4ca6d8a.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.44118697038!2d121.05871397581281!3d14.573918377727994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c901856dbb11%3A0x5153803c50181ceb!2sCouch%20Club%20Kapitolyo!5e0!3m2!1sen!2sph!4v1711708845335!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Jongin Kim",
+        "owner_username": "jonginkim"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/habagat-banner14c96d0e896b6296.jpeg",
         "establishment_name": "Habagat Coffee and Outdoor Lifestyle", 
         "establishment_address": "77 San Rafael St, Pasig, Metro Manila",
-        "establishment_description": "",
+        "establishment_description": "Bike. Moto. Surf. Camp. Supporting locally-sourced coffee beans since 2018.",
         "price_range": "₱200 - ₱400",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out"],
         "establishment_schedule": ["Closed", "Closed", "9:00 AM - 9:00 PM", "10:00 AM - 9:00 PM", "9:00 AM - 9:00 PM", "9:00 AM - 9:00 PM", "9:00 AM - 6:00 PM"],
         "contact_details_FB": "Habagat Coffee and Outdoor Lifestyle",
         "contact_details_IG": "@habagatcoffee",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/habagat-14b73f5bf0a4d5833.jpeg","https://i.imgocean.com/habagat-2fed997dcbeaa7a75.jpeg","https://i.imgocean.com/habagat-3fdf44a787ac9e1fa.jpeg","https://i.imgocean.com/Habagat-4f6def4c54c43b005.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4347211653467!2d121.05804537581275!3d14.574287377718923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397bfbeca4b9861%3A0x552089b7de897ad9!2sHabagat%20Coffee%20and%20Outdoor%20Lifestyle!5e0!3m2!1sen!2sph!4v1711708869832!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Ryujin Shin",
+        "owner_username": "ryujinshin"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/stay-up-banner640bca9be1936d34.jpeg",
         "establishment_name": "Stay Up Espresso Bar", 
         "establishment_address": "43 E Capitol Dr, Pasig, 1603 Metro Manila",
         "establishment_description": "Energy Flows Where Coffee Goes.",
@@ -434,10 +434,10 @@
         "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
         "contact_details_FB": "Stay Up Espresso Bar - Kapitolyo",
         "contact_details_IG": "@stayupespressobar",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/stay-up-156073351acf41f1d.jpeg","https://i.imgocean.com/stay-up-25ca3d1e2f7298d35.jpeg", "https://i.imgocean.com/stay-up-32b2e6708678f220a.jpeg","https://i.imgocean.com/stay-up-4883ab8e5ae128695.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.512884223645!2d121.0557311848091!3d14.569826041523447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a0ee7ed1c3%3A0xe409af766656e3b8!2sStay%20Up%20Espresso%20Bar%20-%20Kapitolyo!5e0!3m2!1sen!2sph!4v1711708892999!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Yunjin Huh",
+        "owner_username": "yunjinhuh"
     },
 
     {

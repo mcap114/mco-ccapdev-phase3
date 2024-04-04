@@ -324,5 +324,70 @@
         "createdreview": [], 
         "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
         "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "John Fuller",
+        "username":"johnfuller",
+        "bio":"Owner of The Coffee Bean & Tea Leaf",
+        "email":"john.fuller@gmail.com",
+        "password":"Fuller1234",
+        "userType": "owner",
+        "favoriteplace":["The Coffee Bean & Tea Leaf"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Tim Hortons",
+        "username":"timhortons",
+        "bio":"Owner of Tim Hortons",
+        "email":"tim.hortons@gmail.com",
+        "password":"Hortons1234",
+        "userType": "owner",
+        "favoriteplace":["Tim Hortons"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Jongin Kim",
+        "username":"jonginkim",
+        "bio":"Owner of Couchclub Kapitolyo",
+        "email":"jongin.kim@gmail.com",
+        "password":"Kim1234",
+        "userType": "owner",
+        "favoriteplace":["Couchclub Kapitolyo"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Ryujin Shin",
+        "username":"ryujinshin",
+        "bio":"Owner of Habagat Coffee and Outdoor Lifestyle",
+        "email":"ryujin.shin@gmail.com",
+        "password":"Kim1234",
+        "userType": "owner",
+        "favoriteplace":["Habagat Coffee and Outdoor Lifestyle"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
+    },
+    {
+        "user_icon": "https://i.imgocean.com/user6b989451863c33d6.png",
+        "name": "Yunjin Huh",
+        "username":"yunjinhuh",
+        "bio":"Owner of Stay Up Espresso Bar",
+        "email":"yunjin.huh@gmail.com",
+        "password":"Huh1234",
+        "userType": "owner",
+        "favoriteplace":["Stay Up Espresso Bar"],
+        "createdreview": [], 
+        "followers": ["reginaaa","cadyyy", "aaaaron", "karen_","gretchh"],
+        "following": []
     }
 ]
