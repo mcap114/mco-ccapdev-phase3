@@ -17,7 +17,7 @@
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/sundays-cafe-banner76f3db0f6d59828c.jpeg",
         "establishment_name": "Sundays Cafe and Restaurant", 
         "establishment_address": "J.P. Rizal St, Marikina, 1801 Metro Manila",
         "establishment_description": "Great food. Great memories.",
@@ -27,27 +27,27 @@
         "establishment_schedule": ["8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM"],
         "contact_details_FB": "Sundays Cafe and Restaurant",
         "contact_details_IG": "@sundayscafeandrestaurant",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/sunday-cafe-1e3a84dc6c62edcc1.jpeg","https://i.imgocean.com/sundays-cafe-263665284389b1327.jpeg","https://i.imgocean.com/sundays-cafe-3126370277dc66c70.jpeg","https://i.imgocean.com/sundays-cafe-4dd9a2a4a69762d84.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30883.24719750949!2d121.05736366315504!3d14.63288569484645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b96093733f93%3A0x130effcf95b02b4d!2sSundays%20Cafe%20and%20Restaurant!5e0!3m2!1sen!2sph!4v1711606093165!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Baekhyun Byun",
+        "owner_username": "baekhyunbyun"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/inarawan-banner0d30bc40e1712f0c.jpeg",
         "establishment_name": "Inarawan Coffee", 
         "establishment_address": "2 Sampaguita St, Marikina, 1807 Metro Manila",
-        "establishment_description": "",
+        "establishment_description": "Grind with perfection, Brewed with precision.",
         "price_range": "₱70 - ₱150",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out", "Outdoor Seating"],
         "establishment_schedule": ["9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM"],
         "contact_details_FB": "Inarawan Coffee",
         "contact_details_IG": "@inarawancoffee",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/inarawan-1cf5319642722fc03.jpeg","https://i.imgocean.com/inarawan-28718fb4dd264b2b4.jpeg","https://i.imgocean.com/inarawan-3ad0cbce9cbf7355d.jpeg","https://i.imgocean.com/inarawan-4714ec9750dc55df1.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.1089933916533!2d121.10538907581356!3d14.649753875869905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b93cf1c0649b%3A0x4376b699290fce48!2sInarawan%20Coffee%20-%20Marikina!5e0!3m2!1sen!2sph!4v1711708634673!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Nicolette Gutierrez",
+        "owner_username": "nicolettegutierrez"
     },
 
     {
@@ -135,7 +135,7 @@
     },
 
     {
-        "banner_image": "https://www.imgocean.com/image/1-26.6tKi",
+        "banner_image": "https://i.imgocean.com/because-coffee-banner439420c9531be764.jpeg",
         "establishment_name": "Because Coffee", 
         "establishment_address": "5th Ave, Taguig, Metro Manila",
         "establishment_description": "The brand's strong identity offers a serene space for those seeking solace or a moment of reflection.",
@@ -145,14 +145,14 @@
         "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
         "contact_details_FB": "",
         "contact_details_IG": "@harlanholden.coffee",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/because-1236a3829cff3b652.jpeg","https://i.imgocean.com/because-209459869be8aecfd.jpeg", "https://i.imgocean.com/because-36ee6bdec62be28cd.jpeg", "https://i.imgocean.com/because-4406ac2f0ce89a91f.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.8355781356745!2d121.0448734758124!3d14.551393378277973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9fa481c88bd%3A0x165d1da54a1f3bc2!2sHarlan%20%2B%20Holden%20Coffee%20(Because%20Coffee)!5e0!3m2!1sen!2sph!4v1711520359797!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Emmanuel Pineda",
+        "owner_username": "emmanuelpineda"
     },
 
     {
-        "banner_image": "https://www.imgocean.com/image/2022-11-07.67Gk",
+        "banner_image": "https://i.imgocean.com/obscure-banner4fffc78494d5389b.jpeg",
         "establishment_name": "Obscure Cafe", 
         "establishment_address": "2311 Taft Ave, Malate, malate, 1004 Metro Manila",
         "establishment_description": "Where time flies and coffee powers the chaos",
@@ -162,14 +162,14 @@
         "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
         "contact_details_FB": "Obscure Café",
         "contact_details_IG": "@obscurecafe",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/obscure-1079108dce631d8da.jpeg", "https://i.imgocean.com/obscure-200d0c77d95df3da8.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5676532333687!2d120.98998627549729!3d14.566699177904969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c977c7ed9a87%3A0xf739073fce945ab9!2sobscure%20caf%C3%A9%20-%20dlsu!5e0!3m2!1sen!2sph!4v1711596003742!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Hanni Pham",
+        "owner_username": "hannipham"
     }, 
 
     {
-        "banner_image": "https://www.imgocean.com/image/6bJb",
+        "banner_image": "https://i.imgocean.com/prelude-bannerb6df5cb0507675b0.jpeg",
         "establishment_name": "Prelude Cafe & Restaurant", 
         "establishment_address": "810 Fidel A.Reyes, Malate, Manila, 1004 Metro Manila",
         "establishment_description": "We've got breakfast, rice bowls, pastas, & even burgers to satisfy any craving",
@@ -179,14 +179,14 @@
         "establishment_schedule": ["8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM", "8:00 AM - 11:00 PM"],
         "contact_details_FB": "Prelude Cafe & Restaurant",
         "contact_details_IG": "@prelude.cafe",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/prelude-1c3441c89d8e5715c.jpeg","https://i.imgocean.com/prelude-3d8ec4c24374afa63.jpeg","https://i.imgocean.com/369903834_131731253341001_4682302012890773307_n590dc91013b7b116.jpeg","https://i.imgocean.com/prelude-4000757996ae81a69.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5753206614295!2d120.99016587581268!3d14.566261377915085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c99256749f99%3A0xed2771feb6251212!2sPrelude%20Cafe%20%26%20Restaurant!5e0!3m2!1sen!2sph!4v1711520284483!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Haerin Kang",
+        "owner_username": "haerinkang"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/coffee-st-banner4e52737398bbd425.jpeg",
         "establishment_name": "Coffee St. Manila", 
         "establishment_address": "HX8V+C4W, Agno, Malate, Manila, 1004 Metro Manila",
         "establishment_description": "Good coffee. Good food.",
@@ -196,14 +196,14 @@
         "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
         "contact_details_FB": "coffeestreetmanila",
         "contact_details_IG": "@coffeestreetmanila",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/coffee-st-1f1e54fde79c23c71.jpeg","https://i.imgocean.com/coffee-st-2fccf6ebce89908c9.jpeg","https://i.imgocean.com/coffee-st-4cc78acc2cb5647cd.jpeg","https://i.imgocean.com/coffee-st2da38c3124e29c78.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30892.623073653995!2d120.97223193476563!3d14.566115000000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c92b49a7889b%3A0x99564cd53fd4e8b8!2sCoffee%20Street%20Manila!5e0!3m2!1sen!2sph!4v1711519594369!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Minji Kim",
+        "owner_username": "minjikim"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/drip-kofi-bannerafeb74fc8ee64d56.jpeg",
         "establishment_name": "Drip Kofi", 
         "establishment_address": "Unit G5, Burgundy Transpacific Place, 2444-A Taft Ave, Malate, Manila, 1004 Metro Manila",
         "establishment_description": "A local café that's passionate about serving authentic Vietnamese coffee",
@@ -213,14 +213,14 @@
         "establishment_schedule": ["9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM", "9:00 AM - 11:00 PM"],
         "contact_details_FB": "Drip Kofi DLSU ",
         "contact_details_IG": "@dripkofidlsu",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/drip-kofi-10bb117e06e986a0c.jpeg","https://i.imgocean.com/drip-kofi-29f490ffd90a45935.jpeg","https://i.imgocean.com/drip-kofi-390df700b2b5dc506.jpeg","https://i.imgocean.com/drip-kofi-4e8b57e322d311b59.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.591248505852!2d120.99215957581264!3d14.565351877937285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c952384927af%3A0x4bd17e6184b56c5e!2sDrip%20Kofi%20DLSU!5e0!3m2!1sen!2sph!4v1711520320987!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Danielle Marsh",
+        "owner_username": "daniellemarsh"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/tomo-bannerfc444ea703c6584b.jpeg",
         "establishment_name": "TOMO Coffee - Miguelin", 
         "establishment_address": "241 Miguelin St, Sampaloc, Manila, 1008 Metro Manila",
         "establishment_description": "A companion in a cup, brewed right around the corner.",
@@ -230,31 +230,31 @@
         "establishment_schedule": ["7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM", "7:00 AM - 8:00 PM"],
         "contact_details_FB": "TOMO Coffee",
         "contact_details_IG": "@tomocoffeeph",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/tomo-1aaad796dfc05123b.jpeg","https://i.imgocean.com/tomo-2b62c0cbfeafd41c8.jpeg","https://i.imgocean.com/tomo-4554e4642346936d0.jpeg","https://i.imgocean.com/tomo-367cff1151af53821.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.8969380551175!2d120.99666138481257!3d14.604946440584477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f097e412a3%3A0x17a26183972ed9bf!2sTOMO%20Coffee%20-%20Miguelin!5e0!3m2!1sen!2sph!4v1711520210300!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Joy Bautista",
+        "owner_username": "joybautista"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/nitro-bannerac8157aa567ed8fe.jpeg",
         "establishment_name": "Nitro 7 Coffee and Tea Bar", 
         "establishment_address": "Taft Avenue WH Taft Residences, Unit G7 (Ground Floor), Malate, Manila, Metro Manila",
         "establishment_description": "We're your favorite spot in Taft for premium coffee, cozy vibes, and delicious treats",
-        "price_range": "₱ - ₱",
+        "price_range": "₱100 - ₱200",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out"],
         "establishment_schedule": ["7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 10:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 11:00 PM", "7:00 AM - 10:00 PM"],
         "contact_details_FB": "Nitro 7 Coffee & Tea - WH Taft ",
         "contact_details_IG": "@nitro7taft",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/nitro-1bca12cb54e03a856.jpeg","https://i.imgocean.com/nitro-2e732e3e062d98888.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.58139308161!2d120.98852188480879!3d14.565914641627817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a0d2688335%3A0x200b1b9871ef3ee1!2sNitro%207%20Coffee%20%26%20Tea%20Bar%20%7C%20WH%20Taft!5e0!3m2!1sen!2sph!4v1711708665814!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Richard Torres",
+        "owner_username": "richardtorres"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/flight-cafe-banner87655d15ba4c4667.jpeg",
         "establishment_name": "Flight Cafe", 
         "establishment_address": "2nd Floor, University Mall, Vito Cruz, Taft Ave, Manila, Metro Manila",
         "establishment_description": "A cafe, study and productivity business located in the heart of Manila",
@@ -264,14 +264,14 @@
         "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
         "contact_details_FB": "Flight Cafe",
         "contact_details_IG": "@flightcafemnl",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/flight-cafe-19442d9d5ca07f226.jpeg","https://i.imgocean.com/flight-cafe-24babf17b3f8ff815.jpeg","https://i.imgocean.com/flight-cafe-3db685de38a1f89b6.jpeg","https://i.imgocean.com/flight-cafe-4572a06e58e924f3a.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.629690232972!2d120.99182347581262!3d14.563156577990874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c98b81fdbf55%3A0x4308e94331fc749f!2sFlight%20Cafe%20by%20Flightwings!5e0!3m2!1sen!2sph!4v1711708685433!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Hyein Lee",
+        "owner_username": "hyeinlee"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/bos-bannerc3e392ca0f385faa.jpeg",
         "establishment_name": "Bo's Coffee", 
         "establishment_address": "Unit 110 G/F SMDC Green Residences, Taft, Zone 78, Malate, Manila, Metro Manila",
         "establishment_description": "We serve world-class Philippine coffee from local farmers from Sagada, Benguet, Bukidnon, and Davao.",
@@ -281,14 +281,14 @@
         "establishment_schedule": ["8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM"],
         "contact_details_FB": "Bo's Coffee",
         "contact_details_IG": "@",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/bos-195f5f99e9c4491d1.jpeg","https://i.imgocean.com/bos-2a84422035e4e8a07.jpeg","https://i.imgocean.com/bos-3815bad2f061c1c89.jpeg","https://i.imgocean.com/bos-44f3929da13da4d3e.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5575493275473!2d120.98963877581245!3d14.56727607789026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97f5c7aabd5%3A0x5cb750d334428e01!2sBo&#39;s%20Coffee!5e0!3m2!1sen!2sph!4v1711708718448!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Steve Benitez",
+        "owner_username": "stevebenitez"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/tylers-banner70077acbf1805ab5.jpeg",
         "establishment_name": "Tyler’s Cafe", 
         "establishment_address": "319 Katipunan Ave, Quezon City, 1108 Metro Manila",
         "establishment_description": "Your neighborhood cafe. Start the day right!",
@@ -298,14 +298,14 @@
         "establishment_schedule": ["7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM", "7:00 AM - 9:00 PM"],
         "contact_details_FB": "Tyler's Cafe",
         "contact_details_IG": "@tylerscafeph",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/tylers-238f540f05d5958f6.jpeg","https://i.imgocean.com/tylers-37e92d432b3364267.jpeg","https://i.imgocean.com/tylers-418af33c88af56f4b.jpeg","https://i.imgocean.com/tylers-1c51b2263c2718c71.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.2884009737113!2d121.06939018481621!3d14.639563439657096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b77f48647d47%3A0xd8948f4f041b087f!2sTyler&#39;s%20Cafe!5e0!3m2!1sen!2sph!4v1711520428237!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Jutes Templo",
+        "owner_username": "jutestemplo"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/cellos-banner3f7cd62e0d05467a.jpeg",
         "establishment_name": "Cello's Doughnuts & Dips", 
         "establishment_address": "315 Katipunan Ave, Quezon City, 1108 Metro Manila",
         "establishment_description": "Have a perfect day with timeless delights",
@@ -315,44 +315,44 @@
         "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
         "contact_details_FB": "Cello's Doughnuts & Dips",
         "contact_details_IG": "@cellosdoughnuts",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/cellos-15c6868f5a116a575.jpeg","https://i.imgocean.com/cellos-485875c0d9737f42d.jpeg","https://i.imgocean.com/cellos-2d723778d5bd3c04a.jpeg","https://i.imgocean.com/cellos-3d0584c92f50a2bb0.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.300269163444!2d121.07167817581345!3d14.638889076136591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b77c1b4c39a7%3A0xa3983c44f3e7b13d!2sCello&#39;s%20Doughnuts%20%26%20Dips!5e0!3m2!1sen!2sph!4v1711520649388!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Cello Tempo",
+        "owner_username": "Cello Temple"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/nook-banner76cf0fa29b022cb3.jpeg",
         "establishment_name": "The Nook", 
         "establishment_address": "942 Aurora Blvd, Project 4, Quezon City, 1109 Metro Manila",
-        "establishment_description": "",
+        "establishment_description": "Books & Coffee",
         "price_range": "₱70 - ₱150",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out", "Parking"],
         "establishment_schedule": ["8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM", "8:00 AM - 10:00 PM"],
         "contact_details_FB": "The Nook Cafe",
         "contact_details_IG": "@thenook.cafe",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/nook-19adc092627b032bf.jpeg","https://i.imgocean.com/nook-27ed46f12139cf7a5.jpeg","https://i.imgocean.com/nook-37f1e9e96261dcfbf.jpeg","https://i.imgocean.com/nook-41757f5b94d0034f7.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.5124211067987!2d121.05653058481482!3d14.626829239998514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x856d92e717356a1d%3A0xd3cd107d8346772!2sThe%20Nook%20-%20Anonas!5e0!3m2!1sen!2sph!4v1711708741616!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Nicole Guanio",
+        "owner_username": "nicoleguanio"
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/greyhound-banner1077c66008d4bd92.jpeg",
         "establishment_name": "Greyhound Cafe", 
         "establishment_address": "1880 Eastwood Ave, Bagumbayan, Quezon City, 1800 Metro Manila",
-        "establishment_description": "",
+        "establishment_description": "A fusion of East and West, tradition and creativity, capturing Bangkok's vibrant essence through delectable dishes and flair.",
         "price_range": "₱150 - ₱300",
         "establishment_ratings": "",
         "services_offered":  ["Dine-in", "Take Out", "Parking"],
         "establishment_schedule": ["10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM", "10:00 AM - 10:00 PM"],
         "contact_details_FB": "",
         "contact_details_IG": "@greyhoundcafe.ph",
-        "establishment_images": [],
+        "establishment_images": ["https://i.imgocean.com/greyhound-2ca5bcec9d2534d43.jpeg","https://i.imgocean.com/greyhound-2ca5bcec9d2534d43.jpeg","https://i.imgocean.com/greyhound-10378f375b3d80dad.png","https://i.imgocean.com/greyhound-37d05bec754c9d7ac.jpeg"],
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.808025729599!2d121.07654097581322!3d14.610009276844874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b7376e648493%3A0xb958943a6b8eabad!2sGreyhound%20Cafe%20Eastwood!5e0!3m2!1sen!2sph!4v1711708766082!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
+        "establishment_owner": "Sehun Oh",
+        "owner_username": "sehunoh"
     },
 
     {
