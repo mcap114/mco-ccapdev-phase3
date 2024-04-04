@@ -324,31 +324,19 @@ function unlikeWidget(establishmentName) {
         .then(data => {
             console.log('Response from server:', data);
             if (data.success) {
-                // Remove the favorite place widget element from the UI
-                const favPlaceElement = document.querySelector(`.fav-place-name:contains('${establishmentName}')`);
-                console.log('Found element:', favPlaceElement);
-                if (favPlaceElement) {
-                    favPlaceElement.parentElement.parentElement.remove();
-                    console.log('Widget removed from DOM.');
-                    alert('Removed from favorites successfully!');
-                    window.location.href = window.location;
-            
-
-                } else {
-                    console.log('Widget element not found in DOM.');
-                    alert('Widget element not found!');
-                }
+                // Reload the page upon successful removal from favorites
+                window.location.reload();
             } else {
-                console.log('Failed to remove from favorites:', data.message);
-                alert('Failed to remove from favorites!');
+                alert('Failed to remove from favorites: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-
+            alert('An error occurred while removing from favorites.');
         });
     }
 }
+
 
 // function to follow a user
 function followUser(username) {
@@ -400,12 +388,8 @@ function removeReview(reviewPhoto) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const reviewElement = document.querySelector(`.coffee-shop-review[data-review-photo="${reviewPhoto}"]`);
-                if (reviewElement) {
-                    reviewElement.remove(); // Remove the review widget from the UI
-                    alert('Review removed successfully!');
-                    window.location.href = window.location;
-                }
+                // Reload the page upon successful review removal
+                window.location.reload();
             } else {
                 alert('Failed to remove review!');
             }
@@ -416,6 +400,7 @@ function removeReview(reviewPhoto) {
         });
     }
 }
+
 
 
 
