@@ -935,21 +935,30 @@ function addRoutes(server) {
   });
 
   //
-  router.post('/remove-review', function(req, res) {
-    const reviewId = req.body.review_id;
+  router.post('/remove-review', async (req, res) => {
+    try {
+        const reviewPhoto = req.body.review_photo;
 
-    reviewModel.findByIdAndDelete(reviewId) .then(deletedReview => {
-      if (!deletedReview) {
-          return res.status(404).json({ success: false, message: 'Review not found' });
-      }
-      // Optionally, update other data or perform additional actions here
-      return res.json({ success: true, message: 'Review removed successfully' });
-    })
-    .catch(err => {
-      console.error('Error deleting review:', err);
-      return res.status(500).json({ success: false, message: 'An error occurred' });
-    });
-  });
+        // Delete the review
+        const deletedReview = await reviewModel.findOneAndDelete({ review_photo: reviewPhoto });
+
+        if (!deletedReview) {
+            return res.status(404).json({ success: false, message: 'Review not found' });
+        }
+
+        // Remove the review from the createdreview array in user data
+        await userModel.updateMany(
+            {},
+            { $pull: { createdreview: { review_photo: reviewPhoto } } }
+        );
+
+        return res.json({ success: true, message: 'Review removed successfully' });
+    } catch (error) {
+        console.error('Error deleting review:', error);
+        return res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+});
+
 
   router.post('/edit-review/:reviewId', function(req, res) {
     const reviewId = req.params.reviewId;

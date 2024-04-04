@@ -388,24 +388,23 @@ function updateFollowUI(isFollowing) {
     }
 }
 
-function removeReview(reviewId) {
+function removeReview(reviewPhoto) {
     if (confirm('Are you sure you want to delete this review?')) {
         fetch('/remove-review', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ review_id: reviewId }),
+            body: JSON.stringify({ review_photo: reviewPhoto }),
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const reviewElement = document.querySelector(`.coffee-shop-review[data-review-id="${reviewId}"]`);
+                const reviewElement = document.querySelector(`.coffee-shop-review[data-review-photo="${reviewPhoto}"]`);
                 if (reviewElement) {
                     reviewElement.remove(); // Remove the review widget from the UI
                     alert('Review removed successfully!');
                     window.location.href = window.location;
-                    
                 }
             } else {
                 alert('Failed to remove review!');
@@ -417,5 +416,7 @@ function removeReview(reviewId) {
         });
     }
 }
+
+
 
 
