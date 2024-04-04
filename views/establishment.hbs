@@ -69,7 +69,7 @@
                             <img src="{{currentUserIcon}}" alt="user">
                         </div> 
 
-                        <form name="post-form" method="post" id="post-form">
+                        <form name="post-form" action="/upload" method="post" id="post-form" enctype="multipart/form-data">
                             <!-- star rating -->
                             <div class="write-review-rating">
                                 <div class="review-rating">
@@ -92,7 +92,7 @@
                             <div class="photo-upload-date">
                                 <!-- photo upload -->
                                 <div class="photo-upload-container">
-                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" onchange="previewPhoto(event)">
+                                    <input type="file" accept="image/*" id="photo-upload" class="photo-upload" name="file" onchange="previewPhoto(event)">
                                     <label for="photo-upload" class="photo-upload-label">
                                         <i class="fa fa-camera"></i> Upload Photo
                                     </label>

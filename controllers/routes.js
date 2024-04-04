@@ -6,6 +6,8 @@ const establishmentModel = require('../models/Establishment');
 const avatarModel = require('../models/Avatar');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const upload = require('./upload');
+
 
 // Define the errorFn function
 const errorFn = function (error) {
@@ -198,6 +200,12 @@ function addRoutes(server) {
       res.status(500).json({ success: false, message: 'Failed to save avatar' });
     });
   });
+
+  // route for file uploads
+router.post('/upload', upload.single('file'), (req, res) => {
+  // Handle the uploaded file
+  res.json({ message: 'File uploaded successfully!' });
+});
 
   // route for login page
   router.get('/login', function (req, res) {
@@ -589,12 +597,14 @@ function addRoutes(server) {
   router.post('/submit-review', function(req, res) {
     try {
       const { rating, review_title, place_name, caption } = req.body;
+      const image = req.body.file;
 
       const newReview = new reviewModel({
         user_photo: req.session.user_icon,
         display_name: req.session.name,
         username: req.session.username,
         rating,
+        review_photo: req.body.file,
         review_title,
         place_name,
         caption,
