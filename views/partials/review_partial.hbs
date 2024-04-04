@@ -22,7 +22,7 @@
         <div id="edit-widget-{{_id}}" class="edit-widget-container" >
             <div class="edit-establishmentwidget">
                 <button class="close-button" onclick="hideEditReviewWidget('{{_id}}')">X</button>
-               <form name="editForm-{{_id}}" id="editForm-{{_id}}" method="POST" data-review-id="{{_id}}" onsubmit="return editReview('{{_id}}')" >
+               <form name="editForm-{{_id}}" id="editForm-{{_id}}" method="POST" data-review-id="{{_id}}" onsubmit="return editReview('{{_id}}')">
                     <p class="main"><b>Edit Review Details</b></p>
                     <div class="edit-review-rating">
                         <div class="review-rating">
@@ -34,7 +34,6 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        <!-- review location is hidden since you are in establishment page -->
                         <input type="text" name="review_location" id="location-field" value="{{place_name}}" hidden>
                     </div>
                     <div class="info-item">
@@ -43,12 +42,13 @@
                     </div>
                     <div class="info-item">
                         <label for="description">Description</label>
-                        <input type="text" id="caption" name="description" value="{{caption}}"  placeholder="Update review descripton" onshow="autoExpand(this)">
+                        <input type="text" id="caption" name="description" value="{{caption}}" placeholder="Update review description" onshow="autoExpand(this)">
                     </div>
                     <div class="establishment-options">
                         <input type="submit" value="Save" id="save-details"></input>
                     </div>
                 </form>
+
             </div>
         </div>
         {{/if}}

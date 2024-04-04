@@ -647,28 +647,43 @@ function addRoutes(server) {
     }
   });
 
-  router.post('/establishment/:name/:reviewId', function(req, res) {
+  // route for edit review
+  router.post('/edit-review/:reviewId', (req, res) => {
     const reviewId = req.params.reviewId;
-    const updatedTitle = req.body.review_title;
-    const updatedDescription = req.body.caption;
-    const updatedRating = req.body.rating;
+    const { review_title, caption } = req.body;
+    let oldReviewTitle;
 
-    // Update the review in the database
-    reviewModel.findByIdAndUpdate(reviewId, {
-        review_title: updatedTitle,
-        caption: updatedDescription,
-        rating: updatedRating
-    }, { new: true })
-    .then(updatedReview => {
-        res.json({ success: true, message: 'Review edited successfully!' });
-    })
-    .catch(error => {
-        console.error('Error editing review:', error);
-        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
-    });
+    reviewModel.findById(reviewId)
+      .then(oldReview => {
+          if (!oldReview) {
+              return res.status(404).json({ success: false, message: 'Review not found' });
+          }
+          oldReviewTitle = oldReview.review_title; // Assign oldReviewTitle here
+
+          return reviewModel.findByIdAndUpdate(reviewId, { review_title: review_title, caption: caption }, { new: true });
+      })
+      .then(updatedReview => {
+          if (!updatedReview) {
+              return res.status(404).json({ success: false, message: 'Review not found' });
+          }
+          return userModel.findOneAndUpdate(
+              { username: req.session.username, "createdreview.review_title": oldReviewTitle },
+              { $set: { "createdreview.$.review_title": review_title } }
+          );
+      })
+      .then(() => {
+          console.log("\nReview updated with reviewID: ", reviewId);
+          return res.status(200).json({ success: true, message: 'Review updated successfully' });
+      })
+      .catch(error => {
+          console.error('Error updating review:', error);
+          return res.status(500).json({ success: false, message: 'Internal server error' });
+      });
   });
 
-  //goofy route, 100% scalable industry-ready
+
+
+  // route for profile
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
     const searchQuery = { username: userName };

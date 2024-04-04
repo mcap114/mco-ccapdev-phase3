@@ -66,14 +66,14 @@ document.addEventListener("DOMContentLoaded", function() {
     reviewForm.addEventListener('submit', submitReview);
   }
 
+  // edit review form
   const editreviewForms = document.querySelectorAll('[id^="editForm-"]');
   editreviewForms.forEach(function(form) {
     form.addEventListener('submit', function(event) {
       const reviewId = this.dataset.reviewId;
 
       if (editreviewForms) {
-        console.log("Form submitted with reviewID: ", reviewId);
-        editReview(reviewId);
+        event.preventDefault();
       }
     });
   });
@@ -86,13 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   
     
-  initStarRatings(); //write review star rating baka makalimutan ko ulit
+  initStarRatings(); //write review star rating 
   initEditReviewStars();
 });
 
 // function to add establishment to current user's favorites
 function addToFavorites(establishment_name) {
-  // Send a POST request to the server with the establishment name
   fetch('/add-to-favorites', {
     method: 'POST',
     headers: {
@@ -290,47 +289,48 @@ function getStarRating() {
 // event listener for save button to save changes
 document.querySelector('.save-button').addEventListener('click', saveChanges);
 
+// function to show edit review widget
 function showEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = 'block';
 }
 
+// function to hide edit review widget
 function hideEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = "none";;
 }
 
+// function to edit review
 function editReview(reviewId) {
   const review_title = document.getElementById('review_title').value;
   const caption = document.getElementById('caption').value;
-  //const rating = getStarRating();
 
   fetch(`/edit-review/${reviewId}`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          review_title: review_title,
-          caption: caption,
-          //rating: rating
-      })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      review_title: review_title,
+      caption: caption
+  })
   })
   .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
   .then(data => {
-      if (data && data.success) {
-          alert(data.message);
-          hideEditWidget(reviewId);
-      } else {
-          alert('Failed to edit review: ' + data.message);
-      }
+    if (data && data.success) {
+      alert(data.message);
+      hideEditReviewWidget(reviewId);
+    } else {
+      alert('Failed to edit review: ' + data.message);
+    }
   })
   .catch(error => {
-      console.error('Error editing review:', error);
+    console.error('Error editing review:', error);
   });
 }
