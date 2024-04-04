@@ -53,58 +53,26 @@ function addRoutes(server) {
   // route for non-user view homepage
   router.get('/', function (req, resp) {
     console.log('\nCurrently at Home Page');
-
+  
     // calculate the date one week ago from the current date
     const oneWeekAgo = moment().subtract(7, 'days').toDate();
-
+  
     // search query to find reviews posted in the past week
     const searchQuery = { date_posted: { $gte: oneWeekAgo } };
+  
+    reviewModel.find(searchQuery).lean().then(function (review_data) {
+      const noRecentReviews = review_data.length === 0;
 
-    establishmentModel.find({}).lean().then(function(establishment_data){
-      let establishmentUpdatedRating = 0;
-
-      establishment_data.forEach(function(establishment, index, establishments) {
-        let totalRating = 0;
-        let reviewCount = 0;
-
-        reviewModel.find({ place_name: establishment.establishment_name }).lean().then(function(reviews) {
-          reviewCount = reviews.length;
-          reviews.forEach(function(review) {
-            totalRating += parseInt(review.rating);
-          });
-          establishment.establishment_ratings = reviewCount > 0 ? (totalRating / reviewCount).toFixed(1) : 0;
-
-          establishmentModel.findOneAndUpdate({ establishment_name: establishment.establishment_name }, { establishment_ratings: establishment.establishment_ratings }, { new: true }).then(function(updatedEstablishment) {
-            establishmentUpdatedRating++;
-            if (establishmentUpdatedRating === establishments.length) {
-              reviewModel.find(searchQuery).lean().then(function (review_data) {
-                const noRecentReviews = review_data.length === 0;
-
-                resp.render('main', {
-                  layout: 'index',
-                  title: 'Cofeed',
-                  'review-data': review_data,
-                  establishment: establishment_data,
-                  currentUser: req.session.username,
-                  currentUserIcon: req.session.user_icon,
-                  noRecentReviews: noRecentReviews 
-                });
-              }).catch(function(error) {
-                console.error('Error fetching reviews:', error);
-                resp.redirect('/error');
-              });
-            }
-          }).catch(function(error) {
-            console.error('Error updating establishment with rating:', error);
-            resp.redirect('/error');
-          });
-        }).catch(function(error) {
-          console.error('Error fetching reviews for establishment:', error);
-          resp.redirect('/error');
-        });
+      resp.render('main', {
+        layout: 'index',
+        title: 'Cofeed',
+        'review-data': review_data,
+        currentUser: req.session.username,
+        currentUserIcon: req.session.user_icon,
+        noRecentReviews: noRecentReviews 
       });
     }).catch(function(error) {
-      console.error('Error fetching establishments:', error);
+      console.error('Error fetching reviews:', error);
       resp.redirect('/error');
     });
   });
