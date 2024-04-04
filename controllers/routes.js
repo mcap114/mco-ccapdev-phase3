@@ -936,6 +936,27 @@ function addRoutes(server) {
     });
   });
 
+  router.post('/edit-review/:reviewId', function(req, res) {
+    const reviewId = req.params.reviewId;
+    const updatedTitle = req.body.review_title;
+    const updatedDescription = req.body.caption;
+    const updatedRating = req.body.rating;
+
+    // Update the review in the database
+    reviewModel.findByIdAndUpdate(reviewId, {
+        review_title: updatedTitle,
+        caption: updatedDescription,
+        rating: updatedRating
+    }, { new: true })
+    .then(updatedReview => {
+        res.json({ success: true, message: 'Review edited successfully!' });
+    })
+    .catch(error => {
+        console.error('Error editing review:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+    });
+  });
+
   return router;
 }
 

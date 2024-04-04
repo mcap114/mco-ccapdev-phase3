@@ -8,7 +8,7 @@
 
         {{#if (eq username currentUser)}}
         <div class="review-menu">
-            <button class="reaction-btn review-option" onclick="showEditWidget('{{_id}}')">
+            <button class="reaction-btn review-option" onclick="showEditReviewWidget('{{_id}}')">
                 <i class="fa fa-pencil" aria-hidden="true"></i> 
             </button>
     
@@ -21,8 +21,8 @@
         <!-- displaying but not yet fully functioning -->
         <div id="edit-widget-{{_id}}" class="edit-widget-container" >
             <div class="edit-establishmentwidget">
-                <button class="close-button" onclick="hideEditWidget('{{_id}}')">X</button>
-               <form name="editForm-{{_id}}" id="editForm-{{_id}}" method="POST" data-review-id="{{_id}}">
+                <button class="close-button" onclick="hideEditReviewWidget('{{_id}}')">X</button>
+               <form name="editForm-{{_id}}" id="editForm-{{_id}}" method="POST" data-review-id="{{_id}}" onsubmit="return editReview('{{_id}}')" >
                     <p class="main"><b>Edit Review Details</b></p>
                     <div class="edit-review-rating">
                         <div class="review-rating">
@@ -39,14 +39,14 @@
                     </div>
                     <div class="info-item">
                         <label for="review-title">Review Title</label>
-                        <input type="text" id="review-title" name="review_title" value="{{review_title}}" placeholder="Update review title">
+                        <input type="text" id="review_title" name="review_title" value="{{review_title}}" placeholder="Update review title">
                     </div>
                     <div class="info-item">
                         <label for="description">Description</label>
-                        <input type="text" id="caption" name="description" value="{{caption}}"  placeholder="Update review descripton">
+                        <input type="text" id="caption" name="description" value="{{caption}}"  placeholder="Update review descripton" onshow="autoExpand(this)">
                     </div>
                     <div class="establishment-options">
-                        <input type="button" onclick="editReview('{{_id}}')" value="Save" id="save-details"></input>
+                        <input type="submit" value="Save" id="save-details"></input>
                     </div>
                 </form>
             </div>

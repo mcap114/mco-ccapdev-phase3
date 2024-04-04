@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
   // stars for establishment_ratings
   var starRatingContainers = document.querySelectorAll(".star-rating-container");
@@ -58,9 +57,10 @@ document.addEventListener("DOMContentLoaded", function() {
     button.addEventListener('click', function(event) {
       const establishment_name = event.target.dataset.establishment_name;
       addToFavorites(establishment_name);
-      });
     });
+  });
 
+  // writing a review
   const reviewForm = document.getElementById('post-form');
   if (reviewForm) {
     reviewForm.addEventListener('submit', submitReview);
@@ -69,9 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const editreviewForms = document.querySelectorAll('[id^="editForm-"]');
   editreviewForms.forEach(function(form) {
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); 
-      const reviewId = this.dataset.reviewId; 
-      editReview(reviewId); 
+      const reviewId = this.dataset.reviewId;
+
+      if (editreviewForms) {
+        console.log("Form submitted with reviewID: ", reviewId);
+        editReview(reviewId);
+      }
     });
   });
 
@@ -298,16 +301,11 @@ function hideEditReviewWidget(reviewId) {
 }
 
 function editReview(reviewId) {
-  const review_title = document.getElementById('edit-review-title').value;
-  const caption = document.getElementById('edit-review-description').value;
-  const rating = getStarRating();
-  
-  if (rating === 0) {
-      alert('Please select a star rating.');
-      return;
-  }
+  const review_title = document.getElementById('review_title').value;
+  const caption = document.getElementById('caption').value;
+  //const rating = getStarRating();
 
-  fetch(`/establishment/${place_name}/${reviewId}`, {
+  fetch(`/edit-review/${reviewId}`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -315,7 +313,7 @@ function editReview(reviewId) {
       body: JSON.stringify({
           review_title: review_title,
           caption: caption,
-          rating: rating
+          //rating: rating
       })
   })
   .then(response => {

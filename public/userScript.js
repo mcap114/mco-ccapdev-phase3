@@ -331,6 +331,7 @@ function unlikeWidget(establishmentName) {
                     favPlaceElement.parentElement.parentElement.remove();
                     console.log('Widget removed from DOM.');
                     alert('Removed from favorites successfully!');
+                    window.location.href = window.location;
             
 
                 } else {
@@ -403,6 +404,7 @@ function removeReview(reviewId) {
                 if (reviewElement) {
                     reviewElement.remove(); // Remove the review widget from the UI
                     alert('Review removed successfully!');
+                    window.location.href = window.location;
                     
                 }
             } else {
