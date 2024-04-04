@@ -556,7 +556,6 @@ function addRoutes(server) {
       });
     });
   });
-
 // Route for editing establishment details
 router.post('/edit-establishment/:establishmentId', (req, res) => {
   const establishmentId = req.params.establishmentId;
@@ -579,12 +578,20 @@ router.post('/edit-establishment/:establishmentId', (req, res) => {
       }
 
       console.log("\nEstablishment updated with establishment ID:", establishmentId);
-      res.json({ success: true }); // Send success response
-
-      // Log the updated establishment name
-      console.log("Updated Establishment Name:", updatedEstablishmentName);
-      // Redirect to the URL for the updated establishment page
-      res.redirect(`/establishment/${updatedEstablishmentName}`);
+      
+      // Update the reviews with the new establishment name
+      return reviewModel.updateMany({ place_name: updatedEstablishment.establishment_name }, { $set: { place_name: updatedEstablishmentName } })
+        .then(() => {
+          // Send success response
+          res.json({ success: true });
+        })
+        .catch(error => {
+          console.error('Error updating reviews:', error);
+          res.status(500).json({
+            success: false,
+            message: 'Error updating reviews'
+          });
+        });
     })
     .catch(error => {
       console.error('Error updating establishment:', error);
@@ -594,6 +601,7 @@ router.post('/edit-establishment/:establishmentId', (req, res) => {
       });
     });
 });
+
 
 
   

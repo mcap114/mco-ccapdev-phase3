@@ -349,27 +349,31 @@ function editEstablishment(establishmentId) {
   console.log('Establishment Description:', establishmentDescription);
 
   fetch(`/edit-establishment/${establishmentId}`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          establishment_name: establishmentName,
-          establishment_address: establishmentAddress,
-          establishment_description: establishmentDescription
-      }),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      establishment_name: establishmentName,
+      establishment_address: establishmentAddress,
+      establishment_description: establishmentDescription
+    }),
   })
   .then(response => response.json())
   .then(data => {
-      if (data.success) {
-          alert('Establishment details updated successfully!');
-          // Optionally, close the edit widget and refresh the establishment details on the page
-      } else {
-          alert('Failed to update establishment details: ' + data.message);
-      }
+    if (data.success) {
+      alert('Establishment details updated successfully!');
+      // Update the URL to reflect the new establishment name
+      const newUrl = window.location.href.replace(/establishment\/[^/]+/, `establishment/${establishmentName}`);
+      history.pushState({}, '', newUrl);
+      // Reload the page to fetch the updated establishment data
+      window.location.reload();
+    } else {
+      alert('Failed to update establishment details: ' + data.message);
+    }
   })
   .catch(error => {
-      console.error('Error updating establishment details:', error);
-      alert('An error occurred while updating establishment details.');
+    console.error('Error updating establishment details:', error);
+    alert('An error occurred while updating establishment details.');
   });
 }
