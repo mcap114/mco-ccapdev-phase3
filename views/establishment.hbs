@@ -208,24 +208,24 @@
                         <div id="edit-widget" class="edit-widget-container">
                             <div class="edit-establishmentwidget">
                                 <button class="close-button" onclick="hideEditWidget()">X</button>
-                                <form name="" action="" method="POST" onsubmit="return ()">
+                                 <form id="edit-establishment-form" onsubmit="editEstablishment('{{establishment._id}}')">
                                 <p class="main"><b>Edit Establishment Details</b></p>
                                 <div class="info-item">
-                                    <label for="establishment-name">Name</label>
-                                    <input type="text" id="establishment-name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
+                                    <label for="establishment_name">Name</label>
+                                    <input type="text" id="establishment_name" value="{{establishment.establishment_name}}" placeholder="Update establishment name">
                                 </div>
                                 <div class="info-item">
                                     <label for="address">Address</label>
-                                    <input type="text" id="address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
+                                    <input type="text" id="establishment_address" value="{{establishment.establishment_address}}" placeholder="Update establishment address">
                                 </div>
                                 <div class="info-item">
-                                    <label for="description">About the Establishment</label>
-                                    <input type="text" id="biotext" value="{{establishment.establishment_description}}"  placeholder="Update establishment descripton">
+                                    <label for="biotext">About the Establishment</label>
+                                    <input type="text" id="establishment_description" value="{{establishment.establishment_description}}"  placeholder="Update establishment description">
                                 </div>
                                 <div class="establishment-options">
                                     <input id="save-details" type="submit" value="Save"></input>
                                 </div>
-                                </form>
+                            </form>
                             </div>
                         </div>
                     {{/if}}

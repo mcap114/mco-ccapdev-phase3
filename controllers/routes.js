@@ -557,6 +557,46 @@ function addRoutes(server) {
     });
   });
 
+// Route for editing establishment details
+router.post('/edit-establishment/:establishmentId', (req, res) => {
+  const establishmentId = req.params.establishmentId;
+  const updatedEstablishmentName = req.body.establishment_name;
+  const updatedEstablishmentAddress = req.body.establishment_address;
+  const updatedEstablishmentDescription = req.body.establishment_description;
+
+  // Find the establishment by its ID and update its details
+  establishmentModel.findByIdAndUpdate(establishmentId, {
+    establishment_name: updatedEstablishmentName,
+    establishment_address: updatedEstablishmentAddress,
+    establishment_description: updatedEstablishmentDescription
+  }, { new: true })
+    .then(updatedEstablishment => {
+      if (!updatedEstablishment) {
+        return res.status(404).json({
+          success: false,
+          message: 'Establishment not found'
+        });
+      }
+
+      console.log("\nEstablishment updated with establishment ID:", establishmentId);
+      res.json({ success: true }); // Send success response
+
+      // Log the updated establishment name
+      console.log("Updated Establishment Name:", updatedEstablishmentName);
+      // Redirect to the URL for the updated establishment page
+      res.redirect(`/establishment/${updatedEstablishmentName}`);
+    })
+    .catch(error => {
+      console.error('Error updating establishment:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Internal server error'
+      });
+    });
+});
+
+
+  
   // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
   router.post('/add-to-favorites', function(req, res) {
     try {
@@ -647,40 +687,27 @@ function addRoutes(server) {
     }
   });
 
-  // route for edit review
-  router.post('/edit-review/:reviewId', (req, res) => {
+  // route for edit review 
+  router.post('/edit-review/:reviewId', function(req, res) {
     const reviewId = req.params.reviewId;
-    const { review_title, caption } = req.body;
-    let oldReviewTitle;
+    const updatedTitle = req.body.review_title;
+    const updatedDescription = req.body.caption;
+    const updatedRating = req.body.rating;
 
-    reviewModel.findById(reviewId)
-      .then(oldReview => {
-          if (!oldReview) {
-              return res.status(404).json({ success: false, message: 'Review not found' });
-          }
-          oldReviewTitle = oldReview.review_title; // Assign oldReviewTitle here
-
-          return reviewModel.findByIdAndUpdate(reviewId, { review_title: review_title, caption: caption }, { new: true });
-      })
-      .then(updatedReview => {
-          if (!updatedReview) {
-              return res.status(404).json({ success: false, message: 'Review not found' });
-          }
-          return userModel.findOneAndUpdate(
-              { username: req.session.username, "createdreview.review_title": oldReviewTitle },
-              { $set: { "createdreview.$.review_title": review_title } }
-          );
-      })
-      .then(() => {
-          console.log("\nReview updated with reviewID: ", reviewId);
-          return res.status(200).json({ success: true, message: 'Review updated successfully' });
-      })
-      .catch(error => {
-          console.error('Error updating review:', error);
-          return res.status(500).json({ success: false, message: 'Internal server error' });
-      });
+    // Update the review in the database
+    reviewModel.findByIdAndUpdate(reviewId, {
+        review_title: updatedTitle,
+        caption: updatedDescription,
+        rating: updatedRating
+    }, { new: true })
+    .then(updatedReview => {
+        res.json({ success: true, message: 'Review edited successfully!' });
+    })
+    .catch(error => {
+        console.error('Error editing review:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
+    });
   });
-
 
 
   // route for profile
@@ -958,28 +985,6 @@ function addRoutes(server) {
         return res.status(500).json({ success: false, message: 'An error occurred' });
     }
 });
-
-
-  router.post('/edit-review/:reviewId', function(req, res) {
-    const reviewId = req.params.reviewId;
-    const updatedTitle = req.body.review_title;
-    const updatedDescription = req.body.caption;
-    const updatedRating = req.body.rating;
-
-    // Update the review in the database
-    reviewModel.findByIdAndUpdate(reviewId, {
-        review_title: updatedTitle,
-        caption: updatedDescription,
-        rating: updatedRating
-    }, { new: true })
-    .then(updatedReview => {
-        res.json({ success: true, message: 'Review edited successfully!' });
-    })
-    .catch(error => {
-        console.error('Error editing review:', error);
-        res.status(500).json({ success: false, message: 'An error occurred while processing your request.' });
-    });
-  });
 
   return router;
 }

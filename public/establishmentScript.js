@@ -334,3 +334,42 @@ function editReview(reviewId) {
     console.error('Error editing review:', error);
   });
 }
+
+// Function to update establishment details via AJAX
+function editEstablishment(establishmentId) {
+  // Retrieve updated establishment details from form inputs
+  const establishmentName = document.getElementById('establishment_name').value;
+  const establishmentAddress = document.getElementById('establishment_address').value;
+  const establishmentDescription = document.getElementById('establishment_description').value;
+
+  // Log the input values
+  console.log('Establishment ID:', establishmentId);
+  console.log('Establishment Name:', establishmentName);
+  console.log('Establishment Address:', establishmentAddress);
+  console.log('Establishment Description:', establishmentDescription);
+
+  fetch(`/edit-establishment/${establishmentId}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          establishment_name: establishmentName,
+          establishment_address: establishmentAddress,
+          establishment_description: establishmentDescription
+      }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          alert('Establishment details updated successfully!');
+          // Optionally, close the edit widget and refresh the establishment details on the page
+      } else {
+          alert('Failed to update establishment details: ' + data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error updating establishment details:', error);
+      alert('An error occurred while updating establishment details.');
+  });
+}
