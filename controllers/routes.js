@@ -211,13 +211,11 @@ function addRoutes(server) {
   // route for reading user from the database to login
   router.post('/read-user', function(req, resp) {
     try {
-      const { username, password } = req.body;
+      const { username, password, rememberMe } = req.body; // Changed this line
 
-      //this line takes input from the "Remember Me" checkbox and checks if 'on'/ticked
-      //this seems to be where the problem is as it always reads as FALSE
-      const rememberMe = req.body['remember-me'] === 'on'; 
+    console.log("\n REMEMBER ME CHECKED? "+rememberMe);
 
-      console.log("\n REMEMBER ME CHECKED? "+rememberMe);
+
 
       // Find user by username
       userModel.findOne({ username }).then(function(user) {
@@ -231,7 +229,7 @@ function addRoutes(server) {
               req.session.name = user.name;
               req.session.user_icon = user.user_icon;
               req.session.userType = user.userType;
-              if (rememberMe) {
+              if (rememberMe === 'on') {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; // sets expiry of user login (in seconds)
                 
                 // creates unique cookie and stores in browser

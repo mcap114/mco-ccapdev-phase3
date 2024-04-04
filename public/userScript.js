@@ -140,7 +140,7 @@ function submitLoginForm() {
         body: JSON.stringify({
             username: usernameString,
             password: passString,
-            rememberMe: rememberMe
+            rememberMe: rememberMe ? 'on' : 'off'
         })
     })
     .then(response => {
