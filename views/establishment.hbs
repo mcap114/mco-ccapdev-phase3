@@ -164,17 +164,18 @@
 
                     </div>
                 
-                    <!--success! review is reviewing boogsh wah!!!-->
-                    <!--!Call review partial to display review data-->
+                    <!-- success! review is reviewing boogsh wah!!!-->
+                    <!-- Call review partial to display review data -->
                     <div class="review-feed">
-                    {{#if reviewData.length}}
-                        {{#each reviewData}}
-                            {{> review_partial currentUser=../currentUser}}
-                        {{/each}}
-                    {{else}}
-                        <p>Our brew buddies are still brewing up something to say.</p>
-                    {{/if}}
+                        {{#if reviewData.length}}
+                            {{#each reviewData}}
+                                {{> review_partial currentUser=../currentUser isLoggedIn=../isLoggedIn}}
+                            {{/each}}
+                        {{else}}
+                            <p>Our brew buddies are still brewing up something to say.</p>
+                        {{/if}}
                     </div>
+
 
                 </div>
             </div>
