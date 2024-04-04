@@ -51,6 +51,19 @@ function calculateAndUpdateRatings(establishment_data) {
   });
 }
 
+// Function to generate a remember me token
+function generateRememberMeToken() {
+  const tokenLength = 32; // Length of the token
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // Characters to use for generating the token
+  let token = '';
+
+  for (let i = 0; i < tokenLength; i++) {
+    token += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return token;
+}
+
 function addRoutes(server) {
   const router = express.Router();
 
@@ -219,33 +232,25 @@ router.post('/upload', upload.single('file'), (req, res) => {
   // route for reading user from the database to login
   router.post('/read-user', function(req, resp) {
     try {
-      const { username, password } = req.body;
+      const { username, password, rememberMe } = req.body; 
 
-      //this line takes input from the "Remember Me" checkbox and checks if 'on'/ticked
-      //this seems to be where the problem is as it always reads as FALSE
-      const rememberMe = req.body['remember-me'] === 'on'; 
+      console.log("\nREMEMBER ME CHECKED? " + rememberMe);
 
-      console.log("\n REMEMBER ME CHECKED? "+rememberMe);
-
-      // Find user by username
       userModel.findOne({ username }).then(function(user) {
         console.log("\nFinding user: ", username);
 
         if (user) {
-          // Compare hashed password from database with provided password
           bcrypt.compare(password, user.password).then(function(passwordMatch) {
             if (passwordMatch) {
               req.session.username = user.username;
               req.session.name = user.name;
               req.session.user_icon = user.user_icon;
               req.session.userType = user.userType;
-              if (rememberMe) {
+              if (rememberMe === 'on') {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21; // sets expiry of user login (in seconds)
-                
-                // creates unique cookie and stores in browser
-
                 const rememberMeToken = generateRememberMeToken();
                 user.rememberMeToken = rememberMeToken;
+                user.rememberMeTokenExpires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
                 user.save();
 
                 resp.cookie('remember_me', rememberMeToken, {
@@ -257,13 +262,11 @@ router.post('/upload', upload.single('file'), (req, res) => {
               console.log("User Type:", req.session.userType);
               resp.json({ success: true });
             } else {
-              // Passwords don't match
               console.log("\nPasswords do not match for user: ", username);
               resp.json({ success: false });
             }
           });
         } else {
-          // User not found
           console.log("\nUser not found: ", username);
           resp.json({ success: false });
         }

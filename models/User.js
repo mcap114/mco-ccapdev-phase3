@@ -15,7 +15,9 @@ const userSchema = new mongoose.Schema({
     review_photo: { type: String },
     place_name: { type: String },
     review_title: { type: String },
-  }]
+  }],
+  rememberMeToken: String, // Remember me token field
+  rememberMeTokenExpires: Date
 },{ versionKey: false });
   
 // user model
