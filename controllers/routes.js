@@ -44,13 +44,14 @@ function isLoggedIn(req, res, next) {
   if (req.session.username) {
     next();
   } else {
+    res.clearCookie('remember_me');
     res.redirect('/'); 
   }
 }
 // function to check if current user is owner
 function isOwner(req, res, next) {
   if (req.session.username && req.session.userType === 'owner') {
-    // User is logged in and is an owner
+    // user is logged in and is an owner
     next();
   } else {
     res.redirect('/');
@@ -60,7 +61,7 @@ function isOwner(req, res, next) {
 // function to check if current user is owner
 function isRater(req, res, next) {
   if (req.session.username && req.session.userType === 'rater') {
-    // User is logged in and is a rater
+    // user is logged in and is a rater
     next();
   } else {
     res.redirect('/');
@@ -276,12 +277,32 @@ function addRoutes(server) {
   // route for login page
   router.get('/login', function (req, res) {
     console.log('\nCurrently at Login Page');
-    res.render('login', {
-      layout: 'index',
-      title: 'Login',
-    });
-  });
 
+    if (req.cookies.remember_me) {
+      const token = req.cookies.remember_me;
+      userModel.findOne({ rememberMeToken: token }).then(function(user) {
+        if (user) {
+          req.session.username = user.username;
+          req.session.name = user.name;
+          req.session.user_icon = user.user_icon;
+          req.session.userType = user.userType;
+          console.log("\nUser ", req.session.username, " Found");
+          console.log("User Type:", req.session.userType);
+          return res.redirect('/landingPage'); 
+        } else {
+          console.log("\nUser not found for remember_me token:", token);
+          res.clearCookie('remember_me'); 
+          res.render('login', { layout: 'index', title: 'Login' });
+        }
+      })
+      .catch(function(error) {
+          console.error("Error finding user:", error);
+          res.status(500).json({ success: false, error: "Internal Server Error" });
+      });
+    } else {
+        res.render('login', { layout: 'index', title: 'Login' });
+    }
+  });
   // route for reading user from the database to login
   router.post('/read-user', function(req, resp) {
     try {
