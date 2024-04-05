@@ -9,7 +9,7 @@
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Kape Benito"],
         "createdreview": [{ "review_photo": "https://i.imgocean.com/41C757A2-A946-4CD1-9B03-481F6781456F7560930fd7b92ffb.jpeg", "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
-        "followers": ["reginaaa","aaaaron"],
+        "followers": ["reginaaa","aaaaron","gretchh"],
         "following": ["aaaaron","karen_"]
     },
     {
@@ -22,8 +22,8 @@
         "userType": "rater",
         "favoriteplace":["Angkan Coffee Company"],
         "createdreview": [{ "review_photo": "https://i.imgocean.com/IMG_20230620_141448575394c9a2c88a00.jpeg", "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
-        "followers": ["gretchh","karen_"],
-        "following": ["aaaaron"]
+        "followers": ["gretchh","karen_","aaaaron"],
+        "following": ["aaaaron","cadyyy","karen_"]
     },
     {
         "user_icon": "https://i.pinimg.com/originals/c7/2f/cc/c72fcc17928f3b200bf3f0c79820ea20.jpg",
@@ -36,7 +36,7 @@
         "favoriteplace":["Angkan Coffee Company"],
         "createdreview": [{ "review_photo": "https://lh3.googleusercontent.com/p/AF1QipN4AQDAGcfH6o9oGDflJCytFfSg_xAF2Borkpn3=s1360-w1360-h1020", "place_name": "Frank & Dean Coffee", "review_title": "New favorite Cafe"}],
         "followers": ["karen_"],
-        "following": ["karen_","cadyyy"]
+        "following": ["karen_","cadyyy","reginaaa"]
     },
     {
         "user_icon": "https://i.pinimg.com/474x/9d/0e/be/9d0ebe82326c5e932d0a3149705dd934.jpg",
@@ -48,8 +48,8 @@
         "userType": "rater",
         "favoriteplace":["Deuces Coffee","Angkan Coffee Company"],
         "createdreview": [{ "review_photo": "https://i.imgocean.com/IMG_6738b035f9a5f774ec5f.jpeg", "place_name": "Kape Benito", "review_title": "New favorite Cafe"}],
-        "followers": ["reginaaa","gretchh","cadyyy","karen_"],
-        "following": ["aaaaron","karen_"]
+        "followers": ["reginaaa","gretchh","cadyyy"],
+        "following": ["aaaaron","gretchh"]
     },
     {
         "user_icon": "https://i.redd.it/b42oeb66665a1.jpg",
@@ -62,7 +62,7 @@
         "favoriteplace":["Kape Benito","Angkan Coffee Company"],
         "createdreview": [{ "review_photo": "https://lh3.googleusercontent.com/p/AF1QipNuKcXgBB4tn_ugaN0uSjt8TOrOHMs2SiSS4W7p=s1360-w1360-h1020", "place_name": "Angkan Coffee Company", "review_title": "New favorite Cafe"},
                         { "review_photo": "","place_name": "Obscure Cafe", "review_title": "Chill Spot"}],
-        "followers": ["reginaaa","cadyyy"],
+        "followers": ["reginaaa","cadyyy","karen_"],
         "following": ["reginaaa","cadyyy"]
     },
     {
