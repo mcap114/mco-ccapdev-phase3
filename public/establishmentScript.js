@@ -201,12 +201,25 @@ window.onload = function() {
 
 // Function to preview the selected photo
 function previewPhoto(event) {
-  const file = event.target.files[0];
+  const fileInput = event.target;
   const photoPreview = document.getElementById('photo-preview');
 
-  if (file) {
-      const img = photoPreview.querySelector('.review-photo');
-      img.src = URL.createObjectURL(file);
+  photoPreview.innerHTML = '';
+
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      
+      const previewImage = document.createElement('img');
+      previewImage.setAttribute('src', e.target.result);
+      previewImage.setAttribute('alt', 'Preview');
+      previewImage.classList.add('preview-image');
+
+      photoPreview.prepend(previewImage);
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
   }
 }
 
