@@ -639,6 +639,12 @@ label[for="star-filter"], label[for="sort"] {
     object-position: bottom bottom;
 }
 
+.vertical-line {
+    width: 10px; 
+    height: 100%; 
+    background-color: #666;
+}
+
 /* reactions */
 .reactions {
     margin-top: auto; 
@@ -673,8 +679,6 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 /* Write a comment */
-/* Write a comment */
-
 .comment-box {
     display: flex;
     align-items: flex-start;
@@ -710,8 +714,6 @@ label[for="star-filter"], label[for="sort"] {
     font-size: 12px;
     color: #333;
 }
-
-
 .post-comment-button { 
     align-items: flex-end; 
     margin-left: 75%; 

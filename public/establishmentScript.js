@@ -210,12 +210,12 @@ function previewPhoto(event) {
   }
 }
 
-//
+// function to redirect to establishment page when the respective name is clicked
 function redirectToEstablishment(establishmentName) {
   window.location.href = '/establishment/' + encodeURIComponent(establishmentName);
 }
 
-// 
+// function to update star rating in the review section
 function updateStarRatings() {
   // Target only review ratings
   const ratingContainers = document.querySelectorAll('.dynamic-star-rating');
@@ -307,31 +307,72 @@ function getStarRating() {
   return stars.length; 
 }
 
+// function to post comment asynchronously
+function submitComment(reviewId) {
+  const commentInput = document.querySelector('.comment-input');
+  const comment = commentInput.value;
 
-function submitComment(reviewId, comment) {
   const formData = { reviewId, comment };
 
   fetch('/submit-comment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
   })
   .then(response => response.json())
   .then(data => {
-      if (data.success) {
-          alert('Comment posted successfully!');
-          // Handle successful comment submission (e.g., update UI)
-      } else {
-          // Ensure this line correctly accesses `data.message`
-          alert('Failed to submit comment: ' + data.message);
-      }
+    if (data.success) {
+      alert('Comment posted successfully!');
+      appendCommentToUI(data.newComment);
+      commentInput.value = ''; 
+    } else {
+      alert('Failed to submit comment: ' + (data.message || 'Unknown error'));
+    }
   })
   .catch(error => {
-      console.error('Error submitting comment:', error);
-      // Handle any errors that occurred during fetch
-      alert('An error occurred while submitting the comment.');
+    console.error('Error submitting comment:', error);
+    alert('An error occurred while submitting the comment.');
   });
 }
+
+
+// function to display the comment data in the comment section template
+function appendCommentToUI(comment) {
+  // commentSection is the container where comments are displayed.
+  const commentSection = document.getElementById('commentSection');
+
+
+  const commentDiv = document.createElement('div');
+  commentDiv.classList.add('user-profile-establishment');
+
+
+  const img = document.createElement('img');
+  img.src = comment.user_icon;
+  img.alt = 'User Icon';
+  commentDiv.appendChild(img);
+
+
+  const profileTextDiv = document.createElement('div');
+  profileTextDiv.classList.add('profile-text');
+
+
+  const usernameSpan = document.createElement('span');
+  usernameSpan.classList.add('username');
+  usernameSpan.textContent = comment.username;
+  profileTextDiv.appendChild(usernameSpan);
+
+
+  const commentSpan = document.createElement('span');
+  commentSpan.classList.add('comment-box');
+  commentSpan.textContent = comment.comment;
+  profileTextDiv.appendChild(commentSpan);
+
+
+  commentDiv.appendChild(profileTextDiv);
+
+  commentSection.appendChild(commentDiv);
+}
+
 
 
 // function to show edit review widget
