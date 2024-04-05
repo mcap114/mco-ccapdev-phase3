@@ -90,11 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
   initStarRatings(); //write review star rating 
   initEditReviewStars();
 
-   // Add event listener for all post comment buttons
    document.querySelectorAll('.post-comment-button').forEach(button => {
     button.addEventListener('click', function() {
         const reviewContainer = this.closest('.comment-box');
-        const reviewId = reviewContainer.getAttribute('data-review-id'); // Use data-review-id attribute
+        const reviewId = reviewContainer.getAttribute('data-review-id'); 
         const commentInput = reviewContainer.querySelector('.comment-input');
 
         if (commentInput.value.trim() === '') {
@@ -110,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function createEstablishment() {
-    const form = document.getElementById('create-establishment-form'); // Make sure this ID matches your form ID
+    const form = document.getElementById('create-establishment-form');
     const formData = new FormData(form);
     
     fetch('/create-establishment', {
@@ -123,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Redirect to the new establishment page
         window.location.href = data.redirect;
       } else {
-        // Handle the failure case
         alert(data.message);
       }
     })
@@ -131,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
       console.error('Error:', error);
     });
     
-    // Prevent form from submitting traditionally
     return false;
   }
   
@@ -185,7 +182,7 @@ function initEditReviewStars() {
   });
 }
 
-// 
+
 function updateStars(starSet, ratingValue) {
   starSet.forEach((star, index) => {
     if (index < ratingValue) {
@@ -216,7 +213,7 @@ function formatDate(date) {
 // Add this function to reload the photo preview when the page loads
 window.onload = function() {
   const photoPreview = document.getElementById('photo-preview');
-  const reviewPhoto = "{{review_photo}}"; // Assuming you're passing review_photo from the server
+  const reviewPhoto = "{{review_photo}}"; 
 
   if (reviewPhoto) {
       const img = photoPreview.querySelector('.review-photo');
@@ -255,6 +252,7 @@ function redirectToEstablishment(establishmentName) {
 
 // function to update star rating in the review section
 function updateStarRatings() {
+  
   // Target only review ratings
   const ratingContainers = document.querySelectorAll('.dynamic-star-rating');
   ratingContainers.forEach(container => {
@@ -326,8 +324,6 @@ function submitReview() {
 }
 
 
-
-
 // function to highlight selected stars in writing a review
 function highlightStars(rating) {
   const stars = document.querySelectorAll('.review-rating .fa-star');
@@ -377,7 +373,7 @@ function submitComment(reviewId) {
 
 // function to display the comment data in the comment section template
 function appendCommentToUI(comment) {
-  // commentSection is the container where comments are displayed.
+  // commentSection (review_partial.hbs) is the container where comments are displayed.
   const commentSection = document.getElementById('commentSection');
 
 
@@ -411,7 +407,6 @@ function appendCommentToUI(comment) {
 
   commentSection.appendChild(commentDiv);
 }
-
 
 
 // function to show edit review widget
@@ -467,12 +462,6 @@ function editEstablishment(establishmentId) {
   const establishmentAddress = document.getElementById('establishment_address').value;
   const establishmentDescription = document.getElementById('establishment_description').value;
 
-  // Log the input values
-  console.log('Establishment ID:', establishmentId);
-  console.log('Establishment Name:', establishmentName);
-  console.log('Establishment Address:', establishmentAddress);
-  console.log('Establishment Description:', establishmentDescription);
-
   fetch(`/edit-establishment/${establishmentId}`, {
     method: 'POST',
     headers: {
@@ -488,11 +477,9 @@ function editEstablishment(establishmentId) {
   .then(data => {
     if (data.success) {
       alert('Establishment details updated successfully!');
-      // Update the URL to reflect the new establishment name
       const newUrl = window.location.href.replace(/establishment\/[^/]+/, `establishment/${establishmentName}`);
       history.pushState({}, '', newUrl);
       
-      // Reload the page to fetch the updated establishment data
       window.location.reload();
     } else {
       alert('Failed to update establishment details: ' + data.message);
@@ -502,4 +489,16 @@ function editEstablishment(establishmentId) {
     console.error('Error updating establishment details:', error);
     alert('An error occurred while updating establishment details.');
   });
+}
+
+// function to show the create establishment widget
+function showEstablishmentWidget() {
+  var establishmentWidget = document.getElementById("create-establishment-widget");
+  establishmentWidget.style.display = "block";
+}
+
+// function to hide the create establishment widget
+function hideEstablishmentWidget() {
+  var establishmentWidget = document.getElementById("create-establishment-widget");
+  establishmentWidget.style.display = "none";
 }

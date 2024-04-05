@@ -553,7 +553,7 @@ function addRoutes(server) {
     });    
   });
 
-  // Route to create establishment 
+  // Route to create establishment (not fully functioning)
   router.post('/create-establishment', (req, res) => {
     const {
       banner_image,
@@ -592,7 +592,6 @@ function addRoutes(server) {
     newEstablishment.save()
       .then(establishment => {
         const establishmentUrl = `/establishment/${encodeURIComponent(establishment.establishment_name)}`;
-        // Sending back the ID might be useful if you want to redirect to the new establishment's page
         res.json({ success: true, message: 'Establishment created successfully!', establishmentId: establishment._id });
       })
       .catch(error => {
@@ -677,7 +676,6 @@ function addRoutes(server) {
         // Update the reviews with the new establishment name
         return reviewModel.updateMany({ place_name: updatedEstablishment.establishment_name }, { $set: { place_name: updatedEstablishmentName } })
           .then(() => {
-            // Send success response
             res.json({ success: true });
           })
           .catch(error => {
@@ -1054,7 +1052,7 @@ function addRoutes(server) {
     });
   });
 
-  //
+  //router to remove establishment from user'sfavorites
   router.post('/remove-from-favorites', function(req, res) {
     try {
       console.log('Request body:', req.body); 
@@ -1101,7 +1099,7 @@ function addRoutes(server) {
     }
   });
 
-  //
+  //router to delete a review
   router.post('/remove-review', async (req, res) => {
     try {
         const reviewPhoto = req.body.review_photo;
