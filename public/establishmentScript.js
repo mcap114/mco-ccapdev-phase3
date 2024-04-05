@@ -90,22 +90,24 @@ document.addEventListener("DOMContentLoaded", function() {
   initStarRatings(); //write review star rating 
   initEditReviewStars();
 
-  document.querySelectorAll('.post-comment-button').forEach(button => {
+   // Add event listener for all post comment buttons
+   document.querySelectorAll('.post-comment-button').forEach(button => {
     button.addEventListener('click', function() {
-      const reviewContainer = this.closest('.comment-box');
-      const reviewId = reviewContainer.getAttribute('data-review-id'); // Use data-review-id attribute
-      const commentInput = reviewContainer.querySelector('.comment-input');
-      
-      if (commentInput.value.trim() === '') {
-        alert('Comment cannot be empty.');
-        return;
-      }
+        const reviewContainer = this.closest('.comment-box');
+        const reviewId = reviewContainer.getAttribute('data-review-id'); // Use data-review-id attribute
+        const commentInput = reviewContainer.querySelector('.comment-input');
 
-      submitComment(reviewId, commentInput.value);
-      commentInput.value = ''; // Clear the input field after submitting
+        if (commentInput.value.trim() === '') {
+            alert('Comment cannot be empty.');
+            return;
+        }
+
+        submitComment(reviewId, commentInput.value);
+        commentInput.value = ''; // Clear the input field after submitting
     });
+    });
+  
   });
-});
 
 
 
@@ -452,6 +454,7 @@ function editEstablishment(establishmentId) {
       // Update the URL to reflect the new establishment name
       const newUrl = window.location.href.replace(/establishment\/[^/]+/, `establishment/${establishmentName}`);
       history.pushState({}, '', newUrl);
+      
       // Reload the page to fetch the updated establishment data
       window.location.reload();
     } else {

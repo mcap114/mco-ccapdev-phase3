@@ -73,19 +73,21 @@
         </div>
         {{/if}}
 
-        <!-- comment section -->
+       <!-- comment section -->
         <div class="comment-section" id="commentSection">
-            {{#each comments}}
-            <div class="user-profile-establishment">
-                <img src="{{user_icon}}" alt="{{username}}">
-                <div class="profile-text">
-                    <span class="username">{{username}}</span>
-                    <span class="comment-box">{{comment}}</span>
-                </div>
-            </div>
-            {{/each}}
-        </div>
+        {{#each comments}}
+        <div class="user-profile-establishment">
+            <img src="{{user_icon}}" alt="{{username}}">
+            <div class="profile-text">
+            <span class="username">{{username}}</span>
         
+            <span class="comment-box">{{comment}}</span>
+            </div>
+        </div>
+        {{/each}}
+        </div>
+
+
         {{#if isLoggedIn}}
         <!-- Write a comment -->
                 <div class="comment-box" data-review-id="{{_id}}">
