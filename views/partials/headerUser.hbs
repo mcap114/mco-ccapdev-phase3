@@ -29,15 +29,15 @@
                     <a class="header-text" href="/viewEstablishments">View Establishments</a>
                 </div>
     
-                <!--SEE PROFILE PAGE-->
+                <!--SEE PROFILE PAGE
                 <div class="header-see-profile-button">
                     <a class="header-text" onclick="redirectToProfile('{{currentUser}}')">See Profile</a>
-                </div>
+                </div>-->
         
                 <div class="header-profile">
                     <div class="avatar-button" onclick="toggleOptions(event)">
                         <div class="box-item">
-                            <strong>{{currentUser}}</strong>
+                         <a class="header-text"  onclick="redirectToProfile('{{currentUser}}')"></strong>{{currentUser}}</strong></a>
                             <img src="{{currentUserIcon}}" alt="user icon">
                         </div>
                         <i class="fa fa-chevron-down"></i> 

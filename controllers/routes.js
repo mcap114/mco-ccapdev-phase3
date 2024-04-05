@@ -22,6 +22,26 @@ function isLoggedIn(req, res, next) {
     res.redirect('/'); 
   }
 }
+// function to check if current user is owner
+function isOwner(req, res, next) {
+  if (req.session.username && req.session.userType === 'owner') {
+    // User is logged in and is an owner
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
+// function to check if current user is owner
+function isRater(req, res, next) {
+  if (req.session.username && req.session.userType === 'rater') {
+    // User is logged in and is a rater
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
 
 // function to calculate and update establishment ratings
 function calculateAndUpdateRatings(establishment_data) {
@@ -604,7 +624,6 @@ function addRoutes(server) {
       });
   });
 
-  
 
   // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
   router.post('/add-to-favorites', function(req, res) {

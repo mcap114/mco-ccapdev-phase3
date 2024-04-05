@@ -240,54 +240,43 @@ function getStarsHTML(rating) {
 function applyRatingFilter(rating) {
   window.location.href = window.location.pathname + '?rating=' + rating;
 }
-
-// function to handle write a review
 function submitReview() {
-  const review_title = document.getElementById('review-title').value;
-  const place_name = document.getElementById('review-location').value;
+  const reviewTitle = document.getElementById('review-title').value;
+  const placeName = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
   const rating = getStarRating();
-  const reviewsCountElement = document.getElementById('reviews-count');
-  
+
   if (rating === 0) {
-    alert('Please select a star rating.');
-    return; 
+      alert('Please select a star rating.');
+      return;
   }
 
   fetch('/submit-review', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        review_title: review_title,
-        place_name: place_name,
-        caption: caption,
-        rating: rating
+          review_title: reviewTitle,
+          place_name: placeName,
+          caption: caption,
+          rating: rating
       })
   })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
-    if (data && data.success) {
-      alert(data.message);
-      
-      if (reviewsCountElement) {
-        const newReviewCount = parseInt(reviewsCountElement.innerText.split(' ')[0]) + 1;
-        reviewsCountElement.innerText = newReviewCount + ' reviews';
+      if (data && data.success && data.review) {
+          alert('Review submitted successfully!');
+          // appendReviewToUI(data.review);
+      } else {
+          alert('Failed to create review: ' + data.message);
       }
-  } else {
-      alert('Failed to create review: ' + data.message);
-  }
   })
   .catch(error => {
       console.error('Error submitting review:', error);
   });
 }
+
 
 // function to highlight selected stars in writing a review
 function highlightStars(rating) {
