@@ -246,7 +246,8 @@ function addRoutes(server) {
         // File uploaded successfully
         res.json({ message: 'File uploaded successfully!' });
     });
-});
+  });
+
   // route for login page
   router.get('/login', function (req, res) {
     console.log('\nCurrently at Login Page');

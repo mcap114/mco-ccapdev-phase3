@@ -244,6 +244,10 @@ function submitReview() {
   const reviewTitle = document.getElementById('review-title').value;
   const placeName = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
+  const rating = getStarRating('photo-upload').value;
+  const image = document.getElementById()
+  const reviewsCountElement = document.getElementById('reviews-count');
+  
   const rating = getStarRating();
 
   if (rating === 0) {
