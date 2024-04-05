@@ -1,3 +1,16 @@
+
+.edit-widget-container {
+    position: absolute;
+    z-index: 1000; 
+    justify-content: center; 
+    align-items: center; 
+    height: fit-content;
+    overflow-y: auto;
+    top: 2%; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /* style for main banner area */
 .blockA {
     margin: 0;

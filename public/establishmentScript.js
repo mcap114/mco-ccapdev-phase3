@@ -109,7 +109,32 @@ document.addEventListener("DOMContentLoaded", function() {
   
   });
 
-
+  function createEstablishment() {
+    const form = document.getElementById('create-establishment-form'); // Make sure this ID matches your form ID
+    const formData = new FormData(form);
+    
+    fetch('/create-establishment', {
+      method: 'POST',
+      body: new URLSearchParams(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.success) {
+        // Redirect to the new establishment page
+        window.location.href = data.redirect;
+      } else {
+        // Handle the failure case
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    
+    // Prevent form from submitting traditionally
+    return false;
+  }
+  
 
 // function to add establishment to current user's favorites
 function addToFavorites(establishment_name) {

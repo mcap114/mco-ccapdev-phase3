@@ -2,7 +2,7 @@
 <div id="create-establishment-widget" class="edit-widget-container">
     <p class="main"><b>Create Establishment</b></p>
     <button class="close-button" onclick="hideCreateEstablishmentWidget()">X</button>
-    <form name="create-establishment" action="/create-establishment" method="post" onsubmit="return createEstablishment()">
+    <form name="create-establishment" action="/create-establishment" method="post" onsubmit="return createEstablishment(event)">
         <div class="info-item">
             <label for="establishment-name">Establishment Name</label>
             <input type="text" id="establishment-name-field" placeholder="Enter establishment name">
@@ -60,5 +60,5 @@
             <input type="text" id="owner-username-field" placeholder="Enter owner username">
         </div>
         <input id="create-establishment-button" type="submit" value="Create Establishment"></input>
-    </form>
+</form>
 </div>
