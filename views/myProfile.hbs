@@ -30,7 +30,7 @@
     <div id="edit-widget" class="edit-widget-container">
         <p class="main"><b>Edit Profile</b></p>
         <button class="close-button" onclick="hideEditWidget()">X</button>
-        <form name="update-user" action="/update-user" method="post" onsubmit="return updatingUserForm()">
+        <form name="update-user" action="/update-user" method="post" onsubmit="return updatingUserForm()" enctype="multipart/form-data">
             <div class="info-item">
                 <label for="name">Name</label>
                 <input type="text" id="name-field" value="{{user-data.name}}" placeholder="Enter your name">
@@ -53,7 +53,7 @@
                 <img src="https://i.imgocean.com/eye-close6c91a6ac25495e1f.png" alt="eye" id="toggle-password" onclick="togglePasswordVisibility('password-field', 'toggle-password')">
             </div>
             <div class="photo-upload-container">
-                <input type="file" accept="image/*" id="photo-upload" class="photo-upload" name="user_icon" onchange="previewPhoto(event)">
+                <input type="file" accept="image/*" id="photo-upload" class="photo-upload" name="user_icon" onchange="previewPhoto(event)" enctype="multipart/form-data">
                 <label for="photo-upload" class="change-photo-label"><i class="fa fa-camera"></i> Change Profile Picture</label>
             </div>
             <div class="photo-preview" id="photo-preview"></div>

@@ -1006,6 +1006,8 @@ function addRoutes(server) {
       if (user && user._id) {
         const { name, username, bio, password } = req.body;
         const icon = req.file ? req.file.filename : null;
+        console.log('Uploaded file:', req.file);
+        console.log('Uploaded filename:', icon);
 
         // Hash the password
         bcrypt.hash(password, 10, function(err, hashedPassword) {

@@ -226,6 +226,7 @@ function updatingUserForm() {
     let usernameString = document.getElementById("username-field").value;
     let bioString = document.getElementById("bio-field").value;
     let passString = document.getElementById("password-field").value;
+    let iconString = document.getElementById("photo-upload").value;
 
     // making a POST request to the server to update password
     fetch('/update-user', {
@@ -239,6 +240,7 @@ function updatingUserForm() {
             bio: bioString,
             password: passString,
             password2: passString,
+            user_icon: iconString
         })
     })
     .then(response => {
