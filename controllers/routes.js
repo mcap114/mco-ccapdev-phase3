@@ -553,55 +553,102 @@ function addRoutes(server) {
     });    
   });
 
-  // read establishment
-  router.get('/establishment/:name', function (req, resp) {
-    const establishmentName = req.params.name;
-    const establishmentSearchQuery = { establishment_name: establishmentName };
-    const reviewSearchQuery = { place_name: establishmentName};
-    const ratingFilter = req.query.rating;
-    console.log('\nCurrently at Establishment Page: ' + establishmentName);
-    console.log('Username:', req.session.username);
-    
-    establishmentModel.findOne(establishmentSearchQuery).lean().then(function(establishment_data) {
-      reviewModel.find(reviewSearchQuery).lean().then(function(review_data){
-        if (!establishment_data) {
-          console.log('Establishment data not found.');
-          resp.redirect('/error');
-          return;
-        }
+  // Route to create establishment 
+  router.post('/create-establishment', (req, res) => {
+    const {
+      banner_image,
+      establishment_name,
+      establishment_address,
+      establishment_description,
+      price_range,
+      establishment_ratings,
+      services_offered,
+      establishment_schedule,
+      contact_details_FB,
+      contact_details_IG,
+      establishment_images,
+      establishment_map,
+      establishment_owner,
+      owner_username,
+    } = req.body;
 
-        const reviewCount = review_data.length;
+    const newEstablishment = new establishmentModel({
+      banner_image,
+      establishment_name,
+      establishment_address,
+      establishment_description,
+      price_range,
+      establishment_ratings,
+      services_offered: services_offered.split(','), // If they are comma-separated in the form
+      establishment_schedule: establishment_schedule.split(','),
+      contact_details_FB,
+      contact_details_IG,
+      establishment_images: establishment_images.split(','),
+      establishment_map,
+      establishment_owner,
+      owner_username,
+    });
 
-        if (ratingFilter) {
-          review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
-        }
+    newEstablishment.save()
+      .then(establishment => {
+        const establishmentUrl = `/establishment/${encodeURIComponent(establishment.establishment_name)}`;
+        // Sending back the ID might be useful if you want to redirect to the new establishment's page
+        res.json({ success: true, message: 'Establishment created successfully!', establishmentId: establishment._id });
+      })
+      .catch(error => {
+        console.error('Error creating establishment:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while creating the establishment.' });
+      });
+  });
+    // read establishment
+    router.get('/establishment/:name', function (req, resp) {
+      const establishmentName = req.params.name;
+      const establishmentSearchQuery = { establishment_name: establishmentName };
+      const reviewSearchQuery = { place_name: establishmentName};
+      const ratingFilter = req.query.rating;
+      console.log('\nCurrently at Establishment Page: ' + establishmentName);
+      console.log('Username:', req.session.username);
+      
+      establishmentModel.findOne(establishmentSearchQuery).lean().then(function(establishment_data) {
+        reviewModel.find(reviewSearchQuery).lean().then(function(review_data){
+          if (!establishment_data) {
+            console.log('Establishment data not found.');
+            resp.redirect('/error');
+            return;
+          }
 
-        const ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-        
-        review_data.forEach(function (review) {
-          ratingDistribution[review.rating]++;
-        });
+          const reviewCount = review_data.length;
 
-        console.log('Rating Distribution:', ratingDistribution);
+          if (ratingFilter) {
+            review_data = review_data.filter(review => review.rating.toString() === ratingFilter);
+          }
 
-        //console.log('Establishment Data:', establishment_data);
-        //console.log('Review Data: ', review_data);
-        resp.render('establishment', {
-          layout: 'index',
-          title: establishmentName,
-          reviewData: review_data,
-          establishment: establishment_data,
-          reviewCount: reviewCount,
-          currentUser: req.session.username,
-          currentUserIcon: req.session.user_icon,
-          currentUserType: req.session.userType,
-          selectedRatingFilter: ratingFilter,
-          establishmentRating: establishment_data.establishment_ratings,
-          ratingDistribution: JSON.stringify(ratingDistribution)
+          const ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+          
+          review_data.forEach(function (review) {
+            ratingDistribution[review.rating]++;
+          });
+
+          console.log('Rating Distribution:', ratingDistribution);
+
+          //console.log('Establishment Data:', establishment_data);
+          //console.log('Review Data: ', review_data);
+          resp.render('establishment', {
+            layout: 'index',
+            title: establishmentName,
+            reviewData: review_data,
+            establishment: establishment_data,
+            reviewCount: reviewCount,
+            currentUser: req.session.username,
+            currentUserIcon: req.session.user_icon,
+            currentUserType: req.session.userType,
+            selectedRatingFilter: ratingFilter,
+            establishmentRating: establishment_data.establishment_ratings,
+            ratingDistribution: JSON.stringify(ratingDistribution)
+          });
         });
       });
     });
-  });
 
 
   // Route for editing establishment details
