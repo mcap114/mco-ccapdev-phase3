@@ -710,7 +710,7 @@ function addRoutes(server) {
             display_name: req.session.name,
             username: req.session.username,
             rating,
-            review_photo, // Use the file name
+            review_photo: './uploads/' + review_photo, 
             review_title,
             place_name,
             caption,

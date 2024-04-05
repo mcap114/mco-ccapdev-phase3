@@ -79,6 +79,7 @@ server.use('/', routes.addRoutes(server));
 
 // public folder
 server.use(express.static('public'));
+server.use(express.static('uploads'));
 
 // mongoose
 const mongoose = require('mongoose');
