@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var closeButton = document.querySelector(".close-button");
+    if (closeButton) {
+        closeButton.addEventListener("click", hideEstablishmentWidget);
+    }
+});
+
+
 // function to show logout dropdown in header
 function toggleOptions(event) {
     const dropdown = event.target.nextElementSibling;

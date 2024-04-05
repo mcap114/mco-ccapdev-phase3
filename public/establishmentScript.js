@@ -490,3 +490,15 @@ function editEstablishment(establishmentId) {
     alert('An error occurred while updating establishment details.');
   });
 }
+
+// function to show the create establishment widget
+function showEstablishmentWidget() {
+  var establishmentWidget = document.getElementById("create-establishment-widget");
+  establishmentWidget.style.display = "block";
+}
+
+// function to hide the create establishment widget
+function hideEstablishmentWidget() {
+  var establishmentWidget = document.getElementById("create-establishment-widget");
+  establishmentWidget.style.display = "none";
+}
