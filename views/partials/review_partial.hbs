@@ -88,13 +88,13 @@
         
         {{#if isLoggedIn}}
         <!-- Write a comment -->
-        <div id="commentBox{{_id}}" class="comment-box">
+                <div class="comment-box" data-review-id="{{_id}}">
                     <div class="user-profile-comment">
                         <img src="{{currentUserIcon}}" alt="user">
                     </div> 
                    <div class="comment-content">
                     <textarea type="text" class="comment-input" placeholder="Enter your comment"></textarea>
-                    <button id="post-comment-button" class="post-comment-button">Comment</button>
+                    <button class="post-comment-button">Comment</button>
                 </div>
         </div>
         {{/if}}

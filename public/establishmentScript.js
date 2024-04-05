@@ -90,17 +90,22 @@ document.addEventListener("DOMContentLoaded", function() {
   initStarRatings(); //write review star rating 
   initEditReviewStars();
 
-    // Event listener for submit comment button
-    const submitCommentButtons = document.querySelectorAll('.post-comment-button');
-    submitCommentButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            console.log('Button clicked'); // Add this line for debugging
-            const reviewId = button.closest('.comment-box').id.replace('commentBox', ''); // Extract reviewId from the comment box ID
-            submitComment(reviewId);
-        });
-    });
+  document.querySelectorAll('.post-comment-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const reviewContainer = this.closest('.comment-box');
+      const reviewId = reviewContainer.getAttribute('data-review-id'); // Use data-review-id attribute
+      const commentInput = reviewContainer.querySelector('.comment-input');
+      
+      if (commentInput.value.trim() === '') {
+        alert('Comment cannot be empty.');
+        return;
+      }
 
+      submitComment(reviewId, commentInput.value);
+      commentInput.value = ''; // Clear the input field after submitting
+    });
   });
+});
 
 
 
@@ -301,49 +306,31 @@ function getStarRating() {
 }
 
 
-// submit comment to a review
-function submitComment(reviewId) {
-  const commentInput = document.querySelector('.comment-input').value; // Get the value of the textarea
-  const formData = {
-      reviewId: reviewId,
-      comment: commentInput
-  };
-
+function submitComment(reviewId, comment) {
+  const formData = { reviewId, comment };
 
   fetch('/submit-comment', {
       method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
   })
   .then(response => response.json())
   .then(data => {
       if (data.success) {
-          // Reload the page or update the UI to display the new comment
-          console.log('Comment Posted!');
-          refreshComments(reviewId);
+          alert('Comment posted successfully!');
+          // Handle successful comment submission (e.g., update UI)
       } else {
+          // Ensure this line correctly accesses `data.message`
           alert('Failed to submit comment: ' + data.message);
       }
   })
   .catch(error => {
       console.error('Error submitting comment:', error);
+      // Handle any errors that occurred during fetch
       alert('An error occurred while submitting the comment.');
   });
 }
 
-// Function to fetch comments for a review and update UI
-function refreshComments(reviewId) {
-  fetch(`/comments/${reviewId}`)
-  .then(response => response.json())
-  .then(data => {
-      updateCommentUI(data.comments);
-  })
-  .catch(error => {
-      console.error('Error fetching comments:', error);
-  });
-}
 
 // function to show edit review widget
 function showEditReviewWidget(reviewId) {

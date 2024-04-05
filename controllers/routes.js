@@ -719,35 +719,36 @@ router.post('/edit-establishment/:establishmentId', (req, res) => {
 
   // Route to post comment
   router.post('/submit-comment', (req, res) => {
-    const user_icon = req.session.user_icon;
-    const username = req.session.userName;
+    
     const { reviewId, comment } = req.body;
 
-    // Find the review by its ID and update it to include the new comment
     reviewModel.findByIdAndUpdate(reviewId, {
         $push: {
             comments: {
-                user_icon: user_icon,
-                username: username,
-                comment: comment
+                user_icon: req.session.user_icon,
+                username: req.session.username,
+                comment: comment,
             }
         }
-    })
+    }, { new: true })
     .then(review => {
         if (!review) {
-            // If the review doesn't exist, return an error response
-            return res.json({ success: false, message: 'Review not found' });
+            return res.status(404).json({ success: false, message: 'Review not found' });
         }
-        res.json({ success: true });
+
+        const newComment = {
+            user_icon: req.session.user_icon,
+            username: req.session.username,
+            comment: comment
+        };
+
+        res.json({ success: true, newComment: newComment });
     })
     .catch(error => {
         console.error('Error submitting comment:', error);
-        res.json({ success: false, message: 'Error submitting comment' });
+        res.status(500).json({ success: false, message: 'Error submitting comment' });
     });
-  });
-
-
-
+});
 
 
   // route for profile
