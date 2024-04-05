@@ -14,7 +14,7 @@ const reviewSchema = new mongoose.Schema({
   comments: [{
     user_icon: { type: String },
     username: { type: String },
-    comment: { type: String }
+    comment: { type: String },
   }]
 },{ versionKey: false });
   

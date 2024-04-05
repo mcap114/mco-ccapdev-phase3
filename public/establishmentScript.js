@@ -1,5 +1,5 @@
-
 document.addEventListener("DOMContentLoaded", function() {
+  
   // stars for establishment_ratings
   var starRatingContainers = document.querySelectorAll(".star-rating-container");
   starRatingContainers.forEach(function(container) {
@@ -53,25 +53,30 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelector("input#post-date").value = formattedDate;
   updateStarRatings();
 
+  // add to favorite establishment
   const favoriteButtons = document.querySelectorAll('.favorite');
   favoriteButtons.forEach(button => {
     button.addEventListener('click', function(event) {
       const establishment_name = event.target.dataset.establishment_name;
       addToFavorites(establishment_name);
-      });
     });
+  });
 
+  // writing a review
   const reviewForm = document.getElementById('post-form');
   if (reviewForm) {
     reviewForm.addEventListener('submit', submitReview);
   }
 
+  // edit review form
   const editreviewForms = document.querySelectorAll('[id^="editForm-"]');
   editreviewForms.forEach(function(form) {
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); 
-      const reviewId = this.dataset.reviewId; 
-      editReview(reviewId); 
+      const reviewId = this.dataset.reviewId;
+
+      if (editreviewForms) {
+        event.preventDefault();
+      }
     });
   });
 
@@ -82,14 +87,30 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
-    
-  initStarRatings(); //write review star rating baka makalimutan ko ulit
+  initStarRatings(); //write review star rating 
   initEditReviewStars();
+
+  document.querySelectorAll('.post-comment-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const reviewContainer = this.closest('.comment-box');
+      const reviewId = reviewContainer.getAttribute('data-review-id'); // Use data-review-id attribute
+      const commentInput = reviewContainer.querySelector('.comment-input');
+      
+      if (commentInput.value.trim() === '') {
+        alert('Comment cannot be empty.');
+        return;
+      }
+
+      submitComment(reviewId, commentInput.value);
+      commentInput.value = ''; // Clear the input field after submitting
+    });
+  });
 });
+
+
 
 // function to add establishment to current user's favorites
 function addToFavorites(establishment_name) {
-  // Send a POST request to the server with the establishment name
   fetch('/add-to-favorites', {
     method: 'POST',
     headers: {
@@ -286,55 +307,118 @@ function getStarRating() {
   return stars.length; 
 }
 
-// event listener for save button to save changes
-document.querySelector('.save-button').addEventListener('click', saveChanges);
 
-function showEditWidget(reviewId) {
+function submitComment(reviewId, comment) {
+  const formData = { reviewId, comment };
+
+  fetch('/submit-comment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          alert('Comment posted successfully!');
+          // Handle successful comment submission (e.g., update UI)
+      } else {
+          // Ensure this line correctly accesses `data.message`
+          alert('Failed to submit comment: ' + data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error submitting comment:', error);
+      // Handle any errors that occurred during fetch
+      alert('An error occurred while submitting the comment.');
+  });
+}
+
+
+// function to show edit review widget
+function showEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = 'block';
 }
 
-function hideEditWidget(reviewId) {
+// function to hide edit review widget
+function hideEditReviewWidget(reviewId) {
   const editWidget = document.getElementById(`edit-widget-${reviewId}`);
   editWidget.style.display = "none";;
 }
 
+// function to edit review
 function editReview(reviewId) {
-  const review_title = document.getElementById('edit-review-title').value;
-  const caption = document.getElementById('edit-review-description').value;
-  const rating = getStarRating();
-  
-  if (rating === 0) {
-      alert('Please select a star rating.');
-      return;
-  }
+  const review_title = document.getElementById('review_title').value;
+  const caption = document.getElementById('caption').value;
 
-  fetch(`/establishment/${place_name}/${reviewId}`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          review_title: review_title,
-          caption: caption,
-          rating: rating
-      })
+  fetch(`/edit-review/${reviewId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      review_title: review_title,
+      caption: caption
+  })
   })
   .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
   .then(data => {
-      if (data && data.success) {
-          alert(data.message);
-          hideEditWidget(reviewId);
-      } else {
-          alert('Failed to edit review: ' + data.message);
-      }
+    if (data && data.success) {
+      alert(data.message);
+      hideEditReviewWidget(reviewId);
+    } else {
+      alert('Failed to edit review: ' + data.message);
+    }
   })
   .catch(error => {
-      console.error('Error editing review:', error);
+    console.error('Error editing review:', error);
+  });
+}
+
+// Function to update establishment details via AJAX
+function editEstablishment(establishmentId) {
+  // Retrieve updated establishment details from form inputs
+  const establishmentName = document.getElementById('establishment_name').value;
+  const establishmentAddress = document.getElementById('establishment_address').value;
+  const establishmentDescription = document.getElementById('establishment_description').value;
+
+  // Log the input values
+  console.log('Establishment ID:', establishmentId);
+  console.log('Establishment Name:', establishmentName);
+  console.log('Establishment Address:', establishmentAddress);
+  console.log('Establishment Description:', establishmentDescription);
+
+  fetch(`/edit-establishment/${establishmentId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      establishment_name: establishmentName,
+      establishment_address: establishmentAddress,
+      establishment_description: establishmentDescription
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Establishment details updated successfully!');
+      // Update the URL to reflect the new establishment name
+      const newUrl = window.location.href.replace(/establishment\/[^/]+/, `establishment/${establishmentName}`);
+      history.pushState({}, '', newUrl);
+      // Reload the page to fetch the updated establishment data
+      window.location.reload();
+    } else {
+      alert('Failed to update establishment details: ' + data.message);
+    }
+  })
+  .catch(error => {
+    console.error('Error updating establishment details:', error);
+    alert('An error occurred while updating establishment details.');
   });
 }

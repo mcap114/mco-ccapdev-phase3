@@ -557,7 +557,55 @@ function addRoutes(server) {
       });
     });
   });
+// Route for editing establishment details
+router.post('/edit-establishment/:establishmentId', (req, res) => {
+  const establishmentId = req.params.establishmentId;
+  const updatedEstablishmentName = req.body.establishment_name;
+  const updatedEstablishmentAddress = req.body.establishment_address;
+  const updatedEstablishmentDescription = req.body.establishment_description;
 
+  // Find the establishment by its ID and update its details
+  establishmentModel.findByIdAndUpdate(establishmentId, {
+    establishment_name: updatedEstablishmentName,
+    establishment_address: updatedEstablishmentAddress,
+    establishment_description: updatedEstablishmentDescription
+  }, { new: true })
+    .then(updatedEstablishment => {
+      if (!updatedEstablishment) {
+        return res.status(404).json({
+          success: false,
+          message: 'Establishment not found'
+        });
+      }
+
+      console.log("\nEstablishment updated with establishment ID:", establishmentId);
+      
+      // Update the reviews with the new establishment name
+      return reviewModel.updateMany({ place_name: updatedEstablishment.establishment_name }, { $set: { place_name: updatedEstablishmentName } })
+        .then(() => {
+          // Send success response
+          res.json({ success: true });
+        })
+        .catch(error => {
+          console.error('Error updating reviews:', error);
+          res.status(500).json({
+            success: false,
+            message: 'Error updating reviews'
+          });
+        });
+    })
+    .catch(error => {
+      console.error('Error updating establishment:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Internal server error'
+      });
+    });
+});
+
+
+
+  
   // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
   router.post('/add-to-favorites', function(req, res) {
     try {
@@ -648,7 +696,8 @@ function addRoutes(server) {
     }
   });
 
-  router.post('/establishment/:name/:reviewId', function(req, res) {
+  // route for edit review 
+  router.post('/edit-review/:reviewId', function(req, res) {
     const reviewId = req.params.reviewId;
     const updatedTitle = req.body.review_title;
     const updatedDescription = req.body.caption;
@@ -669,7 +718,41 @@ function addRoutes(server) {
     });
   });
 
-  //goofy route, 100% scalable industry-ready
+  // Route to post comment
+  router.post('/submit-comment', (req, res) => {
+    
+    const { reviewId, comment } = req.body;
+
+    reviewModel.findByIdAndUpdate(reviewId, {
+        $push: {
+            comments: {
+                user_icon: req.session.user_icon,
+                username: req.session.username,
+                comment: comment,
+            }
+        }
+    }, { new: true })
+    .then(review => {
+        if (!review) {
+            return res.status(404).json({ success: false, message: 'Review not found' });
+        }
+
+        const newComment = {
+            user_icon: req.session.user_icon,
+            username: req.session.username,
+            comment: comment
+        };
+
+        res.json({ success: true, newComment: newComment });
+    })
+    .catch(error => {
+        console.error('Error submitting comment:', error);
+        res.status(500).json({ success: false, message: 'Error submitting comment' });
+    });
+});
+
+
+  // route for profile
   router.get('/profile/:name', function (req, resp) {
     const userName = req.params.name;
     const searchQuery = { username: userName };
@@ -921,21 +1004,29 @@ function addRoutes(server) {
   });
 
   //
-  router.post('/remove-review', function(req, res) {
-    const reviewId = req.body.review_id;
+  router.post('/remove-review', async (req, res) => {
+    try {
+        const reviewPhoto = req.body.review_photo;
 
-    reviewModel.findByIdAndDelete(reviewId) .then(deletedReview => {
-      if (!deletedReview) {
-          return res.status(404).json({ success: false, message: 'Review not found' });
-      }
-      // Optionally, update other data or perform additional actions here
-      return res.json({ success: true, message: 'Review removed successfully' });
-    })
-    .catch(err => {
-      console.error('Error deleting review:', err);
-      return res.status(500).json({ success: false, message: 'An error occurred' });
-    });
-  });
+        // Delete the review
+        const deletedReview = await reviewModel.findOneAndDelete({ review_photo: reviewPhoto });
+
+        if (!deletedReview) {
+            return res.status(404).json({ success: false, message: 'Review not found' });
+        }
+
+        // Remove the review from the createdreview array in user data
+        await userModel.updateMany(
+            {},
+            { $pull: { createdreview: { review_photo: reviewPhoto } } }
+        );
+
+        return res.json({ success: true, message: 'Review removed successfully' });
+    } catch (error) {
+        console.error('Error deleting review:', error);
+        return res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+});
 
   return router;
 }

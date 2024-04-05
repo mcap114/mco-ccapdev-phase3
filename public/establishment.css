@@ -672,6 +672,69 @@ label[for="star-filter"], label[for="sort"] {
     color: white;
 }
 
+/* Write a comment */
+/* Write a comment */
+
+.comment-box {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.user-profile-comment {
+    margin-right: 10px;
+}
+
+.user-profile-comment img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+}
+
+.comment-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.comment-box .comment-content textarea {
+    width: 95%; 
+    height: 40px; /* Adjust height as needed */
+    margin-bottom: 1%;
+    margin-right: 15px;
+    border-radius: 3px;
+    border: 1px solid #E5E5E5;
+    background-color: #E5E5E5;
+    font-family: 'Biryani', sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+
+
+.post-comment-button { 
+    align-items: flex-end; 
+    margin-left: 75%; 
+    margin-top: 1%;
+    width: 20%;
+    padding: 20 15;
+    
+    border: 2px solid #523D35;
+    border-radius: 10px;
+    background-color: #523D35;
+    color: white;
+    font-family: 'Biryani', sans-serif;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+.post-comment-button:hover {
+    border-radius: 10px;
+    border: 2px solid #523D35;
+    background-color: transparent;
+    color: #523D35;
+}
+
 /* comment section */
 .comment-section {
     border-top: 1px solid #ddd;
@@ -705,11 +768,7 @@ label[for="star-filter"], label[for="sort"] {
     font-size: smaller;
     font-family: 'Biryani', sans-serif;
     color: #223030;
-}
-
-.comment-section .profile-text .comment-text {
-    font-size: 14px;
-    line-height: 1.4;
+    margin-top: 0;
 }
 
 /* right section of the page */
