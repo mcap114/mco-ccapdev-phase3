@@ -90,15 +90,16 @@ document.addEventListener("DOMContentLoaded", function() {
   initStarRatings(); //write review star rating 
   initEditReviewStars();
 
-    const submitCommentButton = document.getElementById('post-comment-button');
-    if (submitCommentButton) {
-        submitCommentButton.addEventListener('click', function() {
-            console.log('Comment Button clicked');
-            // Add any additional code here to handle the comment submission
+    // Event listener for submit comment button
+    const submitCommentButtons = document.querySelectorAll('.post-comment-button');
+    submitCommentButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            console.log('Button clicked'); // Add this line for debugging
+            const reviewId = button.closest('.comment-box').id.replace('commentBox', ''); // Extract reviewId from the comment box ID
+            submitComment(reviewId);
         });
-    } else {
-        console.error('Submit comment button not found');
-    }
+    });
+
   });
 
 
@@ -298,31 +299,16 @@ function getStarRating() {
   const stars = document.querySelectorAll('.review-rating .fa-star.checked');
   return stars.length; 
 }
+
+
+// submit comment to a review
 function submitComment(reviewId) {
-  const commentInput = document.getElementById(`commentInput-${reviewId}`);
-  console.log('commentInput:', commentInput); // Debug output
-
-  // Check if commentInput is null
-  if (!commentInput) {
-      console.error(`Element with ID 'commentInput-${reviewId}' not found.`);
-      return;
-  }
-
-  // Access the value property if the element exists
-  const commentValue = commentInput.value;
-  console.log('commentValue:', commentValue); // Debug output
-
-  // Check if comment is empty
-  if (!commentValue.trim()) {
-      alert('Comment cannot be empty');
-      return;
-  }
-
+  const commentInput = document.querySelector('.comment-input').value; // Get the value of the textarea
   const formData = {
       reviewId: reviewId,
       comment: commentInput
   };
-  console.log('formData:', formData); // Debug output
+
 
   fetch('/submit-comment', {
       method: 'POST',
@@ -333,11 +319,9 @@ function submitComment(reviewId) {
   })
   .then(response => response.json())
   .then(data => {
-      console.log('Response data:', data); // Debug output
       if (data.success) {
           // Reload the page or update the UI to display the new comment
           console.log('Comment Posted!');
-          // Refresh comments after posting
           refreshComments(reviewId);
       } else {
           alert('Failed to submit comment: ' + data.message);
@@ -354,7 +338,6 @@ function refreshComments(reviewId) {
   fetch(`/comments/${reviewId}`)
   .then(response => response.json())
   .then(data => {
-      // Assuming there's a function to update the UI with comments
       updateCommentUI(data.comments);
   })
   .catch(error => {

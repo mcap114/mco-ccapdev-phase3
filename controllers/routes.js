@@ -717,12 +717,11 @@ router.post('/edit-establishment/:establishmentId', (req, res) => {
     });
   });
 
-  // Route
+  // Route to post comment
   router.post('/submit-comment', (req, res) => {
     const user_icon = req.session.user_icon;
     const username = req.session.userName;
-    const reviewId = req.body.reviewId;
-    const comment = req.body.comment;
+    const { reviewId, comment } = req.body;
 
     // Find the review by its ID and update it to include the new comment
     reviewModel.findByIdAndUpdate(reviewId, {

@@ -699,7 +699,7 @@ label[for="star-filter"], label[for="sort"] {
 }
 
 .comment-box .comment-content textarea {
-    width: 100%; 
+    width: 95%; 
     height: 40px; /* Adjust height as needed */
     margin-bottom: 1%;
     margin-right: 15px;
@@ -714,7 +714,7 @@ label[for="star-filter"], label[for="sort"] {
 
 .post-comment-button { 
     align-items: flex-end; 
-    margin-left: 80%; 
+    margin-left: 75%; 
     margin-top: 1%;
     width: 20%;
     padding: 20 15;
@@ -722,7 +722,7 @@ label[for="star-filter"], label[for="sort"] {
     border: 2px solid #523D35;
     border-radius: 10px;
     background-color: #523D35;
-    color: #E5E5E5;
+    color: white;
     font-family: 'Biryani', sans-serif;
     font-size: 12px;
     font-weight: bolder;
