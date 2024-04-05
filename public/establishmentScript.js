@@ -223,7 +223,8 @@ function submitReview() {
   const review_title = document.getElementById('review-title').value;
   const place_name = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
-  const rating = getStarRating();
+  const rating = getStarRating('photo-upload').value;
+  const image = document.getElementById()
   const reviewsCountElement = document.getElementById('reviews-count');
   
   if (rating === 0) {
@@ -240,7 +241,8 @@ function submitReview() {
         review_title: review_title,
         place_name: place_name,
         caption: caption,
-        rating: rating
+        rating: rating,
+        review_photo: image
       })
   })
   .then(response => {
