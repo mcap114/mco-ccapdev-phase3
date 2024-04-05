@@ -6,8 +6,33 @@ const establishmentModel = require('../models/Establishment');
 const avatarModel = require('../models/Avatar');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
-const upload = require('./upload');
+const multer = require('multer');
+const path = require('path');
 
+// Define storage for uploaded files
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Initialize multer upload
+const upload = multer({ 
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 15 // 5MB max file size
+    },
+    fileFilter: function (req, file, cb) {
+        // Accept only image files
+        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+            return cb(new Error('Only image files are allowed!'), false);
+        }
+        cb(null, true);
+    }
+});
 
 // Define the errorFn function
 const errorFn = function (error) {
@@ -53,8 +78,8 @@ function calculateAndUpdateRatings(establishment_data) {
 
 // Function to generate a remember me token
 function generateRememberMeToken() {
-  const tokenLength = 32; // Length of the token
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // Characters to use for generating the token
+  const tokenLength = 32; 
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; 
   let token = '';
 
   for (let i = 0; i < tokenLength; i++) {
@@ -653,10 +678,12 @@ function addRoutes(server) {
   });
   
   // route for writing a review
-  router.post('/submit-review', function(req, res) {
+  router.post('/submit-review', upload.single('review_photo'), function(req, res){
     try {
         const { rating, review_title, place_name, caption } = req.body;
-        const review_photo = req.file
+        const review_photo = req.file ? req.file.filename : null;
+        console.log('Uploaded file:', req.file);
+        console.log('Uploaded filename:', review_photo);
         
         const newReview = new reviewModel({
             user_photo: req.session.user_icon,
@@ -673,7 +700,7 @@ function addRoutes(server) {
       newReview.save().then(() => {
         return userModel.findOneAndUpdate(
         { username: req.session.username },
-        { $push: { createdreview: { place_name, review_title } } }
+        { $push: { createdreview: { review_photo, place_name, review_title } } }
         );
       })
       .then(() => {

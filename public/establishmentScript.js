@@ -188,27 +188,25 @@ function formatDate(date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
-// write a review preview of photo when uploading
+// Add this function to reload the photo preview when the page loads
+window.onload = function() {
+  const photoPreview = document.getElementById('photo-preview');
+  const reviewPhoto = "{{review_photo}}"; // Assuming you're passing review_photo from the server
+
+  if (reviewPhoto) {
+      const img = photoPreview.querySelector('.review-photo');
+      img.src = '/uploads/' + reviewPhoto;
+  }
+}
+
+// Function to preview the selected photo
 function previewPhoto(event) {
-  const fileInput = event.target;
+  const file = event.target.files[0];
   const photoPreview = document.getElementById('photo-preview');
 
-  photoPreview.innerHTML = '';
-
-  if (fileInput.files && fileInput.files[0]) {
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-      
-      const previewImage = document.createElement('img');
-      previewImage.setAttribute('src', e.target.result);
-      previewImage.setAttribute('alt', 'Preview');
-      previewImage.classList.add('preview-image');
-
-      photoPreview.prepend(previewImage);
-    };
-
-    reader.readAsDataURL(fileInput.files[0]);
+  if (file) {
+      const img = photoPreview.querySelector('.review-photo');
+      img.src = URL.createObjectURL(file);
   }
 }
 
@@ -243,28 +241,28 @@ function applyRatingFilter(rating) {
 
 // function to handle write a review
 function submitReview() {
+  const formData = new FormData();
+  const fileInput = document.getElementById('photo-upload').files[0];
   const review_title = document.getElementById('review-title').value;
   const place_name = document.getElementById('review-location').value;
   const caption = document.getElementById('review-description').value;
   const rating = getStarRating();
   const reviewsCountElement = document.getElementById('reviews-count');
-  
+
   if (rating === 0) {
-    alert('Please select a star rating.');
-    return; 
+      alert('Please select a star rating.');
+      return;
   }
+
+  formData.append('review_photo', fileInput);
+  formData.append('review_title', review_title);
+  formData.append('place_name', place_name);
+  formData.append('caption', caption);
+  formData.append('rating', rating);
 
   fetch('/submit-review', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        review_title: review_title,
-        place_name: place_name,
-        caption: caption,
-        rating: rating
-      })
+      body: formData
   })
   .then(response => {
       if (!response.ok) {
@@ -273,21 +271,22 @@ function submitReview() {
       return response.json();
   })
   .then(data => {
-    if (data && data.success) {
-      alert(data.message);
-      
-      if (reviewsCountElement) {
-        const newReviewCount = parseInt(reviewsCountElement.innerText.split(' ')[0]) + 1;
-        reviewsCountElement.innerText = newReviewCount + ' reviews';
+      if (data && data.success) {
+          alert(data.message);
+
+          if (reviewsCountElement) {
+              const newReviewCount = parseInt(reviewsCountElement.innerText.split(' ')[0]) + 1;
+              reviewsCountElement.innerText = newReviewCount + ' reviews';
+          }
+      } else {
+          alert('Failed to create review: ' + data.message);
       }
-  } else {
-      alert('Failed to create review: ' + data.message);
-  }
   })
   .catch(error => {
       console.error('Error submitting review:', error);
   });
 }
+
 
 // function to highlight selected stars in writing a review
 function highlightStars(rating) {
