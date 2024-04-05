@@ -82,7 +82,7 @@ server.use(express.static('public'));
 
 // mongoose
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/cofeedDB');
+mongoose.connect('mongodb://localhost:27017/cofeedDB');
 
 mongoose.connection.on('connected', () => {
   console.log('\nDatabase connected successfully\n');
