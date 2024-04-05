@@ -1,11 +1,18 @@
 <!-- container for the header -->
 <div class="parent-header">
     {{#if isLoggedIn}}
-        {{> headerUser}}
+        {{#if isOwner}}
+            {{> headerOwner}}
+        {{else if isRater}}
+            {{> headerUser}}
+        {{else}}
+            {{> headerNonUser}}
+        {{/if}}
     {{else}}
         {{> headerNonUser}}
     {{/if}}
 </div>
+
 
 <!-- container for the content -->
 <div class="parent-content-profile">

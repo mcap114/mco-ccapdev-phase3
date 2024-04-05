@@ -1,11 +1,18 @@
 <!-- container for the header -->
 <div class="parent-header">
     {{#if isLoggedIn}}
-        {{> headerUser}}
+        {{#if isOwner}}
+            {{> headerOwner}}
+        {{else if isRater}}
+            {{> headerUser}}
+        {{else}}
+            {{> headerNonUser}}
+        {{/if}}
     {{else}}
         {{> headerNonUser}}
     {{/if}}
 </div>
+
 
 <!-- container for the content -->
 <div class="parent-content">
@@ -195,7 +202,7 @@
                     </div>
                 
                     <!-- trying to display to establishment owner only -->
-                    {{#if (eq currentUserType 'owner')}}
+                    {{#if isOwner}}
                     {{#if (eq currentUser establishment.owner_username)}}
                         <div class="edit-establishment">
                             <button class="reaction-btn establishment-option" onclick="showEditWidget()">

@@ -288,6 +288,8 @@ function submitReview() {
 }
 
 
+
+
 // function to highlight selected stars in writing a review
 function highlightStars(rating) {
   const stars = document.querySelectorAll('.review-rating .fa-star');
