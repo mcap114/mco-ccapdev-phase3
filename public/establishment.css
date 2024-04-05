@@ -765,6 +765,9 @@ label[for="star-filter"], label[for="sort"] {
     color: #223030;
     font-size: small;
 }
+.comment-section .profile-text .owner-tag {
+    color: gray;
+}
 
 .comment-section .profile-text .comment-box {
     font-size: smaller;

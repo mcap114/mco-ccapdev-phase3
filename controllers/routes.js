@@ -556,55 +556,56 @@ function addRoutes(server) {
       });
     });
   });
-// Route for editing establishment details
-router.post('/edit-establishment/:establishmentId', (req, res) => {
-  const establishmentId = req.params.establishmentId;
-  const updatedEstablishmentName = req.body.establishment_name;
-  const updatedEstablishmentAddress = req.body.establishment_address;
-  const updatedEstablishmentDescription = req.body.establishment_description;
 
-  // Find the establishment by its ID and update its details
-  establishmentModel.findByIdAndUpdate(establishmentId, {
-    establishment_name: updatedEstablishmentName,
-    establishment_address: updatedEstablishmentAddress,
-    establishment_description: updatedEstablishmentDescription
-  }, { new: true })
-    .then(updatedEstablishment => {
-      if (!updatedEstablishment) {
-        return res.status(404).json({
-          success: false,
-          message: 'Establishment not found'
-        });
-      }
 
-      console.log("\nEstablishment updated with establishment ID:", establishmentId);
-      
-      // Update the reviews with the new establishment name
-      return reviewModel.updateMany({ place_name: updatedEstablishment.establishment_name }, { $set: { place_name: updatedEstablishmentName } })
-        .then(() => {
-          // Send success response
-          res.json({ success: true });
-        })
-        .catch(error => {
-          console.error('Error updating reviews:', error);
-          res.status(500).json({
+  // Route for editing establishment details
+  router.post('/edit-establishment/:establishmentId', (req, res) => {
+    const establishmentId = req.params.establishmentId;
+    const updatedEstablishmentName = req.body.establishment_name;
+    const updatedEstablishmentAddress = req.body.establishment_address;
+    const updatedEstablishmentDescription = req.body.establishment_description;
+
+    // Find the establishment by its ID and update its details
+    establishmentModel.findByIdAndUpdate(establishmentId, {
+      establishment_name: updatedEstablishmentName,
+      establishment_address: updatedEstablishmentAddress,
+      establishment_description: updatedEstablishmentDescription
+    }, { new: true })
+      .then(updatedEstablishment => {
+        if (!updatedEstablishment) {
+          return res.status(404).json({
             success: false,
-            message: 'Error updating reviews'
+            message: 'Establishment not found'
           });
+        }
+
+        console.log("\nEstablishment updated with establishment ID:", establishmentId);
+        
+        // Update the reviews with the new establishment name
+        return reviewModel.updateMany({ place_name: updatedEstablishment.establishment_name }, { $set: { place_name: updatedEstablishmentName } })
+          .then(() => {
+            // Send success response
+            res.json({ success: true });
+          })
+          .catch(error => {
+            console.error('Error updating reviews:', error);
+            res.status(500).json({
+              success: false,
+              message: 'Error updating reviews'
+            });
+          });
+      })
+      .catch(error => {
+        console.error('Error updating establishment:', error);
+        return res.status(500).json({
+          success: false,
+          message: 'Internal server error'
         });
-    })
-    .catch(error => {
-      console.error('Error updating establishment:', error);
-      return res.status(500).json({
-        success: false,
-        message: 'Internal server error'
       });
-    });
-});
-
-
+  });
 
   
+
   // AAAAAAA ESTAB SAVES TO FAVORITES !!!!!!! TIME CHECK 2:18AM
   router.post('/add-to-favorites', function(req, res) {
     try {
