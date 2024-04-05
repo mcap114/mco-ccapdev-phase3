@@ -831,7 +831,7 @@ function addRoutes(server) {
           establishmentModel.find(establishmentSearchQuery).lean().then(function(establishment_data){
             
             const isOwnProfile = user_data.username === req.session.username;
-            const isFollowing = user_data.following.includes(loggedInUser);
+            const isFollowing = loggedInUser && user_data.followers.includes(loggedInUser);
     
             const favoritePlacesCount = favoritePlaces.length;
             const createdReviewCount = review_data.length;
@@ -950,13 +950,15 @@ function addRoutes(server) {
   });
 
   // route for updating user's information on profile page
-  router.post('/update-user', function(req, resp) {
+  router.post('/update-user', upload.single('user_icon'), function(req, resp) {
     const updateQuery = { username: req.session.username };
+    
 
     userModel.findOne(updateQuery).then(function(user) {
       // if user found
       if (user && user._id) {
         const { name, username, bio, password } = req.body;
+        const icon = req.file ? req.file.filename : null;
 
         // Hash the password
         bcrypt.hash(password, 10, function(err, hashedPassword) {
@@ -970,7 +972,7 @@ function addRoutes(server) {
           user.name = name;
           user.username = username;
           user.bio = bio;
-          user.password = hashedPassword; 
+          user.user_icon = './uploads/' + icon;
 
           // saving the updated user information
           user.save().then(function(result) {
