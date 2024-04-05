@@ -717,6 +717,39 @@ router.post('/edit-establishment/:establishmentId', (req, res) => {
     });
   });
 
+  // Route
+  router.post('/submit-comment', (req, res) => {
+    const user_icon = req.session.user_icon;
+    const username = req.session.userName;
+    const reviewId = req.body.reviewId;
+    const comment = req.body.comment;
+
+    // Find the review by its ID and update it to include the new comment
+    reviewModel.findByIdAndUpdate(reviewId, {
+        $push: {
+            comments: {
+                user_icon: user_icon,
+                username: username,
+                comment: comment
+            }
+        }
+    })
+    .then(review => {
+        if (!review) {
+            // If the review doesn't exist, return an error response
+            return res.json({ success: false, message: 'Review not found' });
+        }
+        res.json({ success: true });
+    })
+    .catch(error => {
+        console.error('Error submitting comment:', error);
+        res.json({ success: false, message: 'Error submitting comment' });
+    });
+  });
+
+
+
+
 
   // route for profile
   router.get('/profile/:name', function (req, resp) {

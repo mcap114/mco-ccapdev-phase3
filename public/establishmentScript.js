@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+  
   // stars for establishment_ratings
   var starRatingContainers = document.querySelectorAll(".star-rating-container");
   starRatingContainers.forEach(function(container) {
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelector("input#post-date").value = formattedDate;
   updateStarRatings();
 
+  // add to favorite establishment
   const favoriteButtons = document.querySelectorAll('.favorite');
   favoriteButtons.forEach(button => {
     button.addEventListener('click', function(event) {
@@ -85,10 +87,21 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
-    
   initStarRatings(); //write review star rating 
   initEditReviewStars();
-});
+
+    const submitCommentButton = document.getElementById('post-comment-button');
+    if (submitCommentButton) {
+        submitCommentButton.addEventListener('click', function() {
+            console.log('Comment Button clicked');
+            // Add any additional code here to handle the comment submission
+        });
+    } else {
+        console.error('Submit comment button not found');
+    }
+  });
+
+
 
 // function to add establishment to current user's favorites
 function addToFavorites(establishment_name) {
@@ -285,9 +298,69 @@ function getStarRating() {
   const stars = document.querySelectorAll('.review-rating .fa-star.checked');
   return stars.length; 
 }
+function submitComment(reviewId) {
+  const commentInput = document.getElementById(`commentInput-${reviewId}`);
+  console.log('commentInput:', commentInput); // Debug output
 
-// event listener for save button to save changes
-document.querySelector('.save-button').addEventListener('click', saveChanges);
+  // Check if commentInput is null
+  if (!commentInput) {
+      console.error(`Element with ID 'commentInput-${reviewId}' not found.`);
+      return;
+  }
+
+  // Access the value property if the element exists
+  const commentValue = commentInput.value;
+  console.log('commentValue:', commentValue); // Debug output
+
+  // Check if comment is empty
+  if (!commentValue.trim()) {
+      alert('Comment cannot be empty');
+      return;
+  }
+
+  const formData = {
+      reviewId: reviewId,
+      comment: commentInput
+  };
+  console.log('formData:', formData); // Debug output
+
+  fetch('/submit-comment', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Response data:', data); // Debug output
+      if (data.success) {
+          // Reload the page or update the UI to display the new comment
+          console.log('Comment Posted!');
+          // Refresh comments after posting
+          refreshComments(reviewId);
+      } else {
+          alert('Failed to submit comment: ' + data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error submitting comment:', error);
+      alert('An error occurred while submitting the comment.');
+  });
+}
+
+// Function to fetch comments for a review and update UI
+function refreshComments(reviewId) {
+  fetch(`/comments/${reviewId}`)
+  .then(response => response.json())
+  .then(data => {
+      // Assuming there's a function to update the UI with comments
+      updateCommentUI(data.comments);
+  })
+  .catch(error => {
+      console.error('Error fetching comments:', error);
+  });
+}
 
 // function to show edit review widget
 function showEditReviewWidget(reviewId) {

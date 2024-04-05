@@ -169,7 +169,7 @@
                     <div class="review-feed">
                         {{#if reviewData.length}}
                             {{#each reviewData}}
-                                {{> review_partial currentUser=../currentUser isLoggedIn=../isLoggedIn}}
+                                {{> review_partial currentUser=../currentUser isLoggedIn=../isLoggedIn currentUserIcon=../currentUserIcon}}
                             {{/each}}
                         {{else}}
                             <p>Our brew buddies are still brewing up something to say.</p>
