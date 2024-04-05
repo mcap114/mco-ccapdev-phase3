@@ -356,9 +356,9 @@ function addRoutes(server) {
 
   // logout route
   router.get('/logout', function(req, res) {
-    req.session.destroy(function(err) {
-      if (err) {
-        console.error('Error destroying session:', err);
+    req.session.destroy(function(error) {
+      if (error) {
+        console.error('Error destroying session:', error);
         res.status(500).json({ success: false, message: 'Failed to logout' });
       } else {
         res.redirect('/');
