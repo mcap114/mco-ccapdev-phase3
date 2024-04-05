@@ -142,6 +142,21 @@ function addRoutes(server) {
   // route for non-user view homepage
   router.get('/', function (req, resp) {
     console.log('\nCurrently at Home Page');
+
+    const userSearchQuery = {};
+
+      userModel.find(userSearchQuery).lean().then(function(user_data){
+      // Hash passwords before sending data to the client
+      user_data.forEach(user => {
+          user.password = hashPassword(user.password);
+      });
+
+      // Now user_data contains hashed passwords
+      res.json(user_data);
+  }).catch(err => {
+      console.error('Error:', err);
+      res.status(500).send('Internal Server Error');
+  });
   
     // calculate the date one week ago from the current date
     const oneWeekAgo = moment().subtract(7, 'days').toDate();
