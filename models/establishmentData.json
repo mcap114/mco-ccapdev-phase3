@@ -271,23 +271,6 @@
     },
 
     {
-        "banner_image": "https://i.imgocean.com/bos-bannerc3e392ca0f385faa.jpeg",
-        "establishment_name": "Bo's Coffee", 
-        "establishment_address": "Unit 110 G/F SMDC Green Residences, Taft, Zone 78, Malate, Manila, Metro Manila",
-        "establishment_description": "We serve world-class Philippine coffee from local farmers from Sagada, Benguet, Bukidnon, and Davao.",
-        "price_range": "₱100 - ₱200",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out"],
-        "establishment_schedule": ["8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM", "8:30 AM - 9:00 PM"],
-        "contact_details_FB": "Bo's Coffee",
-        "contact_details_IG": "@",
-        "establishment_images": ["https://i.imgocean.com/bos-195f5f99e9c4491d1.jpeg","https://i.imgocean.com/bos-2a84422035e4e8a07.jpeg","https://i.imgocean.com/bos-3815bad2f061c1c89.jpeg","https://i.imgocean.com/bos-44f3929da13da4d3e.jpeg"],
-        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5575493275473!2d120.98963877581245!3d14.56727607789026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97f5c7aabd5%3A0x5cb750d334428e01!2sBo&#39;s%20Coffee!5e0!3m2!1sen!2sph!4v1711708718448!5m2!1sen!2sph",
-        "establishment_owner": "Steve Benitez",
-        "owner_username": "stevebenitez"
-    },
-
-    {
         "banner_image": "https://i.imgocean.com/tylers-banner70077acbf1805ab5.jpeg",
         "establishment_name": "Tyler’s Cafe", 
         "establishment_address": "319 Katipunan Ave, Quezon City, 1108 Metro Manila",
@@ -302,23 +285,6 @@
         "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.2884009737113!2d121.06939018481621!3d14.639563439657096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b77f48647d47%3A0xd8948f4f041b087f!2sTyler&#39;s%20Cafe!5e0!3m2!1sen!2sph!4v1711520428237!5m2!1sen!2sph",
         "establishment_owner": "Jutes Templo",
         "owner_username": "jutestemplo"
-    },
-
-    {
-        "banner_image": "https://i.imgocean.com/cellos-banner3f7cd62e0d05467a.jpeg",
-        "establishment_name": "Cello's Doughnuts & Dips", 
-        "establishment_address": "315 Katipunan Ave, Quezon City, 1108 Metro Manila",
-        "establishment_description": "Have a perfect day with timeless delights",
-        "price_range": "₱70 - ₱150",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out", "Parking"],
-        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
-        "contact_details_FB": "Cello's Doughnuts & Dips",
-        "contact_details_IG": "@cellosdoughnuts",
-        "establishment_images": ["https://i.imgocean.com/cellos-15c6868f5a116a575.jpeg","https://i.imgocean.com/cellos-485875c0d9737f42d.jpeg","https://i.imgocean.com/cellos-2d723778d5bd3c04a.jpeg","https://i.imgocean.com/cellos-3d0584c92f50a2bb0.jpeg"],
-        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.300269163444!2d121.07167817581345!3d14.638889076136591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b77c1b4c39a7%3A0xa3983c44f3e7b13d!2sCello&#39;s%20Doughnuts%20%26%20Dips!5e0!3m2!1sen!2sph!4v1711520649388!5m2!1sen!2sph",
-        "establishment_owner": "Cello Tempo",
-        "owner_username": "Cello Temple"
     },
 
     {
@@ -441,58 +407,7 @@
     },
 
     {
-        "banner_image": "",
-        "establishment_name": "But First Coffee", 
-        "establishment_address": "373 Boni Ave, Mandaluyong, Metro Manila",
-        "establishment_description": "",
-        "price_range": "₱70 - ₱150",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out"],
-        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
-        "contact_details_FB": "But First, Coffee PH",
-        "contact_details_IG": "@butfirstcoffeeph",
-        "establishment_images": [],
-        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4257301008806!2d121.04022517581282!3d14.57480047770642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dce47c9995%3A0xf9bf0a9029b70601!2sBut%20First%2C%20Coffee%20(BFC)%20-%20Boni!5e0!3m2!1sen!2sph!4v1711708925382!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
-    },
-
-    {
-        "banner_image": "",
-        "establishment_name": "Wildflour", 
-        "establishment_address": "The Podium, Ground, 18 ADB Ave, Ortigas Center, Mandaluyong, 1550 Metro Manila",
-        "establishment_description": "Serving the best food & drink in Manila, with an ambience unlike any other",
-        "price_range": "₱200 - ₱400",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out", "Parking"],
-        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
-        "contact_details_FB": "Wildflour Restaurant",
-        "contact_details_IG": "@wildflourmanila",
-        "establishment_images": [],
-        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.238880381505!2d121.05641557581292!3d14.585459577445775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c816f79826f1%3A0x66f2f5783a6eb880!2sWildflour%20Restaurant%20-%20Podium!5e0!3m2!1sen!2sph!4v1711708950732!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
-    },
-
-    {
-        "banner_image": "",
-        "establishment_name": "Ghost Coffee Cafe, Events, and Collab Space", 
-        "establishment_address": "Marikina-Infanta Hwy, Barangay Mayamot, Antipolo, 1870 Rizal",
-        "establishment_description": "The perfect place to 'ghost' to with friends and family",
-        "price_range": "₱100 - ₱200",
-        "establishment_ratings": "",
-        "services_offered":  ["Dine-in", "Take Out", "Parking"],
-        "establishment_schedule": ["8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM", "8:00 AM - 9:00 PM"],
-        "contact_details_FB": "Ghost Coffee",
-        "contact_details_IG": "@ghostcoffeeph",
-        "establishment_images": [],
-        "establishment_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.5856099967727!2d121.10504748268117!3d14.622666540112204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9033702a6b1%3A0x88cd8345e8ac1815!2sGHOST%20COFFEE%20CAFE%2C%20EVENTS%20AND%20COLLAB%20SPACE!5e0!3m2!1sen!2sph!4v1711606500076!5m2!1sen!2sph",
-        "establishment_owner": "",
-        "owner_username": ""
-    },
-
-    {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/53361218411_5910226910_b49243d5fb9ba4252.jpeg",
         "establishment_name": "Chapter Coffee Roastery & Cafe", 
         "establishment_address": "Faith Residences Building Blue Mountains Subdivision, Ambassador Neri Ave, Brgy. Sta. Cruz, Antipolo, 1870 Rizal",
         "establishment_description": "Have a perfect day with timeless delights",
@@ -509,7 +424,7 @@
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/63732089_vgkIyHE-FbhSd8XU6O4mxHpLDMge_vyY46h9xBPxpQwb4f12659a2ebd6c7.jpeg",
         "establishment_name": "GC Café", 
         "establishment_address": "7 Felix Ave, Cainta, 1900 Rizal",
         "establishment_description": "Good Coffee, Good Company",
@@ -526,7 +441,7 @@
     },
 
     {
-        "banner_image": "",
+        "banner_image": "https://i.imgocean.com/Screenshot-2024-04-05-at-8.27.04PMfe49afa64b84949b.png",
         "establishment_name": "Kalinaw Coffee Co.", 
         "establishment_address": "J434+PVQ, Vista Verde Ave, Cainta, 1900 Rizal",
         "establishment_description": "",
